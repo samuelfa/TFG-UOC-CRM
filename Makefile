@@ -12,8 +12,7 @@ database:
 
 test: vendor
 	@docker-compose exec -T $(PHP_SERVICE) bin/console security:check
-	@docker-compose exec -T $(PHP_SERVICE) vendor/bin/phpunit --configuration=test/Unit/phpunit.xml
-	@docker-compose exec -T $(PHP_SERVICE) vendor/bin/phpunit --configuration=test/Integration/phpunit.xml
+	@docker-compose exec -T $(PHP_SERVICE) vendor/bin/phpunit
 
 down:
 	@docker-compose down --volumes
@@ -23,7 +22,7 @@ clean:
 	@docker system prune --volumes --force
 
 coverage: vendor
-	@docker-compose exec -T $(PHP_SERVICE) vendor/bin/phpunit --configuration=test/Unit/phpunit.xml --coverage-text
+	@docker-compose exec -T $(PHP_SERVICE) vendor/bin/phpunit --coverage-text
 
 cs: vendor
 	@docker-compose exec -T $(PHP_SERVICE) vendor/bin/php-cs-fixer fix --config=.php_cs --diff --verbose
@@ -44,6 +43,9 @@ require:
 
 console:
 	@docker-compose exec -T $(PHP_SERVICE) php bin/console $(filter-out $@,$(MAKECMDGOALS));
+
+load_fixtures:
+	@docker-compose exec -T $(PHP_SERVICE) php bin/console doctrine:fixtures:load
 
 all:
 	@make -s up
