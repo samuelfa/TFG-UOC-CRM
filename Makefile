@@ -4,7 +4,7 @@ PHP_SERVICE := php
 
 it: cs test
 
-up:
+dcup:
 	@docker-compose up -d
 
 database:
@@ -35,10 +35,10 @@ vendor: composer.json composer.lock
 	@docker-compose exec -T $(PHP_SERVICE) composer validate
 	@docker-compose exec -T $(PHP_SERVICE) composer install
 
-deps_update:
+composer-update:
 	@docker-compose exec -T $(PHP_SERVICE) composer update
 
-require:
+composer-require:
 	@docker-compose exec -T $(PHP_SERVICE) composer require $(filter-out $@,$(MAKECMDGOALS));
 
 console:
@@ -50,6 +50,6 @@ load_fixtures:
 all:
 	@make -s up
 	@make -s vendor
-	@make -s deps_update
+	@make -s composer-update
 	@make -s database
 	@make -s test

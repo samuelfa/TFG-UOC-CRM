@@ -1,3 +1,18 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+index:
+    path: /
+    controller: App\Controller\DefaultController::index
+
+register_company_form:
+  path: /register
+  methods: GET
+  controller: App\Management\Company\Infrastructure\HTTP\Controller\RegistrationCompanyController::__invoke
+
+register_company_form_execute:
+    path: /register
+    methods: POST
+    controller: App\Management\Company\Infrastructure\HTTP\Controller\RegisterCompanyController::__invoke
+
+dashboard:
+    path: /crm/dashboard
+    methods: GET
+    controller:

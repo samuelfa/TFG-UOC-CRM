@@ -117,6 +117,9 @@
     "justinrainbow/json-schema": {
         "version": "5.2.9"
     },
+    "lambdish/phunctional": {
+        "version": "v2.0.0"
+    },
     "laminas/laminas-code": {
         "version": "3.4.1"
     },
@@ -422,6 +425,9 @@
         "version": "v1.14.0"
     },
     "symfony/polyfill-php73": {
+        "version": "v1.14.0"
+    },
+    "symfony/polyfill-uuid": {
         "version": "v1.14.0"
     },
     "symfony/process": {
