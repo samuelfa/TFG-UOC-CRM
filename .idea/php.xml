@@ -137,6 +137,9 @@
   <component name="PhpInterpreters">
     <interpreters>
       <interpreter id="1de6fa45-917b-4eee-ad4c-70cd82b3a976" name="crm_php:latest" home="docker://DATA" debugger_id="php.debugger.XDebug">
+        <configuration_options>
+          <configuration_option name="xdebug.remote_host" value="10.254.254.254" />
+        </configuration_options>
         <remote_data DOCKER_ACCOUNT_NAME="Docker" DOCKER_IMAGE_NAME="crm_php:latest" DOCKER_REMOTE_PROJECT_PATH="/opt/project" INTERPRETER_PATH="php" HELPERS_PATH="/opt/.phpstorm_helpers" INITIALIZED="false" VALID="true" RUN_AS_ROOT_VIA_SUDO="false" />
       </interpreter>
     </interpreters>

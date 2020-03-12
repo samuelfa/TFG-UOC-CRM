@@ -2,7 +2,8 @@
 
 namespace App\Management\Company\Infrastructure\Symfony\Controller;
 
-use App\Management\Company\Application\Create\CreateCompanyCommand;
+use App\Management\Company\Application\Create\CreateCompanyDTO;
+use App\Management\Company\Application\Create\CreateCompanyService;
 use App\Shared\Infrastructure\Symfony\Controller\WebController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,13 +13,13 @@ use Symfony\Component\Validator\Validation;
 
 class RegisterCompanyController extends WebController
 {
-    public function __invoke(Request $request): RedirectResponse
+    public function __invoke(Request $request, CreateCompanyService $service): RedirectResponse
     {
         $validationErrors = $this->validateRequest($request);
 
         return $validationErrors->count()
             ? $this->redirectWithErrors('register_company_form', $validationErrors, $request)
-            : $this->createCompany($request);
+            : $this->createCompany($request, $service);
     }
 
     private function validateRequest(Request $request): ConstraintViolationListInterface
@@ -35,14 +36,14 @@ class RegisterCompanyController extends WebController
         return Validation::createValidator()->validate($input, $constraint);
     }
 
-    private function createCompany(Request $request): RedirectResponse
+    private function createCompany(Request $request, CreateCompanyService $service): RedirectResponse
     {
-        $command = new CreateCompanyCommand(
+        $command = new CreateCompanyDTO(
             $request->request->get('name'),
             $request->request->get('email')
         );
 
-        $this->dispatch($command);
+        $service->execute($command);
 
         //TODO: Generate a session
         //TODO: Translate messages

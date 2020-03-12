@@ -2,8 +2,6 @@
 
 namespace App\Shared\Infrastructure\Symfony\Controller;
 
-use App\Shared\Domain\Bus\Command\CommandBus;
-use App\Shared\Domain\Bus\Query\QueryBus;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,7 +11,7 @@ use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Validator\ConstraintViolationListInterface;
 use Twig\Environment;
 
-abstract class WebController extends BusController
+abstract class WebController
 {
     private Environment      $twig;
     private RouterInterface  $router;
@@ -22,12 +20,8 @@ abstract class WebController extends BusController
     public function __construct(
         Environment $twig,
         RouterInterface $router,
-        SessionInterface $session,
-        QueryBus $queryBus,
-        CommandBus $commandBus
+        SessionInterface $session
     ) {
-        parent::__construct($queryBus, $commandBus);
-
         $this->twig = $twig;
         $this->router = $router;
         $this->session = $session;

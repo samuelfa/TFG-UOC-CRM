@@ -2,11 +2,10 @@
 
 namespace App\Management\Company\Domain;
 
-use App\Shared\Domain\Aggregate\AggregateRoot;
 use App\Shared\Domain\ValueObject\EmailAddress;
 use App\Shared\Domain\ValueObject\Uuid;
 
-final class Company extends AggregateRoot
+final class Company
 {
     private Uuid $id;
     private string $name;
@@ -34,7 +33,7 @@ final class Company extends AggregateRoot
         return $this->name;
     }
 
-    public function email(): EmailAddress
+    public function emailAddress(): EmailAddress
     {
         return $this->email;
     }
