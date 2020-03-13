@@ -9,7 +9,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\ControllerEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 
-class CompanyDomainSubscriber implements EventSubscriberInterface
+class CustomerNamespaceSubscriber implements EventSubscriberInterface
 {
     private string $domain;
     private ConnectionFactory $connectionFactory;
@@ -30,7 +30,7 @@ class CompanyDomainSubscriber implements EventSubscriberInterface
         ];
     }
 
-    private function onKernelController(ControllerEvent $event): void
+    public function onKernelController(ControllerEvent $event): void
     {
         $request = $event->getRequest();
         $host = $request->getHost();

@@ -26,7 +26,7 @@ class RegisterCompanyController extends WebController
     {
         $constraint = new Assert\Collection(
             [
-                'namespace' => [new Assert\NotBlank(), new Assert\Length(['max' => 50])],
+                'namespace' => [new Assert\NotBlank(), new Assert\Length(['max' => 50]), new Assert\Type(['value '=> 'alnum'])],
                 'name'      => [new Assert\NotBlank(), new Assert\Length(['max' => 150])],
                 'email'     => [new Assert\NotBlank(), new Assert\Length(['max' => 150]), new Assert\Email()],
             ]

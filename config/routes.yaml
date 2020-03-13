@@ -5,12 +5,12 @@ index:
 register_company_form:
   path: /register
   methods: GET
-  controller: App\Management\Company\Infrastructure\Symfony\Controller\RegistrationCompanyController::__invoke
+  controller: App\Infrastructure\Symfony\Controller\Company\RegistrationCompanyController::__invoke
 
 register_company_form_execute:
     path: /register
     methods: POST
-    controller: App\Management\Company\Infrastructure\Symfony\Controller\RegisterCompanyController::__invoke
+    controller: App\Infrastructure\Symfony\Controller\Company\RegisterCompanyController::__invoke
 
 dashboard:
     path: /crm/dashboard
