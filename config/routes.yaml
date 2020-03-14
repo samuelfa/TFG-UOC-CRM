@@ -1,18 +1,42 @@
 index:
-    path: /
-    controller: App\Controller\DefaultController::index
+  path: /
+  controller: App\Infrastructure\Symfony\Controller\Landing\HomeController::view
 
-register_company_form:
+error:
+  path: /error
+  controller: App\Infrastructure\Symfony\Controller\Landing\ErrorController::view
+
+register:
   path: /register
   methods: GET
-  controller: App\Infrastructure\Symfony\Controller\Company\RegistrationCompanyController::__invoke
+  controller: App\Infrastructure\Symfony\Controller\Landing\Register\RegisterGetController::view
 
-register_company_form_execute:
+register_post:
     path: /register
     methods: POST
-    controller: App\Infrastructure\Symfony\Controller\Company\RegisterCompanyController::__invoke
+    controller: App\Infrastructure\Symfony\Controller\Landing\Register\RegisterPostController::view
 
-dashboard:
-    path: /crm/dashboard
-    methods: GET
-    controller:
+login:
+  path: /login
+  methods: GET
+  controller: App\Infrastructure\Symfony\Controller\Landing\Login\LoginGetController::view
+
+login_post:
+  path: /login
+  methods: POST
+  controller: App\Infrastructure\Symfony\Controller\Landing\Login\LoginPostController::view
+
+forgot-password:
+  path: /forgot-password
+  methods: GET
+  controller: App\Infrastructure\Symfony\Controller\Landing\Login\LoginGetController::view
+
+forgot-password_post:
+  path: /forgot-password
+  methods: POST
+  controller: App\Infrastructure\Symfony\Controller\Landing\Login\LoginPostController::view
+
+#dashboard:
+#    path: /crm/dashboard
+#    methods: GET
+#    controller:

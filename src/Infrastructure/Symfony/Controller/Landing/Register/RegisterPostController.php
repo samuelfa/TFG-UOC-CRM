@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Infrastructure\Symfony\Controller\Company;
+namespace App\Infrastructure\Symfony\Controller\Landing\Register;
 
 use App\Application\Company\Create\CreateCompanyDTO;
 use App\Application\Company\Create\CreateCompanyService;
@@ -13,9 +13,9 @@ use Symfony\Component\Validator\ConstraintViolationListInterface;
 use Symfony\Component\Validator\Validation;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
-class RegisterCompanyController extends WebController
+class RegisterPostController extends WebController
 {
-    public function __invoke(Request $request, CreateCompanyService $service, EventDispatcherInterface $dispatcher): RedirectResponse
+    public function view(Request $request, CreateCompanyService $service, EventDispatcherInterface $dispatcher): RedirectResponse
     {
         $validationErrors = $this->validateRequest($request);
 

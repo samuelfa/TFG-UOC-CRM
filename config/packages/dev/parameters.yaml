@@ -1,2 +1,2 @@
 parameters:
-  domain: '.localhost'
+  domain: 'localhost'

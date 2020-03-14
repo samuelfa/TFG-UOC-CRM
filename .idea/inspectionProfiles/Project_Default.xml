@@ -67,6 +67,20 @@
       </option>
       <option name="migratedIntoUserSpace" value="true" />
     </inspection_tool>
+    <inspection_tool class="HtmlUnknownAttribute" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="myValues">
+        <value>
+          <list size="5">
+            <item index="0" class="java.lang.String" itemvalue="role" />
+            <item index="1" class="java.lang.String" itemvalue="aria-hidden" />
+            <item index="2" class="java.lang.String" itemvalue="data-prefix" />
+            <item index="3" class="java.lang.String" itemvalue="data-icon" />
+            <item index="4" class="java.lang.String" itemvalue="data-fa-i2svg" />
+          </list>
+        </value>
+      </option>
+      <option name="myCustomValuesEnabled" value="true" />
+    </inspection_tool>
     <inspection_tool class="PhpCSFixerValidationInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">
       <option name="CODING_STANDARD" value="Custom" />
       <option name="CUSTOM_RULESET_PATH" value="$PROJECT_DIR$/.php_cs" />

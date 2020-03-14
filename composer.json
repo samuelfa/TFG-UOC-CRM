@@ -5,6 +5,7 @@
         "php": "^7.4",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "ext-pdo": "*",
         "lambdish/phunctional": "*",
         "sensio/framework-extra-bundle": "^5.5",
         "symfony/console": "5.0.*",
@@ -18,9 +19,9 @@
         "symfony/security-csrf": "5.0.*",
         "symfony/twig-bundle": "5.0.*",
         "symfony/validator": "5.0.*",
+        "symfony/webpack-encore-bundle": "^1.7",
         "symfony/yaml": "5.0.*",
-        "twig/twig": "^3.0",
-      "ext-pdo": "*"
+        "twig/twig": "^3.0"
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.3",

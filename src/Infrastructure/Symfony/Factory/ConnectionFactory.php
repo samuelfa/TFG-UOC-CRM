@@ -22,6 +22,10 @@ class ConnectionFactory implements ConnectionFactoryInterface
 
     public function preloadSettings(string $namespace): void
     {
+        if(empty($namespace)){
+            return;
+        }
+
         $company = $this->repository->findOneByNamespace($namespace);
         if(!$company){
             throw new CompanyNotFound($namespace);

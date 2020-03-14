@@ -26,16 +26,31 @@ class CustomerNamespaceSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents(): array
     {
         return [
-            KernelEvents::CONTROLLER => 'onKernelController'
+            KernelEvents::CONTROLLER => 'onEvent'
         ];
     }
 
-    public function onKernelController(ControllerEvent $event): void
+    public function onEvent(ControllerEvent $event): void
     {
         $request = $event->getRequest();
         $host = $request->getHost();
-        $namespace = str_replace($host, '', $this->domain);
+        $namespace = $this->calculateNamespace($host);
 
         $this->connectionFactory->preloadSettings($namespace);
+    }
+
+    private function calculateNamespace(string $host): string
+    {
+        $namespace = str_replace($this->domain, '', $host);
+        if(empty($namespace)){
+            return '';
+        }
+
+        $lastCharacter = $namespace[strlen($namespace) - 1];
+        if($lastCharacter === '.'){
+            return substr($namespace, 1);
+        }
+
+        return $namespace;
     }
 }
