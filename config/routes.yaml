@@ -29,12 +29,12 @@ login_post:
 forgot-password:
   path: /forgot-password
   methods: GET
-  controller: App\Infrastructure\Symfony\Controller\Landing\Login\LoginGetController::view
+  controller: App\Infrastructure\Symfony\Controller\Landing\ForgotPassword\ForgotPasswordGetController::view
 
 forgot-password_post:
   path: /forgot-password
   methods: POST
-  controller: App\Infrastructure\Symfony\Controller\Landing\Login\LoginPostController::view
+  controller: App\Infrastructure\Symfony\Controller\Landing\ForgotPassword\ForgotPasswordPostController::view
 
 #dashboard:
 #    path: /crm/dashboard

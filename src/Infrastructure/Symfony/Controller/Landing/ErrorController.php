@@ -9,6 +9,6 @@ class ErrorController extends WebController
 {
     public function view(): Response
     {
-        return $this->render('pages/error.html.twig');
+        return $this->render('pages/landing/error.html.twig');
     }
 }
