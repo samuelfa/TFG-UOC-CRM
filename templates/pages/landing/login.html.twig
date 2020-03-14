@@ -1,10 +1,10 @@
 {% extends "partials/landing.html.twig" %}
 
-{% block title %}Login{% endblock %}
+{% block title %}{% trans %}Sign in{% endtrans %}{% endblock %}
 {% block content %}
     {# TODO: We need to add additional input to ask for the namespace #}
     <div class="card card-login mx-auto mt-5">
-        <div class="card-header">Login</div>
+        <div class="card-header">{% trans %}Sign in{% endtrans %}</div>
         <div class="card-body">
             <form>
                 <div class="form-group">

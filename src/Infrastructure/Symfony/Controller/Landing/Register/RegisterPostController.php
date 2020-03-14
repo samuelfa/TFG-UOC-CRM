@@ -18,7 +18,7 @@ class RegisterPostController extends WebController
         $validationErrors = $this->validateRequest($request);
 
         return $validationErrors->count()
-            ? $this->redirectWithErrors('register_company_form', $validationErrors, $request)
+            ? $this->redirectWithErrors('register', $validationErrors, $request)
             : $this->createCompany($request, $service);
     }
 
@@ -26,9 +26,10 @@ class RegisterPostController extends WebController
     {
         $constraint = new Assert\Collection(
             [
-                'namespace' => [new Assert\NotBlank(), new Assert\Length(['max' => 50]), new Assert\Type(['value '=> 'alnum'])],
-                'name'      => [new Assert\NotBlank(), new Assert\Length(['max' => 150])],
-                'email'     => [new Assert\NotBlank(), new Assert\Length(['max' => 150]), new Assert\Email()],
+                'namespace' => [new Assert\NotBlank(), new Assert\Length(['max' => 50]), new Assert\Type('alnum')],
+                'name'      => [new Assert\NotBlank(), new Assert\Length(['max' => 150]), new Assert\Type('string')],
+                'email_address'     => [new Assert\NotBlank(), new Assert\Length(['max' => 150]), new Assert\Email()],
+                'password'  => [new Assert\NotBlank(), new Assert\Length(['max' => 50]), new Assert\Type('string')],
             ]
         );
 
@@ -42,17 +43,18 @@ class RegisterPostController extends WebController
         $command = new CreateCompanyDTO(
             $request->request->get('namespace'),
             $request->request->get('name'),
-            $request->request->get('email')
+            $request->request->get('email_address'),
+            $request->request->get('password')
         );
 
         $service->execute($command);
 
         //TODO: Generate a session
-        //TODO: Translate messages
 
         return $this->redirectWithMessage(
             'dashboard',
-            sprintf('Compañia %s creada', $command->name())
+            'Compañia %s creada',
+            $command->name()
         );
     }
 }

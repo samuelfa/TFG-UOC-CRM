@@ -36,7 +36,7 @@ forgot-password_post:
   methods: POST
   controller: App\Infrastructure\Symfony\Controller\Landing\ForgotPassword\ForgotPasswordPostController::view
 
-#dashboard:
-#    path: /crm/dashboard
-#    methods: GET
-#    controller:
+dashboard:
+    path: /crm/dashboard
+    methods: GET
+    controller: App\Infrastructure\Symfony\Controller\CRM\DashboardController::view

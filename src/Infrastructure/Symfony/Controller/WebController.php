@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Validator\ConstraintViolationListInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Environment;
 
 abstract class WebController
@@ -16,15 +17,21 @@ abstract class WebController
     private Environment      $twig;
     private RouterInterface  $router;
     private SessionInterface $session;
+    /**
+     * @var TranslatorInterface
+     */
+    private TranslatorInterface $translator;
 
     public function __construct(
         Environment $twig,
         RouterInterface $router,
-        SessionInterface $session
+        SessionInterface $session,
+        TranslatorInterface $translator
     ) {
         $this->twig = $twig;
         $this->router = $router;
         $this->session = $session;
+        $this->translator = $translator;
     }
 
     public function render(string $templatePath, array $arguments = []): Response
@@ -37,8 +44,9 @@ abstract class WebController
         return new RedirectResponse($this->router->generate($routeName), 302);
     }
 
-    public function redirectWithMessage(string $routeName, string $message): RedirectResponse
+    public function redirectWithMessage(string $routeName, string $message, ...$parameters): RedirectResponse
     {
+        $message = $this->translator->trans($message, $parameters);
         $this->addFlashFor('message', [$message]);
 
         return $this->redirect($routeName);

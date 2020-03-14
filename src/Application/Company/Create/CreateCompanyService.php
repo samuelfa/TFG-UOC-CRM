@@ -32,5 +32,7 @@ final class CreateCompanyService
         $this->repository->save($company);
 
         $this->dispatcher->created($namespace);
+
+        //TODO: Flush to store all, use transactional session
     }
 }
