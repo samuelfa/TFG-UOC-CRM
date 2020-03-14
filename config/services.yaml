@@ -4,6 +4,7 @@ services:
         bind:
             $rootFolder: '%kernel.project_dir%'
             $domain: '%domain%'
+            $databaseNamePrefix: '%database_name.prefix%'
 
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.

@@ -5,21 +5,23 @@ namespace App\Infrastructure\Symfony\Controller\Company;
 use App\Application\Company\Create\CreateCompanyDTO;
 use App\Application\Company\Create\CreateCompanyService;
 use App\Infrastructure\Symfony\Controller\WebController;
+use App\Infrastructure\Symfony\Event\CompanyCreatedEvent;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\ConstraintViolationListInterface;
 use Symfony\Component\Validator\Validation;
+use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
 class RegisterCompanyController extends WebController
 {
-    public function __invoke(Request $request, CreateCompanyService $service): RedirectResponse
+    public function __invoke(Request $request, CreateCompanyService $service, EventDispatcherInterface $dispatcher): RedirectResponse
     {
         $validationErrors = $this->validateRequest($request);
 
         return $validationErrors->count()
             ? $this->redirectWithErrors('register_company_form', $validationErrors, $request)
-            : $this->createCompany($request, $service);
+            : $this->createCompany($request, $service, $dispatcher);
     }
 
     private function validateRequest(Request $request): ConstraintViolationListInterface
@@ -37,7 +39,7 @@ class RegisterCompanyController extends WebController
         return Validation::createValidator()->validate($input, $constraint);
     }
 
-    private function createCompany(Request $request, CreateCompanyService $service): RedirectResponse
+    private function createCompany(Request $request, CreateCompanyService $service, EventDispatcherInterface $dispatcher): RedirectResponse
     {
         $command = new CreateCompanyDTO(
             $request->request->get('namespace'),
@@ -46,6 +48,8 @@ class RegisterCompanyController extends WebController
         );
 
         $service->execute($command);
+
+        $dispatcher->dispatch(new CompanyCreatedEvent($command->namespace()));
 
         //TODO: Generate a session
         //TODO: Translate messages

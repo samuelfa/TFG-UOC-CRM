@@ -27,6 +27,6 @@ class ConnectionFactory implements ConnectionFactoryInterface
             throw new CompanyNotFound($namespace);
         }
 
-        $_ENV['CUSTOMER_DATABASE_URL'] = str_replace('default', $namespace, $_ENV['DEFAULT_DATABASE_URL']);
+        $_ENV['CUSTOMER_DATABASE_URL'] = str_replace('[customer]', $namespace, $_ENV['DEFAULT_DATABASE_URL']);
     }
 }

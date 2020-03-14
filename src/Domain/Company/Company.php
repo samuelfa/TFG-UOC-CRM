@@ -4,7 +4,7 @@ namespace App\Domain\Company;
 
 use App\Domain\ValueObject\EmailAddress;
 
-final class Company
+class Company
 {
     private string $namespace;
     private string $name;

@@ -1,6 +1,6 @@
-App\Management\Company\Domain\Company:
+App\Domain\Company\Company:
   type: entity
-  repositoryClass: App\Management\Company\Infrastructure\Persistence\Doctrine\DoctrineCompanyRepository
+  repositoryClass: App\Infrastructure\Persistence\Doctrine\DoctrineCompanyRepository
   table: companies
   schema: tfg_default # The schema the table lies in, for platforms that support schemas (Optional, >= 2.5)
   readOnly: flase
