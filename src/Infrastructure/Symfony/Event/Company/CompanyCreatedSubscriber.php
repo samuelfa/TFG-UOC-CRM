@@ -1,10 +1,9 @@
 <?php
 
 
-namespace App\Infrastructure\Symfony\Subscriber;
+namespace App\Infrastructure\Symfony\Event\Company;
 
 use App\Domain\Company\CloneCustomerRepository;
-use App\Infrastructure\Symfony\Event\CompanyCreatedEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class CompanyCreatedSubscriber implements EventSubscriberInterface

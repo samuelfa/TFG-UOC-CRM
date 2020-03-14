@@ -5,23 +5,21 @@ namespace App\Infrastructure\Symfony\Controller\Landing\Register;
 use App\Application\Company\Create\CreateCompanyDTO;
 use App\Application\Company\Create\CreateCompanyService;
 use App\Infrastructure\Symfony\Controller\WebController;
-use App\Infrastructure\Symfony\Event\CompanyCreatedEvent;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\ConstraintViolationListInterface;
 use Symfony\Component\Validator\Validation;
-use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
 class RegisterPostController extends WebController
 {
-    public function view(Request $request, CreateCompanyService $service, EventDispatcherInterface $dispatcher): RedirectResponse
+    public function view(Request $request, CreateCompanyService $service): RedirectResponse
     {
         $validationErrors = $this->validateRequest($request);
 
         return $validationErrors->count()
             ? $this->redirectWithErrors('register_company_form', $validationErrors, $request)
-            : $this->createCompany($request, $service, $dispatcher);
+            : $this->createCompany($request, $service);
     }
 
     private function validateRequest(Request $request): ConstraintViolationListInterface
@@ -39,7 +37,7 @@ class RegisterPostController extends WebController
         return Validation::createValidator()->validate($input, $constraint);
     }
 
-    private function createCompany(Request $request, CreateCompanyService $service, EventDispatcherInterface $dispatcher): RedirectResponse
+    private function createCompany(Request $request, CreateCompanyService $service): RedirectResponse
     {
         $command = new CreateCompanyDTO(
             $request->request->get('namespace'),
@@ -48,8 +46,6 @@ class RegisterPostController extends WebController
         );
 
         $service->execute($command);
-
-        $dispatcher->dispatch(new CompanyCreatedEvent($command->namespace()));
 
         //TODO: Generate a session
         //TODO: Translate messages
