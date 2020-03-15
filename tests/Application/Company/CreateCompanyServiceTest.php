@@ -26,7 +26,8 @@ class CreateCompanyServiceTest extends TestCase
         $namespace = 'company';
         $companyName = 'MyCompanyName';
         $emailAddressValue = 'one.email@gmail.com';
-        $oldDto = new CreateCompanyDTO($namespace, $companyName, $emailAddressValue);
+        $password = 'password';
+        $oldDto = new CreateCompanyDTO($namespace, $companyName, $emailAddressValue, $password);
         $this->handler->execute($oldDto);
 
         $this->assertEquals($oldDto->namespace(), $namespace);

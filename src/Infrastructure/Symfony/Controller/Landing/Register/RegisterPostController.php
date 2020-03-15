@@ -3,42 +3,36 @@
 namespace App\Infrastructure\Symfony\Controller\Landing\Register;
 
 use App\Application\Company\Create\CreateCompanyDTO;
-use App\Application\Company\Create\CreateCompanyService;
 use App\Infrastructure\Symfony\Controller\WebController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\ConstraintViolationListInterface;
-use Symfony\Component\Validator\Validation;
 
 class RegisterPostController extends WebController
 {
-    public function view(Request $request, CreateCompanyService $service): RedirectResponse
+    public function view(Request $request): RedirectResponse
     {
-        $validationErrors = $this->validateRequest($request);
+        $validationErrors = $this->validate($request);
 
         return $validationErrors->count()
             ? $this->redirectWithErrors('register', $validationErrors, $request)
-            : $this->createCompany($request, $service);
+            : $this->executeService($request);
     }
 
-    private function validateRequest(Request $request): ConstraintViolationListInterface
+    protected function validate(Request $request): ConstraintViolationListInterface
     {
-        $constraint = new Assert\Collection(
-            [
-                'namespace' => [new Assert\NotBlank(), new Assert\Length(['max' => 50]), new Assert\Type('alnum')],
-                'name'      => [new Assert\NotBlank(), new Assert\Length(['max' => 150]), new Assert\Type('string')],
-                'email_address'     => [new Assert\NotBlank(), new Assert\Length(['max' => 150]), new Assert\Email()],
-                'password'  => [new Assert\NotBlank(), new Assert\Length(['max' => 50]), new Assert\Type('string')],
-            ]
-        );
+        $assertions = [
+            'namespace'     => [new Assert\NotBlank(), new Assert\Length(['max' => 50]), new Assert\Type('alnum')],
+            'name'          => [new Assert\NotBlank(), new Assert\Length(['max' => 150]), new Assert\Type('string')],
+            'email_address' => [new Assert\NotBlank(), new Assert\Length(['max' => 150]), new Assert\Email()],
+            'password'      => [new Assert\NotBlank(), new Assert\Length(['max' => 50]), new Assert\Type('string')],
+        ];
 
-        $input = $request->request->all();
-
-        return Validation::createValidator()->validate($input, $constraint);
+        return $this->validateRequest($request, $assertions);
     }
 
-    private function createCompany(Request $request, CreateCompanyService $service): RedirectResponse
+    private function executeService(Request $request): RedirectResponse
     {
         $command = new CreateCompanyDTO(
             $request->request->get('namespace'),
@@ -47,7 +41,7 @@ class RegisterPostController extends WebController
             $request->request->get('password')
         );
 
-        $service->execute($command);
+        $this->dispatch($command);
 
         //TODO: Generate a session
 

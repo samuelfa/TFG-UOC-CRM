@@ -9,7 +9,7 @@ use Psr\EventDispatcher\EventDispatcherInterface;
 
 class CompanyEventDispatcher implements CompanyEventDispatcherInterface
 {
-    private EventDispatcherInterface $dispatcher ;
+    private EventDispatcherInterface $dispatcher;
 
     public function __construct(EventDispatcherInterface $dispatcher)
     {

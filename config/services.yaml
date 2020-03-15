@@ -21,8 +21,16 @@ services:
         resource: '../src/Infrastructure/Symfony/Controller'
         tags: ['controller.service_arguments']
 
+    _instanceof:
+        App\Application\TransactionalService:
+            tags:
+                - { name: 'app.transactional_service', priority: 20 }
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
     App\Domain\Company\CompanyRepository: '@App\Infrastructure\Persistence\Doctrine\CompanyRepository'
     App\Domain\Company\CompanyEventDispatcher: '@App\Infrastructure\Symfony\Event\Company\CompanyEventDispatcher'
+    App\Infrastructure\Symfony\Event\TransactionalServiceHandler:
+        arguments:
+            $services: !tagged_iterator app.transactional_service

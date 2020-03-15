@@ -2,12 +2,15 @@
 
 namespace App\Application\Company\Create;
 
+
+use App\Application\DTO;
+use App\Application\TransactionalService;
 use App\Domain\Company\Company;
 use App\Domain\Company\CompanyEventDispatcher;
 use App\Domain\Company\CompanyRepository;
 use App\Domain\ValueObject\EmailAddress;
 
-final class CreateCompanyService
+final class CreateCompanyService implements TransactionalService
 {
     private CompanyRepository $repository;
     private CompanyEventDispatcher $dispatcher;
@@ -21,8 +24,9 @@ final class CreateCompanyService
         $this->dispatcher = $dispatcher;
     }
 
-    public function execute(CreateCompanyDTO $dto): void
+    public function __invoke(DTO $dto): DTO
     {
+        /** @var CreateCompanyDTO $dto */
         $namespace    = $dto->namespace();
         $name         = $dto->name();
         $emailAddress = new EmailAddress($dto->emailAddress());
@@ -33,6 +37,11 @@ final class CreateCompanyService
 
         $this->dispatcher->created($namespace);
 
-        //TODO: Flush to store all, use transactional session
+        return $dto;
+    }
+
+    public function subscribeTo(): string
+    {
+        return CreateCompanyDTO::class;
     }
 }

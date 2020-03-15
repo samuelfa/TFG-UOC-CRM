@@ -2,7 +2,9 @@
 
 namespace App\Application\Company\Create;
 
-final class CreateCompanyDTO
+use App\Application\DTO;
+
+final class CreateCompanyDTO implements DTO
 {
     private string $namespace;
     private string $name;
