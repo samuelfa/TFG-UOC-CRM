@@ -1,0 +1,31 @@
+App\Infrastructure\Symfony\Security\User:
+  type: entity
+  repositoryClass: App\Infrastructure\Persistence\Doctrine\DoctrineUserRepository
+  table: users
+  schema: tfg_example
+  readOnly: flase
+  id:
+    nif:
+      type: string
+  fields:
+    name:
+      type: string
+      length: 150
+    surname:
+      type: string
+      length: 150
+    birthday:
+      type: date
+    portrait:
+      type: string
+      length: 300
+    password:
+      type: string
+      length: 150
+    email:
+      type: string
+      length: 150
+    role:
+      type: smallint
+      options:
+        unsigned: true

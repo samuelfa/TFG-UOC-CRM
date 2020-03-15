@@ -7,8 +7,8 @@ doctrine:
                 driver: 'pdo_mysql'
                 server_version: '8.0'
                 charset: utf8mb4
-            customer:
-                url: '%env(resolve:CUSTOMER_DATABASE_URL)%'
+            crm:
+                url: '%env(resolve:CRM_DATABASE_URL)%'
                 driver: 'pdo_mysql'
                 server_version: '8.0'
                 charset: utf8mb4
@@ -19,18 +19,21 @@ doctrine:
             default:
                 connection: default
                 mappings:
-                    Main:
+                    Company:
                         is_bundle: false
                         type: yml
                         dir: '%kernel.project_dir%/config/packages/doctrine/common'
-                        prefix: 'App\Domain\Company'
-                        alias: Main
-            customer:
-                connection: customer
+                        prefix: 'App\Domain'
+            crm:
+                connection: crm
                 mappings:
-                    Customer:
+                    CRM:
                         is_bundle: false
                         type: yml
-                        dir: '%kernel.project_dir%/config/packages/doctrine/customer'
+                        dir: '%kernel.project_dir%/config/packages/doctrine/crm'
                         prefix: 'App\Domain'
-                        alias: Customer
+                    Security:
+                        is_bundle: false
+                        type: yml
+                        dir: '%kernel.project_dir%/config/packages/doctrine/security'
+                        prefix: 'App\Infrastructure\Symfony\Security'

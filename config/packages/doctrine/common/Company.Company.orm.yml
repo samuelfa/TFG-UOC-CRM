@@ -4,12 +4,10 @@ App\Domain\Company\Company:
   table: companies
   schema: tfg_default # The schema the table lies in, for platforms that support schemas (Optional, >= 2.5)
   readOnly: flase
-  indexes:
-    name_index:
-      columns: [ namespace ]
   id:
     namespace:
       type: string
+      length: 50
   fields:
     name:
       type: string
