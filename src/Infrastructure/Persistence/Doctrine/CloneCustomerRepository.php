@@ -33,6 +33,8 @@ SQL;
         $connection->exec($userPrivilegesSQL);
 
         $content = file_get_contents("{$this->rootFolder}/database/preload/initial-structure.sql");
-        $connection->exec($content);
+        if(!empty($content)){
+            $connection->exec($content);
+        }
     }
 }

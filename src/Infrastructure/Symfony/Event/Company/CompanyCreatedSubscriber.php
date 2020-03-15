@@ -18,7 +18,7 @@ class CompanyCreatedSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents(): array
     {
         return [
-            CompanyCreatedEvent::NAME => 'onEvent'
+            CompanyCreatedEvent::class => 'onEvent'
         ];
     }
 

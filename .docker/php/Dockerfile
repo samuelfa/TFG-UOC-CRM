@@ -18,9 +18,10 @@ RUN apt-get update && apt-get install -y \
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install extensions
-RUN pecl install xdebug \
-    && docker-php-ext-enable xdebug \
-    && docker-php-ext-install pdo pdo_mysql mbstring zip
+RUN pecl install xdebug redis \
+    && docker-php-ext-enable xdebug redis \
+    && docker-php-ext-install pdo pdo_mysql mbstring zip \
+    && echo "extension=redis.so" > /usr/local/etc/php/conf.d/redis.ini
 
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
