@@ -10,9 +10,17 @@ dcup:
 database:
 	@docker-compose exec -T $(PHP_SERVICE) bin/console doctrine:schema:update
 
-test: vendor
+check: vendor
 	@docker-compose exec -T $(PHP_SERVICE) bin/console security:check
-	@docker-compose exec -T $(PHP_SERVICE) vendor/bin/phpunit
+
+test-unit:
+	@docker-compose exec -T $(PHP_SERVICE) bin/phpunit tests/Application
+
+test-functional:
+	@docker-compose exec -T $(PHP_SERVICE) bin/phpunit tests/Functional
+
+test-all:
+	@docker-compose exec -T $(PHP_SERVICE) bin/phpunit tests
 
 down:
 	@docker-compose down --volumes
@@ -41,19 +49,31 @@ composer-update:
 composer-require:
 	@docker-compose exec -T $(PHP_SERVICE) composer require $(filter-out $@,$(MAKECMDGOALS));
 
+cache-clear:
+	@docker-compose exec -T $(PHP_SERVICE) php bin/console cache:clear
+
 console:
 	@docker-compose exec -T $(PHP_SERVICE) php bin/console $(filter-out $@,$(MAKECMDGOALS));
 
-load_fixtures:
+create-fixture:
+	@docker-compose exec -T $(PHP_SERVICE) php bin/console make:fixture
+
+load-fixtures:
 	@docker-compose exec -T $(PHP_SERVICE) php bin/console doctrine:fixtures:load
 
-db_diff:
+db-diff:
 	@docker-compose exec -T $(PHP_SERVICE) php bin/console make:migration
-	@docker-compose exec -T $(PHP_SERVICE) php bin/console make:migration --em=crm
+
+db-migrate:
+	@docker-compose exec -T $(PHP_SERVICE) php bin/console doctrine:migrations:migrate
+
+debug-router:
+	@docker-compose exec -T $(PHP_SERVICE) php bin/console debug:router
+
+install-assets:
+	@docker-compose exec -T $(PHP_SERVICE) php bin/console assets:install --symlink --relative
 
 all:
-	@make -s up
-	@make -s vendor
-	@make -s composer-update
-	@make -s database
-	@make -s test
+	@make -s dcup
+	@make -s check
+	@make -s test-all

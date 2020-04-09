@@ -4,11 +4,18 @@ namespace App\Infrastructure\Symfony\Controller\Landing\Login;
 
 use App\Infrastructure\Symfony\Controller\WebController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class LoginGetController extends WebController
 {
-    public function view(): Response
+    public function view(AuthenticationUtils $authenticationUtils): Response
     {
-        return $this->render('pages/landing/login.html.twig');
+
+        // get the login error if there is one
+        $error = $authenticationUtils->getLastAuthenticationError();
+        // last username entered by the user
+        $lastUsername = $authenticationUtils->getLastUsername();
+
+        return $this->render('pages/landing/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
     }
 }

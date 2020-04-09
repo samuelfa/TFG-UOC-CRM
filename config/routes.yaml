@@ -6,15 +6,25 @@ error:
   path: /error
   controller: App\Infrastructure\Symfony\Controller\Landing\ErrorController::view
 
+sig_in:
+  path: /sigin
+  methods: GET
+  controller: App\Infrastructure\Symfony\Controller\Landing\SigIn\SigInGetController::view
+
+sig_in_post:
+  path: /sigin
+  methods: POST
+  controller: App\Infrastructure\Symfony\Controller\Landing\SigIn\SigInPostController::view
+
 register:
   path: /register
   methods: GET
   controller: App\Infrastructure\Symfony\Controller\Landing\Register\RegisterGetController::view
 
 register_post:
-    path: /register
-    methods: POST
-    controller: App\Infrastructure\Symfony\Controller\Landing\Register\RegisterPostController::view
+  path: /register
+  methods: POST
+  controller: App\Infrastructure\Symfony\Controller\Landing\Register\RegisterPostController::view
 
 login:
   path: /login
@@ -37,6 +47,6 @@ forgot-password_post:
   controller: App\Infrastructure\Symfony\Controller\Landing\ForgotPassword\ForgotPasswordPostController::view
 
 dashboard:
-    path: /crm/dashboard
-    methods: GET
-    controller: App\Infrastructure\Symfony\Controller\CRM\DashboardController::view
+  path: /crm/dashboard
+  methods: GET
+  controller: App\Infrastructure\Symfony\Controller\CRM\DashboardController::view

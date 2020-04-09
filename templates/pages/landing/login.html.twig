@@ -3,35 +3,43 @@
 {% block title %}{% trans %}Sign in{% endtrans %}{% endblock %}
 {% block content %}
     {# TODO: We need to add additional input to ask for the namespace #}
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
     <div class="card card-login mx-auto mt-5">
         <div class="card-header">{% trans %}Sign in{% endtrans %}</div>
         <div class="card-body">
-            <form>
+            <form method="post">
                 <div class="form-group">
                     <div class="form-label-group">
-                        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="required" autofocus="autofocus">
-                        <label for="inputEmail">Email address</label>
+                        <input value="{{ last_username }}" name="email" type="email" id="inputEmail" class="form-control" placeholder="{% trans %}Email address{% endtrans %}" required autofocus>
+                        <label for="inputEmail">{% trans %}Email address{% endtrans %}</label>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="form-label-group">
-                        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="required">
-                        <label for="inputPassword">Password</label>
+                        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="{% trans %}Password{% endtrans %}" required>
+                        <label for="inputPassword">{% trans %}Password{% endtrans %}</label>
                     </div>
                 </div>
+
+                <input type="hidden" name="_csrf_token"
+                       value="{{ csrf_token('authenticate') }}"
+                >
                 <div class="form-group">
                     <div class="checkbox">
                         <label>
                             <input type="checkbox" value="remember-me">
-                            Remember Password
+                            {% trans %}Remember Password{% endtrans %}
                         </label>
                     </div>
                 </div>
-                <a class="btn btn-primary btn-block" href="{{ path('index') }}">Login</a>
+                <button class="btn btn-primary btn-block" type="submit">
+                    {% trans %}Sign in{% endtrans %}
+                </button>
             </form>
             <div class="text-center">
-                <a class="d-block small mt-3" href="{{ path('register') }}">Register an Account</a>
-                <a class="d-block small" href="{{ path('forgot-password') }}">Forgot Password?</a>
+                <a class="d-block small" href="{{ path('forgot-password') }}">{% trans %}Forgot Password?{% endtrans %}</a>
             </div>
         </div>
     </div>

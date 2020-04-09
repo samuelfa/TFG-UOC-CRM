@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                          https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="App\Infrastructure\Symfony\Security\User" table="users" schema="tfg_example" repository-class="App\Infrastructure\Persistence\Doctrine\Repository\UserRepository">
+
+        <id name="nif" type="nif" length="50" column="nif"/>
+
+        <field name="name" column="name" length="150" />
+        <field name="surname" column="surname" length="150" />
+        <field name="birthday" type="date" column="birthday" />
+        <field name="portrait" type="url" column="portrait" length="300" />
+        <field name="password" type="password" column="password" length="150" />
+        <field name="email" type="email_address" column="email" length="150" />
+        <field name="role" type="role" column="role">
+            <options>
+                <option name="unsigned">true</option>
+            </options>
+        </field>
+    </entity>
+
+</doctrine-mapping>

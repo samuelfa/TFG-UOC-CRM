@@ -1,0 +1,31 @@
+{% extends "partials/landing.html.twig" %}
+
+{% block title %}{% trans %}Choose namespace{% endtrans %}{% endblock %}
+{% block content %}
+    {# TODO: We need to add additional input to ask for the namespace #}
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+    <div class="card card-login mx-auto mt-5">
+        <div class="card-header">{% trans %}Connect to a namespace{% endtrans %}</div>
+        <div class="card-body">
+            <form method="post">
+                <div class="form-group">
+                    <div class="form-label-group">
+                        <input name="namespace" type="text" id="namespace" class="form-control" placeholder="{% trans %}Namespace{% endtrans %}" required autofocus>
+                        <label for="namespace">{% trans %}Namespace{% endtrans %}</label>
+                    </div>
+                </div>
+                <input type="hidden" name="_csrf_token"
+                       value="{{ csrf_token('authenticate') }}"
+                >
+                <button class="btn btn-primary btn-block" type="submit">
+                    {% trans %}Continue{% endtrans %}
+                </button>
+            </form>
+            <div class="text-center">
+                <a class="d-block small mt-3" href="{{ path('register') }}">{% trans %}Register an Account{% endtrans %}</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Infrastructure\Persistence\Doctrine;
+namespace App\Infrastructure\Persistence\Doctrine\Repository;
 
 
 use App\Domain\Company\Company;

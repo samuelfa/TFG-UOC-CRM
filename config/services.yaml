@@ -29,8 +29,11 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
-    App\Domain\Company\CompanyRepository: '@App\Infrastructure\Persistence\Doctrine\CompanyRepository'
+    App\Domain\Company\CompanyRepository: '@App\Infrastructure\Persistence\Doctrine\Repository\CompanyRepository'
+    App\Domain\Company\CloneCustomerRepository: '@App\Infrastructure\Persistence\Doctrine\Repository\CloneCustomerRepository'
+
     App\Domain\Company\CompanyEventDispatcher: '@App\Infrastructure\Symfony\Event\Company\CompanyEventDispatcher'
+
     App\Infrastructure\Symfony\Event\TransactionalServiceHandler:
         arguments:
             $services: !tagged_iterator app.transactional_service
