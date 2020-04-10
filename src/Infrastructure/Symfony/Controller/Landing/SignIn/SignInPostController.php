@@ -41,6 +41,8 @@ class SignInPostController extends WebController
             return $this->redirectWithError('sign_in', 'Namespace not found', $request);
         }
 
-        return $this->redirect($command->uri());
+        $path = $this->generateUrl('crm_login');
+        $url = "{$command->uri()}{$path}";
+        return $this->redirect($url);
     }
 }

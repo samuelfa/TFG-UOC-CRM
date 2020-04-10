@@ -4,6 +4,7 @@
       <w>callables</w>
       <w>csrf</w>
       <w>endtrans</w>
+      <w>subdomain</w>
     </words>
   </dictionary>
 </component>

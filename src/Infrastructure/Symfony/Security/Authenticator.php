@@ -100,11 +100,11 @@ class Authenticator extends AbstractFormLoginAuthenticator implements PasswordAu
             return new RedirectResponse($targetPath);
         }
 
-        return new RedirectResponse($this->urlGenerator->generate('dashboard'));
+        return new RedirectResponse($this->urlGenerator->generate('crm_dashboard'));
     }
 
     protected function getLoginUrl(): string
     {
-        return $this->urlGenerator->generate('login');
+        return $this->urlGenerator->generate('crm_login');
     }
 }

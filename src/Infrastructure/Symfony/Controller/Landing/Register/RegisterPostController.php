@@ -25,10 +25,10 @@ class RegisterPostController extends WebController
     {
         $assertions = [
             '_csrf_token'   => [new CSRF('register')],
-            'namespace'     => [new Assert\NotBlank(), new Assert\Length(['max' => 50]), new Assert\Type('alnum')],
-            'name'          => [new Assert\NotBlank(), new Assert\Length(['max' => 150]), new Assert\Type('string')],
-            'email_address' => [new Assert\NotBlank(), new Assert\Length(['max' => 150]), new Assert\Email()],
-            'password'      => [new Assert\NotBlank(), new Assert\Length(['max' => 50]), new Assert\Type('string')],
+            'namespace'     => [new Assert\NotBlank(), new Assert\Length(['min' => 4, 'max' => 50]), new Assert\Type('alnum')],
+            'name'          => [new Assert\NotBlank(), new Assert\Length(['min' => 3, 'max' => 150]), new Assert\Type('string')],
+            'email_address' => [new Assert\NotBlank(), new Assert\Length(['min' => 3, 'max' => 150]), new Assert\Email()],
+            'password'      => [new Assert\NotBlank(), new Assert\Length(['min' => 4, 'max' => 50]), new Assert\Type('string')],
         ];
 
         return $this->validateRequest($request, $assertions);

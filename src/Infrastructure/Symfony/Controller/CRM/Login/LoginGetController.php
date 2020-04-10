@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Infrastructure\Symfony\Controller\Landing\Login;
+namespace App\Infrastructure\Symfony\Controller\CRM\Login;
 
 use App\Infrastructure\Symfony\Controller\WebController;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,6 +16,6 @@ class LoginGetController extends WebController
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render('pages/landing/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+        return $this->render('pages/crm/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
     }
 }

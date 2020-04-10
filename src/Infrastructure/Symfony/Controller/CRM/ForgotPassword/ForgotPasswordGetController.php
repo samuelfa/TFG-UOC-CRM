@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Infrastructure\Symfony\Controller\Landing\ForgotPassword;
+namespace App\Infrastructure\Symfony\Controller\CRM\ForgotPassword;
 
 use App\Infrastructure\Symfony\Controller\WebController;
 use Symfony\Component\HttpFoundation\Response;
@@ -9,6 +9,6 @@ class ForgotPasswordGetController extends WebController
 {
     public function view(): Response
     {
-        return $this->render('pages/landing/forgot-password.twig');
+        return $this->render('pages/crm/forgot-password.twig');
     }
 }

@@ -47,6 +47,16 @@ services:
         arguments:
             $services: !tagged_iterator app.transactional_service
 
+    # Services
+
+    App\Infrastructure\Symfony\Event\UserLoggedSubscriber:
+        tags:
+            - { name: kernel.event_listener, event: kernel.controller, priority: 0 }
+
+    App\Infrastructure\Symfony\Event\CustomerNamespaceSubscriber:
+        tags:
+            - { name: kernel.event_listener, event: kernel.controller, priority: 10 }
+
     # Session handler
 
     Redis:
