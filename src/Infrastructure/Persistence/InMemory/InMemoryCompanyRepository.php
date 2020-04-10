@@ -11,7 +11,18 @@ class InMemoryCompanyRepository implements CompanyRepository
 {
     private array $list;
 
-    public function findOneByNamespace(string $namespace): Company
+    /**
+     * @param Company[] $list
+     */
+    public function __construct(array $list)
+    {
+        $this->list = [];
+        foreach ($list as $company){
+            $this->list[$company->namespace()] = $company;
+        }
+    }
+
+    public function findOneByNamespace(string $namespace): ?Company
     {
         return $this->list[$namespace] ?? null;
     }

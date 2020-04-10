@@ -5,6 +5,7 @@ services:
             $rootFolder: '%kernel.project_dir%'
             $domain: '%domain%'
             $databaseNamePrefix: '%database_name.prefix%'
+            $domainTemplate: '%domain_template%'
 
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
@@ -25,6 +26,14 @@ services:
         App\Application\TransactionalService:
             tags:
                 - { name: 'app.transactional_service', priority: 20 }
+
+    # Validators
+
+    App\Infrastructure\Symfony\Validator\Constraints\CSRFValidator:
+        arguments:
+            $manager: '@security.csrf.token_manager'
+        tags:
+            - { name: 'validator.constraint_validator' }
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

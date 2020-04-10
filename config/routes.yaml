@@ -6,15 +6,15 @@ error:
   path: /error
   controller: App\Infrastructure\Symfony\Controller\Landing\ErrorController::view
 
-sig_in:
-  path: /sigin
+sign_in:
+  path: /signin
   methods: GET
-  controller: App\Infrastructure\Symfony\Controller\Landing\SigIn\SigInGetController::view
+  controller: App\Infrastructure\Symfony\Controller\Landing\SignIn\SignInGetController::view
 
-sig_in_post:
-  path: /sigin
+sign_in_post:
+  path: /signin
   methods: POST
-  controller: App\Infrastructure\Symfony\Controller\Landing\SigIn\SigInPostController::view
+  controller: App\Infrastructure\Symfony\Controller\Landing\SignIn\SignInPostController::view
 
 register:
   path: /register

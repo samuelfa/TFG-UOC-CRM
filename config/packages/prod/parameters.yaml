@@ -1,2 +1,3 @@
 parameters:
-  domain: '.something'
+  domain: 'something'
+  schema: 'https'

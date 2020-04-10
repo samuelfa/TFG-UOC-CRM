@@ -8,7 +8,6 @@ use App\Application\TransactionalService;
 use App\Domain\Company\Company;
 use App\Domain\Company\CompanyEventDispatcher;
 use App\Domain\Company\CompanyRepository;
-use App\Domain\ValueObject\EmailAddress;
 
 final class CreateCompanyService implements TransactionalService
 {
@@ -29,7 +28,7 @@ final class CreateCompanyService implements TransactionalService
         /** @var CreateCompanyDTO $dto */
         $namespace    = $dto->namespace();
         $name         = $dto->name();
-        $emailAddress = new EmailAddress($dto->emailAddress());
+        $emailAddress = $dto->emailAddress();
 
         $company = Company::create($namespace, $name, $emailAddress);
 

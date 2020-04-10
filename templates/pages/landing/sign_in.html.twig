@@ -16,9 +16,7 @@
                         <label for="namespace">{% trans %}Namespace{% endtrans %}</label>
                     </div>
                 </div>
-                <input type="hidden" name="_csrf_token"
-                       value="{{ csrf_token('authenticate') }}"
-                >
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('sign-in') }}" >
                 <button class="btn btn-primary btn-block" type="submit">
                     {% trans %}Continue{% endtrans %}
                 </button>

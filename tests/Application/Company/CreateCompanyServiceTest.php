@@ -24,7 +24,7 @@ class CreateCompanyServiceTest extends TestCase
             {}
         };
         $companyDispatcher = new CompanyEventDispatcher($dispatcher);
-        $this->repository = new InMemoryCompanyRepository();
+        $this->repository = new InMemoryCompanyRepository([]);
         $this->handler = new CreateCompanyService($this->repository, $companyDispatcher);
     }
 
@@ -44,7 +44,7 @@ class CreateCompanyServiceTest extends TestCase
         $company = $this->repository->findOneByNamespace($namespace);
         $this->assertNotNull($company);
         $this->assertEquals($oldDto->name(), $company->name());
-        $this->assertEquals($oldDto->emailAddress(), $company->emailAddress()->value());
+        $this->assertEquals($oldDto->emailAddress()->value(), $company->emailAddress()->value());
     }
 
 }

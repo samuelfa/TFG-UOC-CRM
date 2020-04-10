@@ -4,22 +4,18 @@ namespace App\Infrastructure\Symfony\Controller;
 
 use App\Application\DTO;
 use App\Infrastructure\Symfony\Event\TransactionalServiceHandler;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
-use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\ConstraintViolationListInterface;
-use Symfony\Component\Validator\Validation;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
-use Twig\Environment;
 
-abstract class WebController
+abstract class WebController extends AbstractController
 {
-    private Environment      $twig;
-    private RouterInterface  $router;
     private SessionInterface $session;
     /**
      * @var TranslatorInterface
@@ -29,29 +25,21 @@ abstract class WebController
      * @var TransactionalServiceHandler
      */
     private TransactionalServiceHandler $transactionalServiceHandler;
+    /**
+     * @var ValidatorInterface
+     */
+    private ValidatorInterface $validator;
 
     public function __construct(
-        Environment $twig,
-        RouterInterface $router,
         SessionInterface $session,
         TranslatorInterface $translator,
-        TransactionalServiceHandler $transactionalServiceHandler
+        TransactionalServiceHandler $transactionalServiceHandler,
+        ValidatorInterface $validator
     ) {
-        $this->twig = $twig;
-        $this->router = $router;
         $this->session = $session;
         $this->translator = $translator;
         $this->transactionalServiceHandler = $transactionalServiceHandler;
-    }
-
-    protected function render(string $templatePath, array $arguments = []): Response
-    {
-        return new Response($this->twig->render($templatePath, $arguments));
-    }
-
-    protected function redirect(string $routeName): RedirectResponse
-    {
-        return new RedirectResponse($this->router->generate($routeName), 302);
+        $this->validator = $validator;
     }
 
     protected function redirectWithMessage(string $routeName, string $message, ...$parameters): RedirectResponse
@@ -59,7 +47,7 @@ abstract class WebController
         $message = $this->translator->trans($message, $parameters);
         $this->addFlashFor('message', [$message]);
 
-        return $this->redirect($routeName);
+        return $this->redirectToRoute($routeName);
     }
 
     protected function dispatch(DTO $dto): DTO
@@ -75,14 +63,25 @@ abstract class WebController
         $this->addFlashFor('errors', $this->formatFlashErrors($errors));
         $this->addFlashFor('inputs', $request->request->all());
 
-        return new RedirectResponse($this->router->generate($routeName), 302);
+        return $this->redirectToRoute($routeName);
+    }
+
+    protected function redirectWithError(
+        string $routeName,
+        string $error,
+        Request $request
+    ): RedirectResponse {
+        $this->addFlashFor('errors', [$error]);
+        $this->addFlashFor('inputs', $request->request->all());
+
+        return $this->redirectToRoute($routeName);
     }
 
     protected function validateRequest(Request $request, array $assertions): ConstraintViolationListInterface
     {
         $constraint = new Assert\Collection($assertions);
         $input = $request->request->all();
-        return Validation::createValidator()->validate($input, $constraint);
+        return $this->validator->validate($input, $constraint);
     }
 
     private function formatFlashErrors(ConstraintViolationListInterface $violations): array

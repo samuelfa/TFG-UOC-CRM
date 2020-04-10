@@ -48,7 +48,7 @@ class CustomerNamespaceSubscriber implements EventSubscriberInterface
 
         $lastCharacter = $namespace[strlen($namespace) - 1];
         if($lastCharacter === '.'){
-            return substr($namespace, 1);
+            return substr($namespace, 0, -1);
         }
 
         return $namespace;

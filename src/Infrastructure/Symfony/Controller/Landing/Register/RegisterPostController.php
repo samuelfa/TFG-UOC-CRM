@@ -4,6 +4,7 @@ namespace App\Infrastructure\Symfony\Controller\Landing\Register;
 
 use App\Application\Company\Create\CreateCompanyDTO;
 use App\Infrastructure\Symfony\Controller\WebController;
+use App\Infrastructure\Symfony\Validator\Constraints\CSRF;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -23,6 +24,7 @@ class RegisterPostController extends WebController
     protected function validate(Request $request): ConstraintViolationListInterface
     {
         $assertions = [
+            '_csrf_token'   => [new CSRF('register')],
             'namespace'     => [new Assert\NotBlank(), new Assert\Length(['max' => 50]), new Assert\Type('alnum')],
             'name'          => [new Assert\NotBlank(), new Assert\Length(['max' => 150]), new Assert\Type('string')],
             'email_address' => [new Assert\NotBlank(), new Assert\Length(['max' => 150]), new Assert\Email()],
