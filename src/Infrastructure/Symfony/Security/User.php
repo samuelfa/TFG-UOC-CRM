@@ -2,6 +2,8 @@
 
 namespace App\Infrastructure\Symfony\Security;
 
+use App\Domain\Customer\Customer;
+use App\Domain\Employee\Worker;
 use App\Domain\ValueObject\EmailAddress;
 use App\Domain\ValueObject\Password;
 use App\Domain\ValueObject\Role;
@@ -24,7 +26,12 @@ class User implements UserInterface
         $this->role     = $role;
     }
 
-    public static function createFromUser(\App\Domain\User\User $user): self
+    public static function createFromWorker(Worker $user): self
+    {
+        return new self($user->emailAddress(), $user->password(), $user->role());
+    }
+
+    public static function createFromCustomer(Customer $user): self
     {
         return new self($user->emailAddress(), $user->password(), $user->role());
     }

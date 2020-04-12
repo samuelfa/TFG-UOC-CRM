@@ -2,6 +2,7 @@
 
 namespace App\Infrastructure\Symfony\Controller\Landing\Register;
 
+use App\Application\Company\Create\AlreadyExistsNamespace;
 use App\Application\Company\Create\CreateCompanyDTO;
 use App\Infrastructure\Symfony\Controller\WebController;
 use App\Infrastructure\Symfony\Security\AuthenticateAfterRegister;
@@ -47,7 +48,11 @@ class RegisterPostController extends WebController
             $request->request->get('password')
         );
 
-        $this->dispatch($command);
+        try {
+            $this->dispatch($command);
+        } catch (AlreadyExistsNamespace $exception){
+            $this->redirectWithError('register', 'The namespace is already in use', $request);
+        }
 
         $authenticatorHandler->authenticate($command->nif(), $request);
 

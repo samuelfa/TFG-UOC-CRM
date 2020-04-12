@@ -4,8 +4,10 @@
 namespace Test\Application\Company;
 
 
+use App\Application\Company\Create\AlreadyExistsNamespace;
 use App\Application\Company\Create\CreateCompanyDTO;
 use App\Application\Company\Create\CreateCompanyService;
+use App\Domain\Company\Company;
 use App\Domain\Company\CompanyRepository;
 use App\Domain\ValueObject\InvalidEmailAddressException;
 use App\Domain\ValueObject\InvalidNifException;
@@ -74,6 +76,29 @@ class CreateCompanyServiceTest extends TestCase
             $emailAddressValue,
             $password
         );
+    }
+
+    public function testFailWhenNamespaceIsAlreadyInUse(): void
+    {
+        $namespace = 'company';
+        $companyName = 'MyCompanyName';
+        $nif = '12345678Z';
+        $emailAddressValue = 'one.email@gmail.com';
+        $password = 'password';
+
+        $oldDto = new CreateCompanyDTO(
+            $namespace,
+            $companyName,
+            $nif,
+            $emailAddressValue,
+            $password
+        );
+
+        $company = new Company($oldDto->namespace(), $companyName, $oldDto->emailAddress());
+        $this->repository->save($company);
+
+        $this->expectException(AlreadyExistsNamespace::class);
+        $this->handler->__invoke($oldDto);
     }
 
     public function testFailWhenEmailIsInvalid(): void

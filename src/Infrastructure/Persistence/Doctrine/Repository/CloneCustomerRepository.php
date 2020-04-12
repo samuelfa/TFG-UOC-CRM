@@ -6,25 +6,26 @@ namespace App\Infrastructure\Persistence\Doctrine\Repository;
 
 use App\Domain\Company\CloneCustomerRepository as CloneCustomerRepositoryInterface;
 use App\Domain\Employee\Manager;
+use App\Infrastructure\Persistence\Doctrine\DynamicDatabase;
 use App\Infrastructure\Symfony\Factory\ConnectionFactory;
 use Doctrine\DBAL\Connection;
-use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ManagerRegistry;
 
 class CloneCustomerRepository implements CloneCustomerRepositoryInterface
 {
-    private EntityManagerInterface $entityManager;
+    private ManagerRegistry $manager;
     private ConnectionFactory $connectionFactory;
     private string $rootFolder;
     private string $databaseNamePrefix;
 
     public function __construct(
-        EntityManagerInterface $entityManager,
+        ManagerRegistry $manager,
         ConnectionFactory $connectionFactory,
         string $rootFolder,
         string $databaseNamePrefix
     )
     {
-        $this->entityManager = $entityManager;
+        $this->manager           = $manager;
         $this->connectionFactory = $connectionFactory;
         $this->rootFolder    = $rootFolder;
         $this->databaseNamePrefix = $databaseNamePrefix;
@@ -33,19 +34,18 @@ class CloneCustomerRepository implements CloneCustomerRepositoryInterface
     public function create(string $namespace, Manager $manager): void
     {
         $this->connectionFactory->preloadSettings($namespace);
-        $connection = $this->entityManager->getConnection();
-        $connection->beginTransaction();
+        /** @var DynamicDatabase $connection */
+        $connection = $this->manager->getConnection('crm');
 
         $this->createDatabase($connection, $namespace);
-        $this->createTables($connection, $namespace);
-        $this->insertManager($namespace, $manager);
-
-        $connection->commit();
+        $this->createTables($connection);
+        $this->insertManager($manager);
     }
 
-    private function createDatabase(Connection $connection, string $namespace): void
+    private function createDatabase(DynamicDatabase $connection, string $namespace): void
     {
         $databaseName = $this->obtainDatabaseName($namespace);
+
         $userPrivilegesSQL = <<<SQL
 CREATE DATABASE {$databaseName};
 CREATE USER 'user_{$namespace}'@'%' IDENTIFIED BY 'password';
@@ -53,19 +53,13 @@ GRANT ALL PRIVILEGES ON {$databaseName}.* TO 'user_{$namespace}'@'%';
 SQL;
 
         $connection->exec($userPrivilegesSQL);
+        $connection->changeDatabase($databaseName);
     }
 
-    private function createTables(Connection $connection, string $namespace): void
+    private function createTables(Connection $connection): void
     {
-        $databaseName = $this->obtainDatabaseName($namespace);
         $initialStructure = file_get_contents("{$this->rootFolder}/database/preload/initial-structure.sql");
-
-        $content = <<<SQL
-use {$databaseName};
-{$initialStructure}
-SQL;
-
-        $connection->exec($content);
+        $connection->exec($initialStructure);
     }
 
     private function obtainDatabaseName(string $namespace): string
@@ -73,15 +67,13 @@ SQL;
         return "{$this->databaseNamePrefix}_{$namespace}";
     }
 
-    private function insertManager(string $namespace, Manager $manager): void
+    private function insertManager(Manager $manager): void
     {
-        $databaseName = $this->obtainDatabaseName($namespace);
-        $metadata = $this->entityManager->getClassMetadata(Manager::class);
-        $metadata->setPrimaryTable([
-            'schema' => $databaseName
-        ]);
-
-        $this->entityManager->persist($manager);
-        $this->entityManager->flush();
+        $doctrineManager = $this->manager->getManagerForClass(Manager::class);
+        if(!$doctrineManager){
+            throw new \RuntimeException('Not manager found for App\Domain\Manager class');
+        }
+        $doctrineManager->persist($manager);
+        $doctrineManager->flush();
     }
 }

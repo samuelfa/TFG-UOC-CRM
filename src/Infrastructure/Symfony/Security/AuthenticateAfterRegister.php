@@ -4,7 +4,7 @@
 namespace App\Infrastructure\Symfony\Security;
 
 
-use App\Domain\User\UserRepository;
+use App\Domain\Employee\WorkerRepository;
 use App\Domain\ValueObject\NIF;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
@@ -13,12 +13,12 @@ class AuthenticateAfterRegister
 {
     private GuardAuthenticatorHandler $authenticatorHandler;
     private Authenticator $authenticator;
-    private UserRepository $repository;
+    private WorkerRepository $repository;
 
     public function __construct(
         GuardAuthenticatorHandler $authenticatorHandler,
         Authenticator $authenticator,
-        UserRepository $repository
+        WorkerRepository $repository
     )
     {
         $this->authenticatorHandler = $authenticatorHandler;
@@ -28,12 +28,11 @@ class AuthenticateAfterRegister
 
     public function authenticate(NIF $nif, Request $request): void
     {
-        //TODO: Review why is not getting the entity just created
         $user = $this->repository->findOneByNif($nif);
         if(!$user){
             throw new \RuntimeException('User not found');
         }
-        $securityUser = User::createFromUser($user);
+        $securityUser = User::createFromWorker($user);
         $this->authenticatorHandler->authenticateUserAndHandleSuccess($securityUser, $request, $this->authenticator, 'main');
     }
 

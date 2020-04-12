@@ -22,6 +22,9 @@ class URLType extends StringType
     public function convertToPHPValue($value, AbstractPlatform $platform)
     {
         $value = parent::convertToPHPValue($value, $platform);
+        if(empty($value)){
+            return null;
+        }
         return new URL($value);
     }
 
