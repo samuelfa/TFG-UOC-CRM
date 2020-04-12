@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                          https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="App\Domain\User\User" table="users" schema="tfg_example" inheritance-type="SINGLE_TABLE">
+
+        <id name="nif" type="nif" length="10" column="nif"/>
+
+        <discriminator-column name="role" type="role" field-name="role" />
+
+        <discriminator-map>
+            <discriminator-mapping value="1" class="App\Domain\Manager\Manager" />
+            <discriminator-mapping value="2" class="App\Domain\Worker\Worker" />
+            <discriminator-mapping value="3" class="App\Domain\Customer\Customer" />
+        </discriminator-map>
+
+        <field name="name" column="name" length="150" />
+        <field name="surname" column="surname" length="150" />
+        <field name="birthday" type="date" column="birthday" />
+        <field name="portrait" type="url" column="portrait" length="300" />
+        <field name="password" type="password" column="password" length="300" />
+        <field name="email" type="email_address" column="email" length="150" unique="true" />
+    </entity>
+
+</doctrine-mapping>

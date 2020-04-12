@@ -19,4 +19,9 @@ class URLType extends StringType
         $value = parent::convertToPHPValue($value, $platform);
         return new URL($value);
     }
+
+    public function requiresSQLCommentHint(AbstractPlatform $platform): bool
+    {
+        return true;
+    }
 }

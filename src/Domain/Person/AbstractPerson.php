@@ -4,17 +4,24 @@
 namespace App\Domain\Person;
 
 
+use App\Domain\ValueObject\NIF;
 use App\Domain\ValueObject\URL;
 
 class AbstractPerson
 {
-    protected string $nif;
-    protected string $name;
-    protected string $surname;
-    protected \DateTimeInterface $birthday;
-    protected URL $portrait;
+    protected NIF $nif;
+    protected ?string $name;
+    protected ?string $surname;
+    protected ?\DateTimeInterface $birthday;
+    protected ?URL $portrait;
 
-    public function __construct(string $nif, string $name, string $surname, \DateTimeInterface $birthday, URL $portrait)
+    public function __construct(
+        NIF $nif,
+        ?string $name = null,
+        ?string $surname = null,
+        ?\DateTimeInterface $birthday = null,
+        ?URL $portrait = null
+    )
     {
         $this->nif = $nif;
         $this->name     = $name;
@@ -23,42 +30,27 @@ class AbstractPerson
         $this->portrait = $portrait;
     }
 
-    /**
-     * @return string
-     */
-    public function nif(): string
+    public function nif(): NIF
     {
         return $this->nif;
     }
 
-    /**
-     * @return string
-     */
-    public function name(): string
+    public function name(): ?string
     {
         return $this->name;
     }
 
-    /**
-     * @return string
-     */
-    public function surname(): string
+    public function surname(): ?string
     {
         return $this->surname;
     }
 
-    /**
-     * @return \DateTimeInterface
-     */
-    public function birthday(): \DateTimeInterface
+    public function birthday(): ?\DateTimeInterface
     {
         return $this->birthday;
     }
 
-    /**
-     * @return URL
-     */
-    public function portrait(): URL
+    public function portrait(): ?URL
     {
         return $this->portrait;
     }

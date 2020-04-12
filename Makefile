@@ -62,7 +62,8 @@ load-fixtures:
 	@docker-compose exec -T $(PHP_SERVICE) php bin/console doctrine:fixtures:load
 
 db-diff:
-	@docker-compose exec -T $(PHP_SERVICE) php bin/console make:migration
+	@docker-compose exec -T $(PHP_SERVICE) php bin/console make:migration --em=default
+	@docker-compose exec -T $(PHP_SERVICE) php bin/console make:migration --em=crm
 
 db-migrate:
 	@docker-compose exec -T $(PHP_SERVICE) php bin/console doctrine:migrations:migrate

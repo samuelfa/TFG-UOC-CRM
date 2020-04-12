@@ -19,4 +19,9 @@ class NIFType extends StringType
         $value = parent::convertToPHPValue($value, $platform);
         return new NIF($value);
     }
+
+    public function requiresSQLCommentHint(AbstractPlatform $platform): bool
+    {
+        return true;
+    }
 }

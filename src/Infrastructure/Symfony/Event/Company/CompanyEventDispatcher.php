@@ -4,6 +4,7 @@
 namespace App\Infrastructure\Symfony\Event\Company;
 
 
+use App\Application\Company\Create\CreateCompanyDTO;
 use App\Domain\Company\CompanyEventDispatcher as CompanyEventDispatcherInterface;
 use Psr\EventDispatcher\EventDispatcherInterface;
 
@@ -16,8 +17,8 @@ class CompanyEventDispatcher implements CompanyEventDispatcherInterface
         $this->dispatcher = $dispatcher;
     }
 
-    public function created(string $namespace): void
+    public function created(CreateCompanyDTO $dto): void
     {
-        $this->dispatcher->dispatch(new CompanyCreatedEvent($namespace));
+        $this->dispatcher->dispatch(new CompanyCreatedEvent($dto));
     }
 }

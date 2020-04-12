@@ -19,4 +19,9 @@ class EmailAddressType extends StringType
         $value = parent::convertToPHPValue($value, $platform);
         return new EmailAddress($value);
     }
+
+    public function requiresSQLCommentHint(AbstractPlatform $platform): bool
+    {
+        return true;
+    }
 }

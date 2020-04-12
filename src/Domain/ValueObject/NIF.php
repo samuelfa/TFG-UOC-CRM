@@ -13,7 +13,7 @@ class NIF
     {
         $this->value = $value;
         if (!NifValidator::isValid($value)) {
-            throw new InvalidURLException($value);
+            throw new InvalidNifException($value);
         }
     }
 

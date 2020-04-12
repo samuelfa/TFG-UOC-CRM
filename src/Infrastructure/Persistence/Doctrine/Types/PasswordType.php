@@ -19,4 +19,9 @@ class PasswordType extends StringType
         $value = parent::convertToPHPValue($value, $platform);
         return new Password($value);
     }
+
+    public function requiresSQLCommentHint(AbstractPlatform $platform): bool
+    {
+        return true;
+    }
 }

@@ -3,23 +3,21 @@
 
 namespace App\Infrastructure\Symfony\Event\Company;
 
+use App\Application\Company\Create\CreateCompanyDTO;
 use App\Domain\Event\Event as EventDomain;
 use Symfony\Contracts\EventDispatcher\Event;
 
 class CompanyCreatedEvent extends Event implements EventDomain
 {
-    private string $namespace;
+    private CreateCompanyDTO $dto;
 
-    public function __construct(string $namespace)
+    public function __construct(CreateCompanyDTO $dto)
     {
-        $this->namespace = $namespace;
+        $this->dto = $dto;
     }
 
-    /**
-     * @return string
-     */
-    public function namespace(): string
+    public function dto(): CreateCompanyDTO
     {
-        return $this->namespace;
+        return $this->dto;
     }
 }

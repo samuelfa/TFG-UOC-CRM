@@ -5,6 +5,7 @@ namespace App\Infrastructure\Symfony\Controller\Landing\Register;
 use App\Application\Company\Create\CreateCompanyDTO;
 use App\Infrastructure\Symfony\Controller\WebController;
 use App\Infrastructure\Symfony\Validator\Constraints\CSRF;
+use App\Infrastructure\Symfony\Validator\Constraints\NIF;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -27,6 +28,7 @@ class RegisterPostController extends WebController
             '_csrf_token'   => [new CSRF('register')],
             'namespace'     => [new Assert\NotBlank(), new Assert\Length(['min' => 4, 'max' => 50]), new Assert\Type('alnum')],
             'name'          => [new Assert\NotBlank(), new Assert\Length(['min' => 3, 'max' => 150]), new Assert\Type('string')],
+            'nif'           => [new NIF()],
             'email_address' => [new Assert\NotBlank(), new Assert\Length(['min' => 3, 'max' => 150]), new Assert\Email()],
             'password'      => [new Assert\NotBlank(), new Assert\Length(['min' => 4, 'max' => 50]), new Assert\Type('string')],
         ];
@@ -39,6 +41,7 @@ class RegisterPostController extends WebController
         $command = new CreateCompanyDTO(
             $request->request->get('namespace'),
             $request->request->get('name'),
+            $request->request->get('nif'),
             $request->request->get('email_address'),
             $request->request->get('password')
         );

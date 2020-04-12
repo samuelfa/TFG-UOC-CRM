@@ -19,4 +19,9 @@ class RoleType extends SmallIntType
         $value = parent::convertToPHPValue($value, $platform);
         return new Role((int) $value);
     }
+
+    public function requiresSQLCommentHint(AbstractPlatform $platform): bool
+    {
+        return true;
+    }
 }

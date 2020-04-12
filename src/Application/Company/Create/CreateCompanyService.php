@@ -34,7 +34,7 @@ final class CreateCompanyService implements TransactionalService
 
         $this->repository->save($company);
 
-        $this->dispatcher->created($namespace);
+        $this->dispatcher->created($dto);
 
         return $dto;
     }

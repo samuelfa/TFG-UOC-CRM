@@ -44,8 +44,3 @@ doctrine:
                         type: xml
                         dir: '%kernel.project_dir%/src/Infrastructure/Persistence/Doctrine/Mapping/CRM'
                         prefix: 'App\Domain'
-                    Security:
-                        is_bundle: false
-                        type: xml
-                        dir: '%kernel.project_dir%/src/Infrastructure/Persistence/Doctrine/Mapping/Security'
-                        prefix: 'App\Infrastructure\Symfony\Security'

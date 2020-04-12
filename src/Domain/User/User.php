@@ -4,23 +4,26 @@ namespace App\Domain\User;
 
 use App\Domain\Person\AbstractPerson;
 use App\Domain\ValueObject\EmailAddress;
+use App\Domain\ValueObject\NIF;
+use App\Domain\ValueObject\Password;
+use App\Domain\ValueObject\Role;
 use App\Domain\ValueObject\URL;
 
-class User extends AbstractPerson
+abstract class User extends AbstractPerson
 {
     protected string $password;
     protected EmailAddress $email;
     protected string $role;
 
     public function __construct(
-        string $nif,
-        string $name,
-        string $surname,
-        \DateTimeInterface $birthday,
-        URL $portrait,
-        string $password,
+        NIF $nif,
+        Password $password,
         EmailAddress $email,
-        int $role
+        Role $role,
+        ?string $name = null,
+        ?string $surname = null,
+        ?\DateTimeInterface $birthday = null,
+        ?URL $portrait = null
     )
     {
         parent::__construct($nif, $name, $surname, $birthday, $portrait);
@@ -29,7 +32,7 @@ class User extends AbstractPerson
         $this->role = $role;
     }
 
-    public function password(): string
+    public function password(): Password
     {
         return $this->password;
     }

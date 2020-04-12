@@ -4,7 +4,9 @@
 namespace App\Domain\Company;
 
 
+use App\Application\Company\Create\CreateCompanyDTO;
+
 interface CompanyEventDispatcher
 {
-    public function created(string $namespace): void;
+    public function created(CreateCompanyDTO $dto): void;
 }
