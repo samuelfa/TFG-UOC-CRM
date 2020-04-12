@@ -14,6 +14,11 @@ class EmailAddressType extends StringType
         return 'email_address';
     }
 
+    public function convertToDatabaseValue($value, AbstractPlatform $platform)
+    {
+        return parent::convertToDatabaseValue((string) $value, $platform);
+    }
+
     public function convertToPHPValue($value, AbstractPlatform $platform)
     {
         $value = parent::convertToPHPValue($value, $platform);

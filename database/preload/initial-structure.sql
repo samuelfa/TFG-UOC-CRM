@@ -1,13 +1,30 @@
 create table familiars
 (
-    nif      varchar(255) not null
+    nif      varchar(50)  not null
         primary key,
     name     varchar(150) not null,
     surname  varchar(150) not null,
     birthday date         not null,
-    portrait varchar(300) not null
+    portrait varchar(300) not null comment '(DC2Type:url)'
 )
     collate = utf8mb4_unicode_ci;
+
+create table users
+(
+    nif      varchar(10)  not null comment '(DC2Type:nif)'
+        primary key,
+    name     varchar(150) null,
+    surname  varchar(150) null,
+    birthday date         null,
+    portrait varchar(300) null comment '(DC2Type:url)',
+    password varchar(300) not null comment '(DC2Type:password)',
+    email    varchar(150) not null comment '(DC2Type:email_address)',
+    role     smallint     not null comment '(DC2Type:role)',
+    constraint UNIQ_D994B25EE7927C74
+        unique (email)
+)
+    collate = utf8mb4_unicode_ci;
+
 
 create table migration_versions
 (
@@ -17,18 +34,7 @@ create table migration_versions
 )
     collate = utf8mb4_unicode_ci;
 
-create table users
-(
-    nif      varchar(255)      not null
-        primary key,
-    name     varchar(150)      not null,
-    surname  varchar(150)      not null,
-    birthday date              not null,
-    portrait varchar(300)      not null,
-    password varchar(150)      not null,
-    email    varchar(150)      not null,
-    role     smallint unsigned not null
-)
-    collate = utf8mb4_unicode_ci;
-
-INSERT INTO migration_versions (version, executed_at) VALUES ('20200315175236', '2020-04-09 14:26:05'), ('20200409142228', '2020-04-09 14:26:05');
+INSERT INTO migration_versions (version, executed_at) VALUES
+         ('20200412120904', '2020-04-12 12:09:30'),
+         ('20200412120906', '2020-04-12 12:09:30')
+;

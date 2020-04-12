@@ -14,6 +14,11 @@ class RoleType extends SmallIntType
         return 'role';
     }
 
+    public function convertToDatabaseValue($value, AbstractPlatform $platform)
+    {
+        return parent::convertToDatabaseValue((int) $value, $platform);
+    }
+
     public function convertToPHPValue($value, AbstractPlatform $platform)
     {
         $value = parent::convertToPHPValue($value, $platform);

@@ -11,9 +11,9 @@ use App\Domain\ValueObject\URL;
 
 abstract class User extends AbstractPerson
 {
-    protected string $password;
+    protected Password $password;
     protected EmailAddress $email;
-    protected string $role;
+    protected Role $role;
 
     public function __construct(
         NIF $nif,
@@ -29,7 +29,7 @@ abstract class User extends AbstractPerson
         parent::__construct($nif, $name, $surname, $birthday, $portrait);
         $this->password = $password;
         $this->email    = $email;
-        $this->role = $role;
+        $this->role     = $role;
     }
 
     public function password(): Password
@@ -42,10 +42,7 @@ abstract class User extends AbstractPerson
         return $this->email;
     }
 
-    /**
-     * @return int
-     */
-    public function role(): int
+    public function role(): Role
     {
         return $this->role;
     }

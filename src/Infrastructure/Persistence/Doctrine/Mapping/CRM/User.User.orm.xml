@@ -16,10 +16,10 @@
             <discriminator-mapping value="3" class="App\Domain\Customer\Customer" />
         </discriminator-map>
 
-        <field name="name" column="name" length="150" />
-        <field name="surname" column="surname" length="150" />
-        <field name="birthday" type="date" column="birthday" />
-        <field name="portrait" type="url" column="portrait" length="300" />
+        <field name="name" column="name" length="150" nullable="true" />
+        <field name="surname" column="surname" length="150" nullable="true" />
+        <field name="birthday" type="date" column="birthday" nullable="true" />
+        <field name="portrait" type="url" column="portrait" length="300" nullable="true" />
         <field name="password" type="password" column="password" length="300" />
         <field name="email" type="email_address" column="email" length="150" unique="true" />
     </entity>
