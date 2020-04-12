@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\Worker;
+namespace App\Domain\Employee;
 
 use App\Domain\ValueObject\NIF;
 

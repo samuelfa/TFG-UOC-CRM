@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Domain\Manager;
+namespace App\Domain\Employee;
 
 
 use App\Domain\ValueObject\Role;

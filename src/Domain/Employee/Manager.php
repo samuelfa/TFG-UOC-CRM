@@ -1,15 +1,13 @@
 <?php
 
-namespace App\Domain\Manager;
+namespace App\Domain\Employee;
 
-use App\Domain\User\User;
 use App\Domain\ValueObject\EmailAddress;
 use App\Domain\ValueObject\NIF;
 use App\Domain\ValueObject\Password;
 
-class Manager extends User
+class Manager extends Worker
 {
-
     public static function create(NIF $nif, EmailAddress $emailAddress, Password $password): self
     {
         return new self($nif, $password, $emailAddress, RoleManager::create());

@@ -4,30 +4,31 @@
 namespace App\Infrastructure\Persistence\Doctrine\Repository;
 
 
-use App\Domain\Manager\ManagerRepository as ManagerRepositoryInterface;
-use App\Domain\Manager\Manager;
+use App\Domain\Employee\ManagerRepository as ManagerRepositoryInterface;
+use App\Domain\Employee\Manager;
 use App\Domain\ValueObject\NIF;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\EntityRepository;
 
-class ManagerRepository implements ManagerRepositoryInterface
+class ManagerRepository extends EntityRepository  implements ManagerRepositoryInterface
 {
-    private EntityManagerInterface $entityManager;
-
-    public function __construct(EntityManagerInterface $entityManager)
+    public function __construct(EntityManagerInterface $em)
     {
-        $this->entityManager = $entityManager;
+        parent::__construct($em, $em->getClassMetadata(Manager::class));
     }
 
     public function save(Manager $manager): void
     {
-        $this->entityManager->persist($manager);
+        $this->_em->persist($manager);
     }
 
     public function findOneByNif(NIF $nif): ?Manager
     {
-        $repository = $this->entityManager->getRepository(Manager::class);
-        return $repository->findOneBy([
+        /** @var null|Manager $entity */
+        $entity = $this->findOneBy([
             'nif' => $nif
         ]);
+
+        return $entity;
     }
 }

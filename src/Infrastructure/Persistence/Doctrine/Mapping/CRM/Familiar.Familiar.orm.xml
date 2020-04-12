@@ -4,7 +4,7 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                           https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="App\Domain\Familiar\Familiar" table="familiars" schema="tfg_example" repository-class="App\Infrastructure\Persistence\Doctrine\Repository\FamiliarRepository">
+    <entity name="App\Domain\Familiar\Familiar" table="familiars" schema="tfg_example">
 
         <id name="nif" type="string" length="50" column="nif"/>
 

@@ -25,6 +25,8 @@ final class CreateCompanyService implements TransactionalService
 
     public function __invoke(DTO $dto): DTO
     {
+        //TODO: Check if the namespace is already used
+
         /** @var CreateCompanyDTO $dto */
         $namespace    = $dto->namespace();
         $name         = $dto->name();

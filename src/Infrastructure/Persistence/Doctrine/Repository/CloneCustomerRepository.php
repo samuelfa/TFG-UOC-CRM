@@ -5,31 +5,40 @@ namespace App\Infrastructure\Persistence\Doctrine\Repository;
 
 
 use App\Domain\Company\CloneCustomerRepository as CloneCustomerRepositoryInterface;
-use App\Domain\Manager\Manager;
+use App\Domain\Employee\Manager;
+use App\Infrastructure\Symfony\Factory\ConnectionFactory;
 use Doctrine\DBAL\Connection;
 use Doctrine\ORM\EntityManagerInterface;
 
 class CloneCustomerRepository implements CloneCustomerRepositoryInterface
 {
     private EntityManagerInterface $entityManager;
+    private ConnectionFactory $connectionFactory;
     private string $rootFolder;
     private string $databaseNamePrefix;
 
-    public function __construct(EntityManagerInterface $entityManager, string $rootFolder, string $databaseNamePrefix)
+    public function __construct(
+        EntityManagerInterface $entityManager,
+        ConnectionFactory $connectionFactory,
+        string $rootFolder,
+        string $databaseNamePrefix
+    )
     {
         $this->entityManager = $entityManager;
+        $this->connectionFactory = $connectionFactory;
         $this->rootFolder    = $rootFolder;
         $this->databaseNamePrefix = $databaseNamePrefix;
     }
 
     public function create(string $namespace, Manager $manager): void
     {
+        $this->connectionFactory->preloadSettings($namespace);
         $connection = $this->entityManager->getConnection();
         $connection->beginTransaction();
 
         $this->createDatabase($connection, $namespace);
         $this->createTables($connection, $namespace);
-        $this->insertManager($connection, $namespace, $manager);
+        $this->insertManager($namespace, $manager);
 
         $connection->commit();
     }
@@ -64,33 +73,15 @@ SQL;
         return "{$this->databaseNamePrefix}_{$namespace}";
     }
 
-    private function insertManager(Connection $connection, string $namespace, Manager $manager): void
+    private function insertManager(string $namespace, Manager $manager): void
     {
         $databaseName = $this->obtainDatabaseName($namespace);
         $metadata = $this->entityManager->getClassMetadata(Manager::class);
-        $tableName = $metadata->getTableName();
+        $metadata->setPrimaryTable([
+            'schema' => $databaseName
+        ]);
 
-        $values = [];
-        $params = [];
-        $types = [];
-        foreach ($metadata->getFieldNames() as $field){
-            $values[$field] = ":{$field}";
-            $params[":{$field}"] = $metadata->getFieldValue($manager, $field);
-            $types[] = $metadata->getTypeOfField($field);
-        }
-
-        if(!empty($metadata->discriminatorColumn)){
-            $field = $metadata->discriminatorColumn['name'];
-            $values[$field] = ":{$field}";
-            $params[":{$field}"] = $metadata->discriminatorValue;
-            $types[] = $metadata->discriminatorColumn['type'];
-        }
-
-        $queryBuilder = $connection->createQueryBuilder()
-                                   ->insert("{$databaseName}.{$tableName}")
-                                   ->values($values)
-                                   ->setParameters($params, $types)
-        ;
-        $queryBuilder->execute();
+        $this->entityManager->persist($manager);
+        $this->entityManager->flush();
     }
 }

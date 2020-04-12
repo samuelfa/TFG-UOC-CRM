@@ -4,7 +4,7 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                           https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="App\Domain\Company\Company" table="companies" schema="tfg_default" repository-class="App\Infrastructure\Persistence\Doctrine\Repository\CompanyRepository">
+    <entity name="App\Domain\Company\Company" table="companies" schema="tfg_default">
 
         <id name="namespace" type="string" length="50" column="namespace"/>
 

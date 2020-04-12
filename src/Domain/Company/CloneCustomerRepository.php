@@ -4,7 +4,7 @@
 namespace App\Domain\Company;
 
 
-use App\Domain\Manager\Manager;
+use App\Domain\Employee\Manager;
 
 interface CloneCustomerRepository
 {

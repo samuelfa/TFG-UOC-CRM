@@ -4,7 +4,7 @@
 namespace App\Infrastructure\Symfony\Event\Company;
 
 use App\Domain\Company\CloneCustomerRepository;
-use App\Domain\Manager\Manager;
+use App\Domain\Employee\Manager;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class CompanyCreatedSubscriber implements EventSubscriberInterface

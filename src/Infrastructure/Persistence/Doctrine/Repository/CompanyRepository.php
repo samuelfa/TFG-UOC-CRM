@@ -7,23 +7,22 @@ namespace App\Infrastructure\Persistence\Doctrine\Repository;
 use App\Domain\Company\Company;
 use App\Domain\Company\CompanyRepository as CompanyRepositoryInterface;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\EntityRepository;
 
-class CompanyRepository implements CompanyRepositoryInterface
+class CompanyRepository extends EntityRepository  implements CompanyRepositoryInterface
 {
-    private EntityManagerInterface $entityManager;
-
-    public function __construct(EntityManagerInterface $entityManager)
+    public function __construct(EntityManagerInterface $em)
     {
-        $this->entityManager = $entityManager;
+        parent::__construct($em, $em->getClassMetadata(Company::class));
     }
 
     public function findOneByNamespace(string $namespace): ?Company
     {
-        return $this->entityManager->find(Company::class, $namespace);
+        return $this->_em->find(Company::class, $namespace);
     }
 
     public function save(Company $company): void
     {
-        $this->entityManager->persist($company);
+        $this->_em->persist($company);
     }
 }

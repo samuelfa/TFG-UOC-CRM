@@ -10,14 +10,16 @@ use App\Domain\Factory\ConnectionFactory as ConnectionFactoryInterface;
 
 class ConnectionFactory implements ConnectionFactoryInterface
 {
-    /**
-     * @var CompanyRepository
-     */
     private CompanyRepository $repository;
+    private string $databaseNamePrefix;
 
-    public function __construct(CompanyRepository $repository)
+    public function __construct(
+        CompanyRepository $repository,
+        string $databaseNamePrefix
+    )
     {
         $this->repository = $repository;
+        $this->databaseNamePrefix = $databaseNamePrefix;
     }
 
     public function preloadSettings(string $namespace): void
@@ -31,6 +33,6 @@ class ConnectionFactory implements ConnectionFactoryInterface
             throw new CompanyNotFound($namespace);
         }
 
-        $_ENV['CRM_DATABASE_URL'] = str_replace('[customer]', $namespace, $_ENV['CRM_TEMPLATE_DATABASE_URL']);
+        $_ENV['CRM_DATABASE_URL'] = str_replace('tfg_example', "{$this->databaseNamePrefix}_{$namespace}", $_ENV['CRM_DATABASE_URL']);
     }
 }

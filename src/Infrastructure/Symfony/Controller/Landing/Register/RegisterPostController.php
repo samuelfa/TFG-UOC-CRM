@@ -4,6 +4,7 @@ namespace App\Infrastructure\Symfony\Controller\Landing\Register;
 
 use App\Application\Company\Create\CreateCompanyDTO;
 use App\Infrastructure\Symfony\Controller\WebController;
+use App\Infrastructure\Symfony\Security\AuthenticateAfterRegister;
 use App\Infrastructure\Symfony\Validator\Constraints\CSRF;
 use App\Infrastructure\Symfony\Validator\Constraints\NIF;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -13,13 +14,13 @@ use Symfony\Component\Validator\ConstraintViolationListInterface;
 
 class RegisterPostController extends WebController
 {
-    public function view(Request $request): RedirectResponse
+    public function view(Request $request, AuthenticateAfterRegister $authenticatorHandler): RedirectResponse
     {
         $validationErrors = $this->validate($request);
 
         return $validationErrors->count()
             ? $this->redirectWithErrors('register', $validationErrors, $request)
-            : $this->executeService($request);
+            : $this->executeService($request, $authenticatorHandler);
     }
 
     protected function validate(Request $request): ConstraintViolationListInterface
@@ -36,7 +37,7 @@ class RegisterPostController extends WebController
         return $this->validateRequest($request, $assertions);
     }
 
-    private function executeService(Request $request): RedirectResponse
+    private function executeService(Request $request, AuthenticateAfterRegister $authenticatorHandler): RedirectResponse
     {
         $command = new CreateCompanyDTO(
             $request->request->get('namespace'),
@@ -48,10 +49,10 @@ class RegisterPostController extends WebController
 
         $this->dispatch($command);
 
-        //TODO: Generate a session
+        $authenticatorHandler->authenticate($command->nif(), $request);
 
         return $this->redirectWithMessage(
-            'dashboard',
+            'crm_dashboard',
             'Compañia %s creada',
             $command->name()
         );

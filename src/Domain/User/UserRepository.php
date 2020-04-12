@@ -2,8 +2,10 @@
 
 namespace App\Domain\User;
 
+use App\Domain\ValueObject\NIF;
+
 interface UserRepository
 {
-    public function findOneByNif(string $namespace): ?User;
-    public function save(User $company): void;
+    public function findOneByNif(NIF $nif): ?User;
+    public function save(User $user): void;
 }

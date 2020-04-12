@@ -2,24 +2,38 @@
 
 namespace App\Infrastructure\Symfony\Security;
 
-use App\Domain\User\User as UserDomain;
+use App\Domain\ValueObject\EmailAddress;
+use App\Domain\ValueObject\Password;
+use App\Domain\ValueObject\Role;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-class User extends UserDomain implements UserInterface
+class User implements UserInterface
 {
-    /**
-     * A visual identifier that represents this user.
-     *
-     * @see UserInterface
-     */
+    private EmailAddress $email;
+    private Password $password;
+    private Role $role;
+
+    public function __construct(
+        EmailAddress $email,
+        Password $password,
+        Role $role
+    )
+    {
+        $this->email    = $email;
+        $this->password = $password;
+        $this->role     = $role;
+    }
+
+    public static function createFromUser(\App\Domain\User\User $user): self
+    {
+        return new self($user->emailAddress(), $user->password(), $user->role());
+    }
+
     public function getUsername(): string
     {
         return (string) $this->email;
     }
 
-    /**
-     * @see UserInterface
-     */
     public function getRoles(): array
     {
         return [

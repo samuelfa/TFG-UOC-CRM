@@ -40,6 +40,7 @@ services:
 
     App\Domain\Company\CompanyRepository: '@App\Infrastructure\Persistence\Doctrine\Repository\CompanyRepository'
     App\Domain\Company\CloneCustomerRepository: '@App\Infrastructure\Persistence\Doctrine\Repository\CloneCustomerRepository'
+    App\Domain\User\UserRepository: '@App\Infrastructure\Persistence\Doctrine\Repository\UserRepository'
 
     App\Domain\Company\CompanyEventDispatcher: '@App\Infrastructure\Symfony\Event\Company\CompanyEventDispatcher'
 

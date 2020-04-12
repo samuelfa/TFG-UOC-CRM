@@ -4,7 +4,16 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                           https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <entity name="App\Domain\Customer\Customer" table="users" schema="tfg_example" repository-class="App\Infrastructure\Persistence\Doctrine\Repository\CustomerRepository">
+    <entity name="App\Domain\Customer\Customer" table="customers" schema="tfg_example">
+
+        <id name="nif" type="nif" length="10" column="nif"/>
+
+        <field name="name" column="name" length="150" nullable="true" />
+        <field name="surname" column="surname" length="150" nullable="true" />
+        <field name="birthday" type="date" column="birthday" nullable="true" />
+        <field name="portrait" type="url" column="portrait" length="300" nullable="true" />
+        <field name="password" type="password" column="password" length="300" />
+        <field name="email" type="email_address" column="email" length="150" unique="true" />
     </entity>
 
 </doctrine-mapping>
