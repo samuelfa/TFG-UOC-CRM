@@ -54,12 +54,9 @@ class RegisterPostController extends WebController
             $this->redirectWithError('register', 'The namespace is already in use', $request);
         }
 
-        $authenticatorHandler->authenticate($command->nif(), $request);
+        $url = $authenticatorHandler->authenticate($command->nif(), $command->namespace(), $request);
+        $path = $this->generateUrl('crm_dashboard');
 
-        return $this->redirectWithMessage(
-            'crm_dashboard',
-            'Compañia %s creada',
-            $command->name()
-        );
+        return $this->redirect($url.$path);
     }
 }

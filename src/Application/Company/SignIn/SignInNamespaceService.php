@@ -7,16 +7,17 @@ use App\Application\DTO;
 use App\Application\TransactionalService;
 use App\Domain\Company\CompanyNotFound;
 use App\Domain\Company\CompanyRepository;
+use App\Infrastructure\Symfony\Factory\URLFactory;
 
 final class SignInNamespaceService implements TransactionalService
 {
     private CompanyRepository $repository;
-    private string $domainTemplate;
+    private URLFactory $URLFactory;
 
-    public function __construct(CompanyRepository $repository, string $domainTemplate)
+    public function __construct(CompanyRepository $repository, URLFactory $URLFactory)
     {
         $this->repository = $repository;
-        $this->domainTemplate = $domainTemplate;
+        $this->URLFactory = $URLFactory;
     }
 
     public function __invoke(DTO $dto): DTO
@@ -28,7 +29,7 @@ final class SignInNamespaceService implements TransactionalService
             throw new CompanyNotFound($namespace);
         }
 
-        $uri = $this->calculateURI($namespace);
+        $uri = $this->URLFactory->generate($namespace);
         $dto->setUri($uri);
 
         return $dto;
@@ -37,10 +38,5 @@ final class SignInNamespaceService implements TransactionalService
     public function subscribeTo(): string
     {
         return SignInNamespaceDTO::class;
-    }
-
-    private function calculateURI(string $namespace): string
-    {
-        return str_replace('{namespace}', $namespace, $this->domainTemplate);
     }
 }

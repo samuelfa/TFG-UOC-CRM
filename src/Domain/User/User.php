@@ -6,20 +6,18 @@ use App\Domain\Person\AbstractPerson;
 use App\Domain\ValueObject\EmailAddress;
 use App\Domain\ValueObject\NIF;
 use App\Domain\ValueObject\Password;
-use App\Domain\ValueObject\Role;
 use App\Domain\ValueObject\URL;
+use Symfony\Component\Security\Core\User\UserInterface;
 
-abstract class User extends AbstractPerson
+abstract class User extends AbstractPerson implements UserInterface
 {
     protected Password $password;
     protected EmailAddress $email;
-    protected Role $role;
 
     public function __construct(
         NIF $nif,
         Password $password,
         EmailAddress $email,
-        Role $role,
         ?string $name = null,
         ?string $surname = null,
         ?\DateTimeInterface $birthday = null,
@@ -29,7 +27,6 @@ abstract class User extends AbstractPerson
         parent::__construct($nif, $name, $surname, $birthday, $portrait);
         $this->password = $password;
         $this->email    = $email;
-        $this->role     = $role;
     }
 
     public function password(): Password
@@ -42,8 +39,33 @@ abstract class User extends AbstractPerson
         return $this->email;
     }
 
-    public function role(): Role
+    public function getUsername(): string
     {
-        return $this->role;
+        return (string) $this->email;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getPassword(): string
+    {
+        return (string) $this->password;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getSalt()
+    {
+        // not needed when using the "bcrypt" algorithm in security.yaml
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials(): void
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
     }
 }

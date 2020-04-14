@@ -191,7 +191,7 @@
   <component name="PhpProjectSharedConfiguration" php_language_level="7.4" />
   <component name="PhpUnit">
     <phpunit_settings>
-      <PhpUnitSettings custom_loader_path="$PROJECT_DIR$/vendor/autoload.php" />
+      <phpunit_by_interpreter interpreter_id="1de6fa45-917b-4eee-ad4c-70cd82b3a976" load_method="PHPUNIT_PHAR" bootstrap_file_path="/opt/project/tests/bootstrap.php" configuration_file_path="/opt/project/phpunit.xml" custom_loader_path="/opt/project/vendor/autoload.php" phpunit_phar_path="/opt/project/bin/phpunit" use_bootstrap_file="true" use_configuration_file="true" />
     </phpunit_settings>
   </component>
 </project>

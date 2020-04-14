@@ -6,10 +6,12 @@ namespace App\Infrastructure\Persistence\Doctrine\Repository;
 
 use App\Domain\Customer\CustomerRepository as CustomerRepositoryInterface;
 use App\Domain\Customer\Customer;
+use App\Domain\ValueObject\EmailAddress;
 use App\Domain\ValueObject\NIF;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
-class CustomerRepository extends UserRepository implements CustomerRepositoryInterface
+class CustomerRepository extends ServiceEntityRepository implements CustomerRepositoryInterface
 {
     public function __construct(ManagerRegistry $em)
     {
@@ -24,10 +26,16 @@ class CustomerRepository extends UserRepository implements CustomerRepositoryInt
     public function findOneByNif(NIF $nif): ?Customer
     {
         /** @var null|Customer $entity */
-        $entity = $this->findOneBy([
-            'nif' => $nif
-        ]);
+        $entity = $this->find((string) $nif);
+        return $entity;
+    }
 
+    public function findOneByEmailAddress(EmailAddress $emailAddress): ?Customer
+    {
+        /** @var null|Customer $entity */
+        $entity = $this->findOneBy([
+            'email' => (string) $emailAddress
+        ]);
         return $entity;
     }
 }

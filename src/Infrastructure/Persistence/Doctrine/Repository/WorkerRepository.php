@@ -4,12 +4,14 @@
 namespace App\Infrastructure\Persistence\Doctrine\Repository;
 
 
+use App\Domain\ValueObject\EmailAddress;
 use App\Domain\ValueObject\NIF;
 use App\Domain\Employee\WorkerRepository as WorkerRepositoryInterface;
 use App\Domain\Employee\Worker;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
-class WorkerRepository extends UserRepository implements WorkerRepositoryInterface
+class WorkerRepository extends ServiceEntityRepository implements WorkerRepositoryInterface
 {
     public function __construct(ManagerRegistry $em)
     {
@@ -24,10 +26,16 @@ class WorkerRepository extends UserRepository implements WorkerRepositoryInterfa
     public function findOneByNif(NIF $nif): ?Worker
     {
         /** @var null|Worker $entity */
-        $entity = $this->findOneBy([
-            'nif' => (string) $nif
-        ]);
+        $entity = $this->find((string) $nif);
+        return $entity;
+    }
 
+    public function findOneByEmailAddress(EmailAddress $emailAddress): ?Worker
+    {
+        /** @var null|Worker $entity */
+        $entity = $this->findOneBy([
+            'email' => (string) $emailAddress
+        ]);
         return $entity;
     }
 }

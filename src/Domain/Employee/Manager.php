@@ -10,6 +10,14 @@ class Manager extends Worker
 {
     public static function create(NIF $nif, EmailAddress $emailAddress, Password $password): self
     {
-        return new self($nif, $password, $emailAddress, RoleManager::create());
+        return new self($nif, $password, $emailAddress);
+    }
+
+    public function getRoles(): array
+    {
+        return [
+            'ROLE_MANAGER',
+            'ROLE_USER'
+        ];
     }
 }

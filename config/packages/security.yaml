@@ -1,22 +1,27 @@
 security:
     encoders:
-        App\Infrastructure\Symfony\Security\User:
+        App\Domain\Customer\Customer:
+            algorithm: auto
+        App\Domain\Employee\Worker:
             algorithm: auto
 
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
         # used to reload user from session & other features (e.g. switch_user)
-        app_user_provider:
-            entity:
-                class: App\Infrastructure\Symfony\Security\User
-                property: email
+        customer_provider:
+            id: App\Infrastructure\Symfony\Security\CustomerUserProvider
+        worker_provider:
+            id: App\Infrastructure\Symfony\Security\WorkerUserProvider
+        all_users:
+            chain:
+                providers: ['customer_provider', 'worker_provider']
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
             anonymous: lazy
-            provider: app_user_provider
+            provider: all_users
             guard:
                 authenticators:
                     - App\Infrastructure\Symfony\Security\Authenticator
@@ -35,7 +40,8 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
 
-        - { path: '^/manager', roles: ROLE_MANAGER }
-        - { path: '^/worker', roles: ROLE_MANAGER }
-        - { path: '^/customer', roles: [ROLE_MANAGER, ROLE_WORKER] }
-        - { path: '^/familiar', roles: ROLE_USER }
+        - { path: '^/crm',          roles: ROLE_USER }
+        - { path: '^/crm/manager',  roles: ROLE_MANAGER }
+        - { path: '^/crm/worker',   roles: ROLE_MANAGER }
+        - { path: '^/crm/customer', roles: ROLE_WORKER }
+        - { path: '^/crm/familiar', roles: ROLE_USER }

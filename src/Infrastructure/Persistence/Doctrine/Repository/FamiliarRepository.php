@@ -6,14 +6,14 @@ namespace App\Infrastructure\Persistence\Doctrine\Repository;
 
 use App\Domain\Familiar\Familiar;
 use App\Domain\Familiar\FamiliarRepository as FamiliarRepositoryInterface;
-use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\EntityRepository;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Persistence\ManagerRegistry;
 
-class FamiliarRepository extends EntityRepository  implements FamiliarRepositoryInterface
+class FamiliarRepository extends ServiceEntityRepository implements FamiliarRepositoryInterface
 {
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(ManagerRegistry $em)
     {
-        parent::__construct($em, $em->getClassMetadata(Familiar::class));
+        parent::__construct($em, Familiar::class);
     }
 
     public function save(Familiar $company): void

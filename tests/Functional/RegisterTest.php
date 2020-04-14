@@ -5,6 +5,7 @@ namespace Test\Functional;
 
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 
 class RegisterTest extends WebTestCase
@@ -40,6 +41,20 @@ class RegisterTest extends WebTestCase
 
         $this->client->submit($form);
 
-        $this->assertEquals(Response::HTTP_FOUND, $this->client->getResponse()->getStatusCode());
+        /** @var RedirectResponse $response */
+        $response = $this->client->getResponse();
+
+        $this->assertInstanceOf(RedirectResponse::class, $response);
+        $this->assertEquals(Response::HTTP_FOUND, $response->getStatusCode());
+        $this->assertEquals('http://testing.localhost/crm', $response->getTargetUrl());
+
+        $this->client->followRedirect();
+
+        $response = $this->client->getResponse();
+        $this->assertInstanceOf(Response::class, $response);
+        $this->assertEquals(Response::HTTP_OK, $response->getStatusCode());
+        $this->assertEquals('http://testing.localhost/crm', $this->client->getHistory()->current()->getUri());
     }
+
+    //TODO: new test with the login process
 }
