@@ -48,12 +48,15 @@ class RegisterTest extends WebTestCase
         $this->assertEquals(Response::HTTP_FOUND, $response->getStatusCode());
         $this->assertEquals('http://testing.localhost/crm', $response->getTargetUrl());
 
-        $this->client->followRedirect();
+        $crawler = $this->client->followRedirect();
 
         $response = $this->client->getResponse();
         $this->assertInstanceOf(Response::class, $response);
         $this->assertEquals(Response::HTTP_OK, $response->getStatusCode());
         $this->assertEquals('http://testing.localhost/crm', $this->client->getHistory()->current()->getUri());
+
+        $total = $crawler->filter('div.card-body button.btn-primary')->count();
+        $this->assertEquals(4, $total);
     }
 
     //TODO: new test with the login process

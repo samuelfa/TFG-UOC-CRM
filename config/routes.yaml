@@ -1,26 +1,5 @@
-crm_dashboard:
-  path: /crm
-  controller: App\Infrastructure\Symfony\Controller\CRM\DashboardController::view
-
-crm_login:
-  path: /crm/login
-  methods: GET
-  controller: App\Infrastructure\Symfony\Controller\CRM\Login\LoginGetController::view
-
-crm_login_post:
-  path: /crm/login
-  methods: POST
-  controller: App\Infrastructure\Symfony\Controller\CRM\Login\LoginPostController::view
-
-crm_forgot-password:
-  path: /crm/forgot-password
-  methods: GET
-  controller: App\Infrastructure\Symfony\Controller\CRM\ForgotPassword\ForgotPasswordGetController::view
-
-crm_forgot-password_post:
-  path: /crm/forgot-password
-  methods: POST
-  controller: App\Infrastructure\Symfony\Controller\CRM\ForgotPassword\ForgotPasswordPostController::view
+crm:
+  resource: 'routes/crm.yaml'
 
 error:
   path: /error

@@ -7,12 +7,26 @@
         <div class="card-header">{% trans %}Home{% endtrans %}</div>
         <div class="card-body">
             <div class="text-center">
-                <a href="{{ path('register')}}">
-                    <button type="button" class="btn btn-primary"><i class="fa fa-user"></i> {% trans %}Create an account{% endtrans %}</button>
+                {% if is_granted('ROLE_MANAGER') %}
+                <a href="{{ path('crm_manager_list')}}">
+                    <button type="button" class="btn btn-primary"><i class="fas fa-user-tie"></i> {% trans %}Managers{% endtrans %}</button>
                 </a>
-                <a href="{{ path('crm_login')}}">
-                    <button type="button" class="btn btn-primary"><i class="fa fa-sign-in"></i> {% trans %}Sign in{% endtrans %}</button>
+                {% endif %}
+                {% if is_granted('ROLE_MANAGER') %}
+                <a href="{{ path('crm_worker_list')}}">
+                    <button type="button" class="btn btn-primary"><i class="fas fa-user-cog"></i> {% trans %}Workers{% endtrans %}</button>
                 </a>
+                {% endif %}
+                {% if is_granted('ROLE_WORKER') %}
+                <a href="{{ path('crm_customer_list')}}">
+                    <button type="button" class="btn btn-primary"><i class="fas fa-user-tag"></i>x {% trans %}Customers{% endtrans %}</button>
+                </a>
+                {% endif %}
+                {% if is_granted('ROLE_USER') %}
+                <a href="{{ path('crm_familiar_list')}}">
+                    <button type="button" class="btn btn-primary"><i class="fas fa-street-view"></i> {% trans %}Familiars{% endtrans %}</button>
+                </a>
+                {% endif %}
             </div>
         </div>
     </div>

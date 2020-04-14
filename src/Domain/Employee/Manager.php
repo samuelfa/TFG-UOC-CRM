@@ -17,6 +17,7 @@ class Manager extends Worker
     {
         return [
             'ROLE_MANAGER',
+            'ROLE_WORKER',
             'ROLE_USER'
         ];
     }
