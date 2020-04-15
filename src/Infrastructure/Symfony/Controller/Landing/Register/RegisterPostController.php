@@ -51,7 +51,7 @@ class RegisterPostController extends WebController
         try {
             $this->dispatch($command);
         } catch (AlreadyExistsNamespace $exception){
-            $this->redirectWithError('register', 'The namespace is already in use', $request);
+            return $this->redirectWithError('register', 'The namespace is already in use', $request);
         }
 
         $url = $authenticatorHandler->authenticate($command->nif(), $command->namespace(), $request);
