@@ -13,16 +13,16 @@ class RegisterTest extends WebTestCase
     private KernelBrowser $client;
     protected function setUp(): void
     {
-        $this->client = static::createClient();
+        $this->client = static::createClient([], ['HTTP_HOST' => 'crm.localhost']);
         $kernel = self::bootKernel();
 
         $connection = $kernel->getContainer()
-                                      ->get('doctrine.orm.crm_entity_manager')
-                                      ->getConnection()
+          ->get('doctrine.orm.crm_entity_manager')
+          ->getConnection()
         ;
 
-        $connection->exec('DROP DATABASE IF EXISTS tfg_testing');
-        $connection->executeQuery('DELETE FROM tfg_default.companies where email = ?', ['manager@testing.com']);
+        $connection->exec('DROP DATABASE IF EXISTS tfg_functional');
+        $connection->executeQuery('DELETE FROM tfg_default.companies where email = ?', ['manager@functional.com']);
     }
 
     public function testRegisterANewCompany(): void
@@ -33,11 +33,11 @@ class RegisterTest extends WebTestCase
 
         $form = $crawler->filter('button')->form();
 
-        $form['namespace'] = 'testing';
+        $form['namespace'] = 'functional';
         $form['name'] = 'Company name';
         $form['nif'] = '12345678Z';
-        $form['email_address'] = 'manager@testing.com';
-        $form['password'] = 'testing';
+        $form['email_address'] = 'manager@functional.com';
+        $form['password'] = 'functional';
 
         $this->client->submit($form);
 
@@ -46,14 +46,14 @@ class RegisterTest extends WebTestCase
 
         $this->assertInstanceOf(RedirectResponse::class, $response);
         $this->assertEquals(Response::HTTP_FOUND, $response->getStatusCode());
-        $this->assertEquals('http://testing.localhost/crm', $response->getTargetUrl());
+        $this->assertEquals('http://functional.crm.localhost/crm', $response->getTargetUrl());
 
         $crawler = $this->client->followRedirect();
 
         $response = $this->client->getResponse();
         $this->assertInstanceOf(Response::class, $response);
         $this->assertEquals(Response::HTTP_OK, $response->getStatusCode());
-        $this->assertEquals('http://testing.localhost/crm', $this->client->getHistory()->current()->getUri());
+        $this->assertEquals('http://functional.crm.localhost/crm', $this->client->getHistory()->current()->getUri());
 
         $total = $crawler->filter('div.card-body button.btn-primary')->count();
         $this->assertEquals(4, $total);

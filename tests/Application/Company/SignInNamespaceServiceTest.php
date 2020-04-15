@@ -11,19 +11,22 @@ use App\Domain\Company\CompanyNotFound;
 use App\Domain\Company\CompanyRepository;
 use App\Domain\ValueObject\EmailAddress;
 use App\Infrastructure\Persistence\InMemory\InMemoryCompanyRepository;
+use App\Infrastructure\Symfony\Factory\URLFactory;
 use PHPUnit\Framework\TestCase;
 
 class SignInNamespaceServiceTest extends TestCase
 {
     private CompanyRepository $repository;
     private SignInNamespaceService $handler;
+    private URLFactory $urlFactory;
 
     protected function setUp(): void
     {
         $this->repository = new InMemoryCompanyRepository([
             new Company('testing', 'Testing', new EmailAddress('testing@email.com'))
         ]);
-        $this->handler = new SignInNamespaceService($this->repository, 'http://{namespace}.localhost');
+        $this->urlFactory = new URLFactory('http://{namespace}.crm.localhost');
+        $this->handler = new SignInNamespaceService($this->repository, $this->urlFactory);
     }
 
     public function testGetAnURI(): void
@@ -33,7 +36,7 @@ class SignInNamespaceServiceTest extends TestCase
         $this->handler->__invoke($oldDto);
 
         $this->assertEquals($oldDto->namespace(), $namespace);
-        $this->assertEquals($oldDto->uri(), 'http://testing.localhost');
+        $this->assertEquals($oldDto->uri(), 'http://testing.crm.localhost');
 
         $company = $this->repository->findOneByNamespace($namespace);
         $this->assertNotNull($company);
