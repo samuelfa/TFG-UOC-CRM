@@ -57,6 +57,6 @@ class RegisterPostController extends WebController
         $url = $authenticatorHandler->authenticate($command->nif(), $command->namespace(), $request);
         $path = $this->generateUrl('crm_dashboard');
 
-        return $this->redirect($url.$path);
+        return $this->redirect($url . $path);
     }
 }

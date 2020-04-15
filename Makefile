@@ -71,6 +71,9 @@ db-migrate:
 debug-router:
 	@docker-compose exec -T $(PHP_SERVICE) php bin/console debug:router
 
+debug-events:
+	@docker-compose exec -T $(PHP_SERVICE) php bin/console debug:event-dispatcher
+
 install-assets:
 	@docker-compose exec -T $(PHP_SERVICE) php bin/console assets:install --symlink --relative
 

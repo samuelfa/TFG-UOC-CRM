@@ -38,7 +38,6 @@ class AuthenticateAfterRegister
         }
 
         $this->authenticatorHandler->authenticateUserAndHandleSuccess($user, $request, $this->authenticator, 'main');
-
         return $this->URLFactory->generate($namespace);
     }
 

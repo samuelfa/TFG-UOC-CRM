@@ -7,8 +7,6 @@ use App\Infrastructure\Symfony\Event\TransactionalServiceHandler;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\ConstraintViolationListInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
@@ -16,27 +14,15 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 abstract class WebController extends AbstractController
 {
-    private SessionInterface $session;
-    /**
-     * @var TranslatorInterface
-     */
     private TranslatorInterface $translator;
-    /**
-     * @var TransactionalServiceHandler
-     */
     private TransactionalServiceHandler $transactionalServiceHandler;
-    /**
-     * @var ValidatorInterface
-     */
     private ValidatorInterface $validator;
 
     public function __construct(
-        SessionInterface $session,
         TranslatorInterface $translator,
         TransactionalServiceHandler $transactionalServiceHandler,
         ValidatorInterface $validator
     ) {
-        $this->session = $session;
         $this->translator = $translator;
         $this->transactionalServiceHandler = $transactionalServiceHandler;
         $this->validator = $validator;
@@ -45,7 +31,7 @@ abstract class WebController extends AbstractController
     protected function redirectWithMessage(string $routeName, string $message, ...$parameters): RedirectResponse
     {
         $message = $this->translator->trans($message, $parameters);
-        $this->addFlashFor('message', [$message]);
+        $this->addFlash('message', $message);
 
         return $this->redirectToRoute($routeName);
     }
@@ -60,7 +46,7 @@ abstract class WebController extends AbstractController
         ConstraintViolationListInterface $errors,
         Request $request
     ): RedirectResponse {
-        $this->addFlashFor('errors', $this->formatFlashErrors($errors));
+        $this->addFlashFor('error', $this->formatFlashErrors($errors));
         $this->addFlashFor('inputs', $request->request->all());
 
         return $this->redirectToRoute($routeName);
@@ -71,7 +57,7 @@ abstract class WebController extends AbstractController
         string $error,
         Request $request
     ): RedirectResponse {
-        $this->addFlashFor('errors', [$error]);
+        $this->addFlash('error', $error);
         $this->addFlashFor('inputs', $request->request->all());
 
         return $this->redirectToRoute($routeName);
@@ -97,9 +83,7 @@ abstract class WebController extends AbstractController
     private function addFlashFor(string $prefix, array $messages): void
     {
         foreach ($messages as $key => $message) {
-            /** @var FlashBagInterface $bag */
-            $bag = $this->session->getFlashBag();
-            $bag->set($prefix.'.'.$key, $message);
+           $this->addFlash($prefix, $message);
         }
     }
 }

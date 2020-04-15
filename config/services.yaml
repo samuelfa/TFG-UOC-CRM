@@ -55,7 +55,7 @@ services:
 
     App\Infrastructure\Symfony\Event\CustomerNamespaceSubscriber:
         tags:
-            - { name: kernel.event_listener, event: kernel.controller, priority: 10 }
+            - { name: kernel.event_listener, event: kernel.request, priority: 10 }
 
     # Session handler
 

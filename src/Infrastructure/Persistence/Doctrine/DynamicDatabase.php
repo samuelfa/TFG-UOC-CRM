@@ -10,6 +10,9 @@ class DynamicDatabase extends Connection
     public function changeDatabase(string $databaseName): void
     {
         $params = $this->getParams();
+        if (isset($params['dbname']) && $params['dbname'] === $databaseName) {
+            return;
+        }
 
         if ($this->isConnected()) {
             $this->close();

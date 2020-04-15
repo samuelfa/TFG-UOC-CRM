@@ -5,6 +5,11 @@
     <div class="card card-register mx-auto mt-5">
         <div class="card-header">{% trans %}Create an account{% endtrans %}</div>
         <div class="card-body">
+            {% for message in app.flashes('error') %}
+                <div class="alert alert-danger">
+                    {{ message }}
+                </div>
+            {% endfor %}
             <form method="post" id="register-form">
                 <input type="hidden" name="_csrf_token" value="{{ csrf_token('register') }}" >
                 <div class="form-group">

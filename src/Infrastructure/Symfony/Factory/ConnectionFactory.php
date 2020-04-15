@@ -7,19 +7,24 @@ namespace App\Infrastructure\Symfony\Factory;
 use App\Domain\Company\CompanyNotFound;
 use App\Domain\Company\CompanyRepository;
 use App\Domain\Factory\ConnectionFactory as ConnectionFactoryInterface;
+use App\Infrastructure\Persistence\Doctrine\DynamicDatabase;
+use Doctrine\Persistence\ManagerRegistry;
 
 class ConnectionFactory implements ConnectionFactoryInterface
 {
     private CompanyRepository $repository;
     private string $databaseNamePrefix;
+    private ManagerRegistry $manager;
 
     public function __construct(
         CompanyRepository $repository,
-        string $databaseNamePrefix
+        string $databaseNamePrefix,
+        ManagerRegistry $manager
     )
     {
         $this->repository = $repository;
         $this->databaseNamePrefix = $databaseNamePrefix;
+        $this->manager = $manager;
     }
 
     public function preloadSettings(string $namespace): void
@@ -33,6 +38,15 @@ class ConnectionFactory implements ConnectionFactoryInterface
             throw new CompanyNotFound($namespace);
         }
 
-        $_ENV['CRM_DATABASE_URL'] = str_replace('tfg_example', "{$this->databaseNamePrefix}_{$namespace}", $_ENV['CRM_DATABASE_URL']);
+        $databaseName = $this->obtainDatabaseName($namespace);
+
+        /** @var DynamicDatabase $connection */
+        $connection = $this->manager->getConnection('crm');
+        $connection->changeDatabase($databaseName);
+    }
+
+    private function obtainDatabaseName(string $namespace): string
+    {
+        return "{$this->databaseNamePrefix}_{$namespace}";
     }
 }

@@ -7,7 +7,7 @@ namespace App\Infrastructure\Symfony\Event;
 use App\Domain\Company\NamespacesCalculator;
 use App\Domain\Factory\ConnectionFactory;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpKernel\Event\ControllerEvent;
+use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 
 class CustomerNamespaceSubscriber implements EventSubscriberInterface
@@ -30,11 +30,11 @@ class CustomerNamespaceSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents(): array
     {
         return [
-            KernelEvents::CONTROLLER => 'onKernelController'
+            KernelEvents::REQUEST => 'onKernelRequest'
         ];
     }
 
-    public function onKernelController(ControllerEvent $event): void
+    public function onKernelRequest(RequestEvent $event): void
     {
         $request = $event->getRequest();
         $host = $request->getHost();
