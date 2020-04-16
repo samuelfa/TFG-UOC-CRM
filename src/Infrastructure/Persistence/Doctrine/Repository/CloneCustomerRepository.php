@@ -22,8 +22,8 @@ class CloneCustomerRepository implements CloneCustomerRepositoryInterface
         string $databaseNamePrefix
     )
     {
-        $this->manager           = $manager;
-        $this->rootFolder    = $rootFolder;
+        $this->manager            = $manager;
+        $this->rootFolder         = $rootFolder;
         $this->databaseNamePrefix = $databaseNamePrefix;
     }
 

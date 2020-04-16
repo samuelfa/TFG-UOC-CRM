@@ -12,7 +12,7 @@
             <form method="post">
                 <div class="form-group">
                     <div class="form-label-group">
-                        <input value="{{ last_username }}" name="email" type="email" id="inputEmail" class="form-control" placeholder="{% trans %}Email address{% endtrans %}" required autofocus>
+                        <input value="{{ last_username }}" name="email_address" type="email" id="inputEmail" class="form-control" placeholder="{% trans %}Email address{% endtrans %}" required autofocus>
                         <label for="inputEmail">{% trans %}Email address{% endtrans %}</label>
                     </div>
                 </div>
@@ -24,14 +24,6 @@
                 </div>
 
                 <input type="hidden" name="_csrf_token" value="{{ csrf_token('login') }}" />
-                <div class="form-group">
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" value="remember-me">
-                            {% trans %}Remember Password{% endtrans %}
-                        </label>
-                    </div>
-                </div>
                 <button class="btn btn-primary btn-block" type="submit">
                     {% trans %}Sign in{% endtrans %}
                 </button>

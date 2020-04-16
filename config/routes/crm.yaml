@@ -10,7 +10,6 @@ crm_login:
 crm_login_post:
   path: /login
   methods: POST
-  controller: App\Infrastructure\Symfony\Controller\CRM\Login\LoginPostController::view
 
 crm_forgot-password:
   path: /forgot-password

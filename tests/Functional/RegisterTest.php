@@ -58,6 +58,4 @@ class RegisterTest extends WebTestCase
         $total = $crawler->filter('div.card-body button.btn-primary')->count();
         $this->assertEquals(4, $total);
     }
-
-    //TODO: new test with the login process
 }

@@ -2,7 +2,9 @@
 
 namespace App\Infrastructure\Symfony\Security;
 
-use Doctrine\ORM\EntityManagerInterface;
+use App\Domain\Employee\Worker;
+use App\Domain\Employee\WorkerRepository;
+use App\Domain\ValueObject\EmailAddress;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -23,53 +25,54 @@ class Authenticator extends AbstractFormLoginAuthenticator implements PasswordAu
 {
     use TargetPathTrait;
 
-    private EntityManagerInterface $entityManager;
     private UrlGeneratorInterface $urlGenerator;
     private CsrfTokenManagerInterface $csrfTokenManager;
     private UserPasswordEncoderInterface $passwordEncoder;
+    private WorkerRepository $repository;
 
     public function __construct(
-        EntityManagerInterface $entityManager,
         UrlGeneratorInterface $urlGenerator,
         CsrfTokenManagerInterface $csrfTokenManager,
-        UserPasswordEncoderInterface $passwordEncoder
+        UserPasswordEncoderInterface $passwordEncoder,
+        WorkerRepository $repository
     )
     {
-        $this->entityManager = $entityManager;
         $this->urlGenerator = $urlGenerator;
         $this->csrfTokenManager = $csrfTokenManager;
         $this->passwordEncoder = $passwordEncoder;
+        $this->repository = $repository;
     }
 
     public function supports(Request $request): bool
     {
-        return 'login_post' === $request->attributes->get('_route')
+        return 'crm_login_post' === $request->attributes->get('_route')
             && $request->isMethod('POST');
     }
 
     public function getCredentials(Request $request): array
     {
         $credentials = [
-            'email' => $request->request->get('email'),
+            'email_address' => $request->request->get('email_address'),
             'password' => $request->request->get('password'),
-            'csrf_token' => $request->request->get('_csrf_token'),
+            '_csrf_token' => $request->request->get('_csrf_token'),
         ];
         $request->getSession()->set(
             Security::LAST_USERNAME,
-            $credentials['email']
+            $credentials['email_address']
         );
 
         return $credentials;
     }
 
-    public function getUser($credentials, UserProviderInterface $userProvider): User
+    public function getUser($credentials, UserProviderInterface $userProvider): Worker
     {
-        $token = new CsrfToken('authenticate', $credentials['csrf_token']);
+        $token = new CsrfToken('login', $credentials['_csrf_token']);
         if (!$this->csrfTokenManager->isTokenValid($token)) {
             throw new InvalidCsrfTokenException('Invalid CSRF');
         }
 
-        $user = $this->entityManager->getRepository(User::class)->findOneBy(['email' => $credentials['email']]);
+        $emailAddress = new EmailAddress($credentials['email_address']);
+        $user = $this->repository->findOneByEmailAddress($emailAddress);
 
         if (!$user) {
             // fail authentication with a custom error
