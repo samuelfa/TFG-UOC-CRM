@@ -2,7 +2,8 @@
 
 namespace App\Infrastructure\Symfony\Security;
 
-use App\Domain\Employee\Worker;
+use App\Domain\Employee\Employee;
+use App\Domain\Employee\ManagerRepository;
 use App\Domain\Employee\WorkerRepository;
 use App\Domain\ValueObject\EmailAddress;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -28,19 +29,22 @@ class Authenticator extends AbstractFormLoginAuthenticator implements PasswordAu
     private UrlGeneratorInterface $urlGenerator;
     private CsrfTokenManagerInterface $csrfTokenManager;
     private UserPasswordEncoderInterface $passwordEncoder;
-    private WorkerRepository $repository;
+    private WorkerRepository $workerRepository;
+    private ManagerRepository $managerRepository;
 
     public function __construct(
         UrlGeneratorInterface $urlGenerator,
         CsrfTokenManagerInterface $csrfTokenManager,
         UserPasswordEncoderInterface $passwordEncoder,
-        WorkerRepository $repository
+        WorkerRepository $workerRepository,
+        ManagerRepository $managerRepository
     )
     {
         $this->urlGenerator = $urlGenerator;
         $this->csrfTokenManager = $csrfTokenManager;
         $this->passwordEncoder = $passwordEncoder;
-        $this->repository = $repository;
+        $this->workerRepository = $workerRepository;
+        $this->managerRepository = $managerRepository;
     }
 
     public function supports(Request $request): bool
@@ -64,7 +68,7 @@ class Authenticator extends AbstractFormLoginAuthenticator implements PasswordAu
         return $credentials;
     }
 
-    public function getUser($credentials, UserProviderInterface $userProvider): Worker
+    public function getUser($credentials, UserProviderInterface $userProvider): Employee
     {
         $token = new CsrfToken('login', $credentials['_csrf_token']);
         if (!$this->csrfTokenManager->isTokenValid($token)) {
@@ -72,14 +76,18 @@ class Authenticator extends AbstractFormLoginAuthenticator implements PasswordAu
         }
 
         $emailAddress = new EmailAddress($credentials['email_address']);
-        $user = $this->repository->findOneByEmailAddress($emailAddress);
-
-        if (!$user) {
-            // fail authentication with a custom error
-            throw new CustomUserMessageAuthenticationException('Email could not be found.');
+        $worker = $this->workerRepository->findOneByEmailAddress($emailAddress);
+        if ($worker) {
+            return $worker;
         }
 
-        return $user;
+        $manager = $this->managerRepository->findOneByEmailAddress($emailAddress);
+        if ($manager) {
+            return $manager;
+        }
+
+        // fail authentication with a custom error
+        throw new CustomUserMessageAuthenticationException('Email could not be found.');
     }
 
     public function checkCredentials($credentials, UserInterface $user): bool

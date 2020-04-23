@@ -9,5 +9,10 @@ interface CustomerRepository
 {
     public function findOneByNif(NIF $nif): ?Customer;
     public function findOneByEmailAddress(EmailAddress $emailAddress): ?Customer;
+    /**
+     * @return Customer[]
+     * @noinspection ReturnTypeCanBeDeclaredInspection
+     */
+    public function findAll();
     public function save(Customer $company): void;
 }

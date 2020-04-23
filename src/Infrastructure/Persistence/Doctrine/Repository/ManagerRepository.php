@@ -7,7 +7,6 @@ namespace App\Infrastructure\Persistence\Doctrine\Repository;
 use App\Domain\Employee\Manager;
 use App\Domain\ValueObject\EmailAddress;
 use App\Domain\ValueObject\NIF;
-use App\Domain\Employee\Worker;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -15,7 +14,7 @@ class ManagerRepository extends ServiceEntityRepository implements \App\Domain\E
 {
     public function __construct(ManagerRegistry $em)
     {
-        parent::__construct($em, Worker::class);
+        parent::__construct($em, Manager::class);
     }
 
     public function save(Manager $worker): void

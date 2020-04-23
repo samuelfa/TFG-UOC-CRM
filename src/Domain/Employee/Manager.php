@@ -6,7 +6,7 @@ use App\Domain\ValueObject\EmailAddress;
 use App\Domain\ValueObject\NIF;
 use App\Domain\ValueObject\Password;
 
-class Manager extends Worker
+class Manager extends Employee
 {
     public static function create(NIF $nif, EmailAddress $emailAddress, Password $password): self
     {

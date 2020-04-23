@@ -9,5 +9,10 @@ interface WorkerRepository
 {
     public function findOneByNif(NIF $nif): ?Worker;
     public function findOneByEmailAddress(EmailAddress $emailAddress): ?Worker;
+    /**
+     * @return Manager[]
+     * @noinspection ReturnTypeCanBeDeclaredInspection
+     */
+    public function findAll();
     public function save(Worker $worker): void;
 }

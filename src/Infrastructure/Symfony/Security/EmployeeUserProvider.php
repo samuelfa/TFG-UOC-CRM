@@ -4,8 +4,8 @@
 namespace App\Infrastructure\Symfony\Security;
 
 
-use App\Domain\Employee\Manager;
-use App\Domain\Employee\Worker;
+use App\Domain\Employee\Employee;
+use App\Domain\Employee\ManagerRepository;
 use App\Domain\Employee\WorkerRepository;
 use App\Domain\ValueObject\EmailAddress;
 use App\Domain\ValueObject\InvalidEmailAddressException;
@@ -14,16 +14,18 @@ use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 
-class WorkerUserProvider implements UserProviderInterface
+class EmployeeUserProvider implements UserProviderInterface
 {
-    private WorkerRepository $repository;
+    private WorkerRepository $workerRepository;
+    private ManagerRepository $managerRepository;
 
-    public function __construct(WorkerRepository $repository)
+    public function __construct(WorkerRepository $workerRepository, ManagerRepository $managerRepository)
     {
-        $this->repository = $repository;
+        $this->workerRepository = $workerRepository;
+        $this->managerRepository = $managerRepository;
     }
 
-    public function loadUserByUsername(string $username): Worker
+    public function loadUserByUsername(string $username): Employee
     {
         try {
             $emailAddress = new EmailAddress($username);
@@ -31,16 +33,22 @@ class WorkerUserProvider implements UserProviderInterface
             throw new UsernameNotFoundException(sprintf('User "%s" not found.', $username));
         }
 
-        $user = $this->repository->findOneByEmailAddress($emailAddress);
-        if(!$user){
-            throw new UsernameNotFoundException(sprintf('User "%s" not found.', $username));
+        $worker = $this->workerRepository->findOneByEmailAddress($emailAddress);
+        if($worker){
+            return $worker;
         }
-        return $user;
+
+        $manager = $this->managerRepository->findOneByEmailAddress($emailAddress);
+        if($manager){
+            return $manager;
+        }
+
+        throw new UsernameNotFoundException(sprintf('User "%s" not found.', $username));
     }
 
-    public function refreshUser(UserInterface $user): Worker
+    public function refreshUser(UserInterface $user): Employee
     {
-        if (!$user instanceof Worker) {
+        if (!$user instanceof Employee) {
             throw new UnsupportedUserException(sprintf('Invalid user class "%s".', get_class($user)));
         }
 
@@ -52,9 +60,6 @@ class WorkerUserProvider implements UserProviderInterface
      */
     public function supportsClass(string $class): bool
     {
-        return
-            Worker::class === $class ||
-            Manager::class === $class
-        ;
+        return is_subclass_of($class, Employee::class);
     }
 }

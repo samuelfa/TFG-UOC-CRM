@@ -1,9 +1,9 @@
 {% extends "partials/crm.html.twig" %}
 
-{% block title %}{% trans %}Dashboard{% endtrans %}{% endblock %}
+{% block title %}{% trans %}List of customers{% endtrans %}{% endblock %}
 
-{% block breadcrumb_parent_url %}{{ url('crm_manager_list') }}{% endblock %}
-{% block breadcrumb_parent_name %}{% trans %}Managers{% endtrans %}{% endblock %}
+{% block breadcrumb_parent_url %}{{ url('crm_customer_list') }}{% endblock %}
+{% block breadcrumb_parent_name %}{% trans %}Customers{% endtrans %}{% endblock %}
 {% block breadcrumb_section_name %}List{% endblock %}
 
 {% block content %}
@@ -11,7 +11,7 @@
     <div class="card mb-3">
         <div class="card-header">
             <i class="fas fa-table"></i>
-            {% trans %}List of managers{% endtrans %}
+            {% trans %}List of customers{% endtrans %}
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -37,20 +37,20 @@
                         </tr>
                     </tfoot>
                     <tbody>
-                    {% for manager in managers %}
+                    {% for customer in customers %}
                         <tr>
                             <td>
-                                {% if manager.portrait is empty %}
+                                {% if customer.portrait is empty %}
                                     <i class="fas fa-user-circle"></i>
                                 {% else %}
-                                    <img src="{{  manager.portrait }}" alt="portrait" />
+                                    <img src="{{  customer.portrait }}" alt="portrait" />
                                 {% endif %}
                             </td>
-                            <td>{{ manager.name }}</td>
-                            <td>{{ manager.surname }}</td>
-                            <td>{{ manager.nif }}</td>
-                            <td>{{ manager.emailAddress }}</td>
-                            <td>{{ manager.birthday is empty ? "" : manager.birthday|date('d/m/Y') }}</td>
+                            <td>{{ customer.name }}</td>
+                            <td>{{ customer.surname }}</td>
+                            <td>{{ customer.nif }}</td>
+                            <td>{{ customer.emailAddress }}</td>
+                            <td>{{ customer.birthday is empty ? "" : customer.birthday|date('d/m/Y') }}</td>
                         </tr>
                     {% else %}
                         <tr>

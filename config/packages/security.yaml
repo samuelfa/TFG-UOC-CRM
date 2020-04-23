@@ -2,7 +2,7 @@ security:
     encoders:
         App\Domain\Customer\Customer:
             algorithm: auto
-        App\Domain\Employee\Worker:
+        App\Domain\Employee\Employee:
             algorithm: auto
 
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
@@ -10,11 +10,11 @@ security:
         # used to reload user from session & other features (e.g. switch_user)
         customer_provider:
             id: App\Infrastructure\Symfony\Security\CustomerUserProvider
-        worker_provider:
-            id: App\Infrastructure\Symfony\Security\WorkerUserProvider
+        employee_provider:
+            id: App\Infrastructure\Symfony\Security\EmployeeUserProvider
         all_users:
             chain:
-                providers: ['customer_provider', 'worker_provider']
+                providers: ['customer_provider', 'employee_provider']
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/

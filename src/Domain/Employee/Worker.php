@@ -2,9 +2,8 @@
 
 namespace App\Domain\Employee;
 
-use App\Domain\User\User;
 
-class Worker extends User
+class Worker extends Employee
 {
 
     public function getRoles(): array
