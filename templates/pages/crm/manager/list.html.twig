@@ -1,0 +1,66 @@
+{% extends "partials/crm.html.twig" %}
+
+{% block title %}{% trans %}Dashboard{% endtrans %}{% endblock %}
+
+{% block breadcrumb_parent_url %}{{ url('crm_manager_list') }}{% endblock %}
+{% block breadcrumb_parent_name %}{% trans %}Managers{% endtrans %}{% endblock %}
+{% block breadcrumb_section_name %}List{% endblock %}
+
+{% block content %}
+    <!-- DataTables Example -->
+    <div class="card mb-3">
+        <div class="card-header">
+            <i class="fas fa-table"></i>
+            {% trans %}List of managers{% endtrans %}
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable">
+                    <thead>
+                        <tr>
+                            <th>{% trans %}Portrait{% endtrans %}</th>
+                            <th>{% trans %}Name{% endtrans %}</th>
+                            <th>{% trans %}Surname{% endtrans %}</th>
+                            <th>{% trans %}NIF{% endtrans %}</th>
+                            <th>{% trans %}Email{% endtrans %}</th>
+                            <th>{% trans %}Birthday{% endtrans %}</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>{% trans %}Portrait{% endtrans %}</th>
+                            <th>{% trans %}Name{% endtrans %}</th>
+                            <th>{% trans %}Surname{% endtrans %}</th>
+                            <th>{% trans %}NIF{% endtrans %}</th>
+                            <th>{% trans %}Email{% endtrans %}</th>
+                            <th>{% trans %}Birthday{% endtrans %}</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                    {% for manager in managers %}
+                        <tr>
+                            <td>
+                                {% if manager.portrait is empty %}
+                                    <i class="fas fa-user-circle"></i>
+                                {% else %}
+                                    <img src="{{  manager.portrait }}" alt="portrait" />
+                                {% endif %}
+                            </td>
+                            <td>{{ manager.name }}</td>
+                            <td>{{ manager.surname }}</td>
+                            <td>{{ manager.nif }}</td>
+                            <td>{{ manager.emailAddress }}</td>
+                            <td>{{ manager.birthday is empty ? "" : manager.birthday|date('d/m/Y') }}</td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="6">{% trans %}Empty list{% endtrans %}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+    </div>
+{% endblock %}

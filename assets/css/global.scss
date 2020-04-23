@@ -6,6 +6,16 @@ $brand-primary: darken(#428bca, 20%);
 
 // the ~ allows you to reference things in node_modules
 @import "../../node_modules/bootstrap/scss/bootstrap";
+@import '../../node_modules/datatables.net-bs4/css/dataTables.bootstrap4.css';
 @import '../../node_modules/@fortawesome/fontawesome-free/scss/fontawesome';
 @import '../../node_modules/@fortawesome/fontawesome-free/scss/solid';
 @import '../../node_modules/startbootstrap-sb-admin/scss/sb-admin';
+
+table.table {
+  width: 100%;
+}
+
+.custom-select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
