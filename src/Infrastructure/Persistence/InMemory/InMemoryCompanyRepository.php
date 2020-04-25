@@ -32,4 +32,7 @@ class InMemoryCompanyRepository implements CompanyRepository
         $id = $company->namespace();
         $this->list[$id] = $company;
     }
+
+    public function flush(): void
+    {}
 }

@@ -20,4 +20,9 @@ class FamiliarRepository extends ServiceEntityRepository implements FamiliarRepo
     {
         $this->_em->persist($company);
     }
+
+    public function flush(): void
+    {
+        $this->_em->flush();
+    }
 }

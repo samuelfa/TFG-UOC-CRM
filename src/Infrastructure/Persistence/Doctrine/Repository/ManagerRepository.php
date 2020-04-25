@@ -37,4 +37,9 @@ class ManagerRepository extends ServiceEntityRepository implements \App\Domain\E
         ]);
         return $entity;
     }
+
+    public function flush(): void
+    {
+        $this->_em->flush();
+    }
 }

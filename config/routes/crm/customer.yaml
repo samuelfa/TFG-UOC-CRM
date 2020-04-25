@@ -1,0 +1,29 @@
+crm_customer_list:
+  path: /crm/customer
+  methods: GET
+  controller: App\Infrastructure\Symfony\Controller\CRM\Customer\ListGetController::view
+
+crm_customer_create:
+  path: /crm/customer/create
+  methods: GET
+  controller: App\Infrastructure\Symfony\Controller\CRM\Customer\CreateGetController::view
+
+crm_customer_create_post:
+  path: /crm/customer/create
+  methods: POST
+  controller: App\Infrastructure\Symfony\Controller\CRM\Customer\CreatePostController::view
+
+crm_customer_edit:
+  path: /crm/customer/{nif}/edit
+  methods: GET
+  controller: App\Infrastructure\Symfony\Controller\CRM\Customer\EditGetController::view
+
+crm_customer_edit_post:
+  path: /crm/customer/{nif}/edit
+  methods: POST
+  controller: App\Infrastructure\Symfony\Controller\CRM\Customer\Edit
+
+crm_customer_view:
+  path: /crm/customer/{nif}
+  methods: GET
+  controller: App\Infrastructure\Symfony\Controller\CRM\Customer\ViewGetController::view

@@ -38,4 +38,9 @@ class CustomerRepository extends ServiceEntityRepository implements CustomerRepo
         ]);
         return $entity;
     }
+
+    public function flush(): void
+    {
+        $this->_em->flush();
+    }
 }

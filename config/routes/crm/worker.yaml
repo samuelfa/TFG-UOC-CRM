@@ -1,0 +1,29 @@
+crm_worker_list:
+  path: /crm/worker
+  methods: GET
+  controller: App\Infrastructure\Symfony\Controller\CRM\Worker\ListGetController::view
+
+crm_worker_create:
+  path: /crm/worker/create
+  methods: GET
+  controller: App\Infrastructure\Symfony\Controller\CRM\Worker\CreateGetController::view
+
+crm_worker_create_post:
+  path: /crm/worker/create
+  methods: POST
+  controller: App\Infrastructure\Symfony\Controller\CRM\Worker\CreatePostController::view
+
+crm_worker_edit:
+  path: /crm/worker/{nif}/edit
+  methods: GET
+  controller: App\Infrastructure\Symfony\Controller\CRM\Worker\EditGetController::view
+
+crm_worker_edit_post:
+  path: /crm/worker/{nif}/edit
+  methods: POST
+  controller: App\Infrastructure\Symfony\Controller\CRM\Worker\Edit
+
+crm_worker_view:
+  path: /crm/worker/{nif}
+  methods: GET
+  controller: App\Infrastructure\Symfony\Controller\CRM\Worker\ViewGetController::view

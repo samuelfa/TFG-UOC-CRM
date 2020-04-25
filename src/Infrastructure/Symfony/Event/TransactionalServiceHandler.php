@@ -6,21 +6,22 @@ namespace App\Infrastructure\Symfony\Event;
 
 use App\Application\DTO;
 use App\Application\TransactionalService;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Domain\Repository;
 
 class TransactionalServiceHandler
 {
     private iterable $services;
-    private EntityManagerInterface $entityManager;
+    private iterable $repositories;
 
     /**
      * CommandHandler constructor.
      * @param TransactionalService[] $services
+     * @param Repository[] $repositories
      */
-    public function __construct(iterable $services, EntityManagerInterface $entityManager)
+    public function __construct(iterable $services, iterable $repositories)
     {
         $this->services = $services;
-        $this->entityManager = $entityManager;
+        $this->repositories = $repositories;
     }
 
     public function dispatch(DTO $dto): DTO
@@ -28,7 +29,10 @@ class TransactionalServiceHandler
         foreach($this->findService(get_class($dto)) as $service){
             $dto = $service($dto);
         }
-        $this->entityManager->flush();
+
+        foreach ($this->repositories as $repository){
+            $repository->flush();
+        }
 
         return $dto;
     }

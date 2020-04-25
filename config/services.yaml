@@ -26,7 +26,9 @@ services:
         App\Application\TransactionalService:
             tags:
                 - { name: 'app.transactional_service', priority: 20 }
-
+        App\Domain\Repository:
+            tags:
+                - { name: 'app.repository', priority: 20 }
     # Validators
 
     App\Infrastructure\Symfony\Validator\Constraints\CSRFValidator:
@@ -51,6 +53,7 @@ services:
     App\Infrastructure\Symfony\Event\TransactionalServiceHandler:
         arguments:
             $services: !tagged_iterator app.transactional_service
+            $repositories: !tagged_iterator app.repository
 
     # Services
 

@@ -1,13 +1,17 @@
 {% extends "partials/crm.html.twig" %}
 
-{% block title %}{% trans %}Dashboard{% endtrans %}{% endblock %}
+{% block title %}{% trans %}List of managers{% endtrans %}{% endblock %}
 
 {% block breadcrumb_parent_url %}{{ url('crm_manager_list') }}{% endblock %}
 {% block breadcrumb_parent_name %}{% trans %}Managers{% endtrans %}{% endblock %}
-{% block breadcrumb_section_name %}List{% endblock %}
+{% block breadcrumb_section_name %}{% trans %}List{% endtrans %}{% endblock %}
 
 {% block content %}
-    <!-- DataTables Example -->
+    <div class="row mb-2">
+        <div class="col-sm-4">
+            <a href="{{ url('crm_manager_create') }}" class="btn btn-info mb-2"><i class="fas fa-plus"></i> {% trans %}Add{% endtrans %}</a>
+        </div>
+    </div>
     <div class="card mb-3">
         <div class="card-header">
             <i class="fas fa-table"></i>
@@ -24,6 +28,7 @@
                             <th>{% trans %}NIF{% endtrans %}</th>
                             <th>{% trans %}Email{% endtrans %}</th>
                             <th>{% trans %}Birthday{% endtrans %}</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tfoot>
@@ -34,6 +39,7 @@
                             <th>{% trans %}NIF{% endtrans %}</th>
                             <th>{% trans %}Email{% endtrans %}</th>
                             <th>{% trans %}Birthday{% endtrans %}</th>
+                            <th></th>
                         </tr>
                     </tfoot>
                     <tbody>
@@ -51,10 +57,14 @@
                             <td>{{ manager.nif }}</td>
                             <td>{{ manager.emailAddress }}</td>
                             <td>{{ manager.birthday is empty ? "" : manager.birthday|date('d/m/Y') }}</td>
+                            <td>
+                                <a href="{{ url('crm_manager_view', {'nif': manager.nif}) }}" class="btn btn-info mb-2"><i class="fas fa-eye"></i> {% trans %}View{% endtrans %}</a>
+                                <a href="{{ url('crm_manager_edit', {'nif': manager.nif}) }}" class="btn btn-info mb-2"><i class="fas fa-edit"></i> {% trans %}Edit{% endtrans %}</a>
+                            </td>
                         </tr>
                     {% else %}
                         <tr>
-                            <td colspan="6">{% trans %}Empty list{% endtrans %}</td>
+                            <td colspan="7">{% trans %}Empty list{% endtrans %}</td>
                         </tr>
                     {% endfor %}
                     </tbody>

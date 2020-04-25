@@ -1,0 +1,29 @@
+crm_familiar_list:
+  path: /crm/familiar
+  methods: GET
+  controller: App\Infrastructure\Symfony\Controller\CRM\Familiar\ListGetController::view
+
+crm_familiar_create:
+  path: /crm/familiar/create
+  methods: GET
+  controller: App\Infrastructure\Symfony\Controller\CRM\Familiar\CreateGetController::view
+
+crm_familiar_create_post:
+  path: /crm/familiar/create
+  methods: POST
+  controller: App\Infrastructure\Symfony\Controller\CRM\Familiar\CreatePostController::view
+
+crm_familiar_edit:
+  path: /crm/familiar/{nif}/edit
+  methods: GET
+  controller: App\Infrastructure\Symfony\Controller\CRM\Familiar\EditGetController::view
+
+crm_familiar_edit_post:
+  path: /crm/familiar/{nif}/edit
+  methods: POST
+  controller: App\Infrastructure\Symfony\Controller\CRM\Familiar\Edit
+
+crm_familiar_view:
+  path: /crm/familiar/{nif}
+  methods: GET
+  controller: App\Infrastructure\Symfony\Controller\CRM\Familiar\ViewGetController::view

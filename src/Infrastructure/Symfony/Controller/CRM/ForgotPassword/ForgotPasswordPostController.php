@@ -22,7 +22,6 @@ class ForgotPasswordPostController extends WebController
     protected function validate(Request $request): ConstraintViolationListInterface
     {
         $assertions = [
-            'namespace'     => [new Assert\NotBlank(), new Assert\Length(['max' => 50]), new Assert\Type('alnum')],
             'email_address' => [new Assert\NotBlank(), new Assert\Length(['max' => 150]), new Assert\Email()],
         ];
 

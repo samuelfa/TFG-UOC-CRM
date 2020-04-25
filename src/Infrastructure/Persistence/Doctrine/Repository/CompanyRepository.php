@@ -26,4 +26,9 @@ class CompanyRepository extends ServiceEntityRepository implements CompanyReposi
         $this->_em->persist($company);
         $this->_em->flush();
     }
+
+    public function flush(): void
+    {
+        $this->_em->flush();
+    }
 }

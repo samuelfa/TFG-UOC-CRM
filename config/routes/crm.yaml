@@ -2,41 +2,17 @@ crm_dashboard:
   path: /crm
   controller: App\Infrastructure\Symfony\Controller\CRM\DashboardController::view
 
-crm_login:
-  path: /login
-  methods: GET
-  controller: App\Infrastructure\Symfony\Controller\CRM\Login\LoginGetController::view
+login:
+  resource: 'crm/login.yaml'
 
-crm_login_post:
-  path: /login
-  methods: POST
+manager:
+  resource: 'crm/manager.yaml'
 
-crm_forgot-password:
-  path: /forgot-password
-  methods: GET
-  controller: App\Infrastructure\Symfony\Controller\CRM\ForgotPassword\ForgotPasswordGetController::view
+worker:
+  resource: 'crm/worker.yaml'
 
-crm_forgot-password_post:
-  path: /forgot-password
-  methods: POST
-  controller: App\Infrastructure\Symfony\Controller\CRM\ForgotPassword\ForgotPasswordPostController::view
+customer:
+  resource: 'crm/customer.yaml'
 
-crm_manager_list:
-  path: /crm/manager
-  methods: GET
-  controller: App\Infrastructure\Symfony\Controller\CRM\Manager\ListGetController::view
-
-crm_worker_list:
-  path: /crm/worker
-  methods: GET
-  controller: App\Infrastructure\Symfony\Controller\CRM\Worker\ListGetController::view
-
-crm_customer_list:
-  path: /crm/customer
-  methods: GET
-  controller: App\Infrastructure\Symfony\Controller\CRM\Customer\ListGetController::view
-
-crm_familiar_list:
-  path: /crm/familiar
-  methods: GET
-  controller: App\Infrastructure\Symfony\Controller\CRM\Familiar\ListGetController::view
+familiar:
+  resource: 'crm/familiar.yaml'

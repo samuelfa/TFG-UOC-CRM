@@ -2,9 +2,10 @@
 
 namespace App\Domain\Employee;
 
+use App\Domain\Repository;
 use App\Domain\ValueObject\NIF;
 
-interface ManagerRepository
+interface ManagerRepository extends Repository
 {
     public function findOneByNif(NIF $nif): ?Manager;
 

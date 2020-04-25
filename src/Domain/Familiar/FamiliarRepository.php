@@ -3,7 +3,9 @@
 namespace App\Domain\Familiar;
 
 
-interface FamiliarRepository
+use App\Domain\Repository;
+
+interface FamiliarRepository extends Repository
 {
     /**
      * @return Familiar[]

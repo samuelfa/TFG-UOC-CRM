@@ -38,4 +38,9 @@ class WorkerRepository extends ServiceEntityRepository implements WorkerReposito
         ]);
         return $entity;
     }
+
+    public function flush(): void
+    {
+        $this->_em->flush();
+    }
 }

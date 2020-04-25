@@ -2,7 +2,9 @@
 
 namespace App\Domain\Company;
 
-interface CompanyRepository
+use App\Domain\Repository;
+
+interface CompanyRepository extends Repository
 {
     public function findOneByNamespace(string $namespace): ?Company;
     public function save(Company $company): void;
