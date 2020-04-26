@@ -43,4 +43,9 @@ class CustomerRepository extends ServiceEntityRepository implements CustomerRepo
     {
         $this->_em->flush();
     }
+
+    public function remove(Customer $customer): void
+    {
+        $this->_em->remove($customer);
+    }
 }

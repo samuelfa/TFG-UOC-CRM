@@ -15,5 +15,6 @@ interface CustomerRepository extends Repository
      * @noinspection ReturnTypeCanBeDeclaredInspection
      */
     public function findAll();
-    public function save(Customer $company): void;
+    public function save(Customer $customer): void;
+    public function remove(Customer $customer): void;
 }

@@ -15,4 +15,6 @@ interface WorkerRepository extends Repository
      * @noinspection ReturnTypeCanBeDeclaredInspection
      */
     public function findAll();
+    public function save(Worker $worker): void;
+    public function remove(Worker $worker): void;
 }

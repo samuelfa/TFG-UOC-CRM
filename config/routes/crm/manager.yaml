@@ -27,3 +27,8 @@ crm_manager_view:
   path: /crm/manager/{nif}
   methods: GET
   controller: App\Infrastructure\Symfony\Controller\CRM\Manager\ViewGetController::view
+
+crm_manager_delete:
+  path: /crm/manager/{nif}/delete
+  methods: GET
+  controller: App\Infrastructure\Symfony\Controller\CRM\Manager\DeleteGetController::view

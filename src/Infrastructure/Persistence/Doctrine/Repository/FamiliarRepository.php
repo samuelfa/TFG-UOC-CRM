@@ -16,13 +16,18 @@ class FamiliarRepository extends ServiceEntityRepository implements FamiliarRepo
         parent::__construct($em, Familiar::class);
     }
 
-    public function save(Familiar $company): void
+    public function save(Familiar $familiar): void
     {
-        $this->_em->persist($company);
+        $this->_em->persist($familiar);
     }
 
     public function flush(): void
     {
         $this->_em->flush();
+    }
+
+    public function remove(Familiar $familiar): void
+    {
+        $this->_em->remove($familiar);
     }
 }

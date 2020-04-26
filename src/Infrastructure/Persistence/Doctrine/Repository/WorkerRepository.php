@@ -43,4 +43,9 @@ class WorkerRepository extends ServiceEntityRepository implements WorkerReposito
     {
         $this->_em->flush();
     }
+
+    public function remove(Worker $worker): void
+    {
+        $this->_em->remove($worker);
+    }
 }

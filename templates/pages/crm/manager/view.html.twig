@@ -1,0 +1,90 @@
+{% extends "partials/crm.html.twig" %}
+
+{% block title %}{% trans with {'%name%': manager.name} from 'app' %}View manager %name%{% endtrans %}{% endblock %}
+
+{% block breadcrumb_parent_url %}{{ url('crm_manager_list') }}{% endblock %}
+{% block breadcrumb_parent_name %}{% trans %}Managers{% endtrans %}{% endblock %}
+{% block breadcrumb_section_name %}{{ manager.fullName }}{% endblock %}
+
+{% block content %}
+    <div class="card d-block">
+        <div class="card-body">
+            <div class="dropdown float-right">
+                <a href="#" class="dropdown-toggle arrow-none card-drop" data-toggle="dropdown" aria-expanded="false">
+                    <i class="dripicons-dots-3"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" style="">
+                    <!-- item-->
+                    <a href="{{ url('crm_manager_edit', {'nif': manager.nif})}}" class="dropdown-item"><i class="fas fa-edit"></i> {% trans %}Edit{% endtrans %}</a>
+                    <!-- item-->
+                    <a href="#" data-toggle="modal" data-target="#removeElementModal" class="dropdown-item"><i class="fas fa-trash"></i> {% trans %}Remove{% endtrans %}</a>
+                </div>
+            </div>
+            <span class="float-left m-2 mr-4">
+                {% if manager.portrait is empty %}
+                    <i class="fas fa-user-circle"></i>
+                {% else %}
+                    <img src="{{  manager.portrait }}" alt="portrait" class="rounded-circle img-thumbnail" />
+                {% endif %}
+            </span>
+
+            <h3 class="mt-0">
+                {{ manager.fullName }}
+            </h3>
+            <div class="badge badge-secondary mb-3">{% trans %}Manager{% endtrans %}</div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="mb-4">
+                        <h5>{% trans %}Name{% endtrans %}</h5>
+                        <p>{{ manager.name }}</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-4">
+                        <h5>{% trans %}Surname{% endtrans %}</h5>
+                        <p>{{ manager.surname }}</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-4">
+                        <h5>{% trans %}Nif{% endtrans %}</h5>
+                        <p>{{ manager.nif }}</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-4">
+                        <h5>{% trans %}Email address{% endtrans %}</h5>
+                        <p>{{ manager.emailAddress }}</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-4">
+                        <h5>{% trans %}Birthday{% endtrans %}</h5>
+                        <p>{{ manager.birthday is empty ? "" : manager.birthday|date('d/m/Y')}}</p>
+                    </div>
+                </div>
+            </div>
+
+        </div> <!-- end card-body-->
+
+    </div>
+
+    <div class="modal fade" id="removeElementModal" tabindex="-1" role="dialog" aria-labelledby="removeElementModal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">{% trans %}Are you sure?{% endtrans %}</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">{% trans %}Select "Remove" below if you are ready to delete the manager.{% endtrans %}</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">{% trans %}Cancel{% endtrans %}</button>
+                    <a class="btn btn-danger" href="{{ url('crm_manager_delete', {'nif': manager.nif}) }}">{% trans %}Remove{% endtrans %}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

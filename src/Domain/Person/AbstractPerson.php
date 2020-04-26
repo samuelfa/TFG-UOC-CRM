@@ -55,5 +55,9 @@ class AbstractPerson
         return $this->portrait;
     }
 
+    public function fullName(): string
+    {
+        return trim(sprintf('%s %s', $this->name, $this->surname));
+    }
 
 }

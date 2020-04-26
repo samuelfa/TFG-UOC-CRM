@@ -15,4 +15,5 @@ interface ManagerRepository extends Repository
      */
     public function findAll();
     public function save(Manager $manager): void;
+    public function remove(Manager $manager): void;
 }

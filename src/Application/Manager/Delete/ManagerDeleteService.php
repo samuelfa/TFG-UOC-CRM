@@ -1,14 +1,15 @@
 <?php
 
 
-namespace App\Application\Manager\View;
+namespace App\Application\Manager\Delete;
 
 
-use App\Domain\Employee\Manager;
+use App\Application\DTO;
+use App\Application\TransactionalService;
 use App\Domain\Employee\ManagerNotFound;
 use App\Domain\Employee\ManagerRepository;
 
-class ManagerViewService
+class ManagerDeleteService implements TransactionalService
 {
     private ManagerRepository $repository;
 
@@ -17,13 +18,21 @@ class ManagerViewService
         $this->repository = $repository;
     }
 
-    public function __invoke(ViewManagerDTO $dto): Manager
+    public function __invoke(DTO $dto): DTO
     {
+        /** @var DeleteManagerDTO $dto */
         $manager = $this->repository->findOneByNif($dto->nif());
         if(!$manager){
             throw new ManagerNotFound($dto->nif());
         }
 
-        return $manager;
+        $this->repository->remove($manager);
+
+        return $dto;
+    }
+
+    public function subscribeTo(): string
+    {
+        return DeleteManagerDTO::class;
     }
 }

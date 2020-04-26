@@ -42,4 +42,9 @@ class ManagerRepository extends ServiceEntityRepository implements \App\Domain\E
     {
         $this->_em->flush();
     }
+
+    public function remove(Manager $manager): void
+    {
+        $this->_em->remove($manager);
+    }
 }

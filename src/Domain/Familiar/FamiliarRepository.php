@@ -12,5 +12,6 @@ interface FamiliarRepository extends Repository
      * @noinspection ReturnTypeCanBeDeclaredInspection
      */
     public function findAll();
-    public function save(Familiar $company): void;
+    public function save(Familiar $familiar): void;
+    public function remove(Familiar $familiar): void;
 }
