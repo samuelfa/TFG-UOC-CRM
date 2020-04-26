@@ -1,0 +1,69 @@
+{% extends "partials/crm.html.twig" %}
+
+{% block title %}{% trans with {'%name%': customer.name} from 'app' %}Edit customer %name%{% endtrans %}{% endblock %}
+
+{% block breadcrumb_parent_url %}{{ url('crm_customer_list') }}{% endblock %}
+{% block breadcrumb_parent_name %}{% trans %}Customers{% endtrans %}{% endblock %}
+{% block breadcrumb_section_name %}{% trans with {'%name%': customer.name} from 'app' %}Edit customer %name%{% endtrans %}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">{% trans with {'%name%': customer.name} from 'app' %}Edit customer %name%{% endtrans %}</h4>
+
+                    <div class="row">
+
+                        {% for message in app.flashes('error') %}
+                            <div class="alert alert-danger">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+
+                        <div class="col-lg-12">
+                            <form method="post" action="{{ url('crm_customer_edit_post', {'nif': customer.nif}) }}" autocomplete="off">
+                                <input type="hidden" name="_csrf_token" value="{{ csrf_token('customer_edit') }}" >
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="nif">{% trans %}Nif{% endtrans %}</label>
+                                        <input type="text" id="nif" class="form-control" name="nif" value="{{ customer.nif }}" required readonly>
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        <label for="email_address">{% trans %}Email address{% endtrans %}</label>
+                                        <input class="form-control" id="email_address" type="email" name="email_address" value="{{ customer.emailAddress }}" required autofocus>
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        <label for="name">{% trans %}Name{% endtrans %}</label>
+                                        <input type="text" id="name" class="form-control" name="name" value="{{ customer.name }}">
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        <label for="surname">{% trans %}Surname{% endtrans %}</label>
+                                        <input type="text" id="surname" class="form-control" name="surname" value="{{ customer.surname }}">
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        <label for="birthday">{% trans %}Birthday{% endtrans %}</label>
+                                        <input class="form-control" id="birthday" type="date" name="birthday" value="{{ customer.birthday is empty ? "" : customer.birthday|date('Y-m-d') }}">
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        <label for="portrait">{% trans %}Portrait{% endtrans %}</label>
+                                        <input class="form-control" id="portrait" type="text" name="portrait" value="{{ customer.portrait }}">
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary">{% trans %}Edit{% endtrans %}</button>
+                                <a href="{{ url('crm_customer_list') }}"><button type="button" class="btn btn-danger">{% trans %}Cancel{% endtrans %}</button></a>
+                            </form>
+                        </div> <!-- end col -->
+                    </div>
+
+                </div> <!-- end card-body -->
+            </div> <!-- end card -->
+        </div><!-- end col -->
+    </div>
+{% endblock %}

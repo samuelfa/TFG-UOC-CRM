@@ -21,9 +21,14 @@ crm_familiar_edit:
 crm_familiar_edit_post:
   path: /crm/familiar/{nif}/edit
   methods: POST
-  controller: App\Infrastructure\Symfony\Controller\CRM\Familiar\Edit
+  controller: App\Infrastructure\Symfony\Controller\CRM\Familiar\EditPostController::view
 
 crm_familiar_view:
   path: /crm/familiar/{nif}
   methods: GET
   controller: App\Infrastructure\Symfony\Controller\CRM\Familiar\ViewGetController::view
+
+crm_familiar_delete:
+  path: /crm/familiar/{nif}/delete
+  methods: GET
+  controller: App\Infrastructure\Symfony\Controller\CRM\Familiar\DeleteGetController::view

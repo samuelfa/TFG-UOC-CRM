@@ -6,6 +6,7 @@ namespace App\Application\Manager\Create;
 
 use App\Application\DTO;
 use App\Application\TransactionalService;
+use App\Domain\AlreadyExistsNif;
 use App\Domain\Employee\Manager;
 use App\Domain\Employee\ManagerRepository;
 

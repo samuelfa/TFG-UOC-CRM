@@ -8,7 +8,7 @@
 
         <id name="nif" type="nif" length="10" column="nif"/>
 
-        <discriminator-column name="role" type="role" field-name="role" />
+        <discriminator-column name="role" type="smallint" field-name="role" />
 
         <discriminator-map>
             <discriminator-mapping value="1" class="App\Domain\Employee\Worker" />

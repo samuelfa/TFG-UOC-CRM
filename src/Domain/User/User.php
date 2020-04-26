@@ -29,6 +29,27 @@ abstract class User extends AbstractPerson implements UserInterface
         $this->email    = $email;
     }
 
+    public static function create(
+        NIF $nif,
+        EmailAddress $emailAddress,
+        Password $password,
+        ?string $name = null,
+        ?string $surname = null,
+        ?\DateTimeInterface $birthday = null,
+        ?URL $portrait = null
+    ): self
+    {
+        return new static(
+            $nif,
+            $password,
+            $emailAddress,
+            $name,
+            $surname,
+            $birthday,
+            $portrait
+        );
+    }
+
     public function password(): Password
     {
         return $this->password;

@@ -4,10 +4,19 @@
 
 {% block breadcrumb_parent_url %}{{ url('crm_familiar_list') }}{% endblock %}
 {% block breadcrumb_parent_name %}{% trans %}Familiars{% endtrans %}{% endblock %}
-{% block breadcrumb_section_name %}List{% endblock %}
+{% block breadcrumb_section_name %}{% trans %}List{% endtrans %}{% endblock %}
 
 {% block content %}
-    <!-- DataTables Example -->
+    <div class="row mb-2">
+        <div class="col-sm-4">
+            <a href="{{ url('crm_familiar_create') }}" class="btn btn-info mb-2"><i class="fas fa-plus"></i> {% trans %}Add{% endtrans %}</a>
+        </div>
+    </div>
+    {% for message in app.flashes('message') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
     <div class="card mb-3">
         <div class="card-header">
             <i class="fas fa-table"></i>
@@ -23,6 +32,7 @@
                             <th>{% trans %}Surname{% endtrans %}</th>
                             <th>{% trans %}NIF{% endtrans %}</th>
                             <th>{% trans %}Birthday{% endtrans %}</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tfoot>
@@ -32,6 +42,7 @@
                             <th>{% trans %}Surname{% endtrans %}</th>
                             <th>{% trans %}NIF{% endtrans %}</th>
                             <th>{% trans %}Birthday{% endtrans %}</th>
+                            <th></th>
                         </tr>
                     </tfoot>
                     <tbody>
@@ -41,13 +52,17 @@
                                 {% if familiar.portrait is empty %}
                                     <i class="fas fa-user-circle"></i>
                                 {% else %}
-                                    <img src="{{  familiar.portrait }}" alt="portrait" />
+                                    <img src="{{  familiar.portrait }}" alt="portrait" class="rounded-circle img-thumbnail portrait" />
                                 {% endif %}
                             </td>
                             <td>{{ familiar.name }}</td>
                             <td>{{ familiar.surname }}</td>
                             <td>{{ familiar.nif }}</td>
                             <td>{{ familiar.birthday is empty ? "" : familiar.birthday|date('d/m/Y') }}</td>
+                            <td>
+                                <a href="{{ url('crm_familiar_view', {'nif': familiar.nif}) }}" class="btn btn-info mb-2"><i class="fas fa-eye"></i> {% trans %}View{% endtrans %}</a>
+                                <a href="{{ url('crm_familiar_edit', {'nif': familiar.nif}) }}" class="btn btn-info mb-2"><i class="fas fa-edit"></i> {% trans %}Edit{% endtrans %}</a>
+                            </td>
                         </tr>
                     {% else %}
                         <tr>

@@ -6,6 +6,7 @@ namespace App\Infrastructure\Persistence\Doctrine\Repository;
 
 use App\Domain\Familiar\Familiar;
 use App\Domain\Familiar\FamiliarRepository as FamiliarRepositoryInterface;
+use App\Domain\ValueObject\NIF;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -29,5 +30,12 @@ class FamiliarRepository extends ServiceEntityRepository implements FamiliarRepo
     public function remove(Familiar $familiar): void
     {
         $this->_em->remove($familiar);
+    }
+
+    public function findOneByNif(NIF $nif): ?Familiar
+    {
+        /** @var null|Familiar $entity */
+        $entity = $this->find((string) $nif);
+        return $entity;
     }
 }

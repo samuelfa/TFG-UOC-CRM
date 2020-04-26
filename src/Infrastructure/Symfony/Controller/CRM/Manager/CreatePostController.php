@@ -2,8 +2,8 @@
 
 namespace App\Infrastructure\Symfony\Controller\CRM\Manager;
 
-use App\Application\Manager\Create\AlreadyExistsNif;
 use App\Application\Manager\Create\CreateManagerDTO;
+use App\Domain\AlreadyExistsNif;
 use App\Domain\PasswordRandomGenerator;
 use App\Infrastructure\Symfony\Controller\WebController;
 use App\Infrastructure\Symfony\Validator\Constraints\CSRF;

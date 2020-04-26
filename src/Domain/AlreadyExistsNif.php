@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Application\Manager\Create;
+namespace App\Domain;
 
 
 use App\Domain\ValueObject\NIF;

@@ -21,9 +21,14 @@ crm_worker_edit:
 crm_worker_edit_post:
   path: /crm/worker/{nif}/edit
   methods: POST
-  controller: App\Infrastructure\Symfony\Controller\CRM\Worker\Edit
+  controller: App\Infrastructure\Symfony\Controller\CRM\Worker\EditPostController::view
 
 crm_worker_view:
   path: /crm/worker/{nif}
   methods: GET
   controller: App\Infrastructure\Symfony\Controller\CRM\Worker\ViewGetController::view
+
+crm_worker_delete:
+  path: /crm/worker/{nif}/delete
+  methods: GET
+  controller: App\Infrastructure\Symfony\Controller\CRM\Worker\DeleteGetController::view

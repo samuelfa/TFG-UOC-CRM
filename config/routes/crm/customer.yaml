@@ -21,9 +21,14 @@ crm_customer_edit:
 crm_customer_edit_post:
   path: /crm/customer/{nif}/edit
   methods: POST
-  controller: App\Infrastructure\Symfony\Controller\CRM\Customer\Edit
+  controller: App\Infrastructure\Symfony\Controller\CRM\Customer\EditPostController::view
 
 crm_customer_view:
   path: /crm/customer/{nif}
   methods: GET
   controller: App\Infrastructure\Symfony\Controller\CRM\Customer\ViewGetController::view
+
+crm_customer_delete:
+  path: /crm/familiar/{nif}/delete
+  methods: GET
+  controller: App\Infrastructure\Symfony\Controller\CRM\Familiar\DeleteGetController::view

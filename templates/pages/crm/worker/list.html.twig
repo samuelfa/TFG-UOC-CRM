@@ -4,10 +4,19 @@
 
 {% block breadcrumb_parent_url %}{{ url('crm_worker_list') }}{% endblock %}
 {% block breadcrumb_parent_name %}{% trans %}Workers{% endtrans %}{% endblock %}
-{% block breadcrumb_section_name %}List{% endblock %}
+{% block breadcrumb_section_name %}{% trans %}List{% endtrans %}{% endblock %}
 
 {% block content %}
-    <!-- DataTables Example -->
+    <div class="row mb-2">
+        <div class="col-sm-4">
+            <a href="{{ url('crm_worker_create') }}" class="btn btn-info mb-2"><i class="fas fa-plus"></i> {% trans %}Add{% endtrans %}</a>
+        </div>
+    </div>
+    {% for message in app.flashes('message') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
     <div class="card mb-3">
         <div class="card-header">
             <i class="fas fa-table"></i>
@@ -24,6 +33,7 @@
                             <th>{% trans %}NIF{% endtrans %}</th>
                             <th>{% trans %}Email{% endtrans %}</th>
                             <th>{% trans %}Birthday{% endtrans %}</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tfoot>
@@ -34,6 +44,7 @@
                             <th>{% trans %}NIF{% endtrans %}</th>
                             <th>{% trans %}Email{% endtrans %}</th>
                             <th>{% trans %}Birthday{% endtrans %}</th>
+                            <th></th>
                         </tr>
                     </tfoot>
                     <tbody>
@@ -43,7 +54,7 @@
                                 {% if worker.portrait is empty %}
                                     <i class="fas fa-user-circle"></i>
                                 {% else %}
-                                    <img src="{{  worker.portrait }}" alt="portrait" />
+                                    <img src="{{  worker.portrait }}" alt="portrait" class="rounded-circle img-thumbnail portrait" />
                                 {% endif %}
                             </td>
                             <td>{{ worker.name }}</td>
@@ -51,10 +62,14 @@
                             <td>{{ worker.nif }}</td>
                             <td>{{ worker.emailAddress }}</td>
                             <td>{{ worker.birthday is empty ? "" : worker.birthday|date('d/m/Y') }}</td>
+                            <td>
+                                <a href="{{ url('crm_worker_view', {'nif': worker.nif}) }}" class="btn btn-info mb-2"><i class="fas fa-eye"></i> {% trans %}View{% endtrans %}</a>
+                                <a href="{{ url('crm_worker_edit', {'nif': worker.nif}) }}" class="btn btn-info mb-2"><i class="fas fa-edit"></i> {% trans %}Edit{% endtrans %}</a>
+                            </td>
                         </tr>
                     {% else %}
                         <tr>
-                            <td colspan="6">{% trans %}Empty list{% endtrans %}</td>
+                            <td colspan="7">{% trans %}Empty list{% endtrans %}</td>
                         </tr>
                     {% endfor %}
                     </tbody>

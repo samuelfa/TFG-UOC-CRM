@@ -23,7 +23,7 @@ create table employees
     portrait varchar(300) null comment '(DC2Type:url)',
     password varchar(300) not null comment '(DC2Type:password)',
     email    varchar(150) not null comment '(DC2Type:email_address)',
-    role     smallint     not null comment '(DC2Type:role)',
+    role     smallint     not null,
     constraint UNIQ_C3183A4DE7927C74
         unique (email)
 )
@@ -31,12 +31,12 @@ create table employees
 
 create table familiars
 (
-    nif      varchar(50)  not null
+    nif      varchar(50)  not null comment '(DC2Type:nif)'
         primary key,
-    name     varchar(150) not null,
-    surname  varchar(150) not null,
-    birthday date         not null,
-    portrait varchar(300) not null comment '(DC2Type:url)'
+    name     varchar(150) null,
+    surname  varchar(150) null,
+    birthday date         null,
+    portrait varchar(300) null comment '(DC2Type:url)'
 )
     collate = utf8mb4_unicode_ci;
 

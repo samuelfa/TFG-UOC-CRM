@@ -23,8 +23,6 @@ doctrine:
                 class: App\Infrastructure\Persistence\Doctrine\Types\PasswordType
             url:
                 class: App\Infrastructure\Persistence\Doctrine\Types\URLType
-            role:
-                class: App\Infrastructure\Persistence\Doctrine\Types\RoleType
 
     orm:
         default_entity_manager: default

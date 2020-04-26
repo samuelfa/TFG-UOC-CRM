@@ -10,7 +10,7 @@ class ListGetController extends WebController
 {
     public function view(FamiliarListService $service): Response
     {
-        return $this->render('pages/crm/family/list.html.twig', [
+        return $this->render('pages/crm/familiar/list.html.twig', [
             'familiars' => $service->__invoke()
         ]);
     }
