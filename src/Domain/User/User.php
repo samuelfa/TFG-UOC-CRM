@@ -68,4 +68,19 @@ abstract class User extends AbstractPerson implements UserInterface
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
     }
+
+    public function update(
+        EmailAddress $emailAddress,
+        ?string $name,
+        ?string $surname,
+        ?\DateTime $birthday,
+        ?URL $portrait
+    ): void
+    {
+        $this->email = $emailAddress;
+        $this->name = $name;
+        $this->surname = $surname;
+        $this->birthday = $birthday;
+        $this->portrait = $portrait;
+    }
 }

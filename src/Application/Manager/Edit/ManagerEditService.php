@@ -1,15 +1,15 @@
 <?php
 
 
-namespace App\Application\Manager\Create;
+namespace App\Application\Manager\Edit;
 
 
 use App\Application\DTO;
 use App\Application\TransactionalService;
-use App\Domain\Employee\Manager;
+use App\Domain\Employee\ManagerNotFound;
 use App\Domain\Employee\ManagerRepository;
 
-class ManagerCreateService implements TransactionalService
+class ManagerEditService implements TransactionalService
 {
     private ManagerRepository $repository;
 
@@ -20,17 +20,16 @@ class ManagerCreateService implements TransactionalService
 
     public function __invoke(DTO $dto): DTO
     {
-        /** @var CreateManagerDTO $dto */
+        /** @var EditManagerDTO $dto */
         $nif = $dto->nif();
 
-        if($this->repository->findOneByNif($nif)){
-            throw new AlreadyExistsNif($nif);
+        $manager = $this->repository->findOneByNif($nif);
+        if(!$manager){
+            throw new ManagerNotFound($nif);
         }
 
-        $manager = Manager::create(
-            $nif,
+        $manager->update(
             $dto->emailAddress(),
-            $dto->password(),
             $dto->name(),
             $dto->surname(),
             $dto->birthday(),
@@ -44,6 +43,6 @@ class ManagerCreateService implements TransactionalService
 
     public function subscribeTo(): string
     {
-        return CreateManagerDTO::class;
+        return EditManagerDTO::class;
     }
 }

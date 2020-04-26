@@ -1,16 +1,15 @@
 <?php
 
 
-namespace App\Application\Manager\Create;
+namespace App\Application\Manager\Edit;
 
 
 use App\Application\DTO;
 use App\Domain\ValueObject\EmailAddress;
 use App\Domain\ValueObject\NIF;
-use App\Domain\ValueObject\Password;
 use App\Domain\ValueObject\URL;
 
-class CreateManagerDTO implements DTO
+class EditManagerDTO implements DTO
 {
     private NIF $nif;
     private EmailAddress $emailAddress;
@@ -18,7 +17,6 @@ class CreateManagerDTO implements DTO
     private ?string $surname;
     private ?\DateTime $birthday;
     private ?URL $portrait;
-    private Password $password;
 
     /** @noinspection DuplicatedCode */
     public function __construct(
@@ -27,8 +25,7 @@ class CreateManagerDTO implements DTO
         string $name,
         string $surname,
         string $birthday,
-        string $portrait,
-        string $password
+        string $portrait
     )
     {
         $this->nif          = new NIF($nif);
@@ -37,7 +34,6 @@ class CreateManagerDTO implements DTO
         $this->surname      = $surname ?? null;
         $this->birthday     = !empty($birthday) ? new \DateTime($birthday) : null;
         $this->portrait     = !empty($portrait) ? new URL($portrait) : null;
-        $this->password     = Password::encode($password);
     }
 
     public function nif(): NIF
@@ -68,10 +64,5 @@ class CreateManagerDTO implements DTO
     public function portrait(): ?URL
     {
         return $this->portrait;
-    }
-
-    public function password(): Password
-    {
-        return $this->password;
     }
 }
