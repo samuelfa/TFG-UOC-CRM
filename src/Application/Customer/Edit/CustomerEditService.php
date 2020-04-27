@@ -33,7 +33,8 @@ class CustomerEditService implements TransactionalService
             $dto->name(),
             $dto->surname(),
             $dto->birthday(),
-            $dto->portrait()
+            $dto->portrait(),
+            $dto->password()
         );
 
         $this->repository->save($customer);

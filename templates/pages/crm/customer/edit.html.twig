@@ -54,6 +54,16 @@
                                         <label for="portrait">{% trans %}Portrait{% endtrans %}</label>
                                         <input class="form-control" id="portrait" type="text" name="portrait" value="{{ customer.portrait }}">
                                     </div>
+
+                                    <div class="form-group col-md-6">
+                                        <label for="password">{% trans %}Password{% endtrans %}</label>
+                                        <input type="password" name="password" id="password" class="form-control" placeholder="{% trans %}Password{% endtrans %}" maxlength="50" autocomplete="new-password" >
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        <label for="confirm_password">{% trans %}Confirm password{% endtrans %}</label>
+                                        <input type="password" id="confirm_password" class="form-control" placeholder="{% trans %}Confirm password{% endtrans %}" maxlength="50">
+                                    </div>
                                 </div>
 
                                 <button type="submit" class="btn btn-primary">{% trans %}Edit{% endtrans %}</button>

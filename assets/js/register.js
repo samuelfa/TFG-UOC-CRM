@@ -3,7 +3,7 @@ export default function() {
     return {
         registerEvents: function()
         {
-            let registerForm = $('#register-form');
+            let registerForm = $('.form-with-password');
             registerForm.on('submit', function(event){
                 let password = registerForm.find('#password').val();
                 let passwordConfirm = registerForm.find('#confirm_password').val();

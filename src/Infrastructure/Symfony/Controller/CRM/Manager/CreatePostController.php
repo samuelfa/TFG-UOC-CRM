@@ -4,7 +4,6 @@ namespace App\Infrastructure\Symfony\Controller\CRM\Manager;
 
 use App\Application\Manager\Create\CreateManagerDTO;
 use App\Domain\AlreadyExistsNif;
-use App\Domain\PasswordRandomGenerator;
 use App\Infrastructure\Symfony\Controller\WebController;
 use App\Infrastructure\Symfony\Validator\Constraints\CSRF;
 use App\Infrastructure\Symfony\Validator\Constraints\NIF;
@@ -15,10 +14,8 @@ use Symfony\Component\Validator\ConstraintViolationListInterface;
 
 class CreatePostController extends WebController
 {
-    public function view(Request $request, PasswordRandomGenerator $passwordRandomGenerator): RedirectResponse
+    public function view(Request $request): RedirectResponse
     {
-        $request->request->set('password', $passwordRandomGenerator->generate());
-
         $validationErrors = $this->validate($request);
 
         return $validationErrors->count()
@@ -36,7 +33,7 @@ class CreatePostController extends WebController
             'surname'       => [new Assert\Length(['min' => 0, 'max' => 150]), new Assert\Type('string')],
             'birthday'      => [new Assert\Date()],
             'portrait'      => [new Assert\Length(['min' => 0, 'max' => 300]), new Assert\Type('string')],
-            'password'      => [new Assert\Length(['min' => 0, 'max' => 300]), new Assert\Type('string')],
+            'password'      => [new Assert\NotBlank(), new Assert\Length(['min' => 3, 'max' => 300]), new Assert\Type('string')],
         ];
 
         return $this->validateRequest($request, $assertions);

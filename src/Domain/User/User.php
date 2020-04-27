@@ -95,7 +95,8 @@ abstract class User extends AbstractPerson implements UserInterface
         ?string $name,
         ?string $surname,
         ?\DateTime $birthday,
-        ?URL $portrait
+        ?URL $portrait,
+        ?Password $password
     ): void
     {
         $this->email = $emailAddress;
@@ -103,5 +104,8 @@ abstract class User extends AbstractPerson implements UserInterface
         $this->surname = $surname;
         $this->birthday = $birthday;
         $this->portrait = $portrait;
+        if($password){
+            $this->password = $password;
+        }
     }
 }

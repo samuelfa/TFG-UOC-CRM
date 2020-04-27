@@ -10,7 +10,7 @@
                     {{ message }}
                 </div>
             {% endfor %}
-            <form method="post" id="register-form">
+            <form method="post" class="form-with-password">
                 <input type="hidden" name="_csrf_token" value="{{ csrf_token('register') }}" >
                 <div class="form-group">
                     <div class="form-row">
