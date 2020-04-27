@@ -25,6 +25,8 @@ security:
             guard:
                 authenticators:
                     - App\Infrastructure\Symfony\Security\Authenticator
+                    - App\Infrastructure\Symfony\Security\CustomerAuthenticator
+                entry_point: App\Infrastructure\Symfony\Security\Authenticator
             logout:
                 path: app_logout
                 # where to redirect after logout

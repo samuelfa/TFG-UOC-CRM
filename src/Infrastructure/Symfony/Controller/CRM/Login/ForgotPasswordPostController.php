@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Infrastructure\Symfony\Controller\CRM\ForgotPassword;
+namespace App\Infrastructure\Symfony\Controller\CRM\Login;
 
 use App\Infrastructure\Symfony\Controller\WebController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -15,7 +15,7 @@ class ForgotPasswordPostController extends WebController
         $validationErrors = $this->validate($request);
 
         return $validationErrors->count()
-            ? $this->redirectWithErrors('forgot-password', $validationErrors, $request)
+            ? $this->redirectWithErrors('crm_forgot-password', $validationErrors, $request)
             : $this->executeService($request);
     }
 
