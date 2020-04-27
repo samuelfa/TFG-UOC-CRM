@@ -49,6 +49,12 @@ create table migration_versions
     collate = utf8mb4_unicode_ci;
 
 INSERT INTO migration_versions (version, executed_at) VALUES
-         ('20200412120904', '2020-04-12 12:09:30'),
-         ('20200412120906', '2020-04-12 12:09:30')
+         ('20200412165615', '2020-04-12 12:09:30'),
+         ('20200412165618', '2020-04-12 12:09:30'),
+         ('20200426183813', '2020-04-26 18:39:05'),
+         ('20200427225558', '2020-04-27 22:57:32')
 ;
+
+ALTER TABLE familiars ADD customer VARCHAR(255) DEFAULT NULL COMMENT '(DC2Type:nif)';
+ALTER TABLE familiars ADD CONSTRAINT FK_9757873281398E09 FOREIGN KEY (customer) REFERENCES customers (nif);
+CREATE INDEX IDX_9757873281398E09 ON familiars (customer);

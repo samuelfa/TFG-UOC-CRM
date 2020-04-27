@@ -4,8 +4,10 @@
 namespace App\Application\Familiar\DisplayList;
 
 
+use App\Domain\Customer\Customer;
 use App\Domain\Familiar\Familiar;
 use App\Domain\Familiar\FamiliarRepository;
+use App\Domain\User\User;
 
 class FamiliarListService
 {
@@ -19,8 +21,12 @@ class FamiliarListService
     /**
      * @return Familiar[]
      */
-    public function __invoke(): array
+    public function __invoke(User $user): array
     {
+        if($user instanceof Customer){
+            return $this->repository->findByCustomer($user);
+        }
+
         return $this->repository->findAll();
     }
 }

@@ -15,13 +15,15 @@ class CreateFamiliarDTO implements DTO
     private ?string $surname;
     private ?\DateTime $birthday;
     private ?URL $portrait;
+    private NIF $customer;
 
     public function __construct(
         string $nif,
         string $name,
         string $surname,
         string $birthday,
-        string $portrait
+        string $portrait,
+        string $customer
     )
     {
         $this->nif          = new NIF($nif);
@@ -29,6 +31,7 @@ class CreateFamiliarDTO implements DTO
         $this->surname      = $surname ?? null;
         $this->birthday     = !empty($birthday) ? new \DateTime($birthday) : null;
         $this->portrait     = !empty($portrait) ? new URL($portrait) : null;
+        $this->customer     = new NIF($customer);
     }
 
     public function nif(): NIF
@@ -54,5 +57,10 @@ class CreateFamiliarDTO implements DTO
     public function portrait(): ?URL
     {
         return $this->portrait;
+    }
+
+    public function customer(): NIF
+    {
+        return $this->customer;
     }
 }

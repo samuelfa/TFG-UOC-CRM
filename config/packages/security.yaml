@@ -42,8 +42,10 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
 
-        - { path: '^/crm',          roles: ROLE_USER }
         - { path: '^/crm/manager',  roles: ROLE_MANAGER }
         - { path: '^/crm/worker',   roles: ROLE_MANAGER }
         - { path: '^/crm/customer', roles: ROLE_WORKER }
+        - { path: '^/crm/familiar/create', roles: ROLE_WORKER }
+        - { path: '^/crm/familiar/{nif}/edit', roles: ROLE_WORKER }
         - { path: '^/crm/familiar', roles: ROLE_USER }
+        - { path: '^/crm',          roles: ROLE_USER }

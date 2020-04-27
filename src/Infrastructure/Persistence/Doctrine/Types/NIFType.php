@@ -22,6 +22,9 @@ class NIFType extends StringType
     public function convertToPHPValue($value, AbstractPlatform $platform)
     {
         $value = parent::convertToPHPValue($value, $platform);
+        if($value === null){
+            return null;
+        }
         return new NIF($value);
     }
 

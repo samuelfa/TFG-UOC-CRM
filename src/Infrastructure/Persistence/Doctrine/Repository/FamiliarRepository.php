@@ -4,6 +4,7 @@
 namespace App\Infrastructure\Persistence\Doctrine\Repository;
 
 
+use App\Domain\Customer\Customer;
 use App\Domain\Familiar\Familiar;
 use App\Domain\Familiar\FamiliarRepository as FamiliarRepositoryInterface;
 use App\Domain\ValueObject\NIF;
@@ -37,5 +38,12 @@ class FamiliarRepository extends ServiceEntityRepository implements FamiliarRepo
         /** @var null|Familiar $entity */
         $entity = $this->find((string) $nif);
         return $entity;
+    }
+
+    public function findByCustomer(Customer $customer): array
+    {
+        return $this->findBy([
+           'customer' => $customer
+        ]);
     }
 }

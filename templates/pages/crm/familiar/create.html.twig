@@ -40,14 +40,23 @@
                                         <input class="form-control" id="portrait" type="text" name="portrait">
                                     </div>
 
-                                    <div class="form-group col-md-6">
+                                    <div class="form-group col-md-4">
                                         <label for="name">{% trans %}Name{% endtrans %}</label>
                                         <input type="text" id="name" class="form-control" name="name">
                                     </div>
 
-                                    <div class="form-group col-md-6">
+                                    <div class="form-group col-md-4">
                                         <label for="surname">{% trans %}Surname{% endtrans %}</label>
                                         <input type="text" id="surname" class="form-control" name="surname">
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+                                        <label for="customer">{% trans %}Customer{% endtrans %}</label>
+                                        <select name="customer" id="customer" class="form-control selectpicker"  data-live-search="true">
+                                            {% for customer in customers %}
+                                                <option value="{{customer.nif}}">{{customer.fullName is empty ? customer.nif : customer.fullName}}</option>
+                                            {% endfor %}
+                                        </select>
                                     </div>
                                 </div>
 
