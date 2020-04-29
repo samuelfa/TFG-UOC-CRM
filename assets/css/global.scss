@@ -11,6 +11,8 @@ $brand-primary: darken(#428bca, 20%);
 @import '../../node_modules/@fortawesome/fontawesome-free/scss/solid';
 @import '../../node_modules/startbootstrap-sb-admin/scss/sb-admin';
 @import '../../node_modules/bootstrap-select/sass/bootstrap-select';
+@import "variables";
+@import "error";
 
 table.table {
   width: 100%;
@@ -23,40 +25,6 @@ table.table {
 
 .portrait {
   height: 100px;
-}
-
-.error {
-  color: #5a5c69;
-  font-size: 7rem;
-  position: relative;
-  line-height: 1;
-  width: 12.5rem;
-}
-
-.error:before {
-  content: attr(data-text);
-  position: absolute;
-  left: -2px;
-  text-shadow: 1px 0 #4e73df;
-  top: 0;
-  color: #5a5c69;
-  background: #f8f9fc;
-  overflow: hidden;
-  clip: rect(0,900px,0,0);
-  animation: noise-anim-2 3s infinite linear alternate-reverse;
-}
-
-.error:after {
-  content: attr(data-text);
-  position: absolute;
-  left: 2px;
-  text-shadow: -1px 0 #e74a3b;
-  top: 0;
-  color: #5a5c69;
-  background: #f8f9fc;
-  overflow: hidden;
-  clip: rect(0,900px,0,0);
-  animation: noise-anim 2s infinite linear alternate-reverse;
 }
 
 .text-gray-800 {
