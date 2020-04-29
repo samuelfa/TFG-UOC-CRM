@@ -2,6 +2,10 @@ crm_dashboard:
   path: /crm
   controller: App\Infrastructure\Symfony\Controller\CRM\DashboardController::view
 
+crm_error:
+  path: /crm/error
+  controller: App\Infrastructure\Symfony\Controller\CRM\ErrorController::view
+
 login:
   resource: 'crm/login.yaml'
 

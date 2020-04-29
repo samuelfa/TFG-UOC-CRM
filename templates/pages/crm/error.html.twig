@@ -1,0 +1,21 @@
+{% extends "partials/crm.html.twig" %}
+
+{% block title %}{% trans %}Error 404{% endtrans %}{% endblock %}
+
+{% block breadcrumb_parent_url %}{{ url('crm_dashboard') }}{% endblock %}
+{% block breadcrumb_parent_name %}{% trans %}Dashboard{% endtrans %}{% endblock %}
+{% block breadcrumb_section_name %}Error{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+
+        <!-- 404 Error Text -->
+        <div class="text-center">
+            <div class="error mx-auto" data-text="404">404</div>
+            <p class="lead text-gray-800 mb-5">{% trans %}Page Not Found{% endtrans %}</p>
+            <p class="text-gray-500 mb-0">{% trans %}It looks like you found a glitch in the matrix...{% endtrans %}</p>
+            <a href="{{ url('crm_dashboard') }}">← {% trans %}Back to Dashboard{% endtrans %}</a>
+        </div>
+
+    </div>
+{% endblock %}

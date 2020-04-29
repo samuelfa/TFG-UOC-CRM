@@ -9,17 +9,17 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\Routing\RouterInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 class ExceptionSubscriber implements EventSubscriberInterface
 {
     private RouterInterface $router;
-    /**
-     * @var string
-     */
     private string $domain;
+    private TokenStorageInterface $tokenStorage;
 
-    public function __construct(RouterInterface $router, string $domain)
+    public function __construct(TokenStorageInterface $tokenStorage, RouterInterface $router, string $domain)
     {
+        $this->tokenStorage = $tokenStorage;
         $this->router = $router;
         $this->domain = $domain;
     }
@@ -36,10 +36,17 @@ class ExceptionSubscriber implements EventSubscriberInterface
 
     public function onEvent(ExceptionEvent $event): void
     {
-        $request = $event->getRequest();
-        $scheme = $request->getScheme();
-        $url = $this->router->generate('error');
-        $response = new RedirectResponse("{$scheme}://{$this->domain}{$url}");
+        $token = $this->tokenStorage->getToken();
+        if($token && $token->getUser()){
+            $url = $this->router->generate('crm_error');
+        } else {
+            $request = $event->getRequest();
+            $scheme = $request->getScheme();
+            $url = $this->router->generate('error');
+            $url = "{$scheme}://{$this->domain}{$url}";
+        }
+
+        $response = new RedirectResponse($url);
         $event->setResponse($response);
     }
 }
