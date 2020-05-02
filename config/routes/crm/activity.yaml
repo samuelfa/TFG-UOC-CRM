@@ -1,0 +1,29 @@
+crm_activity_list:
+  path: /crm/activity
+  methods: GET
+  controller: App\Infrastructure\Symfony\Controller\CRM\Activity\ListGetController::view
+
+crm_activity_create:
+  path: /crm/activity/create
+  methods: GET
+  controller: App\Infrastructure\Symfony\Controller\CRM\Activity\CreateGetController::view
+
+crm_activity_create_post:
+  path: /crm/activity/create
+  methods: POST
+  controller: App\Infrastructure\Symfony\Controller\CRM\Activity\CreatePostController::view
+
+crm_activity_edit:
+  path: /crm/activity/{id}/edit
+  methods: GET
+  controller: App\Infrastructure\Symfony\Controller\CRM\Activity\EditGetController::view
+
+crm_activity_edit_post:
+  path: /crm/activity/{id}/edit
+  methods: POST
+  controller: App\Infrastructure\Symfony\Controller\CRM\Activity\EditPostController::view
+  
+crm_activity_delete:
+  path: /crm/activity/{id}/delete
+  methods: GET
+  controller: App\Infrastructure\Symfony\Controller\CRM\Activity\DeleteGetController::view

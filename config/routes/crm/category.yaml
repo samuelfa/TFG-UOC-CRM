@@ -13,7 +13,17 @@ crm_category_create_post:
   methods: POST
   controller: App\Infrastructure\Symfony\Controller\CRM\Category\CreatePostController::view
 
+crm_category_edit:
+  path: /crm/category/{id}/edit
+  methods: GET
+  controller: App\Infrastructure\Symfony\Controller\CRM\Category\EditGetController::view
+
+crm_category_edit_post:
+  path: /crm/category/{id}/edit
+  methods: POST
+  controller: App\Infrastructure\Symfony\Controller\CRM\Category\EditPostController::view
+
 crm_category_delete:
-  path: /crm/category/{name}/delete
+  path: /crm/category/{id}/delete
   methods: GET
   controller: App\Infrastructure\Symfony\Controller\CRM\Category\DeleteGetController::view

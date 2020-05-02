@@ -6,6 +6,7 @@ use App\Domain\Repository;
 
 interface CategoryRepository extends Repository
 {
+    public function findOneById(int $id): ?Category;
     public function findOneByName(string $name): ?Category;
     /**
      * @return Category[]

@@ -12,6 +12,9 @@ login:
 category:
   resource: 'crm/category.yaml'
 
+activity:
+  resource: 'crm/activity.yaml'
+
 manager:
   resource: 'crm/manager.yaml'
 

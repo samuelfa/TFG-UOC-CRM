@@ -6,9 +6,9 @@ namespace App\Domain\Category;
 
 class CategoryNotFound extends \RuntimeException
 {
-    public function __construct(string $name)
+    public function __construct(int $id)
     {
-        parent::__construct("Category {$name} not found");
+        parent::__construct("Category {$id} not found");
     }
 
 }

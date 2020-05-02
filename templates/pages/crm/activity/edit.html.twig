@@ -1,0 +1,72 @@
+{% extends "partials/crm.html.twig" %}
+
+{% block title %}{% trans with {'%name%': activity.name} from 'app' %}Edit activity %name%{% endtrans %}{% endblock %}
+
+{% block breadcrumb_parent_url %}{{ url('crm_activity_list') }}{% endblock %}
+{% block breadcrumb_parent_name %}{% trans %}Activities{% endtrans %}{% endblock %}
+{% block breadcrumb_section_name %}{% trans with {'%name%': activity.name} from 'app' %}Edit activity %name%{% endtrans %}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title">{% trans with {'%name%': activity.name} from 'app' %}Edit activity %name%{% endtrans %}</h4>
+
+                    <div class="row">
+
+                        {% for message in app.flashes('error') %}
+                            <div class="alert alert-danger">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+
+                        <div class="col-lg-12">
+                            <form method="post" action="{{ url('crm_activity_edit_post', {'id': activity.id}) }}" autocomplete="off">
+                                <input type="hidden" name="_csrf_token" value="{{ csrf_token('activity_edit') }}" >
+                                <div class="form-row">
+                                    <div class="form-group col-md-2">
+                                        <label for="id">{% trans %}Id{% endtrans %}</label>
+                                        <input type="text" id="id" class="form-control" name="id" value="{{ activity.id }}" required readonly>
+                                    </div>
+
+                                    <div class="form-group col-md-5">
+                                        <label for="name">{% trans %}Name{% endtrans %}</label>
+                                        <input type="text" id="name" class="form-control" name="name" value="{{ activity.name }}">
+                                    </div>
+
+                                    <div class="form-group col-md-5">
+                                        <label for="category">{% trans %}Category{% endtrans %}</label>
+                                        <select name="category" id="category" class="form-control selectpicker" data-live-search="true">
+                                            {% for category in categories %}
+                                                {% set selected = '' %}
+                                                {% if category.id == activity.category.id %}
+                                                    {% set selected = 'selected' %}
+                                                {% endif %}
+                                                <option value="{{category.id}}" {{ selected }}>{{category.name}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        <label for="start_at">{% trans %}Start at{% endtrans %}</label>
+                                        <input class="form-control" id="start_at" type="date" name="start_at" value="{{ activity.startAt is empty ? "" : activity.startAt|date('Y-m-d') }}" required>
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        <label for="finish_at">{% trans %}Finish at{% endtrans %}</label>
+                                        <input class="form-control" id="finish_at" type="date" name="finish_at" value="{{ activity.finishAt is empty ? "" : activity.finishAt|date('Y-m-d') }}" required>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary">{% trans %}Edit{% endtrans %}</button>
+                                <a href="{{ url('crm_activity_list') }}"><button type="button" class="btn btn-danger">{% trans %}Cancel{% endtrans %}</button></a>
+                            </form>
+                        </div> <!-- end col -->
+                    </div>
+
+                </div> <!-- end card-body -->
+            </div> <!-- end card -->
+        </div><!-- end col -->
+    </div>
+{% endblock %}

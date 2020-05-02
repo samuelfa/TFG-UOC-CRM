@@ -53,6 +53,14 @@
                     </a>
                 </li>
             {% endif %}
+            {% if is_granted('ROLE_WORKER') %}
+                <li class="nav-item {% if app.request.attributes.get('_route') == 'crm_activity_list' %}active{% endif %}">
+                    <a class="nav-link" href="{{ url('crm_activity_list') }}">
+                        <i class="fas fa-fw fa-hiking"></i>
+                        <span>{% trans %}Activities{% endtrans %}</span>
+                    </a>
+                </li>
+            {% endif %}
             {% if is_granted('ROLE_MANAGER') %}
             <li class="nav-item {% if app.request.attributes.get('_route') == 'crm_manager_list' %}active{% endif %}">
                 <a class="nav-link" href="{{ url('crm_manager_list') }}">

@@ -1,12 +1,12 @@
 <?php
 
 
-namespace App\Application\Category\Delete;
+namespace App\Application\Activity\View;
 
 
 use App\Application\DTO;
 
-class DeleteCategoryDTO implements DTO
+class ViewActivityDTO implements DTO
 {
     private int $id;
 

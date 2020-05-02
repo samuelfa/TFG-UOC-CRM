@@ -24,7 +24,9 @@ class CategoryRepository extends ServiceEntityRepository implements CategoryRepo
     public function findOneByName(string $name): ?Category
     {
         /** @var null|Category $entity */
-        $entity = $this->find($name);
+        $entity = $this->findOneBy([
+            'name' => $name
+        ]);
         return $entity;
     }
 
@@ -36,5 +38,12 @@ class CategoryRepository extends ServiceEntityRepository implements CategoryRepo
     public function remove(Category $category): void
     {
         $this->_em->remove($category);
+    }
+
+    public function findOneById(int $id): ?Category
+    {
+        /** @var null|Category $entity */
+        $entity = $this->find($id);
+        return $entity;
     }
 }

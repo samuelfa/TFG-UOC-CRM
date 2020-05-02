@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Infrastructure\Symfony\Controller\CRM\Category;
+namespace App\Infrastructure\Symfony\Controller\CRM\Activity;
 
-use App\Application\Category\Delete\DeleteCategoryDTO;
+use App\Application\Activity\Delete\DeleteActivityDTO;
 use App\Infrastructure\Symfony\Controller\WebController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
@@ -10,9 +10,9 @@ class DeleteGetController extends WebController
 {
     public function view(int $id): RedirectResponse
     {
-        $command = new DeleteCategoryDTO($id);
+        $command = new DeleteActivityDTO($id);
         $this->dispatch($command);
 
-        return $this->redirectWithMessage('crm_category_list', 'Category deleted');
+        return $this->redirectWithMessage('crm_activity_list', 'Activity deleted');
     }
 }
