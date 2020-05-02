@@ -15,7 +15,7 @@ class ForgotPasswordPostController extends WebController
         $validationErrors = $this->validate($request);
 
         return $validationErrors->count()
-            ? $this->redirectWithErrors('crm_forgot-password', $validationErrors, $request)
+            ? $this->redirectWithErrors($validationErrors, $request, 'crm_forgot-password')
             : $this->executeService($request);
     }
 

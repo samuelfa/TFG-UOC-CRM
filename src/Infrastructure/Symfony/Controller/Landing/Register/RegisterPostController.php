@@ -20,7 +20,7 @@ class RegisterPostController extends WebController
         $validationErrors = $this->validate($request);
 
         return $validationErrors->count()
-            ? $this->redirectWithErrors('register', $validationErrors, $request)
+            ? $this->redirectWithErrors($validationErrors, $request, 'register')
             : $this->executeService($request, $authenticatorHandler);
     }
 
@@ -51,7 +51,7 @@ class RegisterPostController extends WebController
         try {
             $this->dispatch($command);
         } catch (AlreadyExistsNamespace $exception){
-            return $this->redirectWithError('register', 'The namespace is already in use', $request);
+            return $this->redirectWithError('The namespace is already in use', $request, 'register');
         }
 
         $url = $authenticatorHandler->authenticate($command->nif(), $command->namespace(), $request);

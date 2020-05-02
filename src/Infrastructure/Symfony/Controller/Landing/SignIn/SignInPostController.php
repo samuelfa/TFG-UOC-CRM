@@ -18,7 +18,7 @@ class SignInPostController extends WebController
         $validationErrors = $this->validate($request);
 
         return $validationErrors->count()
-            ? $this->redirectWithErrors('sign_in', $validationErrors, $request)
+            ? $this->redirectWithErrors($validationErrors, $request, 'sign_in')
             : $this->executeService($request);
     }
 
@@ -38,7 +38,7 @@ class SignInPostController extends WebController
         try{
             $this->dispatch($command);
         } catch (CompanyNotFound $exception){
-            return $this->redirectWithError('sign_in', 'Namespace not found', $request);
+            return $this->redirectWithError('Namespace not found', $request, 'sign_in');
         }
 
         $path = $this->generateUrl('crm_login');

@@ -19,7 +19,7 @@ class CreatePostController extends WebController
         $validationErrors = $this->validate($request);
 
         return $validationErrors->count()
-            ? $this->redirectWithErrors('crm_familiar_create', $validationErrors, $request)
+            ? $this->redirectWithErrors($validationErrors, $request, 'crm_familiar_create')
             : $this->executeService($request);
     }
 
@@ -52,7 +52,7 @@ class CreatePostController extends WebController
         try {
             $this->dispatch($command);
         } catch (AlreadyExistsNif $exception){
-            return $this->redirectWithError('register', 'The nif is already in use', $request);
+            return $this->redirectWithError('The nif is already in use', $request, 'crm_familiar_create');
         }
 
         return $this->redirectWithMessage('crm_familiar_list', 'Familiar created');

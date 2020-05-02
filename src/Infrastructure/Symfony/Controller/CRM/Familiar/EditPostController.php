@@ -20,7 +20,7 @@ class EditPostController extends WebController
         $validationErrors = $this->validate($request);
 
         return $validationErrors->count()
-            ? $this->redirectWithErrors('crm_familiar_create', $validationErrors, $request)
+            ? $this->redirectWithErrors($validationErrors, $request, 'crm_familiar_edit', ['nif' => $nif])
             : $this->executeService($request);
     }
 
@@ -41,8 +41,9 @@ class EditPostController extends WebController
 
     private function executeService(Request $request): RedirectResponse
     {
+        $nif = $request->request->get('nif');
         $command = new EditFamiliarDTO(
-            $request->request->get('nif'),
+            $nif,
             $request->request->get('name'),
             $request->request->get('surname'),
             $request->request->get('birthday'),
@@ -53,7 +54,7 @@ class EditPostController extends WebController
         try {
             $this->dispatch($command);
         } catch (FamiliarNotFound $exception){
-            return $this->redirectWithError('register', 'The familiar has not been found', $request);
+            return $this->redirectWithError('The familiar has not been found', $request, 'crm_familiar_edit', ['nif' => $nif]);
         }
 
         return $this->redirectWithMessage('crm_familiar_list', 'Familiar edited');

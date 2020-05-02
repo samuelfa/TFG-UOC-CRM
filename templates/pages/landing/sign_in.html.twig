@@ -2,10 +2,11 @@
 
 {% block title %}{% trans %}Choose namespace{% endtrans %}{% endblock %}
 {% block content %}
-    {# TODO: We need to add additional input to ask for the namespace #}
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
+    {% for message in app.flashes('error') %}
+        <div class="alert alert-danger">
+            {{ message }}
+        </div>
+    {% endfor %}
     <div class="card card-login mx-auto mt-5">
         <div class="card-header">{% trans %}Connect to a namespace{% endtrans %}</div>
         <div class="card-body">

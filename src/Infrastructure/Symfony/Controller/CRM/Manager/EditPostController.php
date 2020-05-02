@@ -21,7 +21,7 @@ class EditPostController extends WebController
         $validationErrors = $this->validate($request);
 
         return $validationErrors->count()
-            ? $this->redirectWithErrors('crm_manager_create', $validationErrors, $request)
+            ? $this->redirectWithErrors($validationErrors, $request, 'crm_manager_edit', ['nif' => $nif])
             : $this->executeService($request);
     }
 
@@ -43,8 +43,9 @@ class EditPostController extends WebController
 
     private function executeService(Request $request): RedirectResponse
     {
+        $nif = $request->request->get('nif');
         $command = new EditManagerDTO(
-            $request->request->get('nif'),
+            $nif,
             $request->request->get('email_address'),
             $request->request->get('name'),
             $request->request->get('surname'),
@@ -56,9 +57,9 @@ class EditPostController extends WebController
         try {
             $this->dispatch($command);
         } catch (ManagerNotFound $exception){
-            return $this->redirectWithError('register', 'The manager has not been found', $request);
+            return $this->redirectWithError('The manager has not been found', $request, 'crm_manager_edit', ['nif' => $nif]);
         } catch (AlreadyExistsEmailAddress $exception){
-            return $this->redirectWithError('register', 'The email address is already in use', $request);
+            return $this->redirectWithError('The email address is already in use', $request, 'crm_manager_edit', ['nif' => $nif]);
         }
 
         return $this->redirectWithMessage('crm_manager_list', 'Manager edited');

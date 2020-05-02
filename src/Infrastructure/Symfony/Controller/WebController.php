@@ -42,25 +42,27 @@ abstract class WebController extends AbstractController
     }
 
     protected function redirectWithErrors(
-        string $routeName,
         ConstraintViolationListInterface $errors,
-        Request $request
+        Request $request,
+        string $routeName,
+        array $parameters = []
     ): RedirectResponse {
         $this->addFlashFor('error', $this->formatFlashErrors($errors));
         $this->addFlashFor('inputs', $request->request->all());
 
-        return $this->redirectToRoute($routeName);
+        return $this->redirectToRoute($routeName, $parameters);
     }
 
     protected function redirectWithError(
-        string $routeName,
         string $error,
-        Request $request
+        Request $request,
+        string $routeName,
+        array $parameters = []
     ): RedirectResponse {
         $this->addFlash('error', $error);
         $this->addFlashFor('inputs', $request->request->all());
 
-        return $this->redirectToRoute($routeName);
+        return $this->redirectToRoute($routeName, $parameters);
     }
 
     protected function validateRequest(Request $request, array $assertions): ConstraintViolationListInterface

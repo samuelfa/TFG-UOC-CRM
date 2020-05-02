@@ -20,7 +20,7 @@ class CreatePostController extends WebController
         $validationErrors = $this->validate($request);
 
         return $validationErrors->count()
-            ? $this->redirectWithErrors('crm_manager_create', $validationErrors, $request)
+            ? $this->redirectWithErrors($validationErrors, $request, 'crm_manager_create')
             : $this->executeService($request);
     }
 
@@ -55,9 +55,9 @@ class CreatePostController extends WebController
         try {
             $this->dispatch($command);
         } catch (AlreadyExistsNif $exception){
-            return $this->redirectWithError('register', 'The nif is already in use', $request);
+            return $this->redirectWithError('The nif is already in use', $request, 'crm_manager_create');
         } catch (AlreadyExistsEmailAddress $exception){
-            return $this->redirectWithError('register', 'The email address is already in use', $request);
+            return $this->redirectWithError('The email address is already in use', $request, 'crm_manager_create');
         }
 
         return $this->redirectWithMessage('crm_manager_list', 'Manager created');
