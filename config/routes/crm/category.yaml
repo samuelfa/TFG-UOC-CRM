@@ -1,0 +1,19 @@
+crm_category_list:
+  path: /crm/category
+  methods: GET
+  controller: App\Infrastructure\Symfony\Controller\CRM\Category\ListGetController::view
+
+crm_category_create:
+  path: /crm/category/create
+  methods: GET
+  controller: App\Infrastructure\Symfony\Controller\CRM\Category\CreateGetController::view
+
+crm_category_create_post:
+  path: /crm/category/create
+  methods: POST
+  controller: App\Infrastructure\Symfony\Controller\CRM\Category\CreatePostController::view
+
+crm_category_delete:
+  path: /crm/category/{name}/delete
+  methods: GET
+  controller: App\Infrastructure\Symfony\Controller\CRM\Category\DeleteGetController::view

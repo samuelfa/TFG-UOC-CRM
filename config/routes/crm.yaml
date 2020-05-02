@@ -9,6 +9,9 @@ crm_error:
 login:
   resource: 'crm/login.yaml'
 
+category:
+  resource: 'crm/category.yaml'
+
 manager:
   resource: 'crm/manager.yaml'
 

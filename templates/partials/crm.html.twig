@@ -46,6 +46,14 @@
                 </a>
             </li>
             {% if is_granted('ROLE_MANAGER') %}
+                <li class="nav-item {% if app.request.attributes.get('_route') == 'crm_category_list' %}active{% endif %}">
+                    <a class="nav-link" href="{{ url('crm_category_list') }}">
+                        <i class="fas fa-fw fa-tag"></i>
+                        <span>{% trans %}Categories{% endtrans %}</span>
+                    </a>
+                </li>
+            {% endif %}
+            {% if is_granted('ROLE_MANAGER') %}
             <li class="nav-item {% if app.request.attributes.get('_route') == 'crm_manager_list' %}active{% endif %}">
                 <a class="nav-link" href="{{ url('crm_manager_list') }}">
                     <i class="fas fa-fw fa-chart-area"></i>

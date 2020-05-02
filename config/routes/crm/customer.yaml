@@ -29,6 +29,6 @@ crm_customer_view:
   controller: App\Infrastructure\Symfony\Controller\CRM\Customer\ViewGetController::view
 
 crm_customer_delete:
-  path: /crm/familiar/{nif}/delete
+  path: /crm/customer/{nif}/delete
   methods: GET
-  controller: App\Infrastructure\Symfony\Controller\CRM\Familiar\DeleteGetController::view
+  controller: App\Infrastructure\Symfony\Controller\CRM\Customer\DeleteGetController::view
