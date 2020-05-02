@@ -6,6 +6,7 @@ namespace App\Application\Manager\Edit;
 
 use App\Application\DTO;
 use App\Application\TransactionalService;
+use App\Domain\AlreadyExistsEmailAddress;
 use App\Domain\Employee\ManagerNotFound;
 use App\Domain\Employee\ManagerRepository;
 
@@ -22,14 +23,20 @@ class ManagerEditService implements TransactionalService
     {
         /** @var EditManagerDTO $dto */
         $nif = $dto->nif();
+        $emailAddress = $dto->emailAddress();
 
         $manager = $this->repository->findOneByNif($nif);
         if(!$manager){
             throw new ManagerNotFound($nif);
         }
 
+        $currentEmailAddress = $manager->emailAddress();
+        if(!$currentEmailAddress->equals($emailAddress) && $this->repository->findOneByEmailAddress($emailAddress)){
+            throw new AlreadyExistsEmailAddress($emailAddress);
+        }
+
         $manager->update(
-            $dto->emailAddress(),
+            $emailAddress,
             $dto->name(),
             $dto->surname(),
             $dto->birthday(),

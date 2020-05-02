@@ -37,6 +37,7 @@ class ExceptionSubscriber implements EventSubscriberInterface
     public function onEvent(ExceptionEvent $event): void
     {
         $token = $this->tokenStorage->getToken();
+        //Diferenciar entre HTTP error y un error interno
         if($token && $token->getUser()){
             $url = $this->router->generate('crm_error');
         } else {

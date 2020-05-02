@@ -3,6 +3,7 @@
 namespace App\Infrastructure\Symfony\Controller\CRM\Manager;
 
 use App\Application\Manager\Create\CreateManagerDTO;
+use App\Domain\AlreadyExistsEmailAddress;
 use App\Domain\AlreadyExistsNif;
 use App\Infrastructure\Symfony\Controller\WebController;
 use App\Infrastructure\Symfony\Validator\Constraints\CSRF;
@@ -55,6 +56,8 @@ class CreatePostController extends WebController
             $this->dispatch($command);
         } catch (AlreadyExistsNif $exception){
             return $this->redirectWithError('register', 'The nif is already in use', $request);
+        } catch (AlreadyExistsEmailAddress $exception){
+            return $this->redirectWithError('register', 'The email address is already in use', $request);
         }
 
         return $this->redirectWithMessage('crm_manager_list', 'Manager created');

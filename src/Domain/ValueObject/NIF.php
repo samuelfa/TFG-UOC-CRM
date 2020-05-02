@@ -26,4 +26,9 @@ class NIF
     {
         return $this->value;
     }
+
+    public function equals(self $nif): bool
+    {
+        return $this->value() === $nif->value();
+    }
 }

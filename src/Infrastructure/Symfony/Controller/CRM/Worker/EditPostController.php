@@ -3,6 +3,7 @@
 namespace App\Infrastructure\Symfony\Controller\CRM\Worker;
 
 use App\Application\Worker\Edit\EditWorkerDTO;
+use App\Domain\AlreadyExistsEmailAddress;
 use App\Domain\Employee\WorkerNotFound;
 use App\Infrastructure\Symfony\Controller\WebController;
 use App\Infrastructure\Symfony\Validator\Constraints\CSRF;
@@ -56,6 +57,8 @@ class EditPostController extends WebController
             $this->dispatch($command);
         } catch (WorkerNotFound $exception){
             return $this->redirectWithError('register', 'The worker has not been found', $request);
+        } catch (AlreadyExistsEmailAddress $exception){
+            return $this->redirectWithError('register', 'The email address is already in use', $request);
         }
 
         return $this->redirectWithMessage('crm_worker_list', 'Worker edited');

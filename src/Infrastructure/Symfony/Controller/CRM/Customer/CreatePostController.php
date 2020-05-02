@@ -3,6 +3,7 @@
 namespace App\Infrastructure\Symfony\Controller\CRM\Customer;
 
 use App\Application\Customer\Create\CreateCustomerDTO;
+use App\Domain\AlreadyExistsEmailAddress;
 use App\Domain\AlreadyExistsNif;
 use App\Domain\PasswordRandomGenerator;
 use App\Infrastructure\Symfony\Controller\WebController;
@@ -58,6 +59,8 @@ class CreatePostController extends WebController
             $this->dispatch($command);
         } catch (AlreadyExistsNif $exception){
             return $this->redirectWithError('register', 'The nif is already in use', $request);
+        } catch (AlreadyExistsEmailAddress $exception){
+            return $this->redirectWithError('register', 'The email address is already in use', $request);
         }
 
         return $this->redirectWithMessage('crm_customer_list', 'Customer created');

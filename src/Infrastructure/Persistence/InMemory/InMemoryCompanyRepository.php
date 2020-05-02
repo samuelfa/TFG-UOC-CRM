@@ -9,6 +9,7 @@ use App\Domain\Company\CompanyRepository;
 
 class InMemoryCompanyRepository implements CompanyRepository
 {
+    /** @var Company[] */
     private array $list;
 
     /**

@@ -6,6 +6,7 @@ namespace App\Application\Customer\Create;
 
 use App\Application\DTO;
 use App\Application\TransactionalService;
+use App\Domain\AlreadyExistsEmailAddress;
 use App\Domain\AlreadyExistsNif;
 use App\Domain\Customer\Customer;
 use App\Domain\Customer\CustomerRepository;
@@ -23,14 +24,19 @@ class CustomerCreateService implements TransactionalService
     {
         /** @var CreateCustomerDTO $dto */
         $nif = $dto->nif();
+        $emailAddress = $dto->emailAddress();
 
         if($this->repository->findOneByNif($nif)){
             throw new AlreadyExistsNif($nif);
         }
 
+        if($this->repository->findOneByEmailAddress($emailAddress)){
+            throw new AlreadyExistsEmailAddress($emailAddress);
+        }
+
         $customer = Customer::create(
             $nif,
-            $dto->emailAddress(),
+            $emailAddress,
             $dto->password(),
             $dto->name(),
             $dto->surname(),

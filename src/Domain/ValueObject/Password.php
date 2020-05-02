@@ -27,4 +27,9 @@ class Password
     {
         return $this->value;
     }
+
+    public function equals(self $password): bool
+    {
+        return $this->value() === $password->value();
+    }
 }

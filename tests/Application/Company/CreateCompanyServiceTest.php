@@ -24,7 +24,7 @@ class CreateCompanyServiceTest extends TestCase
     protected function setUp(): void
     {
         $dispatcher = new class implements EventDispatcherInterface {
-            public function dispatch(object $event)
+            public function dispatch(object $event): void
             {}
         };
         $companyDispatcher = new CompanyEventDispatcher($dispatcher);
@@ -39,26 +39,27 @@ class CreateCompanyServiceTest extends TestCase
         $nif = '12345678Z';
         $emailAddressValue = 'one.email@gmail.com';
         $password = 'password';
-        $oldDto = new CreateCompanyDTO(
+        $dto = new CreateCompanyDTO(
             $namespace,
             $companyName,
             $nif,
             $emailAddressValue,
             $password
         );
-        $this->handler->__invoke($oldDto);
+        $this->handler->__invoke($dto);
 
-        $this->assertEquals($oldDto->namespace(), $namespace);
-        $this->assertEquals($oldDto->name(), $companyName);
-        $this->assertEquals($oldDto->nif()->value(), $nif);
-        $this->assertEquals($oldDto->emailAddress(), $emailAddressValue);
-        $this->assertNotEquals($oldDto->password()->value(), $password);
-        $this->assertTrue(password_verify($password, $oldDto->password()->value()));
+        $this->assertEquals($dto->namespace(), $namespace);
+        $this->assertEquals($dto->name(), $companyName);
+        $this->assertEquals($dto->nif()->value(), $nif);
+        $this->assertEquals($dto->emailAddress(), $emailAddressValue);
+        $this->assertNotEquals($dto->password()->value(), $password);
+        $this->assertTrue(password_verify($password, $dto->password()->value()));
 
         $company = $this->repository->findOneByNamespace($namespace);
         $this->assertNotNull($company);
-        $this->assertEquals($oldDto->name(), $company->name());
-        $this->assertEquals($oldDto->emailAddress()->value(), $company->emailAddress()->value());
+        $this->assertEquals($dto->name(), $company->name());
+        $this->assertEquals($dto->emailAddress()->value(), $company->emailAddress()->value());
+        $this->assertInstanceOf($this->handler->subscribeTo(), $dto);
     }
 
     public function testFailWhenNifIsInvalid(): void
@@ -86,7 +87,7 @@ class CreateCompanyServiceTest extends TestCase
         $emailAddressValue = 'one.email@gmail.com';
         $password = 'password';
 
-        $oldDto = new CreateCompanyDTO(
+        $dto = new CreateCompanyDTO(
             $namespace,
             $companyName,
             $nif,
@@ -94,11 +95,11 @@ class CreateCompanyServiceTest extends TestCase
             $password
         );
 
-        $company = new Company($oldDto->namespace(), $companyName, $oldDto->emailAddress());
+        $company = new Company($dto->namespace(), $companyName, $dto->emailAddress());
         $this->repository->save($company);
 
         $this->expectException(AlreadyExistsNamespace::class);
-        $this->handler->__invoke($oldDto);
+        $this->handler->__invoke($dto);
     }
 
     public function testFailWhenEmailIsInvalid(): void

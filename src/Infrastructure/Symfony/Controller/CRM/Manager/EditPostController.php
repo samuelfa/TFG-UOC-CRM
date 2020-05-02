@@ -3,6 +3,7 @@
 namespace App\Infrastructure\Symfony\Controller\CRM\Manager;
 
 use App\Application\Manager\Edit\EditManagerDTO;
+use App\Domain\AlreadyExistsEmailAddress;
 use App\Domain\Employee\ManagerNotFound;
 use App\Infrastructure\Symfony\Controller\WebController;
 use App\Infrastructure\Symfony\Validator\Constraints\CSRF;
@@ -56,6 +57,8 @@ class EditPostController extends WebController
             $this->dispatch($command);
         } catch (ManagerNotFound $exception){
             return $this->redirectWithError('register', 'The manager has not been found', $request);
+        } catch (AlreadyExistsEmailAddress $exception){
+            return $this->redirectWithError('register', 'The email address is already in use', $request);
         }
 
         return $this->redirectWithMessage('crm_manager_list', 'Manager edited');

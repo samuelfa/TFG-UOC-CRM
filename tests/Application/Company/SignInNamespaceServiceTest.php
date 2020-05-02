@@ -35,12 +35,13 @@ class SignInNamespaceServiceTest extends TestCase
         $oldDto = new SignInNamespaceDTO($namespace);
         $this->handler->__invoke($oldDto);
 
-        $this->assertEquals($oldDto->namespace(), $namespace);
-        $this->assertEquals($oldDto->uri(), 'http://testing.crm.localhost');
+        $this->assertEquals($namespace, $oldDto->namespace());
+        $this->assertEquals('http://testing.crm.localhost', $oldDto->uri());
 
         $company = $this->repository->findOneByNamespace($namespace);
         $this->assertNotNull($company);
         $this->assertEquals($oldDto->namespace(), $company->namespace());
+        $this->assertInstanceOf($this->handler->subscribeTo(), $oldDto);
     }
 
     public function testErrorWithNonExistsNamespace(): void

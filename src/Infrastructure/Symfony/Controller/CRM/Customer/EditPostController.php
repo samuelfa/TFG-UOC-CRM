@@ -3,6 +3,7 @@
 namespace App\Infrastructure\Symfony\Controller\CRM\Customer;
 
 use App\Application\Customer\Edit\EditCustomerDTO;
+use App\Domain\AlreadyExistsEmailAddress;
 use App\Domain\Customer\CustomerNotFound;
 use App\Infrastructure\Symfony\Controller\WebController;
 use App\Infrastructure\Symfony\Validator\Constraints\CSRF;
@@ -56,6 +57,8 @@ class EditPostController extends WebController
             $this->dispatch($command);
         } catch (CustomerNotFound $exception){
             return $this->redirectWithError('register', 'The customer has not been found', $request);
+        } catch (AlreadyExistsEmailAddress $exception){
+            return $this->redirectWithError('register', 'The email address is already in use', $request);
         }
 
         return $this->redirectWithMessage('crm_customer_list', 'Customer edited');

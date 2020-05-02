@@ -6,6 +6,7 @@ namespace App\Application\Worker\Edit;
 
 use App\Application\DTO;
 use App\Application\TransactionalService;
+use App\Domain\AlreadyExistsEmailAddress;
 use App\Domain\Employee\WorkerNotFound;
 use App\Domain\Employee\WorkerRepository;
 
@@ -22,14 +23,20 @@ class WorkerEditService implements TransactionalService
     {
         /** @var EditWorkerDTO $dto */
         $nif = $dto->nif();
+        $emailAddress = $dto->emailAddress();
 
         $worker = $this->repository->findOneByNif($nif);
         if(!$worker){
             throw new WorkerNotFound($nif);
         }
 
+        $currentEmailAddress = $worker->emailAddress();
+        if(!$currentEmailAddress->equals($emailAddress) && $this->repository->findOneByEmailAddress($emailAddress)){
+            throw new AlreadyExistsEmailAddress($emailAddress);
+        }
+
         $worker->update(
-            $dto->emailAddress(),
+            $emailAddress,
             $dto->name(),
             $dto->surname(),
             $dto->birthday(),
