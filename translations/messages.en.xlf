@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="en" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="yy8A0eV" resname="Page Not Found">
+        <source>Page Not Found</source>
+        <target>Page Not Found</target>
+      </trans-unit>
+      <trans-unit id="rz.LrXR" resname="It looks like you found a glitch in the matrix...">
+        <source>It looks like you found a glitch in the matrix...</source>
+        <target>It looks like you found a glitch in the matrix...</target>
+      </trans-unit>
+      <trans-unit id="dsVQX.L" resname="Back to home">
+        <source>Back to home</source>
+        <target>Back to home</target>
+      </trans-unit>
+      <trans-unit id="b_H7HhT" resname="Choose namespace">
+        <source>Choose namespace</source>
+        <target>Choose namespace</target>
+      </trans-unit>
+      <trans-unit id="QyMCVri" resname="Connect to a namespace">
+        <source>Connect to a namespace</source>
+        <target>Connect to a namespace</target>
+      </trans-unit>
+      <trans-unit id="xOTnq9o" resname="Namespace">
+        <source>Namespace</source>
+        <target>Namespace</target>
+      </trans-unit>
+      <trans-unit id="MfvvFiW" resname="Continue">
+        <source>Continue</source>
+        <target>Continue</target>
+      </trans-unit>
+      <trans-unit id="vcFY8si" resname="Register an Account">
+        <source>Register an Account</source>
+        <target>Register an Account</target>
+      </trans-unit>
+      <trans-unit id="hgM.daT" resname="Create an account">
+        <source>Create an account</source>
+        <target>Create an account</target>
+      </trans-unit>
+      <trans-unit id="bfraE9L" resname="Company name">
+        <source>Company name</source>
+        <target>Company name</target>
+      </trans-unit>
+      <trans-unit id="8kiP1O9" resname="Email address">
+        <source>Email address</source>
+        <target>Email address</target>
+      </trans-unit>
+      <trans-unit id="zL7GAzT" resname="NIF">
+        <source>NIF</source>
+        <target>NIF</target>
+      </trans-unit>
+      <trans-unit id="588_9PF" resname="Password">
+        <source>Password</source>
+        <target>Password</target>
+      </trans-unit>
+      <trans-unit id="WsJl85a" resname="Confirm password">
+        <source>Confirm password</source>
+        <target>Confirm password</target>
+      </trans-unit>
+      <trans-unit id="8aaFFdy" resname="Password and confirm password must be equals">
+        <source>Password and confirm password must be equals</source>
+        <target>Password and confirm password must be equals</target>
+      </trans-unit>
+      <trans-unit id="v9QCsvb" resname="Sign in">
+        <source>Sign in</source>
+        <target>Sign in</target>
+      </trans-unit>
+      <trans-unit id="OnhpU4i" resname="Home">
+        <source>Home</source>
+        <target>Home</target>
+      </trans-unit>
+      <trans-unit id="a2IWpRN" resname="Error 404">
+        <source>Error 404</source>
+        <target>Error 404</target>
+      </trans-unit>
+      <trans-unit id="Z7aWRoY" resname="Dashboard">
+        <source>Dashboard</source>
+        <target>Dashboard</target>
+      </trans-unit>
+      <trans-unit id="l7odOU_" resname="Back to Dashboard">
+        <source>Back to Dashboard</source>
+        <target>Back to Dashboard</target>
+      </trans-unit>
+      <trans-unit id="VsLJFiO" resname="Managers">
+        <source>Managers</source>
+        <target>Managers</target>
+      </trans-unit>
+      <trans-unit id=".0Lu9rH" resname="Nif">
+        <source>Nif</source>
+        <target>Nif</target>
+      </trans-unit>
+      <trans-unit id="3NHVIj9" resname="Name">
+        <source>Name</source>
+        <target>Name</target>
+      </trans-unit>
+      <trans-unit id="92LaBfT" resname="Surname">
+        <source>Surname</source>
+        <target>Surname</target>
+      </trans-unit>
+      <trans-unit id="xhOKv6a" resname="Birthday">
+        <source>Birthday</source>
+        <target>Birthday</target>
+      </trans-unit>
+      <trans-unit id="9xCUwwF" resname="Portrait">
+        <source>Portrait</source>
+        <target>Portrait</target>
+      </trans-unit>
+      <trans-unit id="RkxP.QG" resname="Edit">
+        <source>Edit</source>
+        <target>Edit</target>
+      </trans-unit>
+      <trans-unit id="GXZu1sy" resname="Cancel">
+        <source>Cancel</source>
+        <target>Cancel</target>
+      </trans-unit>
+      <trans-unit id="8.nXsqX" resname="List of managers">
+        <source>List of managers</source>
+        <target>List of managers</target>
+      </trans-unit>
+      <trans-unit id="byAvVKe" resname="List">
+        <source>List</source>
+        <target>List</target>
+      </trans-unit>
+      <trans-unit id="n9coxmy" resname="Add">
+        <source>Add</source>
+        <target>Add</target>
+      </trans-unit>
+      <trans-unit id="lpzL089" resname="Email">
+        <source>Email</source>
+        <target>Email</target>
+      </trans-unit>
+      <trans-unit id="3Mg5pAF" resname="View">
+        <source>View</source>
+        <target>View</target>
+      </trans-unit>
+      <trans-unit id="Oak3w2g" resname="Empty list">
+        <source>Empty list</source>
+        <target>Empty list</target>
+      </trans-unit>
+      <trans-unit id="w4EvxKy" resname="Remove">
+        <source>Remove</source>
+        <target>Remove</target>
+      </trans-unit>
+      <trans-unit id="iyCF903" resname="Manager">
+        <source>Manager</source>
+        <target>Manager</target>
+      </trans-unit>
+      <trans-unit id="8HYsTzv" resname="Are you sure?">
+        <source>Are you sure?</source>
+        <target>Are you sure?</target>
+      </trans-unit>
+      <trans-unit id="43U_OSX" resname="Select &quot;Remove&quot; below if you are ready to delete the manager.">
+        <source>Select "Remove" below if you are ready to delete the manager.</source>
+        <target>Select "Remove" below if you are ready to delete the manager.</target>
+      </trans-unit>
+      <trans-unit id="NgJai8." resname="Add a new manager">
+        <source>Add a new manager</source>
+        <target>Add a new manager</target>
+      </trans-unit>
+      <trans-unit id="R1lJisK" resname="Create">
+        <source>Create</source>
+        <target>Create</target>
+      </trans-unit>
+      <trans-unit id="KzZxOoI" resname="Familiars">
+        <source>Familiars</source>
+        <target>Familiars</target>
+      </trans-unit>
+      <trans-unit id="vzdjODq" resname="Customer">
+        <source>Customer</source>
+        <target>Customer</target>
+      </trans-unit>
+      <trans-unit id="Si.Bag2" resname="List of familiars">
+        <source>List of familiars</source>
+        <target>List of familiars</target>
+      </trans-unit>
+      <trans-unit id="aMJua4f" resname="Familiar">
+        <source>Familiar</source>
+        <target>Familiar</target>
+      </trans-unit>
+      <trans-unit id="Zeikz8q" resname="Select &quot;Remove&quot; below if you are ready to delete the familiar.">
+        <source>Select "Remove" below if you are ready to delete the familiar.</source>
+        <target>Select "Remove" below if you are ready to delete the familiar.</target>
+      </trans-unit>
+      <trans-unit id="hAj8LRH" resname="Add a new familiar">
+        <source>Add a new familiar</source>
+        <target>Add a new familiar</target>
+      </trans-unit>
+      <trans-unit id="7spPgKG" resname="Forgot Password?">
+        <source>Forgot Password?</source>
+        <target>Forgot Password?</target>
+      </trans-unit>
+      <trans-unit id="VvXiAyJ" resname="Are you customer?">
+        <source>Are you customer?</source>
+        <target>Are you customer?</target>
+      </trans-unit>
+      <trans-unit id="eh7J.mw" resname="Workers">
+        <source>Workers</source>
+        <target>Workers</target>
+      </trans-unit>
+      <trans-unit id="90kG96v" resname="List of workers">
+        <source>List of workers</source>
+        <target>List of workers</target>
+      </trans-unit>
+      <trans-unit id="pnsEzVx" resname="Worker">
+        <source>Worker</source>
+        <target>Worker</target>
+      </trans-unit>
+      <trans-unit id="8jbMyEK" resname="Select &quot;Remove&quot; below if you are ready to delete the worker.">
+        <source>Select "Remove" below if you are ready to delete the worker.</source>
+        <target>Select "Remove" below if you are ready to delete the worker.</target>
+      </trans-unit>
+      <trans-unit id="tZ65z86" resname="Add a new worker">
+        <source>Add a new worker</source>
+        <target>Add a new worker</target>
+      </trans-unit>
+      <trans-unit id="qr528fT" resname="Customers">
+        <source>Customers</source>
+        <target>Customers</target>
+      </trans-unit>
+      <trans-unit id="4xFEVBy" resname="List of customers">
+        <source>List of customers</source>
+        <target>List of customers</target>
+      </trans-unit>
+      <trans-unit id="HzvDRzF" resname="Customer sign in">
+        <source>Customer sign in</source>
+        <target>Customer sign in</target>
+      </trans-unit>
+      <trans-unit id="6Pnuida" resname="Are you employee?">
+        <source>Are you employee?</source>
+        <target>Are you employee?</target>
+      </trans-unit>
+      <trans-unit id="jYeM2DI" resname="Select &quot;Remove&quot; below if you are ready to delete the customer.">
+        <source>Select "Remove" below if you are ready to delete the customer.</source>
+        <target>Select "Remove" below if you are ready to delete the customer.</target>
+      </trans-unit>
+      <trans-unit id="r3g9J4Q" resname="Add a new customer">
+        <source>Add a new customer</source>
+        <target>Add a new customer</target>
+      </trans-unit>
+      <trans-unit id="0FJ_Sz1" resname="Logout">
+        <source>Logout</source>
+        <target>Logout</target>
+      </trans-unit>
+      <trans-unit id="P1aDI8t" resname="Ready to Leave?">
+        <source>Ready to Leave?</source>
+        <target>Ready to Leave?</target>
+      </trans-unit>
+      <trans-unit id=".FUkuS8" resname="Select &quot;Logout&quot; below if you are ready to end your current session.">
+        <source>Select "Logout" below if you are ready to end your current session.</source>
+        <target>Select "Logout" below if you are ready to end your current session.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

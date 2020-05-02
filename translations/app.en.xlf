@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="en" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="qUVJwap" resname="Edit manager %name%">
+        <source>Edit manager %name%</source>
+        <target>Edit manager %name%</target>
+      </trans-unit>
+      <trans-unit id="c46rb_J" resname="View manager %name%">
+        <source>View manager %name%</source>
+        <target>View manager %name%</target>
+      </trans-unit>
+      <trans-unit id="Jq5MPK7" resname="Edit familiar %name%">
+        <source>Edit familiar %name%</source>
+        <target>Edit familiar %name%</target>
+      </trans-unit>
+      <trans-unit id="73PwvXS" resname="View familiar %name%">
+        <source>View familiar %name%</source>
+        <target>View familiar %name%</target>
+      </trans-unit>
+      <trans-unit id="1In4RQu" resname="Edit worker %name%">
+        <source>Edit worker %name%</source>
+        <target>Edit worker %name%</target>
+      </trans-unit>
+      <trans-unit id="cSBU5TV" resname="View worker %name%">
+        <source>View worker %name%</source>
+        <target>View worker %name%</target>
+      </trans-unit>
+      <trans-unit id="alEo6x1" resname="Edit customer %name%">
+        <source>Edit customer %name%</source>
+        <target>Edit customer %name%</target>
+      </trans-unit>
+      <trans-unit id="l797x1f" resname="View customer %name%">
+        <source>View customer %name%</source>
+        <target>View customer %name%</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

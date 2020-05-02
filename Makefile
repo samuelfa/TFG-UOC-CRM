@@ -77,6 +77,9 @@ debug-events:
 install-assets:
 	@docker-compose exec -T $(PHP_SERVICE) php bin/console assets:install --symlink --relative
 
+translation:
+	@docker-compose exec -T $(PHP_SERVICE) php bin/console translation:update --force $(filter-out $@,$(MAKECMDGOALS));
+
 all:
 	@make -s dcup
 	@make -s check
