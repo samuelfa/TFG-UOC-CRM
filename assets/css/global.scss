@@ -13,6 +13,7 @@ $brand-primary: darken(#428bca, 20%);
 @import '../../node_modules/bootstrap-select/sass/bootstrap-select';
 @import "variables";
 @import "error";
+@import "timeline";
 
 table.table {
   width: 100%;

@@ -7,61 +7,91 @@
 {% block breadcrumb_section_name %}{{ familiar.fullName }}{% endblock %}
 
 {% block content %}
-    <div class="card d-block">
-        <div class="card-body">
-            <div class="dropdown float-right">
-                <a href="#" class="dropdown-toggle arrow-none card-drop" data-toggle="dropdown" aria-expanded="false">
-                    <i class="dripicons-dots-3"></i>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" style="">
-                    <!-- item-->
-                    <a href="{{ url('crm_familiar_edit', {'nif': familiar.nif})}}" class="dropdown-item"><i class="fas fa-edit"></i> {% trans %}Edit{% endtrans %}</a>
-                    <!-- item-->
-                    <a href="#" data-toggle="modal" data-target="#removeElementModal" class="dropdown-item"><i class="fas fa-trash"></i> {% trans %}Remove{% endtrans %}</a>
-                </div>
+
+    {% for message in app.flashes('message') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <div class="mb-3">
+        <a href="{{ url('crm_familiar_send_email', {'nif': familiar.nif}) }}">
+            <button type="button" class="btn btn-info btn-lg"><i class="fas fa-envelope"></i> {% trans %}Send email{% endtrans %}</button>
+        </a>
+        <a href="{{ url('crm_familiar_link_activity', {'nif': familiar.nif}) }}">
+            <button type="button" class="btn btn-danger btn-lg"><i class="fas fa-hiking"></i> {% trans %}Add to activity{% endtrans %}</button>
+        </a>
+        <a href="{{ url('crm_familiar_add_note', {'nif': familiar.nif}) }}">
+            <button type="button" class="btn btn-warning btn-lg"><i class="fas fa-sticky-note"></i> {% trans %}Add a note{% endtrans %}</button>
+        </a>
+    </div>
+
+    <div class="row">
+        <div class="col-xl-3 col-lg-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <div class="dropdown float-right">
+                        <a href="#" class="dropdown-toggle arrow-none card-drop" data-toggle="dropdown" aria-expanded="false">
+                            <i class="dripicons-dots-3"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" style="">
+                            <!-- item-->
+                            <a href="{{ url('crm_familiar_edit', {'nif': familiar.nif})}}" class="dropdown-item"><i class="fas fa-edit"></i> {% trans %}Edit{% endtrans %}</a>
+                            <!-- item-->
+                            <a href="#" data-toggle="modal" data-target="#removeElementModal" class="dropdown-item"><i class="fas fa-trash"></i> {% trans %}Remove{% endtrans %}</a>
+                        </div>
+                    </div>
+                    <span>
+                        {% if familiar.portrait is empty %}
+                            <i class="fas fa-user-circle"></i>
+                        {% else %}
+                            <img src="{{  familiar.portrait }}" alt="portrait" class="rounded-circle img-thumbnail avatar-lg portrait" />
+                        {% endif %}
+                    </span>
+
+                    <h4 class="mb-0 mt-2">
+                        {{ familiar.fullName }}
+                    </h4>
+                    <p class="text-muted font-14">{% trans %}Familiar{% endtrans %}</p>
+
+                    <div class="text-left mt-3">
+                        <h4 class="font-13 text-uppercase">{% trans %}Name{% endtrans %}</h4>
+                        <p class="text-muted font-13 mb-3">{{ familiar.name }}</p>
+
+                        <h4 class="font-13 text-uppercase">{% trans %}Surname{% endtrans %}</h4>
+                        <p class="text-muted font-13 mb-3">{{ familiar.surname }}</p>
+
+                        <h4 class="font-13 text-uppercase">{% trans %}Nif{% endtrans %}</h4>
+                        <p class="text-muted font-13 mb-3">{{ familiar.nif }}</p>
+
+                        <h4 class="font-13 text-uppercase">{% trans %}Birthday{% endtrans %}</h4>
+                        <p class="text-muted font-13 mb-3">{{ familiar.birthday is empty ? "" : familiar.birthday|date('d/m/Y')}}</p>
+                    </div>
+
+                </div> <!-- end card-body-->
             </div>
-            <span class="float-left m-2 mr-4">
-                {% if familiar.portrait is empty %}
-                    <i class="fas fa-user-circle"></i>
-                {% else %}
-                    <img src="{{  familiar.portrait }}" alt="portrait" class="rounded-circle img-thumbnail portrait" />
-                {% endif %}
-            </span>
+        </div>
+        <div class="col-xl-9 col-lg-8">
 
-            <h3 class="mt-0">
-                {{ familiar.fullName }}
-            </h3>
-            <div class="badge badge-secondary mb-3">{% trans %}Familiar{% endtrans %}</div>
+            <div class="card">
+                <div class="card-body">
+                    <ul class="timeline">
 
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="mb-4">
-                        <h5>{% trans %}Name{% endtrans %}</h5>
-                        <p>{{ familiar.name }}</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="mb-4">
-                        <h5>{% trans %}Surname{% endtrans %}</h5>
-                        <p>{{ familiar.surname }}</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="mb-4">
-                        <h5>{% trans %}Nif{% endtrans %}</h5>
-                        <p>{{ familiar.nif }}</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="mb-4">
-                        <h5>{% trans %}Birthday{% endtrans %}</h5>
-                        <p>{{ familiar.birthday is empty ? "" : familiar.birthday|date('d/m/Y')}}</p>
-                    </div>
-                </div>
+                        {% for item in timeline %}
+                            {% if item is instanceof('App\\Domain\\Familiar\\Action\\Email') %}
+                                {{ include('pages/crm/familiar/timeline/email.html.twig') }}
+                            {% elseif item is instanceof('App\\Domain\\Familiar\\Action\\Note') %}
+                                {{ include('pages/crm/familiar/timeline/note.html.twig') }}
+                            {% elseif item is instanceof('App\\Domain\\Familiar\\Action\\LinkActivity') %}
+                                {{ include('pages/crm/familiar/timeline/link-activity.html.twig') }}
+                            {% endif %}
+                        {% endfor %}
+
+                    </ul>
+
+                </div> <!-- end card body -->
             </div>
-
-        </div> <!-- end card-body-->
-
+        </div>
     </div>
 
     <div class="modal fade" id="removeElementModal" tabindex="-1" role="dialog" aria-labelledby="removeElementModal" aria-hidden="true">

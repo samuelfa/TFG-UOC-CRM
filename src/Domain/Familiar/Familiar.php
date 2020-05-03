@@ -9,7 +9,7 @@ use App\Domain\ValueObject\URL;
 
 class Familiar extends AbstractPerson
 {
-    private Customer $customer;
+    private ?Customer $customer;
 
     public function __construct(
         NIF $nif,
@@ -58,10 +58,7 @@ class Familiar extends AbstractPerson
         $this->customer = $customer;
     }
 
-    /**
-     * @return Customer
-     */
-    public function customer(): Customer
+    public function customer(): ?Customer
     {
         return $this->customer;
     }

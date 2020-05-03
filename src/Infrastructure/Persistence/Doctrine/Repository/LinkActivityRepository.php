@@ -6,6 +6,7 @@ namespace App\Infrastructure\Persistence\Doctrine\Repository;
 
 use App\Domain\Familiar\Action\LinkActivity;
 use App\Domain\Familiar\Action\LinkActivityRepository as LinkActivityRepositoryInterface;
+use App\Domain\Familiar\Familiar;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -29,5 +30,15 @@ class LinkActivityRepository extends ServiceEntityRepository implements LinkActi
     public function remove(LinkActivity $linkActivity): void
     {
         $this->_em->remove($linkActivity);
+    }
+
+    /**
+     * @return LinkActivity[]
+     */
+    public function findByFamiliar(Familiar $familiar): array
+    {
+        return $this->findBy([
+            'familiar' => $familiar
+        ]);
     }
 }

@@ -29,6 +29,9 @@ services:
         App\Domain\Repository:
             tags:
                 - { name: 'app.repository', priority: 20 }
+        App\Domain\Familiar\Action\ActionRepository:
+            tags:
+                - { name: 'app.action.repository', priority: 20 }
     # Validators
 
     App\Infrastructure\Symfony\Validator\Constraints\CSRFValidator:
@@ -54,6 +57,13 @@ services:
         arguments:
             $services: !tagged_iterator app.transactional_service
             $repositories: !tagged_iterator app.repository
+
+    App\Infrastructure\Twig\AppExtension:
+        tags: ['twig.runtime']
+
+    App\Application\Familiar\View\TimelineService:
+        arguments:
+            $repositories: !tagged_iterator app.action.repository
 
     # Services
 

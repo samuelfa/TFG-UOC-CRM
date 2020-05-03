@@ -42,7 +42,7 @@
 
                                     <div class="form-group col-md-4">
                                         <label for="name">{% trans %}Name{% endtrans %}</label>
-                                        <input type="text" id="name" class="form-control" name="name" value="{{ familiar.name }}">
+                                        <input type="text" id="name" class="form-control" name="name" value="{{ familiar.name }}" required>
                                     </div>
 
                                     <div class="form-group col-md-4">
@@ -55,7 +55,7 @@
                                         <select name="customer" id="customer" class="form-control selectpicker" data-live-search="true">
                                             {% for customer in customers %}
                                                 {% set selected = '' %}
-                                                {% if customer.nif == familiar.customer.nif %}
+                                                {% if familiar.customer and customer.nif == familiar.customer.nif %}
                                                     {% set selected = 'selected' %}
                                                 {% endif %}
                                                 <option value="{{customer.nif}}" {{ selected }}>{{customer.fullName}}</option>

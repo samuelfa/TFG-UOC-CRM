@@ -6,6 +6,7 @@ namespace App\Infrastructure\Persistence\Doctrine\Repository;
 
 use App\Domain\Familiar\Action\Note;
 use App\Domain\Familiar\Action\NoteRepository as NoteRepositoryInterface;
+use App\Domain\Familiar\Familiar;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -29,5 +30,15 @@ class NoteRepository extends ServiceEntityRepository implements NoteRepositoryIn
     public function remove(Note $note): void
     {
         $this->_em->remove($note);
+    }
+
+    /**
+     * @return Note[]
+     */
+    public function findByFamiliar(Familiar $familiar): array
+    {
+        return $this->findBy([
+            'familiar' => $familiar
+        ]);
     }
 }

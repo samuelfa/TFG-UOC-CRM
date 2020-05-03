@@ -28,7 +28,7 @@ class CreatePostController extends WebController
         $assertions = [
             '_csrf_token'   => [new CSRF('familiar_create')],
             'nif'           => [new NIF()],
-            'name'          => [new Assert\Length(['min' => 0, 'max' => 150]), new Assert\Type('string')],
+            'name'          => [new Assert\NotBlank(), new Assert\Length(['min' => 1, 'max' => 150]), new Assert\Type('string')],
             'surname'       => [new Assert\Length(['min' => 0, 'max' => 150]), new Assert\Type('string')],
             'birthday'      => [new Assert\Date()],
             'portrait'      => [new Assert\Length(['min' => 0, 'max' => 300]), new Assert\Type('string')],

@@ -1,0 +1,16 @@
+{# @var item \App\Domain\Familiar\Action\LinkActivity #}
+<li>
+    <div class="timeline-badge activity"><i class="fas fa-hiking"></i></div>
+    <div class="timeline-panel">
+        <div class="timeline-heading">
+            <p>
+                <small class="text-muted">
+                    <i class="fas fa-clock"></i> {% trans with {'%date%': item.createdAt|date('d/m/Y H:i')} from 'app' %}Created at %date%{% endtrans %}
+                </small>
+            </p>
+        </div>
+        <div class="timeline-body">
+            <p>{{ item.activity.name }}</p>
+        </div>
+    </div>
+</li>
