@@ -42,6 +42,6 @@ class CreatePostController extends WebController
             return $this->redirectWithError('The category is already in use', $request, 'crm_category_create');
         }
 
-        return $this->redirectWithMessage('crm_category_list', 'Category created');
+        return $this->redirectWithMessage('Category created', 'crm_category_list');
     }
 }

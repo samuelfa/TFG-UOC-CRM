@@ -28,11 +28,13 @@ class EmailCreatedSubscriber implements EventSubscriberInterface
     {
         $email = $event->email();
         $recipients = $email->recipients();
-        $recipients = array_map('strval', $recipients);
+        $recipients = array_map(static function($value){
+            return (string) $value;
+        }, $recipients);
 
         $symfonyEmail = new SymfonyEmail();
         $symfonyEmail
-            ->to($recipients)
+            ->to(...$recipients)
             ->from('no-reply@crm.localhost')
             ->subject($email->subject())
             ->text($email->body())

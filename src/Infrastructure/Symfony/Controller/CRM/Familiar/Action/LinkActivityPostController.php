@@ -20,14 +20,14 @@ class LinkActivityPostController extends WebController
         $validationErrors = $this->validate($request);
 
         return $validationErrors->count()
-            ? $this->redirectWithErrors($validationErrors, $request, 'crm_familiar_send_email', ['nif' => $nif])
+            ? $this->redirectWithErrors($validationErrors, $request, 'crm_familiar_link_activity', ['nif' => $nif])
             : $this->executeService($request);
     }
 
     protected function validate(Request $request): ConstraintViolationListInterface
     {
         $assertions = [
-            '_csrf_token'   => [new CSRF('link-activity')],
+            '_csrf_token'   => [new CSRF('familiar-link-activity')],
             'nif'           => [new NIF()],
             'activity'      => [new Assert\NotBlank(), new Assert\Type('string')],
         ];
@@ -46,9 +46,9 @@ class LinkActivityPostController extends WebController
         try {
             $this->dispatch($command);
         } catch (FamiliarNotFound $exception){
-            return $this->redirectWithError('The familiar has not been found', $request, 'crm_familiar_send_email', ['nif' => $nif]);
+            return $this->redirectWithError('The familiar has not been found', $request, 'crm_familiar_link_activity', ['nif' => $nif]);
         }
 
-        return $this->redirectWithMessage('crm_familiar_list', 'Familiar edited');
+        return $this->redirectWithMessage('Activity linked', 'crm_familiar_view', ['nif' => $nif]);
     }
 }

@@ -60,6 +60,6 @@ class EditPostController extends WebController
             return $this->redirectWithError('The category does not exist', $request, 'crm_activity_edit', ['id' => $id]);
         }
 
-        return $this->redirectWithMessage('crm_activity_list', 'Activity edited');
+        return $this->redirectWithMessage('Activity edited', 'crm_activity_list');
     }
 }

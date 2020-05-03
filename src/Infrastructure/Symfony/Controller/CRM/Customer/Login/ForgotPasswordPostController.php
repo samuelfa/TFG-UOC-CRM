@@ -41,6 +41,6 @@ class ForgotPasswordPostController extends WebController implements AnonymousCon
         } catch (EmailAddressNotFound $exception){
         }
 
-        return $this->redirectWithMessage('crm_customer_forgot_password', 'Email sent, please check your inbox');
+        return $this->redirectWithMessage('Email sent, please check your inbox', 'crm_customer_forgot_password');
     }
 }

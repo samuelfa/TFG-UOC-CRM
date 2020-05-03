@@ -62,6 +62,6 @@ class EditPostController extends WebController
             return $this->redirectWithError('The email address is already in use', $request, 'crm_customer_edit', ['nif' => $nif]);
         }
 
-        return $this->redirectWithMessage('crm_customer_list', 'Customer edited');
+        return $this->redirectWithMessage('Customer edited', 'crm_customer_list');
     }
 }

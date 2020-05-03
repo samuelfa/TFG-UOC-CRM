@@ -13,7 +13,7 @@
         <field name="createdAt" type="datetime_immutable" column="created_at" />
 
         <many-to-one field="familiar" target-entity="App\Domain\Familiar\Familiar">
-            <join-column name="familiar" nullable="false"/>
+            <join-column name="familiar" referenced-column-name="nif" nullable="false"/>
         </many-to-one>
     </entity>
 

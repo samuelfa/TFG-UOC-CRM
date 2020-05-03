@@ -48,6 +48,6 @@ class EditPostController extends WebController
             return $this->redirectWithError('The category has not been found', $request, 'crm_category_edit', ['id' => $id]);
         }
 
-        return $this->redirectWithMessage('crm_category_list', 'Category edited');
+        return $this->redirectWithMessage('Category edited', 'crm_category_list');
     }
 }

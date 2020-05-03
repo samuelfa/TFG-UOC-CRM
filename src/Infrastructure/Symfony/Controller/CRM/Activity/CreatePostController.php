@@ -53,6 +53,6 @@ class CreatePostController extends WebController
             return $this->redirectWithError('The category does not exist', $request, 'crm_activity_create');
         }
 
-        return $this->redirectWithMessage('crm_activity_list', 'Activity created');
+        return $this->redirectWithMessage('Activity created', 'crm_activity_list');
     }
 }

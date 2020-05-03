@@ -55,6 +55,6 @@ class CreatePostController extends WebController
             return $this->redirectWithError('The nif is already in use', $request, 'crm_familiar_create');
         }
 
-        return $this->redirectWithMessage('crm_familiar_list', 'Familiar created');
+        return $this->redirectWithMessage('Familiar created', 'crm_familiar_list');
     }
 }

@@ -1,0 +1,33 @@
+<?php
+
+
+namespace App\Infrastructure\Persistence\Doctrine\Repository;
+
+
+use App\Domain\Familiar\Action\LinkActivity;
+use App\Domain\Familiar\Action\LinkActivityRepository as LinkActivityRepositoryInterface;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Persistence\ManagerRegistry;
+
+class LinkActivityRepository extends ServiceEntityRepository implements LinkActivityRepositoryInterface
+{
+    public function __construct(ManagerRegistry $em)
+    {
+        parent::__construct($em, LinkActivity::class);
+    }
+
+    public function save(LinkActivity $linkActivity): void
+    {
+        $this->_em->persist($linkActivity);
+    }
+
+    public function flush(): void
+    {
+        $this->_em->flush();
+    }
+
+    public function remove(LinkActivity $linkActivity): void
+    {
+        $this->_em->remove($linkActivity);
+    }
+}

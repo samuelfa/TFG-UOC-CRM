@@ -13,6 +13,6 @@ class DeleteGetController extends WebController
         $command = new DeleteManagerDTO($nif);
         $this->dispatch($command);
 
-        return $this->redirectWithMessage('crm_manager_list', 'Manager deleted');
+        return $this->redirectWithMessage('Manager deleted', 'crm_manager_list');
     }
 }

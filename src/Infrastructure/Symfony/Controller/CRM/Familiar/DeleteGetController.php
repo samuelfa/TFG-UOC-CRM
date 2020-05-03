@@ -13,6 +13,6 @@ class DeleteGetController extends WebController
         $command = new DeleteFamiliarDTO($nif);
         $this->dispatch($command);
 
-        return $this->redirectWithMessage('crm_familiar_list', 'Familiar deleted');
+        return $this->redirectWithMessage('Familiar deleted', 'crm_familiar_list');
     }
 }

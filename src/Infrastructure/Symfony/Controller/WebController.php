@@ -28,12 +28,12 @@ abstract class WebController extends AbstractController
         $this->validator = $validator;
     }
 
-    protected function redirectWithMessage(string $routeName, string $message, ...$parameters): RedirectResponse
+    protected function redirectWithMessage(string $message, string $routeName, array $routeParameters = []): RedirectResponse
     {
-        $message = $this->translator->trans($message, $parameters);
+        $message = $this->translator->trans($message);
         $this->addFlash('message', $message);
 
-        return $this->redirectToRoute($routeName);
+        return $this->redirectToRoute($routeName, $routeParameters);
     }
 
     protected function dispatch(DTO $dto): DTO

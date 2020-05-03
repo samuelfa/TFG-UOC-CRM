@@ -48,6 +48,6 @@ class RestorePasswordPostController extends WebController implements AnonymousCo
             return $this->redirectWithError('Impossible to restore the password', $request, 'crm_login');
         }
 
-        return $this->redirectWithMessage('crm_login', 'Email sent, please check your inbox');
+        return $this->redirectWithMessage('Email sent, please check your inbox', 'crm_login');
     }
 }

@@ -57,6 +57,6 @@ class EditPostController extends WebController
             return $this->redirectWithError('The familiar has not been found', $request, 'crm_familiar_edit', ['nif' => $nif]);
         }
 
-        return $this->redirectWithMessage('crm_familiar_list', 'Familiar edited');
+        return $this->redirectWithMessage('Familiar edited', 'crm_familiar_list');
     }
 }

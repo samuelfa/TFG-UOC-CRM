@@ -13,6 +13,6 @@ class DeleteGetController extends WebController
         $command = new DeleteCategoryDTO($id);
         $this->dispatch($command);
 
-        return $this->redirectWithMessage('crm_category_list', 'Category deleted');
+        return $this->redirectWithMessage('Category deleted', 'crm_category_list');
     }
 }

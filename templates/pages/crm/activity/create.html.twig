@@ -34,7 +34,7 @@
                                         <label for="category">{% trans %}Category{% endtrans %}</label>
                                         <select name="category" id="category" class="form-control selectpicker"  data-live-search="true">
                                             {% for category in categories %}
-                                                <option value="{{category.id}}">{{category.name}}</option>
+                                                <option value="{{ category.id }}">{{ category.name }}</option>
                                             {% endfor %}
                                         </select>
                                     </div>

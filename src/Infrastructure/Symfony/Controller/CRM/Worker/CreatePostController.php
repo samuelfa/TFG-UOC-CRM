@@ -63,6 +63,6 @@ class CreatePostController extends WebController
             return $this->redirectWithError('The email address is already in use', $request, 'crm_worker_create');
         }
 
-        return $this->redirectWithMessage('crm_worker_list', 'Worker created');
+        return $this->redirectWithMessage('Worker created', 'crm_worker_list');
     }
 }

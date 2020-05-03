@@ -27,7 +27,7 @@ class SendEmailPostController extends WebController
     protected function validate(Request $request): ConstraintViolationListInterface
     {
         $assertions = [
-            '_csrf_token'   => [new CSRF('send-email')],
+            '_csrf_token'   => [new CSRF('familiar-send-email')],
             'nif'           => [new NIF()],
             'subject'       => [new Assert\NotBlank(), new Assert\Length(['min' => 1, 'max' => 150]),  new Assert\Type('string')],
             'body'          => [new Assert\NotBlank(), new Assert\Type('string')],
@@ -53,6 +53,6 @@ class SendEmailPostController extends WebController
             return $this->redirectWithError('The familiar has not been found', $request, 'crm_familiar_send_email', ['nif' => $nif]);
         }
 
-        return $this->redirectWithMessage('crm_familiar_list', 'Familiar edited');
+        return $this->redirectWithMessage('Email sent', 'crm_familiar_view', ['nif' => $nif]);
     }
 }

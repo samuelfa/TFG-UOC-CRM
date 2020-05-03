@@ -13,6 +13,6 @@ class DeleteGetController extends WebController
         $command = new DeleteActivityDTO($id);
         $this->dispatch($command);
 
-        return $this->redirectWithMessage('crm_activity_list', 'Activity deleted');
+        return $this->redirectWithMessage('Activity deleted', 'crm_activity_list');
     }
 }

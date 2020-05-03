@@ -14,13 +14,6 @@ class ArrayEmailAddressType extends SimpleArrayType
         return 'array_email_address';
     }
 
-    public function convertToDatabaseValue($value, AbstractPlatform $platform)
-    {
-        //TODO: review if the email address object in the list is converted to string
-        $list = implode(',', $value);
-        return parent::convertToDatabaseValue($list, $platform);
-    }
-
     public function convertToPHPValue($value, AbstractPlatform $platform)
     {
         $value = parent::convertToPHPValue($value, $platform);
