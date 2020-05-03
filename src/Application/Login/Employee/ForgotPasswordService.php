@@ -47,10 +47,16 @@ class ForgotPasswordService implements TransactionalService
             throw new EmailAddressNotFound($emailAddress);
         }
 
-        $token = ForgotPasswordEmail::create($emailAddress);
+        $token = $this->repository->findOneByEmailAddress($emailAddress);
+        if(!$token){
+            $token = ForgotPasswordEmail::create($emailAddress);
+        } else {
+            $token->regenerate();
+        }
+
         $this->repository->save($token);
 
-        $this->dispatcher->created($token);
+        $this->dispatcher->created($token, false);
 
         return $dto;
     }

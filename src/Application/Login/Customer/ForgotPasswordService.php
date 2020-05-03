@@ -16,9 +16,6 @@ class ForgotPasswordService implements TransactionalService
 {
     private ForgotPasswordEmailRepository $repository;
     private ForgotPasswordEmailEventDispatcher $dispatcher;
-    /**
-     * @var CustomerRepository
-     */
     private CustomerRepository $customerRepository;
 
     public function __construct(
@@ -45,7 +42,7 @@ class ForgotPasswordService implements TransactionalService
         $token = ForgotPasswordEmail::create($emailAddress);
         $this->repository->save($token);
 
-        $this->dispatcher->created($token);
+        $this->dispatcher->created($token, true);
 
         return $dto;
     }

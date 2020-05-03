@@ -2,11 +2,12 @@
 
 namespace App\Infrastructure\Symfony\Controller\Landing\SignIn;
 
+use App\Infrastructure\Symfony\Controller\LandingController;
 use App\Infrastructure\Symfony\Controller\WebController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
-class SignInGetController extends WebController
+class SignInGetController extends WebController implements LandingController
 {
     public function view(AuthenticationUtils $authenticationUtils): Response
     {

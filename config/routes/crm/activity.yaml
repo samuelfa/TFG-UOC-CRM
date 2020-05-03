@@ -16,14 +16,20 @@ crm_activity_create_post:
 crm_activity_edit:
   path: /crm/activity/{id}/edit
   methods: GET
+  requirements:
+    id: '\d+'
   controller: App\Infrastructure\Symfony\Controller\CRM\Activity\EditGetController::view
 
 crm_activity_edit_post:
   path: /crm/activity/{id}/edit
   methods: POST
+  requirements:
+    id: '\d+'
   controller: App\Infrastructure\Symfony\Controller\CRM\Activity\EditPostController::view
   
 crm_activity_delete:
   path: /crm/activity/{id}/delete
   methods: GET
+  requirements:
+    id: '\d+'
   controller: App\Infrastructure\Symfony\Controller\CRM\Activity\DeleteGetController::view

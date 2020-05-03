@@ -4,6 +4,7 @@ namespace App\Infrastructure\Symfony\Controller\Landing\Register;
 
 use App\Application\Company\Create\AlreadyExistsNamespace;
 use App\Application\Company\Create\CreateCompanyDTO;
+use App\Infrastructure\Symfony\Controller\LandingController;
 use App\Infrastructure\Symfony\Controller\WebController;
 use App\Infrastructure\Symfony\Security\AuthenticateAfterRegister;
 use App\Infrastructure\Symfony\Validator\Constraints\CSRF;
@@ -13,7 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\ConstraintViolationListInterface;
 
-class RegisterPostController extends WebController
+class RegisterPostController extends WebController implements LandingController
 {
     public function view(Request $request, AuthenticateAfterRegister $authenticatorHandler): RedirectResponse
     {

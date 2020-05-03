@@ -1,7 +1,9 @@
+## Customer login
+
 crm_customer_login:
   path: /login/customer
   methods: GET
-  controller: App\Infrastructure\Symfony\Controller\CRM\Customer\LoginGetController::view
+  controller: App\Infrastructure\Symfony\Controller\CRM\Customer\Login\LoginGetController::view
 
 crm_customer_login_post:
   path: /login/customer
@@ -10,22 +12,28 @@ crm_customer_login_post:
 crm_customer_forgot_password:
   path: /login/customer/forgot-password
   methods: GET
-  controller: App\Infrastructure\Symfony\Controller\CRM\Customer\ForgotPasswordGetController::view
+  controller: App\Infrastructure\Symfony\Controller\CRM\Customer\Login\ForgotPasswordGetController::view
 
 crm_customer_forgot_password_post:
   path: /login/customer/forgot-password
   methods: POST
-  controller: App\Infrastructure\Symfony\Controller\CRM\Customer\ForgotPasswordPostController::view
+  controller: App\Infrastructure\Symfony\Controller\CRM\Customer\Login\ForgotPasswordPostController::view
 
 crm_customer_restore_password:
   path: /login/customer/restore-password/{token}
   methods: GET
-  controller: App\Infrastructure\Symfony\Controller\CRM\Customer\RestorePasswordGetController::view
+  requirements:
+    token: '[a-zA-Z0-9]+'
+  controller: App\Infrastructure\Symfony\Controller\CRM\Customer\Login\RestorePasswordGetController::view
 
 crm_customer_restore_password_post:
   path: /login/customer/restore-password/{token}
   methods: POST
-  controller: App\Infrastructure\Symfony\Controller\CRM\Customer\RestorePasswordPostController::view
+  requirements:
+    token: '[a-zA-Z0-9]+'
+  controller: App\Infrastructure\Symfony\Controller\CRM\Customer\Login\RestorePasswordPostController::view
+
+## Employee login
 
 crm_login:
   path: /login
@@ -49,9 +57,13 @@ crm_forgot_password_post:
 crm_restore_password:
   path: /login/restore-password/{token}
   methods: GET
-  controller: App\Infrastructure\Symfony\Controller\CRM\Customer\RestorePasswordGetController::view
+  requirements:
+    token: '[a-zA-Z0-9]+'
+  controller: App\Infrastructure\Symfony\Controller\CRM\Login\RestorePasswordGetController::view
 
 crm_restore_password_post:
   path: /login/restore-password/{token}
   methods: POST
-  controller: App\Infrastructure\Symfony\Controller\CRM\Customer\RestorePasswordPostController::view
+  requirements:
+    token: '[a-zA-Z0-9]+'
+  controller: App\Infrastructure\Symfony\Controller\CRM\Login\RestorePasswordPostController::view

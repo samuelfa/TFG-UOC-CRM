@@ -57,6 +57,7 @@ CREATE TABLE categories (id SMALLINT AUTO_INCREMENT NOT NULL, name VARCHAR(50) N
 ALTER TABLE activities ADD CONSTRAINT FK_B5F1AFE564C19C1 FOREIGN KEY (category) REFERENCES categories (id);
 
 CREATE TABLE forgot_password_emails (email_address VARCHAR(150) NOT NULL COMMENT '(DC2Type:email_address)', string VARCHAR(600) NOT NULL, created_at DATETIME NOT NULL, UNIQUE INDEX UNIQ_C58BD1F79EBEB2A9 (string), PRIMARY KEY(email_address)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB;
+ALTER TABLE forgot_password_emails CHANGE created_at created_at DATETIME NOT NULL COMMENT '(DC2Type:datetime_immutable)';
 
 INSERT INTO migration_versions (version, executed_at) VALUES
 ('20200412165615', '2020-04-12 12:09:30'),
@@ -64,5 +65,6 @@ INSERT INTO migration_versions (version, executed_at) VALUES
 ('20200426183813', '2020-04-26 18:39:05'),
 ('20200427225558', '2020-04-27 22:57:32'),
 ('20200502160201', '2020-05-02 18:02:50'),
-('20200503105501', '2020-05-03 12:56:01')
+('20200503105501', '2020-05-03 12:56:01'),
+('20200503135108', '2020-05-03 15:52:08')
 ;

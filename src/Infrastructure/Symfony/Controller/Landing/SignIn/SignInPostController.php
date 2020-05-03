@@ -4,6 +4,7 @@ namespace App\Infrastructure\Symfony\Controller\Landing\SignIn;
 
 use App\Application\Company\SignIn\SignInNamespaceDTO;
 use App\Domain\Company\CompanyNotFound;
+use App\Infrastructure\Symfony\Controller\LandingController;
 use App\Infrastructure\Symfony\Controller\WebController;
 use App\Infrastructure\Symfony\Validator\Constraints\CSRF;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -11,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\ConstraintViolationListInterface;
 
-class SignInPostController extends WebController
+class SignInPostController extends WebController implements LandingController
 {
     public function view(Request $request): RedirectResponse
     {

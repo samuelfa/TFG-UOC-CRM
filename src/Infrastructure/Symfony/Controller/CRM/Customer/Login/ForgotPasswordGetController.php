@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Infrastructure\Symfony\Controller\CRM\Customer;
+namespace App\Infrastructure\Symfony\Controller\CRM\Customer\Login;
 
+use App\Infrastructure\Symfony\Controller\AnonymousController;
 use App\Infrastructure\Symfony\Controller\WebController;
 use Symfony\Component\HttpFoundation\Response;
 
-class ForgotPasswordGetController extends WebController
+class ForgotPasswordGetController extends WebController implements AnonymousController
 {
     public function view(): Response
     {

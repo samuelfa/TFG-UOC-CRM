@@ -2,11 +2,12 @@
 
 namespace App\Infrastructure\Symfony\Controller\CRM\Login;
 
+use App\Infrastructure\Symfony\Controller\AnonymousController;
 use App\Infrastructure\Symfony\Controller\WebController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
-class LoginGetController extends WebController
+class LoginGetController extends WebController implements AnonymousController
 {
     public function view(AuthenticationUtils $authenticationUtils): Response
     {
@@ -16,6 +17,6 @@ class LoginGetController extends WebController
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render('pages/crm/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+        return $this->render('pages/crm/login/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
     }
 }

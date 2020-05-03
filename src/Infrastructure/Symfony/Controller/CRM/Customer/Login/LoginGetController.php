@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Infrastructure\Symfony\Controller\CRM\Customer;
+namespace App\Infrastructure\Symfony\Controller\CRM\Customer\Login;
 
+use App\Infrastructure\Symfony\Controller\AnonymousController;
 use App\Infrastructure\Symfony\Controller\WebController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
-class LoginGetController extends WebController
+class LoginGetController extends WebController implements AnonymousController
 {
     public function view(AuthenticationUtils $authenticationUtils): Response
     {

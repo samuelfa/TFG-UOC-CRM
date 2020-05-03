@@ -36,12 +36,22 @@ class ForgotPasswordEmailCreatedSubscriber implements EventSubscriberInterface
             ->to($token->emailAddress()->value())
             ->from('no-reply@crm.localhost')
             ->subject($this->translator->trans('CRM: You request a new password!!'))
-            ->htmlTemplate('emails/forgot-password.html.twig')
-            ->textTemplate('emails/forgot-password.txt.twig')
             ->context([
                 'token' => $token
             ])
         ;
+
+        if($event->isCustomer()){
+            $email
+                ->htmlTemplate('emails/customer/forgot-password.html.twig')
+                ->textTemplate('emails/customer/forgot-password.txt.twig')
+            ;
+        } else {
+            $email
+                ->htmlTemplate('emails/employee/forgot-password.html.twig')
+                ->textTemplate('emails/employee/forgot-password.txt.twig')
+            ;
+        }
 
         try {
             $this->mailer->send($email);

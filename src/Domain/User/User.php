@@ -108,4 +108,9 @@ abstract class User extends AbstractPerson implements UserInterface
             $this->password = $password;
         }
     }
+
+    public function setPassword(Password $password): void
+    {
+        $this->password = $password;
+    }
 }

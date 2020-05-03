@@ -17,8 +17,8 @@ class ForgotPasswordEmailEventDispatcher implements ForgotPasswordEmailEventDisp
         $this->dispatcher = $dispatcher;
     }
 
-    public function created(ForgotPasswordEmail $token): void
+    public function created(ForgotPasswordEmail $token, bool $customer): void
     {
-        $this->dispatcher->dispatch(new ForgotPasswordEmailCreatedEvent($token));
+        $this->dispatcher->dispatch(new ForgotPasswordEmailCreatedEvent($token, $customer));
     }
 }

@@ -2,7 +2,8 @@
 
 namespace App\Infrastructure\Symfony\Controller\CRM\Login;
 
-use App\Application\Login\Employee\ForgotPasswordDTO;
+use App\Application\Login\Employee\RestorePasswordDTO;
+use App\Application\Login\TokenNotFound;
 use App\Domain\EmailAddressNotFound;
 use App\Infrastructure\Symfony\Controller\AnonymousController;
 use App\Infrastructure\Symfony\Controller\WebController;
@@ -12,10 +13,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\ConstraintViolationListInterface;
 
-class ForgotPasswordPostController extends WebController implements AnonymousController
+class RestorePasswordPostController extends WebController implements AnonymousController
 {
-    public function view(Request $request): RedirectResponse
+    public function view(string $token, Request $request): RedirectResponse
     {
+        $request->request->set('token', $token);
         $validationErrors = $this->validate($request);
 
         return $validationErrors->count()
@@ -26,8 +28,9 @@ class ForgotPasswordPostController extends WebController implements AnonymousCon
     protected function validate(Request $request): ConstraintViolationListInterface
     {
         $assertions = [
-            '_csrf_token'   => [new CSRF('forgot-password')],
-            'email_address' => [new Assert\NotBlank(), new Assert\Length(['max' => 150]), new Assert\Email()],
+            '_csrf_token' => [new CSRF('restore-password')],
+            'password'    => [new Assert\NotBlank(), new Assert\Length(['min' => 3, 'max' => 300]), new Assert\Type('string')],
+            'token'       => [new Assert\NotBlank(), new Assert\Type('string')],
         ];
 
         return $this->validateRequest($request, $assertions);
@@ -35,12 +38,16 @@ class ForgotPasswordPostController extends WebController implements AnonymousCon
 
     private function executeService(Request $request): RedirectResponse
     {
-        $dto = new ForgotPasswordDTO($request->request->get('email_address'));
+        $dto = new RestorePasswordDTO(
+            $request->request->get('token'),
+            $request->request->get('password')
+        );
         try {
             $this->dispatch($dto);
-        } catch (EmailAddressNotFound $exception){
+        } catch (TokenNotFound|EmailAddressNotFound $exception){
+            return $this->redirectWithError('Impossible to restore the password', $request, 'crm_login');
         }
 
-        return $this->redirectWithMessage('crm_forgot_password', 'Email sent, please check your inbox');
+        return $this->redirectWithMessage('crm_login', 'Email sent, please check your inbox');
     }
 }

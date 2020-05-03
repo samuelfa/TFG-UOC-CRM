@@ -5,6 +5,9 @@ namespace App\Infrastructure\Symfony\Event;
 
 
 use App\Domain\Company\NamespacesCalculator;
+use App\Infrastructure\Symfony\Controller\AnonymousController;
+use App\Infrastructure\Symfony\Controller\LandingController;
+use App\Infrastructure\Symfony\Controller\WebController;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Event\ControllerEvent;
@@ -60,8 +63,7 @@ class UserLoggedSubscriber implements EventSubscriberInterface
         }
 
         [$controllerClass] = $controller;
-        $controllerName = get_class($controllerClass);
-        if(!$this->isApplicationController($controllerName)){
+        if(!$this->isApplicationController($controllerClass)){
             return;
         }
 
@@ -69,48 +71,45 @@ class UserLoggedSubscriber implements EventSubscriberInterface
         $host = $request->getHost();
         $namespace = $this->namespacesCalculator->obtain($host);
         if(empty($namespace)){
-            if(!$this->isLanding($controllerName)){
+            if(!$this->isLanding($controllerClass)){
                 $this->redirectToLandingHome($event);
             }
             return;
         }
 
-        if($this->isLanding($controllerName)){
+        if($this->isLanding($controllerClass)){
             $this->redirectToLandingHome($event);
             return;
         }
 
         $token = $this->tokenStorage->getToken();
         if($token && !($token instanceof AnonymousToken) && $token->isAuthenticated()){
-            if($this->isAnonymousController($controllerName)){
+            if($this->isAnonymousController($controllerClass)){
                 return;
             }
             return;
         }
 
-        if($this->isAnonymousController($controllerName)){
+        if($this->isAnonymousController($controllerClass)){
             return;
         }
 
         $this->redirectToCRMLogin($event);
     }
 
-    private function isLanding(string $path): bool
+    private function isLanding(object $object): bool
     {
-        return strpos($path, 'Symfony\Controller\Landing') !== false;
+        return $object instanceof LandingController;
     }
 
-    private function isAnonymousController(string $path): bool
+    private function isAnonymousController(object $object): bool
     {
-        return
-            strpos($path, 'Symfony\Controller\CRM\Login') !== false ||
-            strpos($path, 'Symfony\Controller\CRM\ForgotPassword') !== false
-        ;
+        return $object instanceof AnonymousController;
     }
 
-    private function isApplicationController(string $path): bool
+    private function isApplicationController(object $object): bool
     {
-        return strpos($path, 'App\Infrastructure\Symfony\Controller') !== false;
+        return $object instanceof WebController;
     }
 
     private function redirectToLandingHome(ControllerEvent $event): void

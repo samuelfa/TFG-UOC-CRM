@@ -5,6 +5,7 @@ namespace App\Domain\Login;
 
 
 use App\Domain\ValueObject\EmailAddress;
+use App\Domain\ValueObject\Password;
 
 class ForgotPasswordEmail
 {
@@ -38,12 +39,12 @@ class ForgotPasswordEmail
     public function isActive(): bool
     {
         $now = new \DateTime();
-        return $this->expiresAt() < $now;
+        return $this->expiresAt() > $now;
     }
 
     private static function password(EmailAddress $emailAddress): string
     {
-        return password_hash(sprintf('%s:%s', random_bytes(10), $emailAddress), PASSWORD_DEFAULT);
+        return Password::encode(sprintf('%s:%s', random_bytes(10), $emailAddress));
     }
 
     public function emailAddress(): EmailAddress
@@ -57,5 +58,11 @@ class ForgotPasswordEmail
     public function expiresAt(): \DateTimeImmutable
     {
         return $this->createdAt->add(new \DateInterval('P7D'));
+    }
+
+    public function regenerate(): void
+    {
+        $this->token = self::password($this->emailAddress);
+        $this->createdAt = new \DateTimeImmutable();
     }
 }
