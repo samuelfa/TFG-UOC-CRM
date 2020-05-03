@@ -27,7 +27,7 @@ class EditPostController extends WebController
     {
         $assertions = [
             '_csrf_token' => [new CSRF('category_edit')],
-            'id'          => [new Assert\NotBlank(), new Assert\Type('int')],
+            'id'          => [new Assert\NotBlank(), new Assert\Type('int'), new Assert\Positive()],
             'name'        => [new Assert\NotBlank(), new Assert\Length(['min' => 3, 'max' => 50]), new Assert\Type('string')],
         ];
 
@@ -36,7 +36,7 @@ class EditPostController extends WebController
 
     private function executeService(Request $request): RedirectResponse
     {
-        $id = $request->request->get('id');
+        $id = $request->request->getInt('id');
         $command = new EditCategoryDTO(
             $id,
             $request->request->get('name')

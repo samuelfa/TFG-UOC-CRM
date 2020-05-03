@@ -28,14 +28,14 @@ class EditPostController extends WebController
     {
         $assertions = [
             '_csrf_token' => [new CSRF('activity_edit')],
-            'id'          => [new Assert\NotBlank(), new Assert\Type('int')],
+            'id'          => [new Assert\NotBlank(), new Assert\Type('int'), new Assert\Positive()],
             'name'        => [new Assert\NotBlank(), new Assert\Length(['min' => 3, 'max' => 50]), new Assert\Type('string')],
             'start_at'    => [new Assert\NotBlank(), new Assert\Date()],
             'finish_at'   => [new Assert\NotBlank(), new Assert\Date(), new Assert\Expression([
                 'expression' => 'start_at <= finish_at',
                 'values' => ['start_at' => $request->request->get('start_at'), 'finish_at' => $request->request->get('finish_at')],
             ])],
-            'category'    => [new Assert\NotBlank(), new Assert\Type('string')],
+            'category'    => [new Assert\NotBlank(), new Assert\Type('digit')],
         ];
 
         return $this->validateRequest($request, $assertions);
@@ -43,7 +43,7 @@ class EditPostController extends WebController
 
     private function executeService(Request $request): RedirectResponse
     {
-        $id = $request->request->get('id');
+        $id = $request->request->getInt('id');
         $command = new EditActivityDTO(
             $id,
             $request->request->get('name'),

@@ -32,3 +32,33 @@ crm_familiar_delete:
   path: /crm/familiar/{nif}/delete
   methods: GET
   controller: App\Infrastructure\Symfony\Controller\CRM\Familiar\DeleteGetController::view
+
+crm_familiar_send_email:
+  path: /crm/familiar/{nif}/email
+  methods: GET
+  controller: App\Infrastructure\Symfony\Controller\CRM\Familiar\Action\SendEmailGetController::view
+
+crm_familiar_send_email_post:
+  path: /crm/familiar/{nif}/email
+  methods: POST
+  controller: App\Infrastructure\Symfony\Controller\CRM\Familiar\Action\SendEmailPostController::view
+
+crm_familiar_link_activity:
+  path: /crm/familiar/{nif}/activity
+  methods: GET
+  controller: App\Infrastructure\Symfony\Controller\CRM\Familiar\Action\LinkActivityGetController::view
+
+crm_familiar_link_activity_post:
+  path: /crm/familiar/{nif}/activity
+  methods: POST
+  controller: App\Infrastructure\Symfony\Controller\CRM\Familiar\Action\LinkActivityPostController::view
+
+crm_familiar_add_note:
+  path: /crm/familiar/{nif}/note
+  methods: GET
+  controller: App\Infrastructure\Symfony\Controller\CRM\Familiar\Action\AddNoteGetController::view
+
+crm_familiar_add_note_post:
+  path: /crm/familiar/{nif}/note
+  methods: POST
+  controller: App\Infrastructure\Symfony\Controller\CRM\Familiar\Action\AddNotePostController::view

@@ -17,6 +17,8 @@ doctrine:
         types:
             email_address:
                 class: App\Infrastructure\Persistence\Doctrine\Types\EmailAddressType
+            array_email_address:
+                class: App\Infrastructure\Persistence\Doctrine\Types\ArrayEmailAddressType
             nif:
                 class: App\Infrastructure\Persistence\Doctrine\Types\NIFType
             password:

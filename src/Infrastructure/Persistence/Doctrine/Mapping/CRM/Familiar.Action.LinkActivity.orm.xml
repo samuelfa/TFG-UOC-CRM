@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                          https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="App\Domain\Familiar\Action\LinkActivity" table="link_activities">
+        <id name="id" type="integer" column="id">
+            <generator/>
+        </id>
+        <field name="createdAt" type="datetime_immutable" column="created_at" />
+
+        <many-to-one field="familiar" target-entity="App\Domain\Familiar\Familiar">
+            <join-column name="familiar" nullable="false"/>
+        </many-to-one>
+
+        <many-to-one field="activity" target-entity="App\Domain\Activity\Activity">
+            <join-column name="activity" nullable="false"/>
+        </many-to-one>
+    </entity>
+
+</doctrine-mapping>

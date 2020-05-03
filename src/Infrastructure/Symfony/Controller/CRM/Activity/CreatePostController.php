@@ -32,7 +32,7 @@ class CreatePostController extends WebController
                 'expression' => 'start_at <= finish_at',
                 'values' => ['start_at' => $request->request->get('start_at'), 'finish_at' => $request->request->get('finish_at')],
             ])],
-            'category'    => [new Assert\NotBlank(), new Assert\Type('string')],
+            'category'    => [new Assert\NotBlank(), new Assert\Type('digit'), new Assert\Positive()],
         ];
 
         return $this->validateRequest($request, $assertions);
