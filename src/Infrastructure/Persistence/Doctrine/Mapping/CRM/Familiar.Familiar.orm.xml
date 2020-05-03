@@ -13,7 +13,7 @@
         <field name="birthday" type="date" column="birthday" nullable="true" />
         <field name="portrait" type="url" column="portrait" length="300" nullable="true" />
 
-        <many-to-one field="customer" target-entity="App\Domain\Customer\Customer">
+        <many-to-one field="customer" target-entity="App\Domain\Customer\Customer" inversed-by="familiars">
             <join-column name="customer" referenced-column-name="nif" />
         </many-to-one>
     </entity>

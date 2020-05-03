@@ -44,6 +44,9 @@ crm_login_post:
   path: /login
   methods: POST
 
+crm_logout:
+  path: /logout
+
 crm_forgot_password:
   path: /login/forgot-password
   methods: GET
