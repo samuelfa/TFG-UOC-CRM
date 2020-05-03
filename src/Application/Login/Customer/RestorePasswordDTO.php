@@ -14,7 +14,7 @@ class RestorePasswordDTO implements DTO
 
     public function __construct(string $token, string $password)
     {
-        $this->token    = $token;
+        $this->token    = base64_decode($token);
         $this->password = Password::encode($password);
     }
 
