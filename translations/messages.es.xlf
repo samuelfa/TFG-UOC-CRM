@@ -253,6 +253,78 @@
         <source>Select "Logout" below if you are ready to end your current session.</source>
         <target>__Select "Logout" below if you are ready to end your current session.</target>
       </trans-unit>
+      <trans-unit id="g4InJeS" resname="CRM: You request a new password!!">
+        <source>CRM: You request a new password!!</source>
+        <target>__CRM: You request a new password!!</target>
+      </trans-unit>
+      <trans-unit id="mcvxpwD" resname="Hi! We got a request to generate a new password.">
+        <source>Hi! We got a request to generate a new password.</source>
+        <target>__Hi! We got a request to generate a new password.</target>
+      </trans-unit>
+      <trans-unit id="wICiKPn" resname="Click here to start getting a new password">
+        <source>Click here to start getting a new password</source>
+        <target>__Click here to start getting a new password</target>
+      </trans-unit>
+      <trans-unit id="uLHYlMa" resname="Categories">
+        <source>Categories</source>
+        <target>__Categories</target>
+      </trans-unit>
+      <trans-unit id="EhVukhv" resname="Id">
+        <source>Id</source>
+        <target>__Id</target>
+      </trans-unit>
+      <trans-unit id="6ffveyg" resname="List of categories">
+        <source>List of categories</source>
+        <target>__List of categories</target>
+      </trans-unit>
+      <trans-unit id="GYYhTSt" resname="Select &quot;Remove&quot; below if you are ready to delete the category.">
+        <source>Select "Remove" below if you are ready to delete the category.</source>
+        <target>__Select "Remove" below if you are ready to delete the category.</target>
+      </trans-unit>
+      <trans-unit id="VWWAtma" resname="Add a new category">
+        <source>Add a new category</source>
+        <target>__Add a new category</target>
+      </trans-unit>
+      <trans-unit id="TQB25rT" resname="Activities">
+        <source>Activities</source>
+        <target>__Activities</target>
+      </trans-unit>
+      <trans-unit id="KSwG8AR" resname="Category">
+        <source>Category</source>
+        <target>__Category</target>
+      </trans-unit>
+      <trans-unit id="M0woT0O" resname="Start at">
+        <source>Start at</source>
+        <target>__Start at</target>
+      </trans-unit>
+      <trans-unit id="3vQ_feg" resname="Finish at">
+        <source>Finish at</source>
+        <target>__Finish at</target>
+      </trans-unit>
+      <trans-unit id="Z5Z7cAj" resname="List of activities">
+        <source>List of activities</source>
+        <target>__List of activities</target>
+      </trans-unit>
+      <trans-unit id="bjhj1Vv" resname="Select &quot;Remove&quot; below if you are ready to delete the activity.">
+        <source>Select "Remove" below if you are ready to delete the activity.</source>
+        <target>__Select "Remove" below if you are ready to delete the activity.</target>
+      </trans-unit>
+      <trans-unit id="Rmnfd4r" resname="Add a new activity">
+        <source>Add a new activity</source>
+        <target>__Add a new activity</target>
+      </trans-unit>
+      <trans-unit id=".f1B3nr" resname="Forgot Password">
+        <source>Forgot Password</source>
+        <target>__Forgot Password</target>
+      </trans-unit>
+      <trans-unit id="9vRoj.I" resname="Send">
+        <source>Send</source>
+        <target>__Send</target>
+      </trans-unit>
+      <trans-unit id="nWMiwfT" resname="Login">
+        <source>Login</source>
+        <target>__Login</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

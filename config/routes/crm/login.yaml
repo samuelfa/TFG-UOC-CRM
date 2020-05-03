@@ -7,15 +7,25 @@ crm_customer_login_post:
   path: /login/customer
   methods: POST
 
-crm_customer_forgot-password:
+crm_customer_forgot_password:
   path: /login/customer/forgot-password
   methods: GET
   controller: App\Infrastructure\Symfony\Controller\CRM\Customer\ForgotPasswordGetController::view
 
-crm_customer_forgot-password_post:
+crm_customer_forgot_password_post:
   path: /login/customer/forgot-password
   methods: POST
   controller: App\Infrastructure\Symfony\Controller\CRM\Customer\ForgotPasswordPostController::view
+
+crm_customer_restore_password:
+  path: /login/customer/restore-password/{token}
+  methods: GET
+  controller: App\Infrastructure\Symfony\Controller\CRM\Customer\RestorePasswordGetController::view
+
+crm_customer_restore_password_post:
+  path: /login/customer/restore-password/{token}
+  methods: POST
+  controller: App\Infrastructure\Symfony\Controller\CRM\Customer\RestorePasswordPostController::view
 
 crm_login:
   path: /login
@@ -26,12 +36,22 @@ crm_login_post:
   path: /login
   methods: POST
 
-crm_forgot-password:
-  path: /forgot-password
+crm_forgot_password:
+  path: /login/forgot-password
   methods: GET
-  controller: App\Infrastructure\Symfony\Controller\CRM\ForgotPassword\ForgotPasswordGetController::view
+  controller: App\Infrastructure\Symfony\Controller\CRM\Login\ForgotPasswordGetController::view
 
-crm_forgot-password_post:
-  path: /forgot-password
+crm_forgot_password_post:
+  path: /login/forgot-password
   methods: POST
-  controller: App\Infrastructure\Symfony\Controller\CRM\ForgotPassword\ForgotPasswordPostController::view
+  controller: App\Infrastructure\Symfony\Controller\CRM\Login\ForgotPasswordPostController::view
+
+crm_restore_password:
+  path: /login/restore-password/{token}
+  methods: GET
+  controller: App\Infrastructure\Symfony\Controller\CRM\Customer\RestorePasswordGetController::view
+
+crm_restore_password_post:
+  path: /login/restore-password/{token}
+  methods: POST
+  controller: App\Infrastructure\Symfony\Controller\CRM\Customer\RestorePasswordPostController::view

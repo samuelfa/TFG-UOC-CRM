@@ -3,11 +3,13 @@
 namespace App\Domain\Employee;
 
 use App\Domain\Repository;
+use App\Domain\ValueObject\EmailAddress;
 use App\Domain\ValueObject\NIF;
 
 interface ManagerRepository extends Repository
 {
     public function findOneByNif(NIF $nif): ?Manager;
+    public function findOneByEmailAddress(EmailAddress $emailAddress): ?Manager;
 
     /**
      * @return Manager[]

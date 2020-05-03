@@ -37,6 +37,18 @@
         <source>View customer %name%</source>
         <target>View customer %name%</target>
       </trans-unit>
+      <trans-unit id="0dEDprw" resname="this link is valid until %expiresAt%">
+        <source>this link is valid until %expiresAt%</source>
+        <target>this link is valid until %expiresAt%</target>
+      </trans-unit>
+      <trans-unit id="uBc5ocZ" resname="Edit category %name%">
+        <source>Edit category %name%</source>
+        <target>Edit category %name%</target>
+      </trans-unit>
+      <trans-unit id=".VLTBSF" resname="Edit activity %name%">
+        <source>Edit activity %name%</source>
+        <target>Edit activity %name%</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
