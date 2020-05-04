@@ -5,15 +5,21 @@ namespace App\Domain\Category;
 
 class Category
 {
-    private int $id;
+    private ?int $id;
     private string $name;
 
-    public function __construct(string $name)
+    public function __construct(?int $id, string $name)
     {
+        $this->id = $id;
         $this->name = $name;
     }
 
-    public function id(): int
+    public static function create(string $name): self
+    {
+        return new self(null, $name);
+    }
+
+    public function id(): ?int
     {
         return $this->id;
     }

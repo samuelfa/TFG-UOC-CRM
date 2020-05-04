@@ -7,14 +7,15 @@ use App\Domain\Category\Category;
 
 class Activity
 {
-    private int $id;
+    private ?int $id;
     private string $name;
     private Category $category;
     private \DateTime $startAt;
     private \DateTime $finishAt;
 
-    public function __construct(string $name, \DateTime $startAt, \DateTime $finishAt, Category $category)
+    public function __construct(?int $id, string $name, \DateTime $startAt, \DateTime $finishAt, Category $category)
     {
+        $this->id = $id;
         $this->name = $name;
         $this->startAt = $startAt;
         $this->finishAt = $finishAt;
@@ -24,6 +25,7 @@ class Activity
     public static function create(string $name, \DateTime $startAt, \DateTime $finishAt, Category $category): self
     {
         return new self(
+            null,
             $name,
             $startAt,
             $finishAt,
@@ -31,7 +33,7 @@ class Activity
         );
     }
 
-    public function id(): int
+    public function id(): ?int
     {
         return $this->id;
     }
