@@ -28,7 +28,7 @@ class CategoryCreateService implements TransactionalService
             throw new AlreadyExistsCategory($name);
         }
 
-        $category = new Category($name);
+        $category = Category::create($name);
 
         $this->repository->save($category);
 
