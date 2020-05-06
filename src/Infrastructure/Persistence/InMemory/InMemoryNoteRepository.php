@@ -24,19 +24,23 @@ class InMemoryNoteRepository implements NoteRepository
         }
     }
 
-    public function save(Note $activity): void
+    public function save(Note $note): void
     {
-        $this->list[$activity->id()] = $activity;
+        $this->list[$note->id()] = $note;
     }
 
-    public function remove(Note $activity): void
+    public function remove(Note $note): void
     {
-        unset($this->list[$activity->id()]);
+        unset($this->list[$note->id()]);
     }
 
     public function flush(): void
     {}
 
+    /**
+     * @param Familiar $familiar
+     * @return Note[]
+     */
     public function findByFamiliar(Familiar $familiar): array
     {
         $list = [];

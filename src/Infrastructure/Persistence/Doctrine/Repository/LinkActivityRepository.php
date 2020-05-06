@@ -27,9 +27,9 @@ class LinkActivityRepository extends ServiceEntityRepository implements LinkActi
         $this->_em->flush();
     }
 
-    public function remove(LinkActivity $linkActivity): void
+    public function remove(LinkActivity $linkLinkActivity): void
     {
-        $this->_em->remove($linkActivity);
+        $this->_em->remove($linkLinkActivity);
     }
 
     /**

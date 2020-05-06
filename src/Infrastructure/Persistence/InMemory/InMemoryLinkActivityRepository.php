@@ -29,14 +29,17 @@ class InMemoryLinkActivityRepository implements LinkActivityRepository
         $this->list[$activity->id()] = $activity;
     }
 
-    public function remove(LinkActivity $activity): void
+    public function remove(LinkActivity $linkActivity): void
     {
-        unset($this->list[$activity->id()]);
+        unset($this->list[$linkActivity->id()]);
     }
 
     public function flush(): void
     {}
 
+    /**
+     * @return LinkActivity[]
+     */
     public function findByFamiliar(Familiar $familiar): array
     {
         $list = [];

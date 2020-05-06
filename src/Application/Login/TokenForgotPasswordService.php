@@ -26,7 +26,7 @@ class TokenForgotPasswordService
         if(!$token->isActive()){
             $this->repository->remove($token);
             $this->repository->flush();
-            throw new ForgotPasswordEmailNotFound($value);
+            throw new ForgotPasswordEmailExpired($value);
         }
         return $token;
     }

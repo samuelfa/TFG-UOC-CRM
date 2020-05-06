@@ -15,19 +15,18 @@ use App\Infrastructure\Persistence\InMemory\InMemoryCompanyRepository;
 use App\Infrastructure\Symfony\Event\Company\CompanyEventDispatcher;
 use PHPUnit\Framework\TestCase;
 use Psr\EventDispatcher\EventDispatcherInterface;
+use Test\Application\DummyDispatcher;
 
 class CreateCompanyServiceTest extends TestCase
 {
+    private EventDispatcherInterface $dispatcher;
     private CompanyRepository $repository;
     private CreateCompanyService $handler;
 
     protected function setUp(): void
     {
-        $dispatcher = new class implements EventDispatcherInterface {
-            public function dispatch(object $event): void
-            {}
-        };
-        $companyDispatcher = new CompanyEventDispatcher($dispatcher);
+        $this->dispatcher = new DummyDispatcher();
+        $companyDispatcher = new CompanyEventDispatcher($this->dispatcher);
         $this->repository = new InMemoryCompanyRepository([]);
         $this->handler = new CreateCompanyService($this->repository, $companyDispatcher);
     }
@@ -60,6 +59,7 @@ class CreateCompanyServiceTest extends TestCase
         $this->assertEquals($dto->name(), $company->name());
         $this->assertEquals($dto->emailAddress()->value(), $company->emailAddress()->value());
         $this->assertInstanceOf($this->handler->subscribeTo(), $dto);
+        $this->assertEquals(1, $this->dispatcher->total());
     }
 
     public function testFailWhenNifIsInvalid(): void

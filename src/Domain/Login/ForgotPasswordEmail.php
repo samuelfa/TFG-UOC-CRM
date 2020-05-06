@@ -25,12 +25,6 @@ class ForgotPasswordEmail
         return new self($emailAddress, self::password($emailAddress), new \DateTimeImmutable());
     }
 
-    public function validate(string $hash): bool
-    {
-        $hash = base64_decode($hash);
-        return password_verify($this->token, $hash);
-    }
-
     public function hash(): string
     {
         return base64_encode($this->token);

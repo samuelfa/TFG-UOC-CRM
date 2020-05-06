@@ -29,14 +29,17 @@ class InMemoryEmailRepository implements EmailRepository
         $this->list[$activity->id()] = $activity;
     }
 
-    public function remove(Email $activity): void
+    public function remove(Email $email): void
     {
-        unset($this->list[$activity->id()]);
+        unset($this->list[$email->id()]);
     }
 
     public function flush(): void
     {}
 
+    /**
+     * @return Email[]
+     */
     public function findByFamiliar(Familiar $familiar): array
     {
         $list = [];

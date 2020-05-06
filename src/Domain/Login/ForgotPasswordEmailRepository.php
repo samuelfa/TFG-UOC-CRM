@@ -10,6 +10,6 @@ interface ForgotPasswordEmailRepository extends Repository
 {
     public function findOneByToken(string $token): ?ForgotPasswordEmail;
     public function findOneByEmailAddress(EmailAddress $emailAddress): ?ForgotPasswordEmail;
-    public function save(ForgotPasswordEmail $familiar): void;
-    public function remove(ForgotPasswordEmail $familiar): void;
+    public function save(ForgotPasswordEmail $forgotPasswordEmail): void;
+    public function remove(ForgotPasswordEmail $forgotPasswordEmail): void;
 }
