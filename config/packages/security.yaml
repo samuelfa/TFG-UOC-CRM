@@ -49,5 +49,6 @@ security:
         - { path: '^/crm/customer', roles: ROLE_WORKER }
         - { path: '^/crm/familiar/create', roles: ROLE_WORKER }
         - { path: '^/crm/familiar/{nif}/edit', roles: ROLE_WORKER }
+        - { path: '^/crm/familiar/{nif}/email', roles: ROLE_WORKER }
         - { path: '^/crm/familiar', roles: ROLE_USER }
         - { path: '^/crm',          roles: ROLE_USER }

@@ -15,9 +15,11 @@
     {% endfor %}
 
     <div class="mb-3">
+        {% if is_granted('ROLE_WORKER') %}
         <a href="{{ url('crm_familiar_send_email', {'nif': familiar.nif}) }}">
             <button type="button" class="btn btn-info btn-lg"><i class="fas fa-envelope"></i> {% trans %}Send email{% endtrans %}</button>
         </a>
+        {% endif %}
         <a href="{{ url('crm_familiar_link_activity', {'nif': familiar.nif}) }}">
             <button type="button" class="btn btn-danger btn-lg"><i class="fas fa-hiking"></i> {% trans %}Add to activity{% endtrans %}</button>
         </a>
