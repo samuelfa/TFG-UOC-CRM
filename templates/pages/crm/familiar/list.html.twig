@@ -64,6 +64,7 @@
                             <td>
                                 <a href="{{ url('crm_familiar_view', {'nif': familiar.nif}) }}" class="btn btn-info mb-2"><i class="fas fa-eye"></i> {% trans %}View{% endtrans %}</a>
                                 <a href="{{ url('crm_familiar_edit', {'nif': familiar.nif}) }}" class="btn btn-info mb-2"><i class="fas fa-edit"></i> {% trans %}Edit{% endtrans %}</a>
+                                <a href="{{ url('crm_familiar_delete', {'nif': familiar.nif}) }}" data-toggle="modal" data-target="#removeElementModal" class="btn btn-danger mb-2"><i class="fas fa-trash"></i> {% trans %}Remove{% endtrans %}</a>
                             </td>
                         </tr>
                     {% else %}

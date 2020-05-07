@@ -33,6 +33,8 @@ crm_familiar_delete:
   methods: GET
   controller: App\Infrastructure\Symfony\Controller\CRM\Familiar\DeleteGetController::view
 
+## Actions
+
 crm_familiar_send_email:
   path: /crm/familiar/{nif}/email
   methods: GET
@@ -52,6 +54,11 @@ crm_familiar_link_activity_post:
   path: /crm/familiar/{nif}/activity
   methods: POST
   controller: App\Infrastructure\Symfony\Controller\CRM\Familiar\Action\LinkActivityPostController::view
+
+crm_familiar_link_activity_delete:
+  path: /crm/familiar/{nif}/activity/{id}/delete
+  methods: GET
+  controller: App\Infrastructure\Symfony\Controller\CRM\Familiar\Action\DeleteLinkActivityGetController::view
 
 crm_familiar_add_note:
   path: /crm/familiar/{nif}/note

@@ -65,6 +65,7 @@
                             <td>
                                 <a href="{{ url('crm_manager_view', {'nif': manager.nif}) }}" class="btn btn-info mb-2"><i class="fas fa-eye"></i> {% trans %}View{% endtrans %}</a>
                                 <a href="{{ url('crm_manager_edit', {'nif': manager.nif}) }}" class="btn btn-info mb-2"><i class="fas fa-edit"></i> {% trans %}Edit{% endtrans %}</a>
+                                <a href="{{ url('crm_manager_delete', {'nif': manager.nif}) }}" data-toggle="modal" data-target="#removeElementModal" class="btn btn-danger mb-2"><i class="fas fa-trash"></i> {% trans %}Remove{% endtrans %}</a>
                             </td>
                         </tr>
                     {% else %}

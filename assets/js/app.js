@@ -12,6 +12,10 @@ $(document).ready(function() {
     adminHandler().registerEvents();
     $('#dataTable').DataTable();
     $('select').selectpicker();
+    $('#removeElementModal').on('show.bs.modal', function(event){
+        var link = $(event.relatedTarget).attr('href');
+        $(event.currentTarget).find('a.btn-danger').attr('href', link);
+    });
 });
 
 console.log('Hello Webpack Encore! Edit me in assets/js/app.js');

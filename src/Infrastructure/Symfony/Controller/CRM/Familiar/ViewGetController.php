@@ -12,10 +12,12 @@ class ViewGetController extends WebController
 {
     public function view(string $nif, FamiliarViewService $service, TimelineService $timelineService): Response
     {
+        $user = $this->getUser();
         $dto = new ViewFamiliarDTO($nif);
         $familiar = $service->__invoke($dto);
         $timeline = $timelineService->__invoke($familiar);
         return $this->render('pages/crm/familiar/view.html.twig', [
+            'user'     => $user,
             'familiar' => $familiar,
             'timeline' => $timeline
         ]);

@@ -32,17 +32,19 @@
         <div class="col-xl-3 col-lg-4">
             <div class="card text-center">
                 <div class="card-body">
+                    {% if is_granted('ROLE_WORKER') %}
                     <div class="dropdown float-right">
                         <a href="#" class="dropdown-toggle arrow-none card-drop" data-toggle="dropdown" aria-expanded="false">
                             <i class="dripicons-dots-3"></i>
                         </a>
-                        <div class="dropdown-menu dropdown-menu-right" style="">
+                        <div class="dropdown-menu dropdown-menu-right">
                             <!-- item-->
                             <a href="{{ url('crm_familiar_edit', {'nif': familiar.nif})}}" class="dropdown-item"><i class="fas fa-edit"></i> {% trans %}Edit{% endtrans %}</a>
                             <!-- item-->
-                            <a href="#" data-toggle="modal" data-target="#removeElementModal" class="dropdown-item"><i class="fas fa-trash"></i> {% trans %}Remove{% endtrans %}</a>
+                            <a href="{{ url('crm_familiar_delete', {'nif': familiar.nif}) }}" data-toggle="modal" data-target="#removeElementModal" class="dropdown-item"><i class="fas fa-trash"></i> {% trans %}Remove{% endtrans %}</a>
                         </div>
                     </div>
+                    {% endif %}
                     <span>
                         {% if familiar.portrait is empty %}
                             <i class="fas fa-user-circle"></i>
@@ -92,24 +94,6 @@
                     </ul>
 
                 </div> <!-- end card body -->
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="removeElementModal" tabindex="-1" role="dialog" aria-labelledby="removeElementModal" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">{% trans %}Are you sure?{% endtrans %}</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">{% trans %}Select "Remove" below if you are ready to delete the familiar.{% endtrans %}</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">{% trans %}Cancel{% endtrans %}</button>
-                    <a class="btn btn-danger" href="{{ url('crm_familiar_delete', {'nif': familiar.nif}) }}">{% trans %}Remove{% endtrans %}</a>
-                </div>
             </div>
         </div>
     </div>

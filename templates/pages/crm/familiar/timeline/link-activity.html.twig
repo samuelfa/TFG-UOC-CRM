@@ -2,6 +2,16 @@
 <li>
     <div class="timeline-badge activity"><i class="fas fa-hiking"></i></div>
     <div class="timeline-panel">
+        {% if user is instanceof('App\\Domain\\Employee\\Employee') or not item.activity.started %}
+            <div class="dropdown float-right">
+                <a href="#" class="dropdown-toggle arrow-none card-drop" data-toggle="dropdown" aria-expanded="false">
+                    <i class="dripicons-dots-3"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a href="{{ url('crm_familiar_link_activity_delete', {'nif': familiar.nif, 'id': item.id}) }}" data-toggle="modal" data-target="#removeElementModal" class="dropdown-item"><i class="fas fa-trash"></i> {% trans %}Remove{% endtrans %}</a>
+                </div>
+            </div>
+        {% endif %}
         <div class="timeline-heading">
             <p>
                 <small class="text-muted">

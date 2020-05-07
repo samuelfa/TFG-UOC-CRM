@@ -65,4 +65,9 @@ class Activity
         $this->finishAt = $finishAt;
         $this->category = $category;
     }
+
+    public function isStarted(): bool
+    {
+        return $this->startAt->getTimestamp() < time();
+    }
 }
