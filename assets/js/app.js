@@ -10,7 +10,13 @@ $(document).ready(function() {
     $('[data-toggle="popover"]').popover();
     registerHandler().registerEvents();
     adminHandler().registerEvents();
-    $('#dataTable').DataTable();
+    $('#dataTable').DataTable( {
+        "order": [],
+        "columnDefs": [ {
+            "targets"  : 'no-sort',
+            "orderable": false,
+        }]
+    });
     $('select').selectpicker();
     $('#removeElementModal').on('show.bs.modal', function(event){
         var link = $(event.relatedTarget).attr('href');
