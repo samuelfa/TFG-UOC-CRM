@@ -19,7 +19,8 @@ $(document).ready(function() {
             center: 'title',
             right: 'today prevYear,prev,next,nextYear'
         },
-        themeSystem: 'bootstrap'
+        themeSystem: 'bootstrap',
+        events: 'calendar/events'
     });
 
     calendar.render();

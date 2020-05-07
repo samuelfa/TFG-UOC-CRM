@@ -74,3 +74,8 @@ crm_familiar_calendar:
   path: /crm/familiar/{nif}/calendar
   methods: GET
   controller: App\Infrastructure\Symfony\Controller\CRM\Familiar\Action\CalendarGetController::view
+
+crm_familiar_calendar_events:
+  path: /crm/familiar/{nif}/calendar/events
+  methods: GET
+  controller: App\Infrastructure\Symfony\Controller\CRM\Familiar\Action\CalendarEventsGetController::view

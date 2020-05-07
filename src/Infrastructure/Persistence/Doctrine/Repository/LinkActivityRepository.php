@@ -4,6 +4,7 @@
 namespace App\Infrastructure\Persistence\Doctrine\Repository;
 
 
+use App\Domain\Activity\Activity;
 use App\Domain\Familiar\Action\LinkActivity;
 use App\Domain\Familiar\Action\LinkActivityRepository as LinkActivityRepositoryInterface;
 use App\Domain\Familiar\Familiar;
@@ -47,5 +48,26 @@ class LinkActivityRepository extends ServiceEntityRepository implements LinkActi
         /** @var null|LinkActivity $entity */
         $entity = $this->find($id);
         return $entity;
+    }
+
+    public function findByFamiliarAndDates(Familiar $familiar, \DateTime $start, \DateTime $end): array
+    {
+        $queryBuilder = $this->createQueryBuilder('events');
+        $queryBuilder
+            ->select('activities')
+            ->innerJoin(Activity::class, 'activities', 'activities.id = events.activity')
+            ->where('events.familiar = :familiar')
+            ->andWhere(
+                $queryBuilder->expr()->orX(
+                    $queryBuilder->expr()->between('activities.startAt', ':start_filter', ':end_filter'),
+                    $queryBuilder->expr()->between('activities.finishAt', ':start_filter', ':end_filter')
+                )
+            )
+            ->setParameter('familiar', $familiar)
+            ->setParameter('start_filter', $start)
+            ->setParameter('end_filter', $end)
+        ;
+
+        return $queryBuilder->getQuery()->getResult();
     }
 }
