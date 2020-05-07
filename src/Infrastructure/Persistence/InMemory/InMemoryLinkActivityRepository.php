@@ -53,4 +53,9 @@ class InMemoryLinkActivityRepository implements LinkActivityRepository
 
         return $list;
     }
+
+    public function findOneById(int $id): ?LinkActivity
+    {
+        return $this->list[$id] ?? null;
+    }
 }

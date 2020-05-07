@@ -21,6 +21,10 @@
         </div>
         <div class="timeline-body">
             <p>{{ item.activity.name }}</p>
+            <small class="text-muted">
+                {% trans with {'%date%': item.activity.startAt|date('d/m/Y H:i')} from 'app' %}Start at %date%{% endtrans %}
+                <br />{% trans with {'%date%': item.activity.finishAt|date('d/m/Y H:i')} from 'app' %}Finish at %date%{% endtrans %}
+            </small>
         </div>
     </div>
 </li>

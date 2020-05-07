@@ -41,4 +41,11 @@ class LinkActivityRepository extends ServiceEntityRepository implements LinkActi
             'familiar' => $familiar
         ]);
     }
+
+    public function findOneById(int $id): ?LinkActivity
+    {
+        /** @var null|LinkActivity $entity */
+        $entity = $this->find($id);
+        return $entity;
+    }
 }
