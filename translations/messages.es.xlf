@@ -325,6 +325,74 @@
         <source>Login</source>
         <target>__Login</target>
       </trans-unit>
+      <trans-unit id="Ht4bldn" resname="Add a new note">
+        <source>Add a new note</source>
+        <target>__Add a new note</target>
+      </trans-unit>
+      <trans-unit id="L3dmip3" resname="Message">
+        <source>Message</source>
+        <target>__Message</target>
+      </trans-unit>
+      <trans-unit id="xj62cgx" resname="Private">
+        <source>Private</source>
+        <target>__Private</target>
+      </trans-unit>
+      <trans-unit id="1dCjC1F" resname="Calendar">
+        <source>Calendar</source>
+        <target>__Calendar</target>
+      </trans-unit>
+      <trans-unit id="7KMTFhG" resname="Sent an email">
+        <source>Sent an email</source>
+        <target>__Sent an email</target>
+      </trans-unit>
+      <trans-unit id="aJcSg4Q" resname="Subject">
+        <source>Subject</source>
+        <target>__Subject</target>
+      </trans-unit>
+      <trans-unit id="UfrJhel" resname="Recipient">
+        <source>Recipient</source>
+        <target>__Recipient</target>
+      </trans-unit>
+      <trans-unit id="bMqmQVt" resname="Body">
+        <source>Body</source>
+        <target>__Body</target>
+      </trans-unit>
+      <trans-unit id="pUry5Jz" resname="Link to an activity">
+        <source>Link to an activity</source>
+        <target>__Link to an activity</target>
+      </trans-unit>
+      <trans-unit id="ONoVBcq" resname="Activity">
+        <source>Activity</source>
+        <target>__Activity</target>
+      </trans-unit>
+      <trans-unit id="pqMtvFY" resname="Link">
+        <source>Link</source>
+        <target>__Link</target>
+      </trans-unit>
+      <trans-unit id="4GIstok" resname="Send email">
+        <source>Send email</source>
+        <target>__Send email</target>
+      </trans-unit>
+      <trans-unit id="6qfVvXu" resname="Add to activity">
+        <source>Add to activity</source>
+        <target>__Add to activity</target>
+      </trans-unit>
+      <trans-unit id="MiwOE_9" resname="Add a note">
+        <source>Add a note</source>
+        <target>__Add a note</target>
+      </trans-unit>
+      <trans-unit id="fOx45E0" resname="Restore Password">
+        <source>Restore Password</source>
+        <target>__Restore Password</target>
+      </trans-unit>
+      <trans-unit id="p24TuYO" resname="Restore">
+        <source>Restore</source>
+        <target>__Restore</target>
+      </trans-unit>
+      <trans-unit id="ENPo070" resname="Select &quot;Remove&quot; below if you are ready to delete it.">
+        <source>Select "Remove" below if you are ready to delete it.</source>
+        <target>__Select "Remove" below if you are ready to delete it.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

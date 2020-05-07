@@ -49,6 +49,22 @@
         <source>Edit activity %name%</source>
         <target>Edit activity %name%</target>
       </trans-unit>
+      <trans-unit id="4qsdumK" resname="Calendar for %name%">
+        <source>Calendar for %name%</source>
+        <target>Calendar for %name%</target>
+      </trans-unit>
+      <trans-unit id="jLCP4pq" resname="Created at %date%">
+        <source>Created at %date%</source>
+        <target>Created at %date%</target>
+      </trans-unit>
+      <trans-unit id="Zd_xZMY" resname="Start at %date%">
+        <source>Start at %date%</source>
+        <target>Start at %date%</target>
+      </trans-unit>
+      <trans-unit id="AZVOOUf" resname="Finish at %date%">
+        <source>Finish at %date%</source>
+        <target>Finish at %date%</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
