@@ -23,5 +23,3 @@ $(document).ready(function() {
         $(event.currentTarget).find('a.btn-danger').attr('href', link);
     });
 });
-
-console.log('Hello Webpack Encore! Edit me in assets/js/app.js');

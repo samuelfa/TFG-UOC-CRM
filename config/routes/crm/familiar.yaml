@@ -69,3 +69,8 @@ crm_familiar_add_note_post:
   path: /crm/familiar/{nif}/note
   methods: POST
   controller: App\Infrastructure\Symfony\Controller\CRM\Familiar\Action\AddNotePostController::view
+
+crm_familiar_calendar:
+  path: /crm/familiar/{nif}/calendar
+  methods: GET
+  controller: App\Infrastructure\Symfony\Controller\CRM\Familiar\Action\CalendarGetController::view

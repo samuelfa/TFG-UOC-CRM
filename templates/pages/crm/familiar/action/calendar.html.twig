@@ -1,0 +1,15 @@
+{% extends "partials/crm.html.twig" %}
+
+{% block title %}{% trans with {'%name%': familiar.name} from 'app' %}Calendar for %name%{% endtrans %}{% endblock %}
+
+{% block breadcrumb_parent_url %}{{ url('crm_familiar_view', {'nif': familiar.nif}) }}{% endblock %}
+{% block breadcrumb_parent_name %}{{ familiar.fullName }}{% endblock %}
+{% block breadcrumb_section_name %}{% trans %}Calendar{% endtrans %}{% endblock %}
+
+{% block content %}
+    <div id='calendar'></div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('calendar') }}
+{% endblock %}

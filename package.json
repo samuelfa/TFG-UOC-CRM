@@ -18,6 +18,11 @@
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.13.0",
+        "@fullcalendar/bootstrap": "^4.4.0",
+        "@fullcalendar/core": "^4.0",
+        "@fullcalendar/daygrid": "^4.0",
+        "@fullcalendar/list": "^4.0",
+        "@fullcalendar/timegrid": "^4.0",
         "bootstrap-select": "^1.13.16",
         "datatables.net-bs4": "^1.10.20",
         "node-sass": "^4.14.0",
