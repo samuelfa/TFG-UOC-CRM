@@ -25,6 +25,10 @@ register_post:
   methods: POST
   controller: App\Infrastructure\Symfony\Controller\Landing\Register\RegisterPostController::view
 
+language:
+  path: /language/{locale}
+  controller: App\Infrastructure\Symfony\Controller\Landing\LanguageController::view
+
 index:
   path: /
   controller: App\Infrastructure\Symfony\Controller\Landing\HomeController::view

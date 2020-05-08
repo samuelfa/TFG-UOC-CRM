@@ -21,6 +21,8 @@ $brand-primary: darken(#428bca, 20%);
 @import '../../node_modules/@fullcalendar/list/main.css';
 @import '../../node_modules/@fullcalendar/bootstrap/main.css';
 
+@import "~flag-icon-css/sass/flag-icon";
+
 table.table {
   width: 100%;
 }
@@ -56,4 +58,12 @@ table.table {
 
 .mb-3, .my-3 {
   margin-bottom: 1.5rem!important;
+}
+
+.flag-icon {
+  opacity: 0.3;
+}
+
+.flag-icon.active {
+  opacity: 1;
 }

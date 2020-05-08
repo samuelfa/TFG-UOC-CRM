@@ -18,6 +18,14 @@
 <body class="bg-dark">
     <div class="container">
         <div class="container">
+            <div>
+                <a href="{{ url('language', {'locale': 'en'}) }}">
+                    <span class="flag-icon flag-icon-us {% if app.request.locale == 'en' %}active{% endif %}"></span>
+                </a>
+                <a href="{{ url('language', {'locale': 'es'}) }}">
+                    <span class="flag-icon flag-icon-es {% if app.request.locale == 'es' %}active{% endif %}"></span>
+                </a>
+            </div>
             {% block content %}{% endblock %}
         </div>
     </div>

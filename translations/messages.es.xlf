@@ -7,391 +7,391 @@
     <body>
       <trans-unit id="yy8A0eV" resname="Page Not Found">
         <source>Page Not Found</source>
-        <target>__Page Not Found</target>
+        <target>Página no encontrada</target>
       </trans-unit>
       <trans-unit id="rz.LrXR" resname="It looks like you found a glitch in the matrix...">
         <source>It looks like you found a glitch in the matrix...</source>
-        <target>__It looks like you found a glitch in the matrix...</target>
+        <target>Parece que encontraste un fallo en matrix...</target>
       </trans-unit>
       <trans-unit id="dsVQX.L" resname="Back to home">
         <source>Back to home</source>
-        <target>__Back to home</target>
+        <target>Volver a la portada</target>
       </trans-unit>
       <trans-unit id="b_H7HhT" resname="Choose namespace">
         <source>Choose namespace</source>
-        <target>__Choose namespace</target>
+        <target>Selecciona espacio de trabajo</target>
       </trans-unit>
       <trans-unit id="QyMCVri" resname="Connect to a namespace">
         <source>Connect to a namespace</source>
-        <target>__Connect to a namespace</target>
+        <target>Conectar al espacio de trabajo</target>
       </trans-unit>
       <trans-unit id="xOTnq9o" resname="Namespace">
         <source>Namespace</source>
-        <target>__Namespace</target>
+        <target>Espacio de trabajo</target>
       </trans-unit>
       <trans-unit id="MfvvFiW" resname="Continue">
         <source>Continue</source>
-        <target>__Continue</target>
+        <target>Continuar</target>
       </trans-unit>
       <trans-unit id="vcFY8si" resname="Register an Account">
         <source>Register an Account</source>
-        <target>__Register an Account</target>
+        <target>Registrar una cuenta</target>
       </trans-unit>
       <trans-unit id="hgM.daT" resname="Create an account">
         <source>Create an account</source>
-        <target>__Create an account</target>
+        <target>Crear una cuenta</target>
       </trans-unit>
       <trans-unit id="bfraE9L" resname="Company name">
         <source>Company name</source>
-        <target>__Company name</target>
+        <target>Nombre de empresa</target>
       </trans-unit>
       <trans-unit id="8kiP1O9" resname="Email address">
         <source>Email address</source>
-        <target>__Email address</target>
+        <target>Dirección de email</target>
       </trans-unit>
       <trans-unit id="zL7GAzT" resname="NIF">
         <source>NIF</source>
-        <target>__NIF</target>
+        <target>NIF</target>
       </trans-unit>
       <trans-unit id="588_9PF" resname="Password">
         <source>Password</source>
-        <target>__Password</target>
+        <target>Contraseña</target>
       </trans-unit>
       <trans-unit id="WsJl85a" resname="Confirm password">
         <source>Confirm password</source>
-        <target>__Confirm password</target>
+        <target>Confirmar contraseña</target>
       </trans-unit>
       <trans-unit id="8aaFFdy" resname="Password and confirm password must be equals">
         <source>Password and confirm password must be equals</source>
-        <target>__Password and confirm password must be equals</target>
+        <target>Las contraseñas debes ser iguales</target>
       </trans-unit>
       <trans-unit id="v9QCsvb" resname="Sign in">
         <source>Sign in</source>
-        <target>__Sign in</target>
+        <target>Identificarse</target>
       </trans-unit>
       <trans-unit id="OnhpU4i" resname="Home">
         <source>Home</source>
-        <target>__Home</target>
+        <target>Portada</target>
       </trans-unit>
       <trans-unit id="a2IWpRN" resname="Error 404">
         <source>Error 404</source>
-        <target>__Error 404</target>
+        <target>Error 404</target>
       </trans-unit>
       <trans-unit id="Z7aWRoY" resname="Dashboard">
         <source>Dashboard</source>
-        <target>__Dashboard</target>
+        <target>Inicio</target>
       </trans-unit>
       <trans-unit id="l7odOU_" resname="Back to Dashboard">
         <source>Back to Dashboard</source>
-        <target>__Back to Dashboard</target>
+        <target>Volver al inicio</target>
       </trans-unit>
       <trans-unit id="VsLJFiO" resname="Managers">
         <source>Managers</source>
-        <target>__Managers</target>
+        <target>Gestores</target>
       </trans-unit>
       <trans-unit id=".0Lu9rH" resname="Nif">
         <source>Nif</source>
-        <target>__Nif</target>
+        <target>Nif</target>
       </trans-unit>
       <trans-unit id="3NHVIj9" resname="Name">
         <source>Name</source>
-        <target>__Name</target>
+        <target>Nombre</target>
       </trans-unit>
       <trans-unit id="92LaBfT" resname="Surname">
         <source>Surname</source>
-        <target>__Surname</target>
+        <target>Apellidos</target>
       </trans-unit>
       <trans-unit id="xhOKv6a" resname="Birthday">
         <source>Birthday</source>
-        <target>__Birthday</target>
+        <target>Fecha de cumpleaños</target>
       </trans-unit>
       <trans-unit id="9xCUwwF" resname="Portrait">
         <source>Portrait</source>
-        <target>__Portrait</target>
+        <target>Imagen</target>
       </trans-unit>
       <trans-unit id="RkxP.QG" resname="Edit">
         <source>Edit</source>
-        <target>__Edit</target>
+        <target>Editar</target>
       </trans-unit>
       <trans-unit id="GXZu1sy" resname="Cancel">
         <source>Cancel</source>
-        <target>__Cancel</target>
+        <target>Cancelar</target>
       </trans-unit>
       <trans-unit id="8.nXsqX" resname="List of managers">
         <source>List of managers</source>
-        <target>__List of managers</target>
+        <target>Lista de gestores</target>
       </trans-unit>
       <trans-unit id="byAvVKe" resname="List">
         <source>List</source>
-        <target>__List</target>
+        <target>Lista</target>
       </trans-unit>
       <trans-unit id="n9coxmy" resname="Add">
         <source>Add</source>
-        <target>__Add</target>
+        <target>Añadir</target>
       </trans-unit>
       <trans-unit id="lpzL089" resname="Email">
         <source>Email</source>
-        <target>__Email</target>
+        <target>Email</target>
       </trans-unit>
       <trans-unit id="3Mg5pAF" resname="View">
         <source>View</source>
-        <target>__View</target>
+        <target>Ver</target>
       </trans-unit>
       <trans-unit id="Oak3w2g" resname="Empty list">
         <source>Empty list</source>
-        <target>__Empty list</target>
+        <target>Lista vacia</target>
       </trans-unit>
       <trans-unit id="w4EvxKy" resname="Remove">
         <source>Remove</source>
-        <target>__Remove</target>
+        <target>Borrar</target>
       </trans-unit>
       <trans-unit id="iyCF903" resname="Manager">
         <source>Manager</source>
-        <target>__Manager</target>
+        <target>Gestor</target>
       </trans-unit>
       <trans-unit id="8HYsTzv" resname="Are you sure?">
         <source>Are you sure?</source>
-        <target>__Are you sure?</target>
+        <target>¿Estas seguro?</target>
       </trans-unit>
       <trans-unit id="43U_OSX" resname="Select &quot;Remove&quot; below if you are ready to delete the manager.">
         <source>Select "Remove" below if you are ready to delete the manager.</source>
-        <target>__Select "Remove" below if you are ready to delete the manager.</target>
+        <target>Seleccione la opción "Borrar" para borrar el gestor</target>
       </trans-unit>
       <trans-unit id="NgJai8." resname="Add a new manager">
         <source>Add a new manager</source>
-        <target>__Add a new manager</target>
+        <target>Añadir un nuevo gestor</target>
       </trans-unit>
       <trans-unit id="R1lJisK" resname="Create">
         <source>Create</source>
-        <target>__Create</target>
+        <target>Crear</target>
       </trans-unit>
       <trans-unit id="KzZxOoI" resname="Familiars">
         <source>Familiars</source>
-        <target>__Familiars</target>
+        <target>Familiares</target>
       </trans-unit>
       <trans-unit id="vzdjODq" resname="Customer">
         <source>Customer</source>
-        <target>__Customer</target>
+        <target>Cliente</target>
       </trans-unit>
       <trans-unit id="Si.Bag2" resname="List of familiars">
         <source>List of familiars</source>
-        <target>__List of familiars</target>
+        <target>Lista de familiares</target>
       </trans-unit>
       <trans-unit id="aMJua4f" resname="Familiar">
         <source>Familiar</source>
-        <target>__Familiar</target>
+        <target>Familiar</target>
       </trans-unit>
       <trans-unit id="Zeikz8q" resname="Select &quot;Remove&quot; below if you are ready to delete the familiar.">
         <source>Select "Remove" below if you are ready to delete the familiar.</source>
-        <target>__Select "Remove" below if you are ready to delete the familiar.</target>
+        <target>Seleccione la opción "Borrar" para borrar el familiar.</target>
       </trans-unit>
       <trans-unit id="hAj8LRH" resname="Add a new familiar">
         <source>Add a new familiar</source>
-        <target>__Add a new familiar</target>
+        <target>Añadir un nuevo familiar</target>
       </trans-unit>
       <trans-unit id="7spPgKG" resname="Forgot Password?">
         <source>Forgot Password?</source>
-        <target>__Forgot Password?</target>
+        <target>¿Contraseña olvidada?</target>
       </trans-unit>
       <trans-unit id="VvXiAyJ" resname="Are you customer?">
         <source>Are you customer?</source>
-        <target>__Are you customer?</target>
+        <target>¿Eres cliente?</target>
       </trans-unit>
       <trans-unit id="eh7J.mw" resname="Workers">
         <source>Workers</source>
-        <target>__Workers</target>
+        <target>Trabajadores</target>
       </trans-unit>
       <trans-unit id="90kG96v" resname="List of workers">
         <source>List of workers</source>
-        <target>__List of workers</target>
+        <target>Lista de trabajadores</target>
       </trans-unit>
       <trans-unit id="pnsEzVx" resname="Worker">
         <source>Worker</source>
-        <target>__Worker</target>
+        <target>Trabajor</target>
       </trans-unit>
       <trans-unit id="8jbMyEK" resname="Select &quot;Remove&quot; below if you are ready to delete the worker.">
         <source>Select "Remove" below if you are ready to delete the worker.</source>
-        <target>__Select "Remove" below if you are ready to delete the worker.</target>
+        <target>Seleccione la opción "Borrar" para borrar el trabajador.</target>
       </trans-unit>
       <trans-unit id="tZ65z86" resname="Add a new worker">
         <source>Add a new worker</source>
-        <target>__Add a new worker</target>
+        <target>Añadir nuevo trabajor</target>
       </trans-unit>
       <trans-unit id="qr528fT" resname="Customers">
         <source>Customers</source>
-        <target>__Customers</target>
+        <target>Clientes</target>
       </trans-unit>
       <trans-unit id="4xFEVBy" resname="List of customers">
         <source>List of customers</source>
-        <target>__List of customers</target>
+        <target>Lista de clientes</target>
       </trans-unit>
       <trans-unit id="HzvDRzF" resname="Customer sign in">
         <source>Customer sign in</source>
-        <target>__Customer sign in</target>
+        <target>Identificación de cliente</target>
       </trans-unit>
       <trans-unit id="6Pnuida" resname="Are you employee?">
         <source>Are you employee?</source>
-        <target>__Are you employee?</target>
+        <target>¿Eres empleado?</target>
       </trans-unit>
       <trans-unit id="jYeM2DI" resname="Select &quot;Remove&quot; below if you are ready to delete the customer.">
         <source>Select "Remove" below if you are ready to delete the customer.</source>
-        <target>__Select "Remove" below if you are ready to delete the customer.</target>
+        <target>Seleccione la opción "Borrar" para borrar el cliente.</target>
       </trans-unit>
       <trans-unit id="r3g9J4Q" resname="Add a new customer">
         <source>Add a new customer</source>
-        <target>__Add a new customer</target>
+        <target>Añadir nuevo cliente</target>
       </trans-unit>
       <trans-unit id="0FJ_Sz1" resname="Logout">
         <source>Logout</source>
-        <target>__Logout</target>
+        <target>Cerrar sesión</target>
       </trans-unit>
       <trans-unit id="P1aDI8t" resname="Ready to Leave?">
         <source>Ready to Leave?</source>
-        <target>__Ready to Leave?</target>
+        <target>¿Listo para cerrar sesión?</target>
       </trans-unit>
       <trans-unit id=".FUkuS8" resname="Select &quot;Logout&quot; below if you are ready to end your current session.">
         <source>Select "Logout" below if you are ready to end your current session.</source>
-        <target>__Select "Logout" below if you are ready to end your current session.</target>
+        <target>Seleccione la opción "Cerrar sesión" para finalizar su sesión actual.</target>
       </trans-unit>
       <trans-unit id="g4InJeS" resname="CRM: You request a new password!!">
         <source>CRM: You request a new password!!</source>
-        <target>__CRM: You request a new password!!</target>
+        <target>CRM: ¡¡Has solicitado una nueva contraseña!!</target>
       </trans-unit>
       <trans-unit id="mcvxpwD" resname="Hi! We got a request to generate a new password.">
         <source>Hi! We got a request to generate a new password.</source>
-        <target>__Hi! We got a request to generate a new password.</target>
+        <target>¡Hola! Hemos recibido una petición para crear una nueva contraseña.</target>
       </trans-unit>
       <trans-unit id="wICiKPn" resname="Click here to start getting a new password">
         <source>Click here to start getting a new password</source>
-        <target>__Click here to start getting a new password</target>
+        <target>Haz click aquí para comenzar a generar una nueva contraseña</target>
       </trans-unit>
       <trans-unit id="uLHYlMa" resname="Categories">
         <source>Categories</source>
-        <target>__Categories</target>
+        <target>Categorías</target>
       </trans-unit>
       <trans-unit id="EhVukhv" resname="Id">
         <source>Id</source>
-        <target>__Id</target>
+        <target>Id</target>
       </trans-unit>
       <trans-unit id="6ffveyg" resname="List of categories">
         <source>List of categories</source>
-        <target>__List of categories</target>
+        <target>Lista de categorías</target>
       </trans-unit>
       <trans-unit id="GYYhTSt" resname="Select &quot;Remove&quot; below if you are ready to delete the category.">
         <source>Select "Remove" below if you are ready to delete the category.</source>
-        <target>__Select "Remove" below if you are ready to delete the category.</target>
+        <target>Seleccione la opción "Borrar" para borrar la categoría.</target>
       </trans-unit>
       <trans-unit id="VWWAtma" resname="Add a new category">
         <source>Add a new category</source>
-        <target>__Add a new category</target>
+        <target>Añadir nueva categoría</target>
       </trans-unit>
       <trans-unit id="TQB25rT" resname="Activities">
         <source>Activities</source>
-        <target>__Activities</target>
+        <target>Actividades</target>
       </trans-unit>
       <trans-unit id="KSwG8AR" resname="Category">
         <source>Category</source>
-        <target>__Category</target>
+        <target>Categoría</target>
       </trans-unit>
       <trans-unit id="M0woT0O" resname="Start at">
         <source>Start at</source>
-        <target>__Start at</target>
+        <target>Comienza el</target>
       </trans-unit>
       <trans-unit id="3vQ_feg" resname="Finish at">
         <source>Finish at</source>
-        <target>__Finish at</target>
+        <target>Finaliza el</target>
       </trans-unit>
       <trans-unit id="Z5Z7cAj" resname="List of activities">
         <source>List of activities</source>
-        <target>__List of activities</target>
+        <target>Lista de actividades</target>
       </trans-unit>
       <trans-unit id="bjhj1Vv" resname="Select &quot;Remove&quot; below if you are ready to delete the activity.">
         <source>Select "Remove" below if you are ready to delete the activity.</source>
-        <target>__Select "Remove" below if you are ready to delete the activity.</target>
+        <target>Seleccione la opción "Borrar" para borrar la actividad.</target>
       </trans-unit>
       <trans-unit id="Rmnfd4r" resname="Add a new activity">
         <source>Add a new activity</source>
-        <target>__Add a new activity</target>
+        <target>Añadir nueva actividad</target>
       </trans-unit>
       <trans-unit id=".f1B3nr" resname="Forgot Password">
         <source>Forgot Password</source>
-        <target>__Forgot Password</target>
+        <target>Contraseña olvidada</target>
       </trans-unit>
       <trans-unit id="9vRoj.I" resname="Send">
         <source>Send</source>
-        <target>__Send</target>
+        <target>Enviar</target>
       </trans-unit>
       <trans-unit id="nWMiwfT" resname="Login">
         <source>Login</source>
-        <target>__Login</target>
+        <target>Identificarse</target>
       </trans-unit>
       <trans-unit id="Ht4bldn" resname="Add a new note">
         <source>Add a new note</source>
-        <target>__Add a new note</target>
+        <target>Añadir nueva nota</target>
       </trans-unit>
       <trans-unit id="L3dmip3" resname="Message">
         <source>Message</source>
-        <target>__Message</target>
+        <target>Mensaje</target>
       </trans-unit>
       <trans-unit id="xj62cgx" resname="Private">
         <source>Private</source>
-        <target>__Private</target>
+        <target>Privada</target>
       </trans-unit>
       <trans-unit id="1dCjC1F" resname="Calendar">
         <source>Calendar</source>
-        <target>__Calendar</target>
+        <target>Calendario</target>
       </trans-unit>
       <trans-unit id="7KMTFhG" resname="Sent an email">
         <source>Sent an email</source>
-        <target>__Sent an email</target>
+        <target>Enviar email</target>
       </trans-unit>
       <trans-unit id="aJcSg4Q" resname="Subject">
         <source>Subject</source>
-        <target>__Subject</target>
+        <target>Asunto</target>
       </trans-unit>
       <trans-unit id="UfrJhel" resname="Recipient">
         <source>Recipient</source>
-        <target>__Recipient</target>
+        <target>Destinatario</target>
       </trans-unit>
       <trans-unit id="bMqmQVt" resname="Body">
         <source>Body</source>
-        <target>__Body</target>
+        <target>Cuerpo</target>
       </trans-unit>
       <trans-unit id="pUry5Jz" resname="Link to an activity">
         <source>Link to an activity</source>
-        <target>__Link to an activity</target>
+        <target>Enlazar con una actividad</target>
       </trans-unit>
       <trans-unit id="ONoVBcq" resname="Activity">
         <source>Activity</source>
-        <target>__Activity</target>
+        <target>Actividad</target>
       </trans-unit>
       <trans-unit id="pqMtvFY" resname="Link">
         <source>Link</source>
-        <target>__Link</target>
+        <target>Enlace</target>
       </trans-unit>
       <trans-unit id="4GIstok" resname="Send email">
         <source>Send email</source>
-        <target>__Send email</target>
+        <target>Enviar email</target>
       </trans-unit>
       <trans-unit id="6qfVvXu" resname="Add to activity">
         <source>Add to activity</source>
-        <target>__Add to activity</target>
+        <target>Añadir a la actividad</target>
       </trans-unit>
       <trans-unit id="MiwOE_9" resname="Add a note">
         <source>Add a note</source>
-        <target>__Add a note</target>
+        <target>Añadir una nota</target>
       </trans-unit>
       <trans-unit id="fOx45E0" resname="Restore Password">
         <source>Restore Password</source>
-        <target>__Restore Password</target>
+        <target>Restaurar contraseña</target>
       </trans-unit>
       <trans-unit id="p24TuYO" resname="Restore">
         <source>Restore</source>
-        <target>__Restore</target>
+        <target>Restaurar</target>
       </trans-unit>
       <trans-unit id="ENPo070" resname="Select &quot;Remove&quot; below if you are ready to delete it.">
         <source>Select "Remove" below if you are ready to delete it.</source>
-        <target>__Select "Remove" below if you are ready to delete it.</target>
+        <target>Seleccione la opción "Borrar" para borrarlo.</target>
       </trans-unit>
     </body>
   </file>
