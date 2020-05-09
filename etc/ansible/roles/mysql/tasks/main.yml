@@ -1,0 +1,22 @@
+---
+- name: enable mysql
+  service:
+    name: mysqld
+    state: restarted
+    enabled: yes
+  become: true
+
+- name: create mysql client user
+  mysql_user:
+      login_user: root
+      login_password: "{{ root_password }}"
+      name: "user"
+      password: "password"
+      priv: '*.*:ALL,GRANT'
+      state: present
+      host: '%'
+
+- name: create default database
+  mysql_db:
+    name: tfg_default
+    state: present

@@ -15,3 +15,12 @@ yarn encore production
 #symfony
 
 php bin/console lint:container
+
+
+#ansible
+
+ansible-galaxy install geerlingguy.mysql
+
+#google computer cloud
+
+gcloud compute ssh frontal

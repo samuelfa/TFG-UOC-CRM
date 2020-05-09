@@ -1,0 +1,12 @@
+---
+- name: Rollback Application
+  hosts: webservers
+  remote_user: deploy
+  vars:
+      ansistrano_deploy_to: '{{ deploy_to }}'
+      ansistrano_remove_rolled_back: no
+      ansistrano_before_setup_tasks_file: "{{ playbook_dir }}/hooks/before-setup-tasks.yml"
+      ansistrano_before_symlink_tasks_file: '{{ playbook_dir }}/hooks/before-symlink-tasks.yml'
+      ansistrano_after_symlink_tasks_file: '{{ playbook_dir }}/hooks/after-symlink-tasks.yml'
+  roles:
+  - { role: ansistrano.rollback }
