@@ -1,5 +1,5 @@
 provider "google" {
-  credentials = file("TFG-CRM-f30414610b7d.json")
+  credentials = file("credentials.json")
   project = var.project-name
   region  = var.region
   zone    = var.zone
