@@ -1,0 +1,24 @@
+---
+- name: generate SSH key "{{ssh_key_filename}}"
+  openssh_keypair:
+    path: "~/.ssh/id_rsa"
+    type: rsa
+    size: 4096
+    state: present
+    force: no
+
+- name: Add the user to www-data group
+  become: yes
+  user:
+    name: "{{ ansible_user }}"
+    groups: www-data
+    append: yes
+
+- name: Create main folder
+  become: yes
+  file:
+    path: "{{ deploy_to }}"
+    state: directory
+    owner: www-data
+    group: www-data
+    mode: 0775

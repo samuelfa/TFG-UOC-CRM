@@ -80,6 +80,12 @@ install-assets:
 translation:
 	@docker-compose exec -T $(PHP_SERVICE) php bin/console translation:update --force $(filter-out $@,$(MAKECMDGOALS));
 
+deploy:
+	@ansible-playbook -i ./etc/ansible/inventory/dev ./etc/ansible/deploy.yml
+
+provision:
+	@ansible-playbook -i ./etc/ansible/inventory/dev ./etc/ansible/provision.yml
+
 all:
 	@make -s dcup
 	@make -s check
