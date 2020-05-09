@@ -1,4 +1,9 @@
 ---
+- include_role:
+    name: geerlingguy.mysql
+  vars:
+    ansible_become: yes
+
 - name: enable mysql
   service:
     name: mysqld
@@ -6,12 +11,17 @@
     enabled: yes
   become: true
 
+- name: copy the .my.cnf config
+  template:
+    src: .my.cnf.j2
+    dest: ~/.my.cnf
+
 - name: create mysql client user
   mysql_user:
-      login_user: root
-      login_password: "{{ root_password }}"
-      name: "user"
-      password: "password"
+      login_user: "{{ mysql_root_user }}"
+      login_password: "{{ mysql_root_password }}"
+      name: "{{ mysql_user }}"
+      password: "{{ mysql_password }}"
       priv: '*.*:ALL,GRANT'
       state: present
       host: '%'

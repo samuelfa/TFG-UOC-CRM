@@ -4,7 +4,6 @@
   hosts: all
   gather_facts: yes
   roles:
-    - { role: nginx, tags: ['frontal'] }
-    - { role: geerlingguy.mysql, tags: ['mysql'], become: yes }
-    - { role: mysql, tags: ['mysql'] }
     - { role: php, tags: ['frontal'] }
+    - { role: mysql, tags: ['mysql'] }
+    - { role: nginx, tags: ['frontal'] }
