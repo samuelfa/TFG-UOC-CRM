@@ -1,0 +1,4 @@
+---
+- name: Run Migrations
+  shell: chdir={{ansistrano_release_path.stdout}}
+    {{php_path}} bin/console doctrine:migrations:migrate -n

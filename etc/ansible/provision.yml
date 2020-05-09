@@ -7,3 +7,4 @@
     - { role: php, tags: ['frontal'] }
     - { role: mysql, tags: ['mysql'] }
     - { role: nginx, tags: ['frontal'] }
+    - { role: redis, tags: ['redis'] }

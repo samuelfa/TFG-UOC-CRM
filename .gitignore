@@ -24,3 +24,6 @@ yarn-error.log
 .phpunit.result.cache
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
+
+/etc/ansible/TFG-CRM-f30414610b7d.json
+/etc/terraform/TFG-CRM-f30414610b7d.json

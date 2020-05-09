@@ -1,0 +1,5 @@
+---
+- include_role:
+    name: geerlingguy.redis
+  vars:
+    ansible_become: yes

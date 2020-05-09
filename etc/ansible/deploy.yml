@@ -1,0 +1,23 @@
+---
+-
+    name: Deploy Application
+    hosts: frontal
+    gather_facts: yes
+    vars:
+        ansistrano_allow_anonymous_stats: yes
+        ansistrano_deploy_from: '{{ playbook_dir }}/../../'
+        ansistrano_deploy_to: '{{ deploy_to }}'
+        ansistrano_keep_releases: 5
+        ansistrano_deploy_via: 'git'
+        ansistrano_git_repo: 'git@gitlab.com:samuelfa/tfg.git'
+        ansistrano_git_branch: '{{ branch }}'
+        ansistrano_shared_paths:
+            - 'var/log'
+        php_path: 'php'
+        composer_path: 'composer'
+
+        ansistrano_after_update_code_tasks_file: '{{ playbook_dir }}/hooks/after-update-code-tasks.yml'
+        ansistrano_before_symlink_tasks_file: '{{ playbook_dir }}/hooks/before-symlink-tasks.yml'
+        ansistrano_after_symlink_tasks_file: "{{ playbook_dir }}/hooks/after-symlink-tasks.yml"
+    roles:
+        - { role: ansistrano.deploy }

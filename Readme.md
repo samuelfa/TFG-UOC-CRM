@@ -20,6 +20,7 @@ php bin/console lint:container
 #ansible
 
 ansible-galaxy install geerlingguy.mysql
+ansible-galaxy install geerlingguy.redis
 
 #google computer cloud
 
