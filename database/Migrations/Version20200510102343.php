@@ -18,7 +18,7 @@ final class Version20200510102343 extends AbstractMigration
         /** @noinspection NullPointerExceptionInspection */
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('CREATE TABLE companies (namespace VARCHAR(50) NOT NULL, email VARCHAR(150) NOT NULL COMMENT \'(DC2Type:email_address)\', name VARCHAR(150) NOT NULL, PRIMARY KEY(namespace)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE tfg_default.companies (namespace VARCHAR(50) NOT NULL, email VARCHAR(150) NOT NULL COMMENT \'(DC2Type:email_address)\', name VARCHAR(150) NOT NULL, PRIMARY KEY(namespace)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
     }
 
     public function down(Schema $schema) : void
@@ -27,6 +27,6 @@ final class Version20200510102343 extends AbstractMigration
         /** @noinspection NullPointerExceptionInspection */
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('DROP TABLE companies');
+        $this->addSql('DROP TABLE tfg_default.companies');
     }
 }
