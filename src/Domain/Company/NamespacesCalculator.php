@@ -16,13 +16,15 @@ class NamespacesCalculator
     public function obtain(string $uri): string
     {
         $namespace = str_replace($this->domain, '', $uri);
-        if(empty($namespace) || $namespace === 'www'){
-            return '';
+        if(!empty($namespace)){
+            $lastCharacter = $namespace[strlen($namespace) - 1];
+            if($lastCharacter === '.'){
+                $namespace = substr($namespace, 0, -1);
+            }
         }
 
-        $lastCharacter = $namespace[strlen($namespace) - 1];
-        if($lastCharacter === '.'){
-            return substr($namespace, 0, -1);
+        if(empty($namespace) || $namespace === 'www'){
+            return '';
         }
 
         return $namespace;
