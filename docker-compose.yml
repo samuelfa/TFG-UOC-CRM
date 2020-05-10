@@ -10,6 +10,8 @@ services:
     volumes:
       - ./:/var/www/html
       - ./.docker/nginx/conf.d/:/etc/nginx/conf.d/
+      - ./.docker/nginx/certs/localhost.crt:/etc/certs/localhost.crt
+      - ./.docker/nginx/certs/localhost.key:/etc/certs/localhost.key
     networks:
       - app-network
     depends_on:
