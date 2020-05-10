@@ -31,11 +31,12 @@
     mode: u=rwX,g=rX,o=rX
     recurse: yes
 
-- name: Change owner to www-data
+- name: Change log folder owner to www-data
   become: yes
   file:
     dest: "{{ansistrano_release_path.stdout}}/var/log"
     owner: www-data
     group: www-data
-    mode: 775
+    mode: 777
     recurse: yes
+    state: directory
