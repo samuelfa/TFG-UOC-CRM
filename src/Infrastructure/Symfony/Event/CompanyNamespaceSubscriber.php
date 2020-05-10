@@ -14,14 +14,17 @@ class CompanyNamespaceSubscriber implements EventSubscriberInterface
 {
     private ConnectionFactory $connectionFactory;
     private NamespacesCalculator $namespacesCalculator;
+    private string $domain;
 
     public function __construct(
         NamespacesCalculator $namespacesCalculator,
-        ConnectionFactory $connectionFactory
+        ConnectionFactory $connectionFactory,
+        string $domain
     )
     {
         $this->connectionFactory = $connectionFactory;
         $this->namespacesCalculator = $namespacesCalculator;
+        $this->domain = $domain;
     }
 
     /**
@@ -41,5 +44,6 @@ class CompanyNamespaceSubscriber implements EventSubscriberInterface
         $namespace = $this->namespacesCalculator->obtain($host);
 
         $this->connectionFactory->preloadSettings($namespace);
+        $GLOBALS['namespace'] = "{$namespace}.{$this->domain}";
     }
 }

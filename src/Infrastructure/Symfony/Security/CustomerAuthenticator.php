@@ -98,10 +98,10 @@ class CustomerAuthenticator extends AbstractFormLoginAuthenticator implements Pa
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
-        if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
+        if (($targetPath = $this->getTargetPath($request->getSession(), $providerKey))
+            && strpos($targetPath, $GLOBALS['namespace']) !== false) {
             return new RedirectResponse($targetPath);
         }
-
         return new RedirectResponse($this->urlGenerator->generate('crm_dashboard'));
     }
 

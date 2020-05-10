@@ -107,7 +107,8 @@ class Authenticator extends AbstractFormLoginAuthenticator implements PasswordAu
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
-        if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
+        if (($targetPath = $this->getTargetPath($request->getSession(), $providerKey))
+            && strpos($targetPath, $GLOBALS['namespace']) !== false) {
             return new RedirectResponse($targetPath);
         }
 
