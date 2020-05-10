@@ -1,3 +1,7 @@
 - name: restart nginx
-  service: name=nginx state=restarted
+  service: name=nginx state=reloaded
+  become: yes
+
+- name: reload php
+  service: name=php7.4-fpm state=reloaded
   become: yes
