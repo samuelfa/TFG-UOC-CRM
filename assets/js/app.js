@@ -22,4 +22,11 @@ $(document).ready(function() {
         var link = $(event.relatedTarget).attr('href');
         $(event.currentTarget).find('a.btn-danger').attr('href', link);
     });
+    $('input#nif').on('keypress', function(event){
+        var value = event.key;
+        if (value.length !== 1){
+            return true;
+        }
+        return /[a-z]|[0-9]|&/i.test(value);
+    });
 });
