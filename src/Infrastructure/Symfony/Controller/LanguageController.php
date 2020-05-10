@@ -1,15 +1,14 @@
 <?php
 
 
-namespace App\Infrastructure\Symfony\Controller\Landing;
+namespace App\Infrastructure\Symfony\Controller;
 
 
-use App\Infrastructure\Symfony\Controller\LandingController;
-use App\Infrastructure\Symfony\Controller\WebController;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 
-class LanguageController extends WebController implements LandingController
+class LanguageController extends AbstractController
 {
     public function view(string $locale, Request $request): RedirectResponse
     {

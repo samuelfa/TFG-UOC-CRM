@@ -27,7 +27,7 @@ register_post:
 
 language:
   path: /language/{locale}
-  controller: App\Infrastructure\Symfony\Controller\Landing\LanguageController::view
+  controller: App\Infrastructure\Symfony\Controller\LanguageController::view
 
 index:
   path: /
