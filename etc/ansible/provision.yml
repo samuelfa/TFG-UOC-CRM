@@ -10,3 +10,4 @@
     - { role: redis,  tags: ['redis'] }
     - { role: git,    tags: ['git'] }
     - { role: system, tags: ['system'] }
+    - { role: yarn,   tags: ['yarn'] }

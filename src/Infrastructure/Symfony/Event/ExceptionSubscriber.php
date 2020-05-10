@@ -4,6 +4,7 @@
 namespace App\Infrastructure\Symfony\Event;
 
 
+use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
@@ -13,12 +14,19 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 
 class ExceptionSubscriber implements EventSubscriberInterface
 {
+    private LoggerInterface $logger;
+    private TokenStorageInterface $tokenStorage;
     private RouterInterface $router;
     private string $domain;
-    private TokenStorageInterface $tokenStorage;
 
-    public function __construct(TokenStorageInterface $tokenStorage, RouterInterface $router, string $domain)
+    public function __construct(
+        LoggerInterface $logger,
+        TokenStorageInterface $tokenStorage,
+        RouterInterface $router,
+        string $domain
+    )
     {
+        $this->logger = $logger;
         $this->tokenStorage = $tokenStorage;
         $this->router = $router;
         $this->domain = $domain;
@@ -36,6 +44,8 @@ class ExceptionSubscriber implements EventSubscriberInterface
 
     public function onEvent(ExceptionEvent $event): void
     {
+        $this->logger->error($event->getThrowable()->getMessage());
+        $this->logger->error($event->getThrowable());
         $token = $this->tokenStorage->getToken();
 
         if($token && $token->getUser()){

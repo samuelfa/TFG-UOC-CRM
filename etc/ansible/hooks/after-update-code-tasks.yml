@@ -35,3 +35,15 @@
 - name: Run Migrations
   shell: chdir={{ansistrano_release_path.stdout}}
     {{php_path}} bin/console doctrine:migrations:migrate -n
+
+- name: Install bundle assets
+  shell: chdir={{ansistrano_release_path.stdout}}
+    {{ php_path }} bin/console assets:install --symlink --no-debug --env={{ APP_ENV }}
+
+- name: Install Node dependencies
+  shell: chdir={{ansistrano_release_path.stdout}}
+    yarn install
+
+- name: Install Webpack Encore assets
+  shell: chdir={{ansistrano_release_path.stdout}}
+    yarn encore production
