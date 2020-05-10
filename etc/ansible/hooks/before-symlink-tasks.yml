@@ -14,7 +14,8 @@
       - Makefile
       - .env
       - .env.test
-      - .infection.json.dist
+      - .gitignore
+      - infection.json.dist
       - package.json
       - package-lock.json
       - phpunit.xml.dist
@@ -23,21 +24,10 @@
       - webpack.config.js
       - yarn.lock
 
-- name: Change owner to www-data
-  become: yes
-  file:
-    dest: "{{ansistrano_release_path.stdout}}"
-    owner: www-data
-    group: www-data
-    mode: u=rwX,g=rwX,o=rwX
-    recurse: yes
-
 - name: Change log folder owner to www-data
   become: yes
   file:
     dest: "{{ansistrano_release_path.stdout}}/var/log"
-    owner: www-data
-    group: www-data
     mode: u=rwX,g=rwX,o=rwX
     recurse: yes
     state: directory
