@@ -24,9 +24,14 @@
       password: "{{ mysql_password }}"
       priv: '*.*:ALL,GRANT'
       state: present
-      host: '%'
+      host: 'localhost'
 
 - name: create default database
   mysql_db:
     name: tfg_default
+    state: present
+
+- name: create example database
+  mysql_db:
+    name: tfg_example
     state: present
