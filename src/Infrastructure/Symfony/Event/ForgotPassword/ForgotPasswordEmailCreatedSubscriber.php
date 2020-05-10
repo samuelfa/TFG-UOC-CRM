@@ -3,6 +3,7 @@
 
 namespace App\Infrastructure\Symfony\Event\ForgotPassword;
 
+use Psr\Log\LoggerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
@@ -13,11 +14,17 @@ class ForgotPasswordEmailCreatedSubscriber implements EventSubscriberInterface
 {
     private MailerInterface $mailer;
     private TranslatorInterface $translator;
+    private LoggerInterface $logger;
 
-    public function __construct(MailerInterface $mailer, TranslatorInterface $translator)
+    public function __construct(
+        MailerInterface $mailer,
+        TranslatorInterface $translator,
+        LoggerInterface $logger
+    )
     {
         $this->mailer = $mailer;
         $this->translator = $translator;
+        $this->logger = $logger;
     }
 
     public static function getSubscribedEvents(): array
@@ -55,7 +62,8 @@ class ForgotPasswordEmailCreatedSubscriber implements EventSubscriberInterface
 
         try {
             $this->mailer->send($email);
-        } catch (TransportExceptionInterface $e) {
+        } catch (TransportExceptionInterface $exception) {
+            $this->logger->error($exception);
         }
     }
 }
