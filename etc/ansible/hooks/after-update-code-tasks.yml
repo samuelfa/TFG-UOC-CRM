@@ -15,3 +15,7 @@
 - name: Run cache clear
   shell: chdir={{ansistrano_release_path.stdout}}
     {{ php_path }} bin/console cache:clear
+
+- name: Run cache warmup
+  shell: chdir={{ansistrano_release_path.stdout}}
+    {{ php_path }} bin/console cache:warmup
