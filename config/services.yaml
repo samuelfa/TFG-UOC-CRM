@@ -71,7 +71,7 @@ services:
         tags:
             - { name: kernel.event_listener, event: kernel.controller, priority: 0 }
 
-    App\Infrastructure\Symfony\Event\CustomerNamespaceSubscriber:
+    App\Infrastructure\Symfony\Event\CompanyNamespaceSubscriber:
         tags:
             - { name: kernel.event_listener, event: kernel.request, priority: 10 }
 

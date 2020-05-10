@@ -10,7 +10,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 
-class CustomerNamespaceSubscriber implements EventSubscriberInterface
+class CompanyNamespaceSubscriber implements EventSubscriberInterface
 {
     private ConnectionFactory $connectionFactory;
     private NamespacesCalculator $namespacesCalculator;
