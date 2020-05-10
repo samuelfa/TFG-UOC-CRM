@@ -5,6 +5,7 @@
       state: absent
   with_items:
       - .docker
+      - .idea
       - etc
       - tests
       - composer.json

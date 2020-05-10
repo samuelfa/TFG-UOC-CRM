@@ -4,13 +4,25 @@
     src: 'templates/.env.j2'
     dest: '{{ansistrano_release_path.stdout}}/.env'
 
-- name: Run composer install
+- name: Set domain in parameters
+  lineinfile:
+    dest: "{{ansistrano_release_path.stdout}}/config/packages/parameters.yaml"
+    regexp: "  domain: "
+    line: "  domain: '{{ domain_name }}'"
+
+- name: Run composer for production install
   shell: chdir={{ansistrano_release_path.stdout}}
       {{ composer_path }} install --no-dev --optimize-autoloader --no-interaction
+  when: APP_ENV == "prod"
+
+- name: Run composer for development install
+  shell: chdir={{ansistrano_release_path.stdout}}
+    {{ composer_path }} install --optimize-autoloader --no-interaction
+  when: APP_ENV != "prod"
 
 - name: Run composer install
   shell: chdir={{ansistrano_release_path.stdout}}
-    {{ composer_path }} dump-env prod
+    {{ composer_path }} dump-env {{ APP_ENV }}
 
 - name: Run cache clear
   shell: chdir={{ansistrano_release_path.stdout}}

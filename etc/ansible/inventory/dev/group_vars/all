@@ -1,6 +1,7 @@
 ansible_user: samuel84fa_gmail_com
 deploy_to: /var/www/tfg
 branch: develop
+APP_ENV: dev
 
 mysql_root_user: root
 mysql_root_password: gs8g7afg8974kja8g7sfg

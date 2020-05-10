@@ -1,3 +1,4 @@
 parameters:
+  domain: 'crm.localhost'
   database_name.prefix: 'tfg'
-  domain_template: '%schema%://{namespace}.%domain%'
+  domain_template: 'https://{namespace}.%domain%'
