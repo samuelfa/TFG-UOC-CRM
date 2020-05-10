@@ -26,3 +26,4 @@ yarn-error.log
 ###< symfony/phpunit-bridge ###
 
 /etc/terraform/credentials.json
+.vault_pass

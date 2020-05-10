@@ -81,7 +81,7 @@ translation:
 	@docker-compose exec -T $(PHP_SERVICE) php bin/console translation:update --force $(filter-out $@,$(MAKECMDGOALS));
 
 deploy:
-	@ansible-playbook -i ./etc/ansible/inventory/dev ./etc/ansible/deploy.yml
+	@ansible-playbook -i ./etc/ansible/inventory/dev ./etc/ansible/deploy.yml --vault-password-file .vault_pass
 
 provision:
 	@ansible-playbook -i ./etc/ansible/inventory/dev ./etc/ansible/provision.yml
