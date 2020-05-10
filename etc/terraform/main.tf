@@ -7,7 +7,7 @@ provider "google" {
 
 resource "google_compute_instance" "vm_instance" {
   name         = "frontal"
-  machine_type = "f1-micro"
+  machine_type = "e2-medium"
 
   tags = [
     "${var.network}-firewall-ssh",
