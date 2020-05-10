@@ -1,5 +1,11 @@
 ---
-- name: generate SSH key "{{ssh_key_filename}}"
+- name: Create ssh folder
+  file:
+    path: "~/.ssh"
+    state: directory
+    mode: 0600
+
+- name: generate SSH key
   openssh_keypair:
     path: "~/.ssh/id_rsa"
     type: rsa
