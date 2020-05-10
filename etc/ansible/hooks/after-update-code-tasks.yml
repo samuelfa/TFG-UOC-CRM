@@ -1,16 +1,16 @@
 ---
 - name: Run composer install
   shell: chdir={{ansistrano_release_path.stdout}}
+    {{ composer_path }} dump-env prod
+
+- name: Run composer install
+  shell: chdir={{ansistrano_release_path.stdout}}
       {{ composer_path }} install --no-dev --optimize-autoloader --no-interaction
 
 - name: Copy in .env.deploy to .env
   template:
     src: 'templates/.env.deploy.j2'
     dest: '{{ansistrano_release_path.stdout}}/.env'
-
-- name: Run composer install
-  shell: chdir={{ansistrano_release_path.stdout}}
-    {{ composer_path }} dump-env prod
 
 - name: Run cache clear
   shell: chdir={{ansistrano_release_path.stdout}}
