@@ -23,7 +23,11 @@ class NamespacesCalculator
             }
         }
 
-        if(empty($namespace) || $namespace === 'www'){
+        if(
+            empty($namespace)
+            || $namespace === 'www'
+            || filter_var($namespace, FILTER_VALIDATE_IP)
+        ){
             return '';
         }
 

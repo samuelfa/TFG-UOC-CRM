@@ -9,6 +9,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
+use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
@@ -44,8 +45,12 @@ class ExceptionSubscriber implements EventSubscriberInterface
 
     public function onEvent(ExceptionEvent $event): void
     {
-        $this->logger->error($event->getThrowable()->getMessage());
-        $this->logger->error($event->getThrowable());
+        $exception = $event->getThrowable();
+        if(!($exception instanceof ResourceNotFoundException)){
+            $this->logger->error($event->getThrowable()->getMessage());
+            $this->logger->error($event->getThrowable());
+        }
+
         $token = $this->tokenStorage->getToken();
 
         if($token && $token->getUser()){
