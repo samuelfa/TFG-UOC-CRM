@@ -6,6 +6,7 @@ services:
             $domain: '%domain%'
             $databaseNamePrefix: '%database_name.prefix%'
             $domainTemplate: '%domain_template%'
+            $emailNoReply: '%email.no_reply%'
 
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.

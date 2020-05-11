@@ -11,10 +11,12 @@ use Symfony\Component\Mailer\MailerInterface;
 class EmailCreatedSubscriber implements EventSubscriberInterface
 {
     private MailerInterface $mailer;
+    private string          $emailNoReply;
 
-    public function __construct(MailerInterface $mailer)
+    public function __construct(MailerInterface $mailer, string $emailNoReply)
     {
         $this->mailer = $mailer;
+        $this->emailNoReply = $emailNoReply;
     }
 
     public static function getSubscribedEvents(): array
@@ -35,7 +37,7 @@ class EmailCreatedSubscriber implements EventSubscriberInterface
         $symfonyEmail = new SymfonyEmail();
         $symfonyEmail
             ->to(...$recipients)
-            ->from('no-reply@crm.localhost')
+            ->from($this->emailNoReply)
             ->subject($email->subject())
             ->text($email->body())
         ;

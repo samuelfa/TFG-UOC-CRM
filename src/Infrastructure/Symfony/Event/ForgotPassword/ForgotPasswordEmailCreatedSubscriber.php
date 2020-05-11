@@ -15,16 +15,19 @@ class ForgotPasswordEmailCreatedSubscriber implements EventSubscriberInterface
     private MailerInterface $mailer;
     private TranslatorInterface $translator;
     private LoggerInterface $logger;
+    private string $emailNoReply;
 
     public function __construct(
         MailerInterface $mailer,
         TranslatorInterface $translator,
-        LoggerInterface $logger
+        LoggerInterface $logger,
+        string $emailNoReply
     )
     {
         $this->mailer = $mailer;
         $this->translator = $translator;
         $this->logger = $logger;
+        $this->emailNoReply = $emailNoReply;
     }
 
     public static function getSubscribedEvents(): array
@@ -41,7 +44,7 @@ class ForgotPasswordEmailCreatedSubscriber implements EventSubscriberInterface
         $email = new TemplatedEmail();
         $email
             ->to($token->emailAddress()->value())
-            ->from('no-reply@crm.localhost')
+            ->from($this->emailNoReply)
             ->subject($this->translator->trans('CRM: You request a new password!!'))
             ->context([
                 'token' => $token
