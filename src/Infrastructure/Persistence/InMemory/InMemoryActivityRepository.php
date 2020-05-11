@@ -6,6 +6,7 @@ namespace App\Infrastructure\Persistence\InMemory;
 
 use App\Domain\Activity\Activity;
 use App\Domain\Activity\ActivityRepository;
+use App\Domain\Category\Category;
 
 class InMemoryActivityRepository implements ActivityRepository
 {
@@ -47,5 +48,18 @@ class InMemoryActivityRepository implements ActivityRepository
     public function findOneById(int $id): ?Activity
     {
         return $this->list[$id] ?? null;
+    }
+
+    public function findByCategory(Category $category): array
+    {
+        $list = [];
+        foreach ($this->list as $activity){
+            if($activity->category() !== $category){
+                continue;
+            }
+            $list[] = $activity;
+        }
+
+        return $list;
     }
 }

@@ -6,6 +6,7 @@ namespace App\Infrastructure\Persistence\Doctrine\Repository;
 
 use App\Domain\Activity\ActivityRepository as ActivityRepositoryInterface;
 use App\Domain\Activity\Activity;
+use App\Domain\Category\Category;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -36,5 +37,12 @@ class ActivityRepository extends ServiceEntityRepository implements ActivityRepo
         /** @var null|Activity $entity */
         $entity = $this->find($id);
         return $entity;
+    }
+
+    public function findByCategory(Category $category): array
+    {
+        return $this->findBy([
+            'category' => $category
+        ]);
     }
 }

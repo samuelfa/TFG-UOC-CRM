@@ -4,6 +4,7 @@
 namespace App\Infrastructure\Persistence\InMemory;
 
 
+use App\Domain\Activity\Activity;
 use App\Domain\Familiar\Action\LinkActivity;
 use App\Domain\Familiar\Action\LinkActivityRepository;
 use App\Domain\Familiar\Familiar;
@@ -72,6 +73,20 @@ class InMemoryLinkActivityRepository implements LinkActivityRepository
                 $activity->finishAt() < $start
                 || $activity->startAt() > $end
             ){
+                continue;
+            }
+
+            $list[] = $activity;
+        }
+
+        return $list;
+    }
+
+    public function findByActivity(Activity $activity): array
+    {
+        $list = [];
+        foreach ($this->list as $linkActivity){
+            if(!$linkActivity->activity() !== $activity){
                 continue;
             }
 

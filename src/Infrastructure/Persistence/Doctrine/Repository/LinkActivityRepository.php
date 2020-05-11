@@ -70,4 +70,11 @@ class LinkActivityRepository extends ServiceEntityRepository implements LinkActi
 
         return $queryBuilder->getQuery()->getResult();
     }
+
+    public function findByActivity(Activity $activity): array
+    {
+        return $this->findBy([
+            'activity' => $activity
+        ]);
+    }
 }

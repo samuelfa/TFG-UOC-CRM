@@ -23,7 +23,7 @@ class ForgotPasswordEmailCreatedEvent extends Event implements EventDomain
         return $this->token;
     }
 
-    public function isCustomer()
+    public function isCustomer(): bool
     {
         return $this->customer;
     }

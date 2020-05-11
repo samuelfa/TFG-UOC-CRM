@@ -59,6 +59,7 @@ abstract class WebController extends AbstractController
         string $routeName,
         array $parameters = []
     ): RedirectResponse {
+        $error = $this->translator->trans($error);
         $this->addFlash('error', $error);
         $this->addFlashFor('inputs', $request->request->all());
 
