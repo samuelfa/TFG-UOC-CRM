@@ -15,4 +15,5 @@ interface CategoryRepository extends Repository
     public function findAll();
     public function save(Category $category): void;
     public function remove(Category $category): void;
+    public function total(): int;
 }

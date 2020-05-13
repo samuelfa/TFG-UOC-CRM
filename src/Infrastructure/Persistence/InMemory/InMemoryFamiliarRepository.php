@@ -58,7 +58,8 @@ class InMemoryFamiliarRepository implements FamiliarRepository
     {
         $list = [];
         foreach ($this->list as $element){
-            if(!$element->customer()->nif()->equals($customer->nif())){
+            $customer = $element->customer();
+            if(!$customer || !$customer->nif()->equals($customer->nif())){
                 continue;
             }
 
@@ -66,5 +67,10 @@ class InMemoryFamiliarRepository implements FamiliarRepository
         }
 
         return $list;
+    }
+
+    public function total(): int
+    {
+        return count($this->list);
     }
 }

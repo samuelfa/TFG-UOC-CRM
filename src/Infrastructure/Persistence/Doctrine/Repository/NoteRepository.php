@@ -41,4 +41,12 @@ class NoteRepository extends ServiceEntityRepository implements NoteRepositoryIn
             'familiar' => $familiar
         ]);
     }
+
+    public function total(Familiar $familiar): int
+    {
+        return $this->count([
+            'familiar' => $familiar,
+            'private' => false
+        ]);
+    }
 }

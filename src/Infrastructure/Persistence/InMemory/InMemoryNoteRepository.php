@@ -38,7 +38,6 @@ class InMemoryNoteRepository implements NoteRepository
     {}
 
     /**
-     * @param Familiar $familiar
      * @return Note[]
      */
     public function findByFamiliar(Familiar $familiar): array
@@ -53,5 +52,19 @@ class InMemoryNoteRepository implements NoteRepository
         }
 
         return $list;
+    }
+
+    public function total(Familiar $familiar): int
+    {
+        $counter = 0;
+        foreach ($this->list as $element){
+            if($element !== $familiar || $element->isPrivate()){
+                continue;
+            }
+
+            $counter++;
+        }
+
+        return $counter;
     }
 }

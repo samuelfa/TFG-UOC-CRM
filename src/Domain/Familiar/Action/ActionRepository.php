@@ -13,4 +13,5 @@ interface ActionRepository extends Repository
      * @return Action[]
      */
     public function findByFamiliar(Familiar $familiar): array;
+    public function total(Familiar $familiar): int;
 }

@@ -82,6 +82,9 @@ class InMemoryLinkActivityRepository implements LinkActivityRepository
         return $list;
     }
 
+    /**
+     * @return LinkActivity[]
+     */
     public function findByActivity(Activity $activity): array
     {
         $list = [];
@@ -94,5 +97,19 @@ class InMemoryLinkActivityRepository implements LinkActivityRepository
         }
 
         return $list;
+    }
+
+    public function total(Familiar $familiar): int
+    {
+        $counter = 0;
+        foreach ($this->list as $element){
+            if($element !== $familiar){
+                continue;
+            }
+
+            $counter++;
+        }
+
+        return $counter;
     }
 }

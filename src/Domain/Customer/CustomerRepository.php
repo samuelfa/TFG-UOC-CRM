@@ -17,4 +17,5 @@ interface CustomerRepository extends Repository
     public function findAll();
     public function save(Customer $customer): void;
     public function remove(Customer $customer): void;
+    public function total(): int;
 }

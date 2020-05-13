@@ -62,4 +62,9 @@ class InMemoryActivityRepository implements ActivityRepository
 
         return $list;
     }
+
+    public function total(): int
+    {
+        return count($this->list);
+    }
 }

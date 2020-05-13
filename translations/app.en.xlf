@@ -65,6 +65,34 @@
         <source>Finish at %date%</source>
         <target>Finish at %date%</target>
       </trans-unit>
+      <trans-unit id="Y86QzZi" resname="%total% notes">
+        <source>%total% notes</source>
+        <target>%total% notes</target>
+      </trans-unit>
+      <trans-unit id="2ZGjloX" resname="%total% emails">
+        <source>%total% emails</source>
+        <target>%total% emails</target>
+      </trans-unit>
+      <trans-unit id="3zxjSOZ" resname="%total% linked activities">
+        <source>%total% linked activities</source>
+        <target>%total% linked activities</target>
+      </trans-unit>
+      <trans-unit id="0zH9r9K" resname="%total% categories">
+        <source>%total% categories</source>
+        <target>%total% categories</target>
+      </trans-unit>
+      <trans-unit id="DkOGZqb" resname="%total% activities">
+        <source>%total% activities</source>
+        <target>%total% activities</target>
+      </trans-unit>
+      <trans-unit id=".PzfoLY" resname="%total% customers">
+        <source>%total% customers</source>
+        <target>%total% customers</target>
+      </trans-unit>
+      <trans-unit id="p3fV4YU" resname="%total% familiars">
+        <source>%total% familiars</source>
+        <target>%total% familiars</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

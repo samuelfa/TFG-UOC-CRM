@@ -46,4 +46,9 @@ class CategoryRepository extends ServiceEntityRepository implements CategoryRepo
         $entity = $this->find($id);
         return $entity;
     }
+
+    public function total(): int
+    {
+        return $this->count([]);
+    }
 }

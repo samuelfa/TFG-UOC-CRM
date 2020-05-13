@@ -45,4 +45,9 @@ class ActivityRepository extends ServiceEntityRepository implements ActivityRepo
             'category' => $category
         ]);
     }
+
+    public function total(): int
+    {
+        return $this->count([]);
+    }
 }

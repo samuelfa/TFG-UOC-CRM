@@ -77,4 +77,11 @@ class LinkActivityRepository extends ServiceEntityRepository implements LinkActi
             'activity' => $activity
         ]);
     }
+
+    public function total(Familiar $familiar): int
+    {
+        return $this->count([
+            'familiar' => $familiar
+        ]);
+    }
 }

@@ -61,4 +61,9 @@ class InMemoryCategoryRepository implements CategoryRepository
 
         return null;
     }
+
+    public function total(): int
+    {
+        return count($this->list);
+    }
 }

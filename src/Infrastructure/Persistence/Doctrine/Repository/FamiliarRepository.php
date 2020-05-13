@@ -46,4 +46,9 @@ class FamiliarRepository extends ServiceEntityRepository implements FamiliarRepo
            'customer' => $customer
         ]);
     }
+
+    public function total(): int
+    {
+        return $this->count([]);
+    }
 }

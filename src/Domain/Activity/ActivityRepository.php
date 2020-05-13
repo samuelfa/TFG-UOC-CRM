@@ -16,4 +16,5 @@ interface ActivityRepository extends Repository
     public function findAll();
     public function save(Activity $activity): void;
     public function remove(Activity $activity): void;
+    public function total(): int;
 }

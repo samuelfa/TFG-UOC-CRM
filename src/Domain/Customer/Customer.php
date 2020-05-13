@@ -20,10 +20,12 @@ class Customer extends User
     }
 
     /**
-     * @return Familiar[]
+     * @return \Generator|Familiar[]
      */
-    public function familiars(): array
+    public function familiars(): \Generator
     {
-        return $this->familiars;
+        foreach ($this->familiars as $familiar) {
+            yield $familiar;
+        }
     }
 }

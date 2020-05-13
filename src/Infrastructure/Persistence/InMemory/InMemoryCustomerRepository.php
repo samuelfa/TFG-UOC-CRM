@@ -63,4 +63,9 @@ class InMemoryCustomerRepository implements CustomerRepository
 
     public function flush(): void
     {}
+
+    public function total(): int
+    {
+        return count($this->list);
+    }
 }

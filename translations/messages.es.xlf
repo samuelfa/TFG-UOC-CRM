@@ -393,6 +393,10 @@
         <source>Select "Remove" below if you are ready to delete it.</source>
         <target>Seleccione la opción "Borrar" para borrarlo.</target>
       </trans-unit>
+      <trans-unit id="0b8EW7U" resname="View details">
+        <source>View details</source>
+        <target>Ver detalles</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

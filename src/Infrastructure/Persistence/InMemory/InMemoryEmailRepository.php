@@ -53,4 +53,18 @@ class InMemoryEmailRepository implements EmailRepository
 
         return $list;
     }
+
+    public function total(Familiar $familiar): int
+    {
+        $counter = 0;
+        foreach ($this->list as $element){
+            if($element !== $familiar){
+                continue;
+            }
+
+            $counter++;
+        }
+
+        return $counter;
+    }
 }

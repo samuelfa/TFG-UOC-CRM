@@ -18,4 +18,5 @@ interface FamiliarRepository extends Repository
     public function save(Familiar $familiar): void;
     public function remove(Familiar $familiar): void;
     public function findByCustomer(Customer $customer): array;
+    public function total(): int;
 }

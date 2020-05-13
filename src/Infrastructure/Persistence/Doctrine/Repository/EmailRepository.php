@@ -41,4 +41,11 @@ class EmailRepository extends ServiceEntityRepository implements EmailRepository
             'familiar' => $familiar
         ]);
     }
+
+    public function total(Familiar $familiar): int
+    {
+        return $this->count([
+            'familiar' => $familiar
+        ]);
+    }
 }

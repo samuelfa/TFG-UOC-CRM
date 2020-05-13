@@ -48,4 +48,9 @@ class CustomerRepository extends ServiceEntityRepository implements CustomerRepo
     {
         $this->_em->remove($customer);
     }
+
+    public function total(): int
+    {
+        return $this->count([]);
+    }
 }
