@@ -1,0 +1,11 @@
+{% extends "partials/crm.html.twig" %}
+
+{% block title %}{% trans with {'%name%': category.name} from 'app' %}List activities from category %name%{% endtrans %}{% endblock %}
+
+{% block breadcrumb_parent_url %}{{ url('crm_category_list') }}{% endblock %}
+{% block breadcrumb_parent_name %}{% trans %}Categories{% endtrans %}{% endblock %}
+{% block breadcrumb_section_name %}{% trans with {'%name%': category.name} from 'app' %}Activities in %name%{% endtrans %}{% endblock %}
+
+{% block content %}
+    {{ block('content', 'pages/crm/activity/list.html.twig') }}
+{% endblock %}

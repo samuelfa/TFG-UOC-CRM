@@ -53,6 +53,7 @@
                             <td>
                                 <a href="{{ url('crm_category_edit', {'id': category.id}) }}" class="btn btn-info mb-2"><i class="fas fa-edit"></i> {% trans %}Edit{% endtrans %}</a>
                                 <a href="{{ url('crm_category_delete', {'id': category.id}) }}" data-toggle="modal" data-target="#removeElementModal" class="btn btn-danger mb-2"><i class="fas fa-trash"></i> {% trans %}Remove{% endtrans %}</a>
+                                <a href="{{ url('crm_category_list_activities', {'id': category.id}) }}" class="btn btn-warning mb-2"><i class="fas fa-hiking"></i> {% trans %}Activities{% endtrans %}</a>
                             </td>
                         </tr>
                     {% else %}

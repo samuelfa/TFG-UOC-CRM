@@ -33,3 +33,10 @@ crm_category_delete:
   requirements:
     id: '\d+'
   controller: App\Infrastructure\Symfony\Controller\CRM\Category\DeleteGetController::view
+
+crm_category_list_activities:
+  path: /crm/category/{id}/activities
+  methods: GET
+  requirements:
+    id: '\d+'
+  controller: App\Infrastructure\Symfony\Controller\CRM\Category\ListActivitiesGetController::view
