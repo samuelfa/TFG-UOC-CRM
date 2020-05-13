@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ListActivitiesGetController extends WebController
 {
-    public function view(int $id, CategoryViewService $categoryViewService ,ActivityListService $service): Response
+    public function view(int $id, CategoryViewService $categoryViewService, ActivityListService $service): Response
     {
         $dto = new ViewCategoryDTO($id);
         $category = $categoryViewService->__invoke($dto);

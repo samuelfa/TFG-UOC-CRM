@@ -13,5 +13,6 @@ interface LinkActivityRepository extends ActionRepository
     public function remove(LinkActivity $linkLinkActivity): void;
     public function findOneById(int $id): ?LinkActivity;
     public function findByFamiliarAndDates(Familiar $familiar, \DateTime $start, \DateTime $end): array;
+    /** @return LinkActivity[] */
     public function findByActivity(Activity $activity): array;
 }

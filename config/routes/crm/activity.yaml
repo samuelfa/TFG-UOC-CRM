@@ -33,3 +33,10 @@ crm_activity_delete:
   requirements:
     id: '\d+'
   controller: App\Infrastructure\Symfony\Controller\CRM\Activity\DeleteGetController::view
+
+crm_activity_list_familiars:
+  path: /crm/activity/{id}/familiars
+  methods: GET
+  requirements:
+    id: '\d+'
+  controller: App\Infrastructure\Symfony\Controller\CRM\Activity\ListFamiliarsGetController::view

@@ -74,7 +74,7 @@
             {% if is_granted('ROLE_MANAGER') %}
             <li class="nav-item {% if app.request.attributes.get('_route') == 'crm_manager_list' %}active{% endif %}">
                 <a class="nav-link" href="{{ url('crm_manager_list') }}">
-                    <i class="fas fa-fw fa-chart-area"></i>
+                    <i class="fas fa-fw fa-user-tie"></i>
                     <span>{% trans %}Managers{% endtrans %}</span>
                 </a>
             </li>
@@ -82,7 +82,7 @@
             {% if is_granted('ROLE_MANAGER') %}
             <li class="nav-item {% if app.request.attributes.get('_route') == 'crm_worker_list' %}active{% endif %}">
                 <a class="nav-link" href="{{ url('crm_worker_list') }}">
-                    <i class="fas fa-fw fa-chart-area"></i>
+                    <i class="fas fa-fw fa-user-astronaut"></i>
                     <span>{% trans %}Workers{% endtrans %}</span>
                 </a>
             </li>
@@ -90,7 +90,7 @@
             {% if is_granted('ROLE_WORKER') %}
             <li class="nav-item {% if app.request.attributes.get('_route') == 'crm_customer_list' %}active{% endif %}">
                 <a class="nav-link" href="{{ url('crm_customer_list') }}">
-                    <i class="fas fa-fw fa-chart-area"></i>
+                    <i class="fas fa-fw fa-user-tag"></i>
                     <span>{% trans %}Customers{% endtrans %}</span>
                 </a>
             </li>
@@ -98,7 +98,7 @@
             {% if is_granted('ROLE_USER') %}
             <li class="nav-item {% if app.request.attributes.get('_route') == 'crm_familiar_list' %}active{% endif %}">
                 <a class="nav-link" href="{{ url('crm_familiar_list') }}">
-                    <i class="fas fa-fw fa-chart-area"></i>
+                    <i class="fas fa-fw fa-hand-holding-heart"></i>
                     <span>{% trans %}Familiars{% endtrans %}</span>
                 </a>
             </li>

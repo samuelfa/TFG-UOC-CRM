@@ -62,6 +62,7 @@
                             <td>
                                 <a href="{{ url('crm_activity_edit', {'id': activity.id}) }}" class="btn btn-info mb-2"><i class="fas fa-edit"></i> {% trans %}Edit{% endtrans %}</a>
                                 <a href="{{ url('crm_activity_delete', {'id': activity.id}) }}" data-toggle="modal" data-target="#removeElementModal" class="btn btn-danger mb-2"><i class="fas fa-trash"></i> {% trans %}Remove{% endtrans %}</a>
+                                <a href="{{ url('crm_activity_list_familiars', {'id': activity.id}) }}" class="btn btn-warning mb-2"><i class="fas fa-hand-holding-heart"></i> {% trans %}Familiars{% endtrans %}</a>
                             </td>
                         </tr>
                     {% else %}
