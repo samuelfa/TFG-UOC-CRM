@@ -29,6 +29,9 @@ language:
   path: /language/{locale}
   controller: App\Infrastructure\Symfony\Controller\LanguageController::view
 
+fos_js_routing:
+  resource: "@FOSJsRoutingBundle/Resources/config/routing/routing-sf4.xml"
+
 index:
   path: /
   controller: App\Infrastructure\Symfony\Controller\Landing\HomeController::view

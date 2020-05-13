@@ -1,0 +1,2 @@
+fos_js_routing:
+  routes_to_expose: [ crm_activity_list_familiars ]

@@ -7,8 +7,13 @@ import bootstrapPlugin from '@fullcalendar/bootstrap';
 import $ from 'jquery';
 import 'bootstrap';
 
+const routes = require('../../public/js/fos_js_routes.json');
+import Routing from '../../vendor/friendsofsymfony/jsrouting-bundle/Resources/public/js/router.min.js';
+
 $(document).ready(function() {
     $('[data-toggle="popover"]').popover();
+
+    Routing.setRoutingData(routes);
 
     var calendarEl = document.getElementById('calendar');
 
@@ -20,7 +25,10 @@ $(document).ready(function() {
             right: 'today prevYear,prev,next,nextYear'
         },
         themeSystem: 'bootstrap',
-        events: 'calendar/events'
+        events: 'calendar/events',
+        eventClick: function(info) {
+            document.location.href = Routing.generate('crm_activity_list_familiars', {'id': info.event.id})
+        }
     });
 
     calendar.render();

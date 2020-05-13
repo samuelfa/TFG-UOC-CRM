@@ -27,3 +27,4 @@ yarn-error.log
 
 /etc/terraform/credentials.json
 .vault_pass
+/public/js/fos_js_routes.json

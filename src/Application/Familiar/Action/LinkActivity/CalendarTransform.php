@@ -17,6 +17,7 @@ class CalendarTransform
         $list = [];
         foreach ($activities as $activity){
             $list[] = [
+                'id' => $activity->id(),
                 'title' => $activity->name(),
                 'start' => $activity->startAt()->format(\DateTime::ATOM),
                 'end' => $activity->finishAt()->format(\DateTime::ATOM)

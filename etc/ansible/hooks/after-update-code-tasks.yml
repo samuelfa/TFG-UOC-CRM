@@ -36,6 +36,10 @@
   shell: chdir={{ansistrano_release_path.stdout}}
     {{php_path}} bin/console doctrine:migrations:migrate -n
 
+- name: Export routes
+  shell: chdir={{ansistrano_release_path.stdout}}
+    {{php_path}} bin/console fos:js-routing:dump --format=json --target=public/js/fos_js_routes.json
+
 - name: Install bundle assets
   shell: chdir={{ansistrano_release_path.stdout}}
     {{ php_path }} bin/console assets:install --symlink --no-debug --env={{ APP_ENV }}
