@@ -10,10 +10,10 @@ class Activity
     private ?int $id;
     private string $name;
     private Category $category;
-    private \DateTime $startAt;
-    private \DateTime $finishAt;
+    private \DateTimeImmutable $startAt;
+    private \DateTimeImmutable $finishAt;
 
-    public function __construct(?int $id, string $name, \DateTime $startAt, \DateTime $finishAt, Category $category)
+    public function __construct(?int $id, string $name, \DateTimeImmutable $startAt, \DateTimeImmutable $finishAt, Category $category)
     {
         $this->id = $id;
         $this->name = $name;
@@ -22,7 +22,7 @@ class Activity
         $this->category = $category;
     }
 
-    public static function create(string $name, \DateTime $startAt, \DateTime $finishAt, Category $category): self
+    public static function create(string $name, \DateTimeImmutable $startAt, \DateTimeImmutable $finishAt, Category $category): self
     {
         return new self(
             null,
@@ -48,17 +48,17 @@ class Activity
         return $this->category;
     }
 
-    public function startAt(): \DateTime
+    public function startAt(): \DateTimeImmutable
     {
         return $this->startAt;
     }
 
-    public function finishAt(): \DateTime
+    public function finishAt(): \DateTimeImmutable
     {
         return $this->finishAt;
     }
 
-    public function update(string $name, \DateTime $startAt, \DateTime $finishAt, Category $category): void
+    public function update(string $name, \DateTimeImmutable $startAt, \DateTimeImmutable $finishAt, Category $category): void
     {
         $this->name = $name;
         $this->startAt = $startAt;

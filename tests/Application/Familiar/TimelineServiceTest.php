@@ -69,9 +69,9 @@ class TimelineServiceTest extends TestCase
         $this->createEmail('My fourth email', 'fourth body from email', [new EmailAddress('samuelfa@gmail.com')], $familiar);
 
         $category = $this->createCategory('Indoor');
-        $firstActivity = $this->createActivity('Parchis', new \DateTime(), new \DateTime(), $category);
-        $secondActivity = $this->createActivity('Mus', new \DateTime(), new \DateTime(), $category);
-        $thirdActivity = $this->createActivity('Chess', new \DateTime(), new \DateTime(), $category);
+        $firstActivity = $this->createActivity('Parchis', new \DateTimeImmutable(), new \DateTimeImmutable(), $category);
+        $secondActivity = $this->createActivity('Mus', new \DateTimeImmutable(), new \DateTimeImmutable(), $category);
+        $thirdActivity = $this->createActivity('Chess', new \DateTimeImmutable(), new \DateTimeImmutable(), $category);
 
         $this->createLinkActivity($familiar, $firstActivity);
         $this->createLinkActivity($familiar, $secondActivity);
@@ -134,7 +134,7 @@ class TimelineServiceTest extends TestCase
         $this->linkActivityRepository->save($action);
     }
 
-    private function createActivity(string $name, \DateTime $startAt, \DateTime $finishAt, Category $category): Activity
+    private function createActivity(string $name, \DateTimeImmutable $startAt, \DateTimeImmutable $finishAt, Category $category): Activity
     {
         $activity = Activity::create($name, $startAt, $finishAt, $category);
         $this->activityRepository->save($activity);

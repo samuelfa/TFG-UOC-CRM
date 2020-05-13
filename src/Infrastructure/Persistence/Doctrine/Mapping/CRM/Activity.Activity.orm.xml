@@ -9,8 +9,8 @@
             <generator/>
         </id>
         <field name="name" column="name" length="50" />
-        <field name="startAt" type="date" column="start_at" />
-        <field name="finishAt" type="date" column="finish_at" />
+        <field name="startAt" type="datetime_immutable" column="start_at" />
+        <field name="finishAt" type="datetime_immutable" column="finish_at" />
 
         <many-to-one field="category" target-entity="App\Domain\Category\Category">
             <join-column name="category" nullable="false"/>

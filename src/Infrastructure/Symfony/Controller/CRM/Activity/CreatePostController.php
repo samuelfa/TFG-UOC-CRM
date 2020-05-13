@@ -27,8 +27,8 @@ class CreatePostController extends WebController
         $assertions = [
             '_csrf_token' => [new CSRF('activity_create')],
             'name'        => [new Assert\NotBlank(), new Assert\Length(['min' => 3, 'max' => 50]), new Assert\Type('string')],
-            'start_at'    => [new Assert\NotBlank(), new Assert\Date()],
-            'finish_at'   => [new Assert\NotBlank(), new Assert\Date(), new Assert\Expression([
+            'start_at'    => [new Assert\NotBlank(), new Assert\DateTime(['format' => 'Y-m-d\TH:i'])],
+            'finish_at'   => [new Assert\NotBlank(), new Assert\DateTime(['format' => 'Y-m-d\TH:i']), new Assert\Expression([
                 'expression' => 'start_at <= finish_at',
                 'values' => ['start_at' => $request->request->get('start_at'), 'finish_at' => $request->request->get('finish_at')],
             ])],

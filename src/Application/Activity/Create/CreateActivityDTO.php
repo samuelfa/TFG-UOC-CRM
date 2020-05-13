@@ -9,15 +9,15 @@ use App\Application\DTO;
 class CreateActivityDTO implements DTO
 {
     private string $name;
-    private \DateTime $startAt;
-    private \DateTime $finishAt;
+    private \DateTimeImmutable $startAt;
+    private \DateTimeImmutable $finishAt;
     private int $category;
 
     public function __construct(string $name, string $startAt, string $finishAt, int $category)
     {
         $this->name       = $name;
-        $this->startAt    = new \DateTime($startAt);
-        $this->finishAt   = new \DateTime($finishAt);
+        $this->startAt    = new \DateTimeImmutable($startAt);
+        $this->finishAt   = new \DateTimeImmutable($finishAt);
         $this->category = $category;
     }
 
@@ -26,12 +26,12 @@ class CreateActivityDTO implements DTO
         return $this->name;
     }
 
-    public function startAt(): \DateTime
+    public function startAt(): \DateTimeImmutable
     {
         return $this->startAt;
     }
 
-    public function finishAt(): \DateTime
+    public function finishAt(): \DateTimeImmutable
     {
         return $this->finishAt;
     }

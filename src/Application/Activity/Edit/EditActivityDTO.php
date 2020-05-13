@@ -10,16 +10,16 @@ class EditActivityDTO implements DTO
 {
     private int $id;
     private string $name;
-    private \DateTime $startAt;
-    private \DateTime $finishAt;
+    private \DateTimeImmutable $startAt;
+    private \DateTimeImmutable $finishAt;
     private int $category;
 
     public function __construct(int $id, string $name, string $startAt, string $finishAt, int $category)
     {
         $this->id       = $id;
         $this->name     = $name;
-        $this->startAt  = new \DateTime($startAt);
-        $this->finishAt = new \DateTime($finishAt);
+        $this->startAt  = new \DateTimeImmutable($startAt);
+        $this->finishAt = new \DateTimeImmutable($finishAt);
         $this->category = $category;
     }
 
@@ -33,12 +33,12 @@ class EditActivityDTO implements DTO
         return $this->name;
     }
 
-    public function startAt(): \DateTime
+    public function startAt(): \DateTimeImmutable
     {
         return $this->startAt;
     }
 
-    public function finishAt(): \DateTime
+    public function finishAt(): \DateTimeImmutable
     {
         return $this->finishAt;
     }
