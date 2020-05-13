@@ -3,6 +3,7 @@
 namespace App\Domain\Activity;
 
 use App\Domain\Category\Category;
+use App\Domain\Familiar\Familiar;
 use App\Domain\Repository;
 
 interface ActivityRepository extends Repository
@@ -17,4 +18,5 @@ interface ActivityRepository extends Repository
     public function save(Activity $activity): void;
     public function remove(Activity $activity): void;
     public function total(): int;
+    public function findByFamiliarAndDates(Familiar $familiar, \DateTime $start, \DateTime $end): array;
 }

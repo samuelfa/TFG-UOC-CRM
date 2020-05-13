@@ -93,6 +93,22 @@
         <source>%total% familiars</source>
         <target>%total% familiares</target>
       </trans-unit>
+      <trans-unit id="5.fwrFs" resname="List activities from category %name%">
+        <source>List activities from category %name%</source>
+        <target>Lista de actividades de la categoría %name%</target>
+      </trans-unit>
+      <trans-unit id="g379HOu" resname="Activities in %name%">
+        <source>Activities in %name%</source>
+        <target>Actividades en %name%</target>
+      </trans-unit>
+      <trans-unit id="oJsPeQI" resname="List familiars from activity %name%">
+        <source>List familiars from activity %name%</source>
+        <target>Lista de familiares de la actividad %name%</target>
+      </trans-unit>
+      <trans-unit id="vvJhg9i" resname="Familiars in %name%">
+        <source>Familiars in %name%</source>
+        <target>Familiares en %name%</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

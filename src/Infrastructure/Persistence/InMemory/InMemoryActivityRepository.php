@@ -7,6 +7,7 @@ namespace App\Infrastructure\Persistence\InMemory;
 use App\Domain\Activity\Activity;
 use App\Domain\Activity\ActivityRepository;
 use App\Domain\Category\Category;
+use App\Domain\Familiar\Familiar;
 
 class InMemoryActivityRepository implements ActivityRepository
 {
@@ -66,5 +67,27 @@ class InMemoryActivityRepository implements ActivityRepository
     public function total(): int
     {
         return count($this->list);
+    }
+
+    public function findByFamiliarAndDates(Familiar $familiar, \DateTime $start, \DateTime $end): array
+    {
+        $list = [];
+        foreach ($this->list as $linkActivity){
+            if(!$linkActivity->familiar()->nif()->equals($familiar->nif())){
+                continue;
+            }
+
+            $activity = $linkActivity->activity();
+            if(
+                $activity->finishAt() < $start
+                || $activity->startAt() > $end
+            ){
+                continue;
+            }
+
+            $list[] = $activity;
+        }
+
+        return $list;
     }
 }

@@ -4,18 +4,18 @@
 namespace App\Application\Familiar\Action\LinkActivity;
 
 
+use App\Domain\Activity\ActivityRepository;
 use App\Domain\Familiar\Action\Action;
-use App\Domain\Familiar\Action\LinkActivityRepository;
 use App\Domain\Familiar\FamiliarNotFound;
 use App\Domain\Familiar\FamiliarRepository;
 
 class CalendarEventsService
 {
     private FamiliarRepository $familiarRepository;
-    private LinkActivityRepository $repository;
+    private ActivityRepository $repository;
     private CalendarTransform $transform;
 
-    public function __construct(FamiliarRepository $familiarRepository, LinkActivityRepository $repository, CalendarTransform $transform)
+    public function __construct(FamiliarRepository $familiarRepository, ActivityRepository $repository, CalendarTransform $transform)
     {
         $this->familiarRepository = $familiarRepository;
         $this->repository = $repository;

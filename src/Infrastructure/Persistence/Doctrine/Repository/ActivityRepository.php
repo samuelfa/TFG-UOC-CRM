@@ -7,7 +7,10 @@ namespace App\Infrastructure\Persistence\Doctrine\Repository;
 use App\Domain\Activity\ActivityRepository as ActivityRepositoryInterface;
 use App\Domain\Activity\Activity;
 use App\Domain\Category\Category;
+use App\Domain\Familiar\Action\LinkActivity;
+use App\Domain\Familiar\Familiar;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query\Expr;
 use Doctrine\Persistence\ManagerRegistry;
 
 class ActivityRepository extends ServiceEntityRepository implements ActivityRepositoryInterface
@@ -49,5 +52,26 @@ class ActivityRepository extends ServiceEntityRepository implements ActivityRepo
     public function total(): int
     {
         return $this->count([]);
+    }
+
+    public function findByFamiliarAndDates(Familiar $familiar, \DateTime $start, \DateTime $end): array
+    {
+        $queryBuilder = $this->createQueryBuilder('activities');
+        $queryBuilder
+            ->select('activities')
+            ->innerJoin(LinkActivity::class, 'events', Expr\Join::WITH, 'activities.id = events.activity')
+            ->where('events.familiar = :familiar')
+            ->andWhere(
+                $queryBuilder->expr()->orX(
+                    $queryBuilder->expr()->between('activities.startAt', ':start_filter', ':end_filter'),
+                    $queryBuilder->expr()->between('activities.finishAt', ':start_filter', ':end_filter')
+                )
+            )
+            ->setParameter('familiar', $familiar)
+            ->setParameter('start_filter', $start)
+            ->setParameter('end_filter', $end)
+        ;
+
+        return $queryBuilder->getQuery()->getResult();
     }
 }

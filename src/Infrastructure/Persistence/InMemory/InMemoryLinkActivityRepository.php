@@ -60,28 +60,6 @@ class InMemoryLinkActivityRepository implements LinkActivityRepository
         return $this->list[$id] ?? null;
     }
 
-    public function findByFamiliarAndDates(Familiar $familiar, \DateTime $start, \DateTime $end): array
-    {
-        $list = [];
-        foreach ($this->list as $linkActivity){
-            if(!$linkActivity->familiar()->nif()->equals($familiar->nif())){
-                continue;
-            }
-
-            $activity = $linkActivity->activity();
-            if(
-                $activity->finishAt() < $start
-                || $activity->startAt() > $end
-            ){
-                continue;
-            }
-
-            $list[] = $activity;
-        }
-
-        return $list;
-    }
-
     /**
      * @return LinkActivity[]
      */
