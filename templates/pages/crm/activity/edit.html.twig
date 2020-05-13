@@ -50,12 +50,12 @@
 
                                     <div class="form-group col-md-6">
                                         <label for="start_at">{% trans %}Start at{% endtrans %}</label>
-                                        <input class="form-control" id="start_at" type="datetime-local" name="start_at" value="{{ activity.startAt is empty ? "" : activity.startAt|date('Y-m-d H:i:s') }}" required>
+                                        <input class="form-control" id="start_at" type="datetime-local" name="start_at" value="{{ activity.startAt is empty ? "" : activity.startAt|date('Y-m-d\\TH:i') }}" required>
                                     </div>
 
                                     <div class="form-group col-md-6">
                                         <label for="finish_at">{% trans %}Finish at{% endtrans %}</label>
-                                        <input class="form-control" id="finish_at" type="datetime-local" name="finish_at" value="{{ activity.finishAt is empty ? "" : activity.finishAt|date('Y-m-d H:i:s') }}" required>
+                                        <input class="form-control" id="finish_at" type="datetime-local" name="finish_at" value="{{ activity.finishAt is empty ? "" : activity.finishAt|date('Y-m-d\\TH:i') }}" required>
                                     </div>
                                 </div>
 
