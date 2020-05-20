@@ -30,7 +30,7 @@ class LoginTest extends WebTestCase
         $connection = $em->getConnection();
 
         $connection->exec('DROP DATABASE IF EXISTS tfg_functional');
-        $connection->executeQuery('DELETE FROM tfg_default.companies where email = ?', ['manager@functional.com']);
+        $connection->executeQuery(/** @lang GenericSQL */ 'DELETE FROM tfg_default.companies where email = ?', ['manager@functional.com']);
 
         $namespace = 'functional';
         $nif = new NIF('12345678Z');

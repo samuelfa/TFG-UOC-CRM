@@ -117,7 +117,7 @@ class LinkActivityServiceTest extends TestCase
 
     private function createActivity(int $id, string $name): Activity
     {
-        $activity = new Activity($id, $name, new \DateTime(), new \DateTime(), new Category(1, 'Indoor'));
+        $activity = new Activity($id, $name, new \DateTimeImmutable(), new \DateTimeImmutable(), new Category(1, 'Indoor'));
         $this->activityRepository->save($activity);
         return $activity;
     }

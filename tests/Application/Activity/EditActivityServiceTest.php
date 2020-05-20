@@ -23,7 +23,7 @@ class EditActivityServiceTest extends TestCase
     protected function setUp(): void
     {
         $this->repository = new InMemoryActivityRepository([
-            new Activity(1, 'Mus', new \DateTime(), new \DateTime(), new Category(1, 'Indoor'))
+            new Activity(1, 'Mus', new \DateTimeImmutable(), new \DateTimeImmutable(), new Category(1, 'Indoor'))
         ]);
         $this->categoryRepository = new InMemoryCategoryRepository([
             new Category(1, 'Outdoor'),

@@ -58,8 +58,8 @@ class InMemoryFamiliarRepository implements FamiliarRepository
     {
         $list = [];
         foreach ($this->list as $element){
-            $customer = $element->customer();
-            if(!$customer || !$customer->nif()->equals($customer->nif())){
+            $familiarCustomer = $element->customer();
+            if(!$familiarCustomer || !$familiarCustomer->nif()->equals($customer->nif())){
                 continue;
             }
 

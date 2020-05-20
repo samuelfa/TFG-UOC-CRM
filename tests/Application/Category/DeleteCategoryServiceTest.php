@@ -8,6 +8,7 @@ use App\Application\Category\Delete\CategoryDeleteService;
 use App\Application\Category\Delete\DeleteCategoryDTO;
 use App\Domain\Category\Category;
 use App\Domain\Category\CategoryNotFound;
+use App\Infrastructure\Persistence\InMemory\InMemoryActivityRepository;
 use App\Infrastructure\Persistence\InMemory\InMemoryCategoryRepository;
 use PHPUnit\Framework\TestCase;
 
@@ -18,8 +19,9 @@ class DeleteCategoryServiceTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->repository = new InMemoryCategoryRepository([]);
-        $this->handler = new CategoryDeleteService($this->repository);
+        $this->repository   = new InMemoryCategoryRepository([]);
+        $activityRepository = new InMemoryActivityRepository([]);
+        $this->handler      = new CategoryDeleteService($this->repository, $activityRepository);
     }
 
     public function testDeleteCategory(): void

@@ -31,7 +31,7 @@ class ListActivitiesServiceTest extends TestCase
         ];
         $category = new Category(1, 'Indoor');
         foreach ($values as $key => $name){
-            $this->createActivity($key, $name, new \DateTime(), new \DateTime(), $category);
+            $this->createActivity($key, $name, new \DateTimeImmutable(), new \DateTimeImmutable(), $category);
         }
 
         $expectedList = $this->repository->findAll();
@@ -49,7 +49,7 @@ class ListActivitiesServiceTest extends TestCase
         }
     }
 
-    private function createActivity(int $id, string $name, \DateTime $startAt, \DateTime $finishAt, Category $category): void
+    private function createActivity(int $id, string $name, \DateTimeImmutable $startAt, \DateTimeImmutable $finishAt, Category $category): void
     {
         $activity = new Activity($id, $name, $startAt, $finishAt, $category);
         $this->repository->save($activity);

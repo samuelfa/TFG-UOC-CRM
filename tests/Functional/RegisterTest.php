@@ -22,7 +22,7 @@ class RegisterTest extends WebTestCase
         ;
 
         $connection->exec('DROP DATABASE IF EXISTS tfg_functional');
-        $connection->executeQuery('DELETE FROM tfg_default.companies where email = ?', ['manager@functional.com']);
+        $connection->executeQuery(/** @lang GenericSQL */'DELETE FROM tfg_default.companies where email = ?', ['manager@functional.com']);
     }
 
     public function testRegisterANewCompany(): void

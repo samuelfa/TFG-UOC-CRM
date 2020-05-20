@@ -12,6 +12,7 @@ use App\Domain\ValueObject\EmailAddress;
 use App\Domain\ValueObject\NIF;
 use App\Domain\ValueObject\Password;
 use App\Infrastructure\Persistence\InMemory\InMemoryCustomerRepository;
+use App\Infrastructure\Persistence\InMemory\InMemoryFamiliarRepository;
 use PHPUnit\Framework\TestCase;
 
 class DeleteCustomerServiceTest extends TestCase
@@ -21,8 +22,9 @@ class DeleteCustomerServiceTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->repository = new InMemoryCustomerRepository([]);
-        $this->handler = new CustomerDeleteService($this->repository);
+        $this->repository   = new InMemoryCustomerRepository([]);
+        $familiarRepository = new InMemoryFamiliarRepository([]);
+        $this->handler      = new CustomerDeleteService($this->repository, $familiarRepository);
     }
 
     public function testDeleteCustomer(): void

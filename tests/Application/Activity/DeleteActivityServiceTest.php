@@ -10,6 +10,7 @@ use App\Domain\Activity\Activity;
 use App\Domain\Activity\ActivityNotFound;
 use App\Domain\Category\Category;
 use App\Infrastructure\Persistence\InMemory\InMemoryActivityRepository;
+use App\Infrastructure\Persistence\InMemory\InMemoryLinkActivityRepository;
 use PHPUnit\Framework\TestCase;
 
 class DeleteActivityServiceTest extends TestCase
@@ -19,8 +20,9 @@ class DeleteActivityServiceTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->repository = new InMemoryActivityRepository([]);
-        $this->handler = new ActivityDeleteService($this->repository);
+        $this->repository       = new InMemoryActivityRepository([]);
+        $linkActivityRepository = new InMemoryLinkActivityRepository([]);
+        $this->handler          = new ActivityDeleteService($this->repository, $linkActivityRepository);
     }
 
     public function testDeleteActivity(): void
@@ -56,7 +58,7 @@ class DeleteActivityServiceTest extends TestCase
 
     private function createActivity(int $id, string $name): void
     {
-        $activity = new Activity($id, $name, new \DateTime(), new \DateTime(), new Category(1, 'Indoor'));
+        $activity = new Activity($id, $name, new \DateTimeImmutable(), new \DateTimeImmutable(), new Category(1, 'Indoor'));
         $this->repository->save($activity);
     }
 }

@@ -26,7 +26,7 @@ class ViewActivityServiceTest extends TestCase
     public function testViewActivity(): void
     {
         $category = new Category(1, 'Indoor');
-        $this->createActivity(1, 'Mus', new \DateTime(), new \DateTime(), $category);
+        $this->createActivity(1, 'Mus', new \DateTimeImmutable(), new \DateTimeImmutable(), $category);
 
         $oneActivity = $this->repository->findOneById(1);
         $this->assertInstanceOf(Activity::class, $oneActivity);
@@ -51,7 +51,7 @@ class ViewActivityServiceTest extends TestCase
         }
     }
 
-    private function createActivity(int $id, string $name, \DateTime $startAt, \DateTime $finishAt, Category $category): void
+    private function createActivity(int $id, string $name, \DateTimeImmutable $startAt, \DateTimeImmutable $finishAt, Category $category): void
     {
         $activity = new Activity($id, $name, $startAt, $finishAt, $category);
         $this->repository->save($activity);
