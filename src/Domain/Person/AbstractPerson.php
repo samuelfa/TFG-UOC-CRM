@@ -7,7 +7,7 @@ namespace App\Domain\Person;
 use App\Domain\ValueObject\NIF;
 use App\Domain\ValueObject\URL;
 
-class AbstractPerson
+abstract class AbstractPerson
 {
     protected NIF $nif;
     protected ?string $name;
