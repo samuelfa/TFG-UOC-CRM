@@ -19,4 +19,5 @@ interface ActivityRepository extends Repository
     public function remove(Activity $activity): void;
     public function total(): int;
     public function findByFamiliarAndDates(Familiar $familiar, \DateTime $start, \DateTime $end): array;
+    public function findByDates(\DateTime $start, \DateTime $end): array;
 }

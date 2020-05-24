@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Application\Familiar\Action\LinkActivity;
+namespace App\Application;
 
 
 use App\Domain\Activity\Activity;

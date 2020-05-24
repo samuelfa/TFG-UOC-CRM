@@ -26,3 +26,6 @@ customer:
 
 familiar:
   resource: 'crm/familiar.yaml'
+
+calendar:
+  resource: 'crm/calendar.yaml'

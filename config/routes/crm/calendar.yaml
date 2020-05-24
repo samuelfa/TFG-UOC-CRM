@@ -1,0 +1,9 @@
+crm_calendar:
+  path: /crm/calendar
+  methods: GET
+  controller: App\Infrastructure\Symfony\Controller\CRM\Calendar\CalendarGetController::view
+
+crm_calendar_events:
+  path: /crm/calendar/events
+  methods: GET
+  controller: App\Infrastructure\Symfony\Controller\CRM\Calendar\CalendarEventsGetController::view

@@ -71,6 +71,14 @@
                     </a>
                 </li>
             {% endif %}
+            {% if is_granted('ROLE_WORKER') %}
+                <li class="nav-item {% if app.request.attributes.get('_route') == 'crm_calendar' %}active{% endif %}">
+                    <a class="nav-link" href="{{ url('crm_calendar') }}">
+                        <i class="fas fa-fw fa-calendar"></i>
+                        <span>{% trans %}Calendar{% endtrans %}</span>
+                    </a>
+                </li>
+            {% endif %}
             {% if is_granted('ROLE_MANAGER') %}
             <li class="nav-item {% if app.request.attributes.get('_route') == 'crm_manager_list' %}active{% endif %}">
                 <a class="nav-link" href="{{ url('crm_manager_list') }}">

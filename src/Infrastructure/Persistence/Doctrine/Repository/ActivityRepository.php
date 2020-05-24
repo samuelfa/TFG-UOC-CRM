@@ -74,4 +74,22 @@ class ActivityRepository extends ServiceEntityRepository implements ActivityRepo
 
         return $queryBuilder->getQuery()->getResult();
     }
+
+    public function findByDates(\DateTime $start, \DateTime $end): array
+    {
+        $queryBuilder = $this->createQueryBuilder('activities');
+        $queryBuilder
+            ->select('activities')
+            ->where(
+                $queryBuilder->expr()->orX(
+                    $queryBuilder->expr()->between('activities.startAt', ':start_filter', ':end_filter'),
+                    $queryBuilder->expr()->between('activities.finishAt', ':start_filter', ':end_filter')
+                )
+            )
+            ->setParameter('start_filter', $start)
+            ->setParameter('end_filter', $end)
+        ;
+
+        return $queryBuilder->getQuery()->getResult();
+    }
 }

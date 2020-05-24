@@ -90,4 +90,21 @@ class InMemoryActivityRepository implements ActivityRepository
 
         return $list;
     }
+
+    public function findByDates(\DateTime $start, \DateTime $end): array
+    {
+        $list = [];
+        foreach ($this->list as $activity){
+            if(
+                $activity->finishAt() < $start
+                || $activity->startAt() > $end
+            ){
+                continue;
+            }
+
+            $list[] = $activity;
+        }
+
+        return $list;
+    }
 }
