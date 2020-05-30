@@ -3,3 +3,6 @@ parameters:
   database_name.prefix: 'tfg'
   domain_template: 'https://{namespace}.%domain%'
   email.no_reply: 'samuelfa@uoc.edu'
+  languages:
+    - 'es'
+    - 'en'
