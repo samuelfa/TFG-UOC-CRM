@@ -26,6 +26,8 @@
                     <span class="flag-icon flag-icon-es {% if app.request.locale == 'es' %}active{% endif %}"></span>
                 </a>
             </div>
+            <h1 class="text-center text-white"><a href="{{ url('index') }}" style="color: white">FamilyCare Online Application</a></h1>
+            <h5 class="text-center text-gray-500">{% trans %}An special CRM for family care{% endtrans %} <i class="fas fa-hand-holding-heart"></i></h5>
             {% block content %}{% endblock %}
         </div>
     </div>

@@ -397,6 +397,10 @@
         <source>View details</source>
         <target>View details</target>
       </trans-unit>
+      <trans-unit id="KP_a60b" resname="An special CRM for family care">
+        <source>An special CRM for family care</source>
+        <target>An special CRM for family care</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
