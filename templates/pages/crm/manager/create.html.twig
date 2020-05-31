@@ -47,7 +47,7 @@
 
                                     <div class="form-group col-md-6">
                                         <label for="name">{% trans %}Name{% endtrans %}</label>
-                                        <input type="text" id="name" class="form-control" name="name" value="{{ app.flashes('input.name')|toString }}" required>
+                                        <input type="text" id="name" class="form-control" name="name" maxlength="150" value="{{ app.flashes('input.name')|toString }}" required>
                                         {% for message in app.flashes('error.name') %}
                                             <div class="alert alert-danger">
                                                 {{ message }}
@@ -57,7 +57,7 @@
 
                                     <div class="form-group col-md-6">
                                         <label for="surname">{% trans %}Surname{% endtrans %}</label>
-                                        <input type="text" id="surname" class="form-control" name="surname" value="{{ app.flashes('input.surname')|toString }}">
+                                        <input type="text" id="surname" class="form-control" name="surname" maxlength="150" value="{{ app.flashes('input.surname')|toString }}">
                                         {% for message in app.flashes('error.surname') %}
                                             <div class="alert alert-danger">
                                                 {{ message }}
@@ -77,7 +77,7 @@
 
                                     <div class="form-group col-md-6">
                                         <label for="portrait">{% trans %}Portrait{% endtrans %}</label>
-                                        <input class="form-control" id="portrait" type="text" name="portrait" value="{{ app.flashes('input.portrait')|toString }}">
+                                        <input class="form-control" id="portrait" type="text" name="portrait" maxlength="300" value="{{ app.flashes('input.portrait')|toString }}">
                                         {% for message in app.flashes('error.portrait') %}
                                             <div class="alert alert-danger">
                                                 {{ message }}
