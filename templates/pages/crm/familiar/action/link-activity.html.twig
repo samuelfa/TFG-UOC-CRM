@@ -15,7 +15,7 @@
 
                     <div class="row">
 
-                        {% for message in app.flashes('error') %}
+                        {% for message in app.flashes({'csrf':'error._csrf_token', 'familiar':'error.familiar'})|flatten %}
                             <div class="alert alert-danger">
                                 {{ message }}
                             </div>
@@ -32,6 +32,11 @@
                                             <option value="{{ activity.id }}">{{ activity.name }}</option>
                                         {% endfor %}
                                     </select>
+                                    {% for message in app.flashes('error.activity') %}
+                                        <div class="alert alert-danger">
+                                            {{ message }}
+                                        </div>
+                                    {% endfor %}
                                 </div>
 
                                 <button type="submit" class="btn btn-primary">{% trans %}Link{% endtrans %}</button>

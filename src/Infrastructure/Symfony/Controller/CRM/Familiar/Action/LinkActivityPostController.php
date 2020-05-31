@@ -46,7 +46,7 @@ class LinkActivityPostController extends WebController
         try {
             $this->dispatch($command);
         } catch (FamiliarNotFound $exception){
-            return $this->redirectWithError('The familiar has not been found', $request, 'crm_familiar_link_activity', ['nif' => $nif]);
+            return $this->redirectWithError('familiar','The familiar has not been found', $request, 'crm_familiar_link_activity', ['nif' => $nif]);
         }
 
         return $this->redirectWithMessage('Activity linked', 'crm_familiar_view', ['nif' => $nif]);

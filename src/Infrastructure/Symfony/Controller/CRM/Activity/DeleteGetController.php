@@ -17,7 +17,7 @@ class DeleteGetController extends WebController
         try {
             $this->dispatch($command);
         } catch (ActivityLinkedWithFamiliars $exception){
-            return $this->redirectWithError('Activity linked with some familiars', $request, 'crm_activity_list');
+            return $this->redirectWithError('activity','Activity linked with some familiars', $request, 'crm_activity_list');
         }
 
         return $this->redirectWithMessage('Activity deleted', 'crm_activity_list');

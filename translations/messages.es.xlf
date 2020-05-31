@@ -401,6 +401,174 @@
         <source>An special CRM for family care</source>
         <target>Un CRM especial para el cuidado de familiares</target>
       </trans-unit>
+      <trans-unit id="KP_a70b" resname="Invalid NIF value provided">
+        <source>Invalid NIF value provided</source>
+        <target>El NIF proporcionado es invalido</target>
+      </trans-unit>
+      <trans-unit id="KP_a71b" resname="Namespace not found">
+        <source>Namespace not found</source>
+        <target>Espacio de trabajo no encontrado</target>
+      </trans-unit>
+      <trans-unit id="KP_a72b" resname="The namespace is already in use">
+        <source>The namespace is already in use</source>
+        <target>El espacio de trabajo ya esta en uso</target>
+      </trans-unit>
+      <trans-unit id="KP_a73b" resname="The nif is already in use">
+        <source>The nif is already in use</source>
+        <target>El NIF ya esta en uso</target>
+      </trans-unit>
+      <trans-unit id="KP_a74b" resname="The email address is already in use">
+        <source>The email address is already in use</source>
+        <target>La dirección de email ya esta en uso</target>
+      </trans-unit>
+      <trans-unit id="KP_a75b" resname="Please, create some category first">
+        <source>Please, create some category first</source>
+        <target>Por favor, debe crear primero una categoría</target>
+      </trans-unit>
+      <trans-unit id="KP_a76b" resname="The category does not exist">
+        <source>The category does not exist</source>
+        <target>La categoría no existe</target>
+      </trans-unit>
+      <trans-unit id="KP_a77b" resname="Activity linked with some familiars">
+        <source>Activity linked with some familiars</source>
+        <target>Actividad vinculada con algunos familiares</target>
+      </trans-unit>
+      <trans-unit id="KP_a78b" resname="The activity has not been found">
+        <source>The activity has not been found</source>
+        <target>La actividad no ha sido encontrada</target>
+      </trans-unit>
+      <trans-unit id="KP_a79b" resname="The category is already in use">
+        <source>The category is already in use</source>
+        <target>La categoría esta en uso</target>
+      </trans-unit>
+      <trans-unit id="KP_a80b" resname="Category linked with some activities">
+        <source>Category linked with some activities</source>
+        <target>La categoría esta vinculada a algunas actividades</target>
+      </trans-unit>
+      <trans-unit id="KP_a81b" resname="The category has not been found">
+        <source>The category has not been found</source>
+        <target>La categoría no ha sido encontrada</target>
+      </trans-unit>
+      <trans-unit id="KP_a82b" resname="Customer linked with a familiar">
+        <source>Customer linked with a familiar</source>
+        <target>El cliente esta vinculado a algunos familiares</target>
+      </trans-unit>
+      <trans-unit id="KP_a83b" resname="The customer has not been found">
+        <source>The customer has not been found</source>
+        <target>El cliente no ha sido encontrado</target>
+      </trans-unit>
+      <trans-unit id="KP_a84b" resname="Impossible to restore the password">
+        <source>Impossible to restore the password</source>
+        <target>Imposible recuperar la contraseña</target>
+      </trans-unit>
+      <trans-unit id="KP_a85b" resname="Please, create some customer first">
+        <source>Please, create some customer first</source>
+        <target>Por favor, debe crear primero un cliente</target>
+      </trans-unit>
+      <trans-unit id="KP_a86b" resname="The familiar has not been found">
+        <source>The familiar has not been found</source>
+        <target>El familiar no ha sido encontrado</target>
+      </trans-unit>
+      <trans-unit id="KP_a87b" resname="The manager has not been found">
+        <source>The manager has not been found</source>
+        <target>El gestor no ha sido encontrado</target>
+      </trans-unit>
+      <trans-unit id="KP_a88b" resname="The worker has not been found">
+        <source>The worker has not been found</source>
+        <target>El trabajador no ha sido encontrado</target>
+      </trans-unit>
+      <trans-unit id="KP_a89b" resname="Activity created">
+        <source>Activity created</source>
+        <target>Actividad creada</target>
+      </trans-unit>
+      <trans-unit id="KP_a90b" resname="Activity deleted">
+        <source>Activity deleted</source>
+        <target>Actividad borrada</target>
+      </trans-unit>
+      <trans-unit id="KP_a91b" resname="Activity edited">
+        <source>Activity edited</source>
+        <target>Actividad editada</target>
+      </trans-unit>
+      <trans-unit id="KP_a92b" resname="Category created">
+        <source>Category created</source>
+        <target>Categoría creada</target>
+      </trans-unit>
+      <trans-unit id="KP_a93b" resname="Category deleted">
+        <source>Category deleted</source>
+        <target>Categoría borrada</target>
+      </trans-unit>
+      <trans-unit id="KP_a94b" resname="Category edited">
+        <source>Category edited</source>
+        <target>Categoría editada</target>
+      </trans-unit>
+      <trans-unit id="KP_a95b" resname="Customer created">
+        <source>Customer created</source>
+        <target>Cliente creado</target>
+      </trans-unit>
+      <trans-unit id="KP_a96b" resname="Customer deleted">
+        <source>Customer deleted</source>
+        <target>Cliente borrado</target>
+      </trans-unit>
+      <trans-unit id="KP_a97b" resname="Customer edited">
+        <source>Customer edited</source>
+        <target>Cliente editado</target>
+      </trans-unit>
+      <trans-unit id="KP_a98b" resname="Email sent, please check your inbox">
+        <source>Email sent, please check your inbox</source>
+        <target>Email enviado, por favor revise su bandeja de entrada</target>
+      </trans-unit>
+      <trans-unit id="KP_a99b" resname="Familiar created">
+        <source>Familiar created</source>
+        <target>Familiar creado</target>
+      </trans-unit>
+      <trans-unit id="KP_b00b" resname="Familiar deleted">
+        <source>Familiar deleted</source>
+        <target>Familiar borrado</target>
+      </trans-unit>
+      <trans-unit id="KP_b01b" resname="Familiar edited">
+        <source>Familiar edited</source>
+        <target>Familiar editado</target>
+      </trans-unit>
+      <trans-unit id="KP_b02b" resname="Note created">
+        <source>Note created</source>
+        <target>Nota creada</target>
+      </trans-unit>
+      <trans-unit id="KP_b03b" resname="Linked Activity deleted">
+        <source>Linked Activity deleted</source>
+        <target>Actividad vinculada borrada</target>
+      </trans-unit>
+      <trans-unit id="KP_b04b" resname="Activity linked">
+        <source>Activity linked</source>
+        <target>Actividad vinculada</target>
+      </trans-unit>
+      <trans-unit id="KP_b05b" resname="Email sent">
+        <source>Email sent</source>
+        <target>Email enviado</target>
+      </trans-unit>
+      <trans-unit id="KP_b06b" resname="Manager created">
+        <source>Manager created</source>
+        <target>Gestor creado</target>
+      </trans-unit>
+      <trans-unit id="KP_b07b" resname="Manager deleted">
+        <source>Manager deleted</source>
+        <target>Gestor borrado</target>
+      </trans-unit>
+      <trans-unit id="KP_b08b" resname="Manager edited">
+        <source>Manager edited</source>
+        <target>Gestor editado</target>
+      </trans-unit>
+      <trans-unit id="KP_b09b" resname="Worker created">
+        <source>Worker created</source>
+        <target>Trabajador creado</target>
+      </trans-unit>
+      <trans-unit id="KP_b10b" resname="Worker deleted">
+        <source>Worker deleted</source>
+        <target>Trabajador borrado</target>
+      </trans-unit>
+      <trans-unit id="KP_b11b" resname="Worker edited">
+        <source>Worker edited</source>
+        <target>Trabajador editado</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

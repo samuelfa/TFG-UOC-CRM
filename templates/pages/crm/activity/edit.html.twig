@@ -15,7 +15,7 @@
 
                     <div class="row">
 
-                        {% for message in app.flashes('error') %}
+                        {% for message in app.flashes({'csrf':'error._csrf_token', 'activity':'error.activity'})|flatten %}
                             <div class="alert alert-danger">
                                 {{ message }}
                             </div>
@@ -28,11 +28,21 @@
                                     <div class="form-group col-md-2">
                                         <label for="id">{% trans %}Id{% endtrans %}</label>
                                         <input type="text" id="id" class="form-control" name="id" value="{{ activity.id }}" required readonly>
+                                        {% for message in app.flashes('error.id') %}
+                                            <div class="alert alert-danger">
+                                                {{ message }}
+                                            </div>
+                                        {% endfor %}
                                     </div>
 
                                     <div class="form-group col-md-5">
                                         <label for="name">{% trans %}Name{% endtrans %}</label>
-                                        <input type="text" id="name" class="form-control" name="name" value="{{ activity.name }}">
+                                        <input type="text" id="name" class="form-control" name="name" value="{{ app.flashes('input.name')|toString(activity.name) }}">
+                                        {% for message in app.flashes('error.name') %}
+                                            <div class="alert alert-danger">
+                                                {{ message }}
+                                            </div>
+                                        {% endfor %}
                                     </div>
 
                                     <div class="form-group col-md-5">
@@ -46,16 +56,31 @@
                                                 <option value="{{category.id}}" {{ selected }}>{{category.name}}</option>
                                             {% endfor %}
                                         </select>
+                                        {% for message in app.flashes('error.category') %}
+                                            <div class="alert alert-danger">
+                                                {{ message }}
+                                            </div>
+                                        {% endfor %}
                                     </div>
 
                                     <div class="form-group col-md-6">
                                         <label for="start_at">{% trans %}Start at{% endtrans %}</label>
-                                        <input class="form-control" id="start_at" type="datetime-local" name="start_at" value="{{ activity.startAt is empty ? "" : activity.startAt|date('Y-m-d\\TH:i') }}" required>
+                                        <input class="form-control" id="start_at" type="datetime-local" name="start_at" value="{{ app.flashes('input.start_at')|toString(activity.startAt is empty ? "" : activity.startAt|date('Y-m-d\\TH:i')) }}" required>
+                                        {% for message in app.flashes('error.start_at') %}
+                                            <div class="alert alert-danger">
+                                                {{ message }}
+                                            </div>
+                                        {% endfor %}
                                     </div>
 
                                     <div class="form-group col-md-6">
                                         <label for="finish_at">{% trans %}Finish at{% endtrans %}</label>
-                                        <input class="form-control" id="finish_at" type="datetime-local" name="finish_at" value="{{ activity.finishAt is empty ? "" : activity.finishAt|date('Y-m-d\\TH:i') }}" required>
+                                        <input class="form-control" id="finish_at" type="datetime-local" name="finish_at" value="{{ app.flashes('input.finish_at')|toString(activity.finishAt is empty ? "" : activity.finishAt|date('Y-m-d\\TH:i')) }}" required>
+                                        {% for message in app.flashes('error.finish_at') %}
+                                            <div class="alert alert-danger">
+                                                {{ message }}
+                                            </div>
+                                        {% endfor %}
                                     </div>
                                 </div>
 

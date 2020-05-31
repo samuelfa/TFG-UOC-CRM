@@ -17,7 +17,7 @@ class DeleteGetController extends WebController
         try {
             $this->dispatch($command);
         } catch (CustomerLinkedWithFamiliars $exception){
-            return $this->redirectWithError('Customer linked with a familiar', $request, 'crm_customer_list');
+            return $this->redirectWithError('customer','Customer linked with a familiar', $request, 'crm_customer_list');
         }
 
         return $this->redirectWithMessage('Customer deleted', 'crm_customer_list');

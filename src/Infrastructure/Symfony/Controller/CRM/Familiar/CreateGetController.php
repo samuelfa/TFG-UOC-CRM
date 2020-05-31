@@ -13,7 +13,7 @@ class CreateGetController extends WebController
     {
         $customers = $service->__invoke();
         if(empty($customers)){
-            return $this->redirectWithError('Please, create some customer first', $request, 'crm_familiar_list');
+            return $this->redirectWithError('customer','Please, create some customer first', $request, 'crm_familiar_list');
         }
 
         return $this->render('pages/crm/familiar/create.html.twig', [

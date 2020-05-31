@@ -52,7 +52,7 @@ class RegisterPostController extends WebController implements LandingController
         try {
             $this->dispatch($command);
         } catch (AlreadyExistsNamespace $exception){
-            return $this->redirectWithError('The namespace is already in use', $request, 'register');
+            return $this->redirectWithError('namespace','The namespace is already in use', $request, 'register');
         }
 
         $url = $authenticatorHandler->authenticate($command->nif(), $command->namespace(), $request);

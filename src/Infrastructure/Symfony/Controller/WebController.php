@@ -48,20 +48,21 @@ abstract class WebController extends AbstractController
         array $parameters = []
     ): RedirectResponse {
         $this->addFlashFor('error', $this->formatFlashErrors($errors));
-        $this->addFlashFor('inputs', $request->request->all());
+        $this->addFlashFor('input', $request->request->all());
 
         return $this->redirectToRoute($routeName, $parameters);
     }
 
     protected function redirectWithError(
+        string $postfix,
         string $error,
         Request $request,
         string $routeName,
         array $parameters = []
     ): RedirectResponse {
         $error = $this->translator->trans($error);
-        $this->addFlash('error', $error);
-        $this->addFlashFor('inputs', $request->request->all());
+        $this->addFlash("error.{$postfix}", $error);
+        $this->addFlashFor('input', $request->request->all());
 
         return $this->redirectToRoute($routeName, $parameters);
     }
@@ -77,7 +78,7 @@ abstract class WebController extends AbstractController
     {
         $errors = [];
         foreach ($violations as $violation) {
-            $errors[str_replace(['[', ']'], ['', ''], $violation->getPropertyPath())] = $violation->getMessage();
+            $errors[str_replace(['[', ']'], ['', ''], $violation->getPropertyPath())] = $this->translator->trans($violation->getMessage());
         }
 
         return $errors;
@@ -86,7 +87,7 @@ abstract class WebController extends AbstractController
     private function addFlashFor(string $prefix, array $messages): void
     {
         foreach ($messages as $key => $message) {
-           $this->addFlash($prefix, $message);
+            $this->addFlash("{$prefix}.{$key}", $message);
         }
     }
 }

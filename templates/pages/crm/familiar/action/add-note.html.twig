@@ -15,7 +15,7 @@
 
                     <div class="row">
 
-                        {% for message in app.flashes('error') %}
+                        {% for message in app.flashes({'csrf':'error._csrf_token', 'familiar':'error.familiar'})|flatten %}
                             <div class="alert alert-danger">
                                 {{ message }}
                             </div>
@@ -27,7 +27,7 @@
                                 <div class="form-row">
                                     <div class="form-group col-lg-12">
                                         <label for="message">{% trans %}Message{% endtrans %}</label>
-                                        <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                                        <textarea class="form-control" id="message" name="message" rows="5" required>{{ app.flashes('input.message')|toString }}</textarea>
                                     </div>
 
                                     {% if is_granted('ROLE_WORKER') %}

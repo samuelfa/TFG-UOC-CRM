@@ -58,9 +58,9 @@ class CreatePostController extends WebController
         try {
             $this->dispatch($command);
         } catch (AlreadyExistsNif $exception){
-            return $this->redirectWithError('The nif is already in use', $request, 'crm_worker_create');
+            return $this->redirectWithError('nif','The nif is already in use', $request, 'crm_worker_create');
         } catch (AlreadyExistsEmailAddress $exception){
-            return $this->redirectWithError('The email address is already in use', $request, 'crm_worker_create');
+            return $this->redirectWithError('email_address','The email address is already in use', $request, 'crm_worker_create');
         }
 
         return $this->redirectWithMessage('Worker created', 'crm_worker_list');

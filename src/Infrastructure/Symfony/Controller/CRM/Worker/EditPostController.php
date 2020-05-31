@@ -57,9 +57,9 @@ class EditPostController extends WebController
         try {
             $this->dispatch($command);
         } catch (WorkerNotFound $exception){
-            return $this->redirectWithError('The worker has not been found', $request, 'crm_worker_edit', ['nif' => $nif]);
+            return $this->redirectWithError('worker','The worker has not been found', $request, 'crm_worker_edit', ['nif' => $nif]);
         } catch (AlreadyExistsEmailAddress $exception){
-            return $this->redirectWithError('The email address is already in use', $request, 'crm_worker_edit', ['nif' => $nif]);
+            return $this->redirectWithError('email_address','The email address is already in use', $request, 'crm_worker_edit', ['nif' => $nif]);
         }
 
         return $this->redirectWithMessage('Worker edited', 'crm_worker_list');

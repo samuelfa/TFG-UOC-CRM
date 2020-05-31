@@ -2,7 +2,7 @@
 
 {% block title %}{% trans %}Choose namespace{% endtrans %}{% endblock %}
 {% block content %}
-    {% for message in app.flashes('error') %}
+    {% for message in app.flashes('error._csrf_token') %}
         <div class="alert alert-danger">
             {{ message }}
         </div>
@@ -13,9 +13,14 @@
             <form method="post">
                 <div class="form-group">
                     <div class="form-label-group">
-                        <input name="namespace" type="text" id="namespace" class="form-control" placeholder="{% trans %}Namespace{% endtrans %}" required autofocus>
+                        <input name="namespace" type="text" id="namespace" class="form-control" placeholder="{% trans %}Namespace{% endtrans %}" value="{{ app.flashes('input.namespace')|toString }}" required autofocus>
                         <label for="namespace">{% trans %}Namespace{% endtrans %}</label>
                     </div>
+                    {% for message in app.flashes('error.namespace') %}
+                        <div class="alert alert-danger">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
                 </div>
                 <input type="hidden" name="_csrf_token" value="{{ csrf_token('sign-in') }}" >
                 <button class="btn btn-primary btn-block" type="submit">

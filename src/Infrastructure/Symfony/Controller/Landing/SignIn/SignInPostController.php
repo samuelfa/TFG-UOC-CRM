@@ -39,7 +39,7 @@ class SignInPostController extends WebController implements LandingController
         try{
             $this->dispatch($command);
         } catch (CompanyNotFound $exception){
-            return $this->redirectWithError('Namespace not found', $request, 'sign_in');
+            return $this->redirectWithError('namespace','Namespace not found', $request, 'sign_in');
         }
 
         $path = $this->generateUrl('crm_login');

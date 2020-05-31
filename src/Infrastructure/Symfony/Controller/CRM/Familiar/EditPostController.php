@@ -54,7 +54,7 @@ class EditPostController extends WebController
         try {
             $this->dispatch($command);
         } catch (FamiliarNotFound $exception){
-            return $this->redirectWithError('The familiar has not been found', $request, 'crm_familiar_edit', ['nif' => $nif]);
+            return $this->redirectWithError('familiar','The familiar has not been found', $request, 'crm_familiar_edit', ['nif' => $nif]);
         }
 
         return $this->redirectWithMessage('Familiar edited', 'crm_familiar_list');

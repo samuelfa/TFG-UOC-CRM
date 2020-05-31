@@ -15,7 +15,7 @@
 
                     <div class="row">
 
-                        {% for message in app.flashes('error') %}
+                        {% for message in app.flashes('error._csrf_token') %}
                             <div class="alert alert-danger">
                                 {{ message }}
                             </div>
@@ -33,7 +33,13 @@
 
                                     <div class="form-group col-md-4">
                                         <label for="name">{% trans %}Name{% endtrans %}</label>
-                                        <input type="text" id="name" class="form-control" name="name" value="{{ category.name }}">
+                                        <input type="text" id="name" class="form-control" name="name" minlength="3" maxlength="50" value="{{ app.flashes('input.name')|toString(category.name) }}">
+
+                                        {% for message in app.flashes('error.name') %}
+                                            <div class="alert alert-danger">
+                                                {{ message }}
+                                            </div>
+                                        {% endfor %}
                                     </div>
                                 </div>
 

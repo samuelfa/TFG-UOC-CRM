@@ -50,7 +50,7 @@ class SendEmailPostController extends WebController
         try {
             $this->dispatch($command);
         } catch (FamiliarNotFound $exception){
-            return $this->redirectWithError('The familiar has not been found', $request, 'crm_familiar_send_email', ['nif' => $nif]);
+            return $this->redirectWithError('familiar','The familiar has not been found', $request, 'crm_familiar_send_email', ['nif' => $nif]);
         }
 
         return $this->redirectWithMessage('Email sent', 'crm_familiar_view', ['nif' => $nif]);

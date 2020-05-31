@@ -15,7 +15,7 @@
 
                     <div class="row">
 
-                        {% for message in app.flashes('error') %}
+                        {% for message in app.flashes({'csrf':'error._csrf_token', 'customer':'error.customer'})|flatten %}
                             <div class="alert alert-danger">
                                 {{ message }}
                             </div>
@@ -32,32 +32,62 @@
 
                                     <div class="form-group col-md-6">
                                         <label for="email_address">{% trans %}Email address{% endtrans %}</label>
-                                        <input class="form-control" id="email_address" type="email" name="email_address" value="{{ customer.emailAddress }}" required autofocus>
+                                        <input class="form-control" id="email_address" type="email" name="email_address" value="{{ app.flashes('input.email_address')|toString(customer.emailAddress) }}" required autofocus>
+                                        {% for message in app.flashes('error.email_address') %}
+                                            <div class="alert alert-danger">
+                                                {{ message }}
+                                            </div>
+                                        {% endfor %}
                                     </div>
 
                                     <div class="form-group col-md-6">
                                         <label for="name">{% trans %}Name{% endtrans %}</label>
-                                        <input type="text" id="name" class="form-control" name="name" value="{{ customer.name }}" required>
+                                        <input type="text" id="name" class="form-control" name="name" value="{{ app.flashes('input.name')|toString(customer.name) }}" required>
+                                        {% for message in app.flashes('error.name') %}
+                                            <div class="alert alert-danger">
+                                                {{ message }}
+                                            </div>
+                                        {% endfor %}
                                     </div>
 
                                     <div class="form-group col-md-6">
                                         <label for="surname">{% trans %}Surname{% endtrans %}</label>
-                                        <input type="text" id="surname" class="form-control" name="surname" value="{{ customer.surname }}">
+                                        <input type="text" id="surname" class="form-control" name="surname" value="{{ app.flashes('input.surname')|toString(customer.surname) }}">
+                                        {% for message in app.flashes('error.surname') %}
+                                            <div class="alert alert-danger">
+                                                {{ message }}
+                                            </div>
+                                        {% endfor %}
                                     </div>
 
                                     <div class="form-group col-md-6">
                                         <label for="birthday">{% trans %}Birthday{% endtrans %}</label>
-                                        <input class="form-control" id="birthday" type="date" name="birthday" value="{{ customer.birthday is empty ? "" : customer.birthday|date('Y-m-d') }}">
+                                        <input class="form-control" id="birthday" type="date" name="birthday" value="{{ app.flashes('input.birthday')|toString(customer.birthday is empty ? "" : worker.birthday|date('Y-m-d')) }}">
+                                        {% for message in app.flashes('error.birthday') %}
+                                            <div class="alert alert-danger">
+                                                {{ message }}
+                                            </div>
+                                        {% endfor %}
                                     </div>
 
                                     <div class="form-group col-md-6">
                                         <label for="portrait">{% trans %}Portrait{% endtrans %}</label>
-                                        <input class="form-control" id="portrait" type="text" name="portrait" value="{{ customer.portrait }}">
+                                        <input class="form-control" id="portrait" type="text" name="portrait" value="{{ app.flashes('input.portrait')|toString(customer.portrait) }}">
+                                        {% for message in app.flashes('error.portrait') %}
+                                            <div class="alert alert-danger">
+                                                {{ message }}
+                                            </div>
+                                        {% endfor %}
                                     </div>
 
                                     <div class="form-group col-md-6">
                                         <label for="password">{% trans %}Password{% endtrans %}</label>
                                         <input type="password" name="password" id="password" class="form-control" placeholder="{% trans %}Password{% endtrans %}" maxlength="50" autocomplete="new-password" >
+                                        {% for message in app.flashes('error.password') %}
+                                            <div class="alert alert-danger">
+                                                {{ message }}
+                                            </div>
+                                        {% endfor %}
                                     </div>
 
                                     <div class="form-group col-md-6">

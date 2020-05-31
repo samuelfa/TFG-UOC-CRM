@@ -55,7 +55,7 @@ class AddNotePostController extends WebController
         try {
             $this->dispatch($command);
         } catch (FamiliarNotFound $exception){
-            return $this->redirectWithError('The familiar has not been found', $request, 'crm_familiar_add_note', ['nif' => $nif]);
+            return $this->redirectWithError('familiar','The familiar has not been found', $request, 'crm_familiar_add_note', ['nif' => $nif]);
         }
 
         return $this->redirectWithMessage('Note created', 'crm_familiar_view', ['nif' => $nif]);

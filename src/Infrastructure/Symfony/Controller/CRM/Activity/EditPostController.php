@@ -55,9 +55,9 @@ class EditPostController extends WebController
         try {
             $this->dispatch($command);
         } catch (ActivityNotFound $exception){
-            return $this->redirectWithError('The activity has not been found', $request, 'crm_activity_edit', ['id' => $id]);
+            return $this->redirectWithError('activity','The activity has not been found', $request, 'crm_activity_edit', ['id' => $id]);
         } catch (CategoryNotFound $exception){
-            return $this->redirectWithError('The category does not exist', $request, 'crm_activity_edit', ['id' => $id]);
+            return $this->redirectWithError('category','The category does not exist', $request, 'crm_activity_edit', ['id' => $id]);
         }
 
         return $this->redirectWithMessage('Activity edited', 'crm_activity_list');

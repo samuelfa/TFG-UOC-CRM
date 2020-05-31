@@ -13,7 +13,7 @@ class CreateGetController extends WebController
     {
         $categories = $service->__invoke();
         if(empty($categories)){
-            return $this->redirectWithError('Please, create some category first', $request, 'crm_activity_list');
+            return $this->redirectWithError('category','Please, create some category first', $request, 'crm_activity_list');
         }
 
         return $this->render('pages/crm/activity/create.html.twig', [

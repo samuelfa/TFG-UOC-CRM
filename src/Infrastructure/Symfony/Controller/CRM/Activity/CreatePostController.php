@@ -50,7 +50,7 @@ class CreatePostController extends WebController
         try {
             $this->dispatch($command);
         } catch (CategoryNotFound $exception){
-            return $this->redirectWithError('The category does not exist', $request, 'crm_activity_create');
+            return $this->redirectWithError('category','The category does not exist', $request, 'crm_activity_create');
         }
 
         return $this->redirectWithMessage('Activity created', 'crm_activity_list');

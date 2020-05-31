@@ -45,7 +45,7 @@ class RestorePasswordPostController extends WebController implements AnonymousCo
         try {
             $this->dispatch($dto);
         } catch (TokenNotFound|EmailAddressNotFound $exception){
-            return $this->redirectWithError('Impossible to restore the password', $request, 'crm_login');
+            return $this->redirectWithError('password','Impossible to restore the password', $request, 'crm_login');
         }
 
         return $this->redirectWithMessage('Email sent, please check your inbox', 'crm_login');

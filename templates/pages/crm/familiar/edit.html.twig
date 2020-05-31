@@ -15,7 +15,7 @@
 
                     <div class="row">
 
-                        {% for message in app.flashes('error') %}
+                        {% for message in app.flashes({'csrf':'error._csrf_token', 'familiar':'error.familiar'})|flatten %}
                             <div class="alert alert-danger">
                                 {{ message }}
                             </div>
@@ -28,26 +28,51 @@
                                     <div class="form-group col-md-2">
                                         <label for="nif">{% trans %}Nif{% endtrans %}</label>
                                         <input type="text" id="nif" class="form-control" name="nif" value="{{ familiar.nif }}" required readonly>
+                                        {% for message in app.flashes('error.nif') %}
+                                            <div class="alert alert-danger">
+                                                {{ message }}
+                                            </div>
+                                        {% endfor %}
                                     </div>
 
                                     <div class="form-group col-md-2">
                                         <label for="birthday">{% trans %}Birthday{% endtrans %}</label>
-                                        <input class="form-control" id="birthday" type="date" name="birthday" value="{{ familiar.birthday is empty ? "" : familiar.birthday|date('Y-m-d') }}">
+                                        <input class="form-control" id="birthday" type="date" name="birthday" value="{{ app.flashes('input.birthday')|toString(familiar.birthday is empty ? "" : familiar.birthday|date('Y-m-d')) }}">
+                                        {% for message in app.flashes('error.birthday') %}
+                                            <div class="alert alert-danger">
+                                                {{ message }}
+                                            </div>
+                                        {% endfor %}
                                     </div>
 
                                     <div class="form-group col-md-8">
                                         <label for="portrait">{% trans %}Portrait{% endtrans %}</label>
-                                        <input class="form-control" id="portrait" type="text" name="portrait" value="{{ familiar.portrait }}">
+                                        <input class="form-control" id="portrait" type="text" name="portrait" value="{{ app.flashes('input.portrait')|toString(familiar.portrait) }}">
+                                        {% for message in app.flashes('error.portrait') %}
+                                            <div class="alert alert-danger">
+                                                {{ message }}
+                                            </div>
+                                        {% endfor %}
                                     </div>
 
                                     <div class="form-group col-md-4">
                                         <label for="name">{% trans %}Name{% endtrans %}</label>
-                                        <input type="text" id="name" class="form-control" name="name" value="{{ familiar.name }}" required>
+                                        <input type="text" id="name" class="form-control" name="name" value="{{ app.flashes('input.name')|toString(familiar.name) }}" required>
+                                        {% for message in app.flashes('error.name') %}
+                                            <div class="alert alert-danger">
+                                                {{ message }}
+                                            </div>
+                                        {% endfor %}
                                     </div>
 
                                     <div class="form-group col-md-4">
                                         <label for="surname">{% trans %}Surname{% endtrans %}</label>
-                                        <input type="text" id="surname" class="form-control" name="surname" value="{{ familiar.surname }}">
+                                        <input type="text" id="surname" class="form-control" name="surname" value="{{ app.flashes('input.surname')|toString(familiar.surname) }}">
+                                        {% for message in app.flashes('error.surname') %}
+                                            <div class="alert alert-danger">
+                                                {{ message }}
+                                            </div>
+                                        {% endfor %}
                                     </div>
 
                                     <div class="form-group col-md-4">
@@ -61,6 +86,11 @@
                                                 <option value="{{customer.nif}}" {{ selected }}>{{customer.fullName}}</option>
                                             {% endfor %}
                                         </select>
+                                        {% for message in app.flashes('error.customer') %}
+                                            <div class="alert alert-danger">
+                                                {{ message }}
+                                            </div>
+                                        {% endfor %}
                                     </div>
                                 </div>
 

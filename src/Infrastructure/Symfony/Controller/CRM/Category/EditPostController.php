@@ -45,7 +45,7 @@ class EditPostController extends WebController
         try {
             $this->dispatch($command);
         } catch (CategoryNotFound $exception){
-            return $this->redirectWithError('The category has not been found', $request, 'crm_category_edit', ['id' => $id]);
+            return $this->redirectWithError('category','The category has not been found', $request, 'crm_category_edit', ['id' => $id]);
         }
 
         return $this->redirectWithMessage('Category edited', 'crm_category_list');

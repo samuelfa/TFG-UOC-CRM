@@ -17,7 +17,7 @@ class DeleteGetController extends WebController
         try {
             $this->dispatch($command);
         } catch (CategoryLinkedWithActivities $exception){
-            return $this->redirectWithError('Category linked with some activities', $request, 'crm_category_list');
+            return $this->redirectWithError('category','Category linked with some activities', $request, 'crm_category_list');
         }
 
         return $this->redirectWithMessage('Category deleted', 'crm_category_list');

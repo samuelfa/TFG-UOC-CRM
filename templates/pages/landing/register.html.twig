@@ -5,7 +5,7 @@
     <div class="card card-register mx-auto mt-5">
         <div class="card-header">{% trans %}Create an account{% endtrans %}</div>
         <div class="card-body">
-            {% for message in app.flashes('error') %}
+            {% for message in app.flashes('error._csrf_token') %}
                 <div class="alert alert-danger">
                     {{ message }}
                 </div>
@@ -16,15 +16,25 @@
                     <div class="form-row">
                         <div class="col-md-6">
                             <div class="form-label-group">
-                                <input type="text" name="name" id="name" class="form-control" placeholder="{% trans %}Company name{% endtrans %}" maxlength="150" required="required" autofocus="autofocus">
+                                <input type="text" name="name" id="name" class="form-control" placeholder="{% trans %}Company name{% endtrans %}" minlength="3" maxlength="150" required="required" autofocus="autofocus" value="{{ app.flashes('input.name')|toString }}">
                                 <label for="name">{% trans %}Company name{% endtrans %}</label>
                             </div>
+                            {% for message in app.flashes('error.name') %}
+                                <div class="alert alert-danger">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
                         </div>
                         <div class="col-md-6">
                             <div class="form-label-group">
-                                <input type="text" name="namespace" id="namespace" class="form-control" placeholder="{% trans %}Namespace{% endtrans %}" maxlength="50" required="required">
+                                <input type="text" name="namespace" id="namespace" class="form-control" placeholder="{% trans %}Namespace{% endtrans %}" minlength="4" maxlength="50" required="required" value="{{ app.flashes('input.namespace')|toString }}">
                                 <label for="namespace">{% trans %}Namespace{% endtrans %}</label>
                             </div>
+                            {% for message in app.flashes('error.namespace') %}
+                                <div class="alert alert-danger">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
@@ -32,15 +42,27 @@
                     <div class="form-row">
                         <div class="col-md-6">
                             <div class="form-label-group">
-                                <input type="email" name="email_address" id="email_address" class="form-control" placeholder="{% trans %}Email address{% endtrans %}" maxlength="150" required="required" autocomplete="off" >
+                                <input type="email" name="email_address" id="email_address" class="form-control" placeholder="{% trans %}Email address{% endtrans %}" maxlength="150" required="required" autocomplete="off" value="{{ app.flashes('input.email_address')|toString }}">
                                 <label for="email_address">{% trans %}Email address{% endtrans %}</label>
                             </div>
+
+                            {% for message in app.flashes('error.email_address') %}
+                                <div class="alert alert-danger">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
                         </div>
                         <div class="col-md-6">
                             <div class="form-label-group">
-                                <input type="text" name="nif" id="nif" class="form-control" placeholder="{% trans %}NIF{% endtrans %}" maxlength="10" required="required" autocomplete="off" >
+                                <input type="text" name="nif" id="nif" class="form-control" placeholder="{% trans %}NIF{% endtrans %}" maxlength="10" required="required" autocomplete="off" value="{{ app.flashes('input.nif')|toString }}">
                                 <label for="nif">{% trans %}NIF{% endtrans %}</label>
                             </div>
+
+                            {% for message in app.flashes('error.nif') %}
+                                <div class="alert alert-danger">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
@@ -48,13 +70,18 @@
                     <div class="form-row">
                         <div class="col-md-6">
                             <div class="form-label-group">
-                                <input type="password" name="password" id="password" class="form-control" placeholder="{% trans %}Password{% endtrans %}" maxlength="50" required="required" autocomplete="new-password" >
+                                <input type="password" name="password" id="password" class="form-control" placeholder="{% trans %}Password{% endtrans %}" minlength="4" maxlength="50" required="required" autocomplete="new-password" >
                                 <label for="password">{% trans %}Password{% endtrans %}</label>
                             </div>
+                            {% for message in app.flashes('error.password') %}
+                                <div class="alert alert-danger">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
                         </div>
                         <div class="col-md-6">
                             <div class="form-label-group">
-                                <input type="password" id="confirm_password" class="form-control" placeholder="{% trans %}Confirm password{% endtrans %}" maxlength="50" required="required" autocomplete="new-password">
+                                <input type="password" id="confirm_password" class="form-control" placeholder="{% trans %}Confirm password{% endtrans %}" minlength="4" maxlength="50" required="required" autocomplete="new-password">
                                 <label for="confirm_password">{% trans %}Confirm password{% endtrans %}</label>
                             </div>
                         </div>

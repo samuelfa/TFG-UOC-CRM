@@ -39,7 +39,7 @@ class CreatePostController extends WebController
         try {
             $this->dispatch($command);
         } catch (AlreadyExistsCategory $exception){
-            return $this->redirectWithError('The category is already in use', $request, 'crm_category_create');
+            return $this->redirectWithError('name','The category is already in use', $request, 'crm_category_create');
         }
 
         return $this->redirectWithMessage('Category created', 'crm_category_list');

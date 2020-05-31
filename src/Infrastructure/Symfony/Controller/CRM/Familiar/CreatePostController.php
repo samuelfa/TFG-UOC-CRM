@@ -52,7 +52,7 @@ class CreatePostController extends WebController
         try {
             $this->dispatch($command);
         } catch (AlreadyExistsNif $exception){
-            return $this->redirectWithError('The nif is already in use', $request, 'crm_familiar_create');
+            return $this->redirectWithError('nif','The nif is already in use', $request, 'crm_familiar_create');
         }
 
         return $this->redirectWithMessage('Familiar created', 'crm_familiar_list');
