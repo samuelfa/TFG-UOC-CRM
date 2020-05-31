@@ -29,7 +29,7 @@ class RestorePasswordPostController extends WebController implements AnonymousCo
     {
         $assertions = [
             '_csrf_token' => [new CSRF('restore-password-customer')],
-            'password'    => [new Assert\NotBlank(), new Assert\Length(['min' => 3, 'max' => 300]), new Assert\Type('string')],
+            'password'    => [new Assert\NotBlank(), new Assert\Length(['min' => 4, 'max' => 50]), new Assert\Type('string')],
             'token'       => [new Assert\NotBlank(), new Assert\Type('string')],
         ];
 

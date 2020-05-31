@@ -35,7 +35,7 @@ class EditPostController extends WebController
             'surname'       => [new Assert\Length(['min' => 0, 'max' => 150]), new Assert\Type('string')],
             'birthday'      => [new Assert\Date()],
             'portrait'      => [new Assert\Length(['min' => 0, 'max' => 300]), new Assert\Type('string')],
-            'password'      => [new Assert\Length(['min' => 0, 'max' => 300]), new Assert\Type('string')],
+            'password'      => [new Assert\Length(['min' => 0, 'max' => 50]), new Assert\Type('string')],
         ];
 
         return $this->validateRequest($request, $assertions);
