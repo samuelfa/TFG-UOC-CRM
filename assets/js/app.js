@@ -8,6 +8,7 @@ import 'bootstrap-select'
 
 $(document).ready(function() {
     $('[data-toggle="popover"]').popover();
+    var locale = $('body').data('locale') || 'en';
     registerHandler().registerEvents();
     adminHandler().registerEvents();
     $('#dataTable').DataTable( {
@@ -15,7 +16,10 @@ $(document).ready(function() {
         "columnDefs": [ {
             "targets"  : 'no-sort',
             "orderable": false,
-        }]
+        }],
+        "language": {
+            "url": "/datatables.net/i18n/"+locale+".lang"
+        }
     });
     $('select').selectpicker();
     $('#removeElementModal').on('show.bs.modal', function(event){

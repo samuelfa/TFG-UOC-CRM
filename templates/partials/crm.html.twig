@@ -15,7 +15,7 @@
              <link rel="stylesheet" href="/build/app.css"> -->
     {% endblock %}
 </head>
-<body id="page-top">
+<body id="page-top" data-locale="{{ app.request.locale }}">
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
         <a class="navbar-brand mr-1" href="{{ url('crm_dashboard') }}">CRM</a>
 
