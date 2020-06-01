@@ -47,7 +47,7 @@
 
                                     <div class="form-group col-lg-12">
                                         <label for="body">{% trans %}Body{% endtrans %}</label>
-                                        <textarea class="form-control" id="body" name="body" rows="5" required> value="{{ app.flashes('input.body')|toString }}"</textarea>
+                                        <textarea class="form-control" id="body" name="body" rows="5" required>{{ app.flashes('input.body')|toString }}</textarea>
                                         {% for message in app.flashes('error.body') %}
                                             <div class="alert alert-danger">
                                                 {{ message }}
