@@ -103,7 +103,7 @@
       </trans-unit>
       <trans-unit id="xhOKv6a" resname="Birthday">
         <source>Birthday</source>
-        <target>Fecha de cumpleaños</target>
+        <target>Fecha de nacimiento</target>
       </trans-unit>
       <trans-unit id="9xCUwwF" resname="Portrait">
         <source>Portrait</source>
