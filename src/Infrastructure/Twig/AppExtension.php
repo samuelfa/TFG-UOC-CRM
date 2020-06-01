@@ -29,13 +29,13 @@ class AppExtension extends AbstractExtension
         return $var instanceof $instance;
     }
 
-    public function toString($value, string $default = ''): string
+    public function toString($value, ?string $default = ''): string
     {
         if(empty($value)){
-            return $default;
+            return (string) $default;
         }
 
-        return $value[0];
+        return (string) $value[0];
     }
 
     public function flatten(array $list): array
