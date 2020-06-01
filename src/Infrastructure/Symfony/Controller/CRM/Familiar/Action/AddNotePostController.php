@@ -19,7 +19,7 @@ class AddNotePostController extends WebController
     {
         $request->request->set('nif', $nif);
         if(!$request->request->has('private')){
-            $request->request->set('private', 0);
+            $request->request->set('private', '0');
         }
         $validationErrors = $this->validate($request);
 
