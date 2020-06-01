@@ -43,11 +43,11 @@
       </trans-unit>
       <trans-unit id="uBc5ocZ" resname="Edit category %name%">
         <source>Edit category %name%</source>
-        <target>Editar category %name%</target>
+        <target>Editar categoría %name%</target>
       </trans-unit>
       <trans-unit id=".VLTBSF" resname="Edit activity %name%">
         <source>Edit activity %name%</source>
-        <target>Editar activity %name%</target>
+        <target>Editar actividad %name%</target>
       </trans-unit>
       <trans-unit id="4qsdumK" resname="Calendar for %name%">
         <source>Calendar for %name%</source>
