@@ -23,7 +23,7 @@
       </trans-unit>
       <trans-unit id="1In4RQu" resname="Edit worker %name%">
         <source>Edit worker %name%</source>
-        <target>Editar worker %name%</target>
+        <target>Editar trabajador %name%</target>
       </trans-unit>
       <trans-unit id="cSBU5TV" resname="View worker %name%">
         <source>View worker %name%</source>
@@ -31,15 +31,15 @@
       </trans-unit>
       <trans-unit id="alEo6x1" resname="Edit customer %name%">
         <source>Edit customer %name%</source>
-        <target>Editar customer %name%</target>
+        <target>Editar cliente %name%</target>
       </trans-unit>
       <trans-unit id="l797x1f" resname="View customer %name%">
         <source>View customer %name%</source>
-        <target>Ver customer %name%</target>
+        <target>Ver cliente %name%</target>
       </trans-unit>
       <trans-unit id="0dEDprw" resname="this link is valid until %expiresAt%">
         <source>this link is valid until %expiresAt%</source>
-        <target>__this link is valid until %expiresAt%</target>
+        <target>Este enlace es valido hasta el %expiresAt%</target>
       </trans-unit>
       <trans-unit id="uBc5ocZ" resname="Edit category %name%">
         <source>Edit category %name%</source>
@@ -67,7 +67,7 @@
       </trans-unit>
       <trans-unit id="Y86QzZi" resname="%total% notes">
         <source>%total% notes</source>
-        <target>__%total% notes</target>
+        <target>%total% notas</target>
       </trans-unit>
       <trans-unit id="2ZGjloX" resname="%total% emails">
         <source>%total% emails</source>
