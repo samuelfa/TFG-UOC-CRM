@@ -9,7 +9,7 @@
         ansistrano_deploy_to: '{{ deploy_to }}'
         ansistrano_keep_releases: 5
         ansistrano_deploy_via: 'git'
-        ansistrano_git_repo: 'git@gitlab.com:samuelfa/tfg.git'
+        ansistrano_git_repo: 'git@github.com:samuelfa/TFG-UOC-CRM.git'
         ansistrano_git_branch: '{{ branch }}'
         ansistrano_shared_paths:
             - 'var/log'
